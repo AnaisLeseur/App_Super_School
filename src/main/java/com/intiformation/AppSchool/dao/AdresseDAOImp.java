@@ -51,6 +51,7 @@ public class AdresseDAOImp implements IAdresseDAO {
 
 			// cas erreur : annulation de la transaction
 			System.out.println("... (AdresseDAOImp) Erreur lors de la modification ....");
+			
 		} // end catch
 
 	}//end update()
@@ -72,6 +73,7 @@ public class AdresseDAOImp implements IAdresseDAO {
 
 			// cas erreur : annulation de la transaction
 			System.out.println("... (AdresseDAOImp) Erreur lors de la suppression ....");
+			
 		} // end catch
 
 	}
@@ -94,30 +96,35 @@ public class AdresseDAOImp implements IAdresseDAO {
 			return listeAdressesBDD;
 
 		} catch (Exception e) {
-			// cas erreur : annulation de la transaction
+			
 			System.out.println("... (AdresseDAOImpl) Erreur lors de la récupération de la liste des adresses ....");
-			throw e;
+			
 		} // end catch
+		
+		return null;
 		
 	}//end getAll()
 	
 	
 
 	@Override
-	public Adresse getById(Integer id) {
+	@Transactional(readOnly = true)
+	public Adresse getById(Integer idAdresse) {
 		try {
 
 			Session session = this.sessionFactory.getCurrentSession();
-			Adresse adresse = session.find(Adresse.class, id);
+			Adresse adresse = session.find(Adresse.class, idAdresse);
 
 			return adresse;
 
 		} catch (Exception e) {
-			// cas erreur : annulation de la transaction
-			System.out.println("... (EmployeDAOImpl) Erreur lors de la récup d'un employé via son id ....");
-			throw e;
+			
+			System.out.println("... (AdresseDAOImp) Erreur lors de la récup d'une adresse via son id ....");
+			
 		} // end catch
-	}
+		
+		return null;
+	}//end getById()
 	
 	//Setter
 
