@@ -26,6 +26,7 @@ public class Administrateur extends Personne {
 	public Administrateur() {
 	}
 
+	
 	// Ctor avec les props de la classe 'Personne'
 	
 	public Administrateur(int identifiant, String motDePasse, String nom, String prenom, String email,
@@ -43,8 +44,8 @@ public class Administrateur extends Personne {
 		super(motDePasse, nom, prenom, email);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
+
 	
 	
 	// ---- Meths ----

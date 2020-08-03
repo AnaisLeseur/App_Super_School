@@ -25,6 +25,7 @@ public class Enseignant extends Personne {
 	public Enseignant() {
 	}
 
+	
 	// Ctor avec les props de la classe 'Personne'
 	
 	public Enseignant(int identifiant, String motDePasse, String nom, String prenom, String email, Adresse adresse) {
@@ -41,6 +42,7 @@ public class Enseignant extends Personne {
 		super(motDePasse, nom, prenom, email);
 		// TODO Auto-generated constructor stub
 	}
+
 	
 	
 	
