@@ -19,7 +19,7 @@ public class Promotion implements Serializable{
 	//Propriétés
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idPromotion;
+	private int idPromotion;
 	
 	@Column(length=30)
 	private String libelle;
@@ -39,18 +39,18 @@ public class Promotion implements Serializable{
 		this.listeEtudiants = listeEtudiants;
 	}
 
-	public Promotion(Long idPromotion, String libelle, List<Etudiant> listeEtudiants) {
+	public Promotion(int idPromotion, String libelle, List<Etudiant> listeEtudiants) {
 		this.idPromotion = idPromotion;
 		this.libelle = libelle;
 		this.listeEtudiants = listeEtudiants;
 	}
 
 	//Getter Setter
-	public Long getIdPromotion() {
+	public int getIdPromotion() {
 		return idPromotion;
 	}
 
-	public void setIdPromotion(Long idPromotion) {
+	public void setIdPromotion(int idPromotion) {
 		this.idPromotion = idPromotion;
 	}
 

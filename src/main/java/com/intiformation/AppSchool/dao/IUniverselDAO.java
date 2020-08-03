@@ -5,8 +5,6 @@ import java.util.List;
 
 
 public interface IUniverselDAO<T> {
-
-
 	
 // récup d'une connexion vers la bdd via l'utilitaire ConnexionBdd
 

@@ -24,7 +24,7 @@ public abstract class Personne implements Serializable{
 	//Propriétés
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long identifiant;
+	private int identifiant;
 	
 	@Column(length=30)
 	private String motDePasse;
@@ -54,7 +54,7 @@ public abstract class Personne implements Serializable{
 		this.email = email;
 	}
 
-	public Personne(Long identifiant, String motDePasse, String nom, String prenom, String email) {
+	public Personne(int identifiant, String motDePasse, String nom, String prenom, String email) {
 		this.identifiant = identifiant;
 		this.motDePasse = motDePasse;
 		this.nom = nom;
@@ -62,7 +62,7 @@ public abstract class Personne implements Serializable{
 		this.email = email;
 	}
 	
-	public Personne(Long identifiant, String motDePasse, String nom, String prenom, String email, Adresse adresse) {
+	public Personne(int identifiant, String motDePasse, String nom, String prenom, String email, Adresse adresse) {
 		this.identifiant = identifiant;
 		this.motDePasse = motDePasse;
 		this.nom = nom;
@@ -73,11 +73,11 @@ public abstract class Personne implements Serializable{
 
 	//Getter Setter
 
-	public Long getIdentifiant() {
+	public int getIdentifiant() {
 		return identifiant;
 	}
 
-	public void setIdentifiant(Long identifiant) {
+	public void setIdentifiant(int identifiant) {
 		this.identifiant = identifiant;
 	}
 

@@ -32,7 +32,13 @@ public class Etudiant extends Personne{
 		this.dateNaissance = dateNaissance;
 	}
 
+	public Etudiant(String motDePasse, String nom, String prenom, String email) {
+		super(motDePasse, nom, prenom, email);
+		// TODO Auto-generated constructor stub
+	}
+
 	public Etudiant(String photo, Date dateNaissance, List<Promotion> listePromotions) {
+		super();
 		this.photo = photo;
 		this.dateNaissance = dateNaissance;
 		this.listePromotions = listePromotions;

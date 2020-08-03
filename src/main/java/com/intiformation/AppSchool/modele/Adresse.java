@@ -14,7 +14,7 @@ public class Adresse implements Serializable{
 	//Propriétés
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idAdresse;
+	private int idAdresse;
 	
 	@Column(length=10)
 	private String codePostal;
@@ -32,7 +32,7 @@ public class Adresse implements Serializable{
 		this.ville = ville;
 	}
 
-	public Adresse(Long idAdresse, String codePostal, String ville) {
+	public Adresse(int idAdresse, String codePostal, String ville) {
 		this.idAdresse = idAdresse;
 		this.codePostal = codePostal;
 		this.ville = ville;
@@ -40,11 +40,11 @@ public class Adresse implements Serializable{
 	
 	//Getter Setter
 
-	public Long getIdAdresse() {
+	public int getIdAdresse() {
 		return idAdresse;
 	}
 
-	public void setIdAdresse(Long idAdresse) {
+	public void setIdAdresse(int idAdresse) {
 		this.idAdresse = idAdresse;
 	}
 
