@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.service.IMatiereService;
 import com.intiformation.AppSchool.validator.MatiereValidator;
-import com.intiformation.springmvc.modele.Employe;
 
 
 
@@ -190,7 +189,7 @@ public class MatiereController {
 		 * @return
 		 */
 		@RequestMapping(value="/matiere/update-matiere-form" , method=RequestMethod.GET)
-		public ModelAndView afficherFormulaireModificationMatiere(@RequestParam("idmatire") int pMatiereId) {
+		public ModelAndView afficherFormulaireModificationMatiere(@RequestParam("idmatiere") int pMatiereId) {
 			
 			// 1 recup de l'employé à modifier via son id dans la bdd
 			Matiere matiereAModifier = matiereService.findByIdMatiere(pMatiereId);
