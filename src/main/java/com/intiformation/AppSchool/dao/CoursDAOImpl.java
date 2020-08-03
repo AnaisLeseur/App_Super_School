@@ -5,11 +5,13 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Cours;
+
 
 @Repository
 public class CoursDAOImpl implements ICoursDAO {
@@ -58,31 +60,96 @@ public class CoursDAOImpl implements ICoursDAO {
 
 				} // end catch
 
-			}// end add employe
+			}// end add Cours
 	
 
+	@Transactional
 	@Override
-	public void update(Cours t) {
-		// TODO Auto-generated method stub
+	public void update(Cours pCours) {
 		
-	}
+		// 1. recup de la session d'hibernate via la factory
+				Session session = this.sessionFactory.getCurrentSession();
 
-	@Override
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
+				// 2. recup + ouverture d'une tx via la session
+				
+
+				try {
+
+					// 3 modif dans la bdd via la session
+					session.update(pCours);
+
+					// 4 validation
+					
+
+				} catch (HibernateException e) {
+
+					// cas erreur
+					System.out.println("erreur dans la dao pour la modif du cours");
+					
+					throw e;
+
+				} // end catch
 		
-	}
+	}//end updateCours
+
+	@Transactional
+	@Override
+	public void delete(Integer pIdCours) {
+		// 1. recup de la session d'hibernate via la factory
+				Session session = this.sessionFactory.getCurrentSession();
+
+				// 2. recup + ouverture d'une tx via la session
+				
+
+				try {
+					// 3 recup de l'employe à supprimer via son id
+					Cours coursDelete = getById(pIdCours);
+
+					// 3 ajout dans la bdd via la session
+					session.delete(coursDelete);
+
+					// 4 validation
+				
+
+				} catch (HibernateException e) {
+
+					// cas erreur
+					System.out.println("erreur dans la dao pour la suppression du cours");
+					
+					throw e;
+
+				} // end catch
+	}//end deleteCours
 
 	@Override
 	public List<Cours> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+
+			Query query = session.createQuery("From Employe");
+
+			// 3 envoie + exce +resul
+			List<Cours> listeCoursBDD = query.list();
+
+			return listeCoursBDD;
+		} catch (Exception e) {
+			System.out.println("CoursDAOImpl erreur lors de la liste des cours dans la bdd");
+			throw e;
+		} // end catch
+	}//listeCours
 
 	@Override
-	public Cours getById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public Cours getById(Integer pIdCours) {
+
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Cours emp = session.find(Cours.class, pIdCours);
+
+			return emp;
+		} catch (Exception e) {
+			System.out.println("EmployeeDAOImpl erreur lors deu getbyid");
+			throw e;
+		} // end catch
+	}//end getById
 
 }//end class
