@@ -1,5 +1,15 @@
 package com.intiformation.AppSchool.modele;
 
-public class Enseignant {
 
-}
+/**
+ * classe modele pour un Enseignant. 
+ * classe qui etend Personne
+ * 
+ * @author vincent
+ *
+ */
+public class Enseignant {
+	
+	
+
+}// end Enseignant
