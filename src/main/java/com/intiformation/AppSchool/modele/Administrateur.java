@@ -1,5 +1,7 @@
 package com.intiformation.AppSchool.modele;
 
+import javax.persistence.Entity;
+
 /**
  * classe modele pour un administrateur. 
  * classe qui etend Personne
@@ -7,6 +9,16 @@ package com.intiformation.AppSchool.modele;
  * @author vincent
  *
  */
-public class Administrateur {
+@Entity
+public class Administrateur extends Personne {
+	
+	// ---- Propriétés ----
+	
+	
+	
+	// ---- Ctors ----
+	// ---- Meths ----
+	
+	
 
 }// end Administrateur
