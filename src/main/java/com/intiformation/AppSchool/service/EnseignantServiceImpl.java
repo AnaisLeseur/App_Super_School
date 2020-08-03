@@ -36,7 +36,7 @@ public class EnseignantServiceImpl implements IEnseignantService{
 	 * AJOUTER
 	 */
 	@Override
-	public void ajoutEnseignant(Enseignant pEnseignant) {
+	public void ajouter(Enseignant pEnseignant) {
 		enseignantDAO.add(pEnseignant);
 		
 	}// end ajouter
@@ -46,7 +46,7 @@ public class EnseignantServiceImpl implements IEnseignantService{
 	 * MODIFIER
 	 */
 	@Override
-	public void modifierEnseignant(Enseignant pEnseignant) {
+	public void modifier(Enseignant pEnseignant) {
 		enseignantDAO.update(pEnseignant);
 		
 	}// end modifier
@@ -56,26 +56,26 @@ public class EnseignantServiceImpl implements IEnseignantService{
 	 * SUPPRIMER
 	 */	
 	@Override
-	public void supprimerEnseignant(int pIdEnseignant) {
+	public void supprimer(Integer pIdEnseignant) {
 		enseignantDAO.delete(pIdEnseignant);
 		
-	}// end supprimerEnseignant
+	}// end supprimer
 	
 	/**
 	 * FIND BY ID
 	 */
 	@Override
-	public Enseignant findEnseignantById(int pIdEnseignant) {
+	public Enseignant findById(Integer pIdEnseignant) {
 		return enseignantDAO.getById(pIdEnseignant);
-	}// end findEnseignantById
+	}// end findById
 	
 	/**
 	 * FIND ALL
 	 */
 	@Override
-	public List<Enseignant> findAllEnseignant() {
+	public List<Enseignant> findAll() {
 		return enseignantDAO.getAll();
-	}// end findAllEnseignant
+	}// end findAll
 
 
 }// end class

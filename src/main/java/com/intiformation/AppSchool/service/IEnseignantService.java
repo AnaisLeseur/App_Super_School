@@ -1,6 +1,5 @@
 package com.intiformation.AppSchool.service;
 
-import java.util.List;
 
 import com.intiformation.AppSchool.modele.Enseignant;
 
@@ -11,17 +10,8 @@ import com.intiformation.AppSchool.modele.Enseignant;
  * @author anais
  *
  */
-public interface IEnseignantService {
+public interface IEnseignantService extends IUniverselService<Enseignant> {
 	
-	public void ajoutEnseignant(Enseignant pEnseignant);
-	
-	public void modifierEnseignant(Enseignant pEnseignant);
-	
-	public void supprimerEnseignant(int pIdEnseignant);
-	
-	public Enseignant findEnseignantById(int pIdEnseignant);
-	
-	public List<Enseignant> findAllEnseignant();
-	
+	/*__________ Méthodés spécifiques à l'enseignant  __________*/ 
 
 }// end interface

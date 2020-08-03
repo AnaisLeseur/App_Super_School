@@ -37,7 +37,7 @@ public class AdministrateurServiceImpl implements IAdministrateurService {
 	 * AJOUTER
 	 */
 	@Override
-	public void ajoutAdmin(Administrateur pAdmin) {
+	public void ajouter(Administrateur pAdmin) {
 		administrateurDAO.add(pAdmin);
 		
 	}// end ajouter
@@ -47,7 +47,7 @@ public class AdministrateurServiceImpl implements IAdministrateurService {
 	 * MODIFIER
 	 */
 	@Override
-	public void modifierAdmin(Administrateur pAdmin) {
+	public void modifier(Administrateur pAdmin) {
 		administrateurDAO.update(pAdmin);
 		
 	}// end modifier
@@ -57,7 +57,7 @@ public class AdministrateurServiceImpl implements IAdministrateurService {
 	 * SUPPRIMER
 	 */
 	@Override
-	public void supprimerAdmin(int pIdAdmin) {
+	public void supprimer(Integer pIdAdmin) {
 		administrateurDAO.delete(pIdAdmin);
 		
 	}// end supprimer
@@ -67,16 +67,18 @@ public class AdministrateurServiceImpl implements IAdministrateurService {
 	 * FIND BY ID
 	 */
 	@Override
-	public Administrateur findAdminById(int pIdAdmin) {	
+	public Administrateur findById(Integer pIdAdmin) {	
 		return administrateurDAO.getById(pIdAdmin);
-	}// end findAdminById
+	}// end findById
 
+	
+	
 	/**
 	 * FIND ALL
 	 */
 	@Override
-	public List<Administrateur> findAllAdmin() {
+	public List<Administrateur> findAll() {
 		return administrateurDAO.getAll();
-	}// end findAllAdmin
+	}// end findAll
 
 }// end class

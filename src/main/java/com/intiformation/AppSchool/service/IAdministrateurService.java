@@ -6,20 +6,13 @@ import com.intiformation.AppSchool.modele.Administrateur;
 
 /**
  * interface de la couche service pour l'administrateur
+ * interface qui etend IUniverselService
  *
  * @author anais
  *
  */
-public interface IAdministrateurService {
+public interface IAdministrateurService extends IUniverselService<Administrateur> {
 	
-	public void ajoutAdmin(Administrateur pAdmin);
-	
-	public void modifierAdmin(Administrateur pAdmin);
-	
-	public void supprimerAdmin(int pIdAdmin);
-	
-	public Administrateur findAdminById(int pIdAdmin);
-	
-	public List<Administrateur> findAllAdmin();
+	/*__________ Méthodés spécifiques à l'adminitrateur __________*/ 
 
 }// end interface
