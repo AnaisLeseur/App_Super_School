@@ -53,6 +53,65 @@ public class Cours {
 		this.FkEtduiant = fkEtduiant;
 		this.FkMatiere = fkMatiere;
 	}
+	
+	//-------------------------------getter et setter-----------------------------------------
+
+
+	public Long getIdCours() {
+		return idCours;
+	}
+
+	public void setIdCours(Long idCours) {
+		this.idCours = idCours;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getDuree() {
+		return duree;
+	}
+
+	public void setDuree(int duree) {
+		this.duree = duree;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Long getFkEtduiant() {
+		return FkEtduiant;
+	}
+
+	public void setFkEtduiant(Long fkEtduiant) {
+		FkEtduiant = fkEtduiant;
+	}
+
+	public Long getFkMatiere() {
+		return FkMatiere;
+	}
+
+	public void setFkMatiere(Long fkMatiere) {
+		FkMatiere = fkMatiere;
+	}
 
 	
 	
@@ -60,7 +119,6 @@ public class Cours {
 	
 	
 	
-	//-------------------------------getter et setter-----------------------------------------
 	
 	
 	
