@@ -1,13 +1,12 @@
 package com.intiformation.AppSchool.modele;
 
-
 /**
- * classe modele pour un Enseignant. 
+ * classe modele pour un administrateur. 
  * classe qui etend Personne
  * 
  * @author vincent
  *
  */
-public class Enseignant {
+public class Administrateur {
 
-}// end Enseignant
+}// end Administrateur
