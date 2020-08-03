@@ -1,6 +1,8 @@
 package com.intiformation.AppSchool.modele;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+
 
 /**
  * classe modele pour un administrateur. 
@@ -10,15 +12,40 @@ import javax.persistence.Entity;
  *
  */
 @Entity
+@DiscriminatorValue(value = "administrateurs")
 public class Administrateur extends Personne {
 	
 	// ---- Propriétés ----
 	
 	
-	
 	// ---- Ctors ----
-	// ---- Meths ----
+	// Ctors vide
+	public Administrateur() {
+	}
+
+	// Ctor avec les props de la classe 'Personne'
 	
+	public Administrateur(Long identifiant, String motDePasse, String nom, String prenom, String email,
+			Adresse adresse) {
+		super(identifiant, motDePasse, nom, prenom, email, adresse);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Administrateur(Long identifiant, String motDePasse, String nom, String prenom, String email) {
+		super(identifiant, motDePasse, nom, prenom, email);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Administrateur(String motDePasse, String nom, String prenom, String email) {
+		super(motDePasse, nom, prenom, email);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
+	// ---- Meths ----
+	// ---- Getters / Setters ----
 	
 
 }// end Administrateur

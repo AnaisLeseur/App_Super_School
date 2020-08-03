@@ -1,5 +1,7 @@
 package com.intiformation.AppSchool.modele;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 /**
  * classe modele pour un Enseignant. 
@@ -8,8 +10,39 @@ package com.intiformation.AppSchool.modele;
  * @author vincent
  *
  */
-public class Enseignant {
+@Entity
+@DiscriminatorValue(value = "enseignants")
+public class Enseignant extends Personne {
 	
+	// ---- Propriétés ----
+	
+	
+	// ---- Ctors ----
+	// Ctors vide
+	public Enseignant() {
+	}
+
+	// Ctor avec les props de la classe 'Personne'
+	
+	public Enseignant(Long identifiant, String motDePasse, String nom, String prenom, String email, Adresse adresse) {
+		super(identifiant, motDePasse, nom, prenom, email, adresse);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Enseignant(Long identifiant, String motDePasse, String nom, String prenom, String email) {
+		super(identifiant, motDePasse, nom, prenom, email);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Enseignant(String motDePasse, String nom, String prenom, String email) {
+		super(motDePasse, nom, prenom, email);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	// ---- Meths ----
+	// ---- Getters / Setters ----
 	
 
 }// end Enseignant
