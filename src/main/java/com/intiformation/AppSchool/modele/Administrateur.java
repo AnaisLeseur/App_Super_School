@@ -2,6 +2,7 @@ package com.intiformation.AppSchool.modele;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 
 /**
@@ -13,6 +14,8 @@ import javax.persistence.Entity;
  */
 @Entity
 @DiscriminatorValue(value = "administrateurs")
+@PrimaryKeyJoinColumn(name="personne_id",
+					  referencedColumnName="identifiant")
 public class Administrateur extends Personne {
 	
 	// ---- Propriétés ----

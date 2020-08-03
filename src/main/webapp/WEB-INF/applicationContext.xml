@@ -8,12 +8,11 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
-<!-- ativaton  de l'annotation des transaction -->
-<!-- 
-    > annotation-driven = tx piloté par les annotations via un gestionnaire des tx
-    proposé par spring (transaction-Manager)
- -->
-<tx:annotation-driven transaction-manager="transactionManagerBean"/>
+	<!-- ativaton de l'annotation des transaction -->
+	<!-- > annotation-driven = tx piloté par les annotations via un gestionnaire 
+		des tx proposé par spring (transaction-Manager) -->
+	<tx:annotation-driven
+		transaction-manager="transactionManagerBean" />
 
 
 	<context:property-placeholder
@@ -53,25 +52,37 @@
 		<!-- declaration des classes entités annotés avec @etnity -->
 		<property name="annotatedClasses">
 			<list>
-				<value>com.intiformation.AppSchool.modele</value>
+				<value>com.intiformation.AppSchool.modele.Administrateur</value>
+				<value>com.intiformation.AppSchool.modele.Adresse</value>
+				<value>com.intiformation.AppSchool.modele.Cours</value>
+				<value>com.intiformation.AppSchool.modele.Enseignant</value>
+				<value>com.intiformation.AppSchool.modele.Etudiant</value>
+				<value>com.intiformation.AppSchool.modele.EtudiantCours</value>
+				<value>com.intiformation.AppSchool.modele.Matiere</value>
+				<value>com.intiformation.AppSchool.modele.Personne</value>
+				<value>com.intiformation.AppSchool.modele.Promotion</value>
+
 			</list>
 
 		</property>
 
 	</bean>
 
-<!-- declaration du bean du gestionnaire des tx -->
+	<!-- declaration du bean du gestionnaire des tx -->
 	<!-- gere pour nous les transactions -->
-	<bean id="transactionManagerBean" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-	
-	<!-- injection du bean de la session factory "sessionFactoryBean" dans le gestionnaire des tx -->
-	<property name="sessionFactory" ref="sessionFactoryBean"/>
-	</bean>
-	
-	<!-- activation de la detection des annotations. ex @Autowired -->
-<context:annotation-config/>
+	<bean id="transactionManagerBean"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 
-<!-- activation de la detection des bean de spring. ex : @Transactionnal/repository/@controller/@service -->
-<context:component-scan base-package="com.intiformation.AppSchool"/>
-	
+		<!-- injection du bean de la session factory "sessionFactoryBean" dans 
+			le gestionnaire des tx -->
+		<property name="sessionFactory" ref="sessionFactoryBean" />
+	</bean>
+
+	<!-- activation de la detection des annotations. ex @Autowired -->
+	<context:annotation-config />
+
+	<!-- activation de la detection des bean de spring. ex : @Transactionnal/repository/@controller/@service -->
+	<context:component-scan
+		base-package="com.intiformation.AppSchool" />
+
 </beans>

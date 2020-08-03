@@ -4,12 +4,18 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@DiscriminatorValue(value = "Etudiant")
+@PrimaryKeyJoinColumn(name="personne_id",
+referencedColumnName="identifiant")
 public class Etudiant extends Personne{
 	
 	//Propriétés
@@ -22,6 +28,9 @@ public class Etudiant extends Personne{
 	@ManyToMany
 	private List<Promotion> listePromotions;
 	
+	@OneToMany(mappedBy="etudiant")
+	private List<EtudiantCours> listeEtudiantCours;
+	
 	
 	//Constructeurs
 	public Etudiant() {
@@ -32,9 +41,10 @@ public class Etudiant extends Personne{
 		this.dateNaissance = dateNaissance;
 	}
 
-	public Etudiant(String motDePasse, String nom, String prenom, String email) {
+	public Etudiant(String motDePasse, String nom, String prenom, String email,String photo, Date dateNaissance) {
 		super(motDePasse, nom, prenom, email);
-		// TODO Auto-generated constructor stub
+		this.photo = photo;
+		this.dateNaissance = dateNaissance;
 	}
 
 	public Etudiant(String photo, Date dateNaissance, List<Promotion> listePromotions) {

@@ -8,127 +8,113 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.intiformation.AppSchool.modele.Adresse;
+import com.intiformation.AppSchool.modele.Etudiant;
 
 @Repository
-public class AdresseDAOImp implements IAdresseDAO {
+public class EtudiantDAOImp implements IEtudiantDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	@Transactional
-	public void add(Adresse pAdresse) {
+	public void add(Etudiant pEtudiant) {
 		// 1. Recuperation de la session d'hibernate via la factory
 		Session session = this.sessionFactory.getCurrentSession();
 
 		try {
 
 			// 2. Ajout dans la BDD
-			session.save(pAdresse);
+			session.save(pEtudiant);
 
 		} catch (HibernateException e) {
 
 			// cas erreur : annulation de la transaction
-			System.out.println("... (AdresseDAOImp) Erreur lors de l'ajout ....");
+			System.out.println("... (EtudiantDAOImp) Erreur lors de l'ajout ....");
 
 		} // end catch
-
-	}//end add()
+	}
 
 	@Override
-	@Transactional
-	public void update(Adresse pAdresse) {
+	public void update(Etudiant pEtudiant) {
 		// 1. Recuperation de la session d'hibernate via la factory
 		Session session = this.sessionFactory.getCurrentSession();
 
 		try {
 
 			// 2. Modification dans la BDD
-			session.update(pAdresse);
+			session.update(pEtudiant);
 
 		} catch (HibernateException e) {
 
 			// cas erreur : annulation de la transaction
-			System.out.println("... (AdresseDAOImp) Erreur lors de la modification ....");
-			
-		} // end catch
+			System.out.println("... (EtudiantDAOImp) Erreur lors de la modification ....");
 
-	}//end update()
+		} // end catch
+	}
 
 	@Override
-	public void delete(Integer idAdresse) {
+	public void delete(Integer idEtudiant) {
 		// 1. Recuperation de la session d'hibernate via la factory
 		Session session = this.sessionFactory.getCurrentSession();
 
 		try {
 
 			// 2. Recuperation de l'adresse à supprimer
-			Adresse adresseToDelete = getById(idAdresse);
+			Etudiant EtudiantToDelete = getById(idEtudiant);
 
 			// 3. Suppression dans la BDD
-			session.delete(adresseToDelete);
+			session.delete(EtudiantToDelete);
 
 		} catch (HibernateException e) {
 
 			// cas erreur : annulation de la transaction
-			System.out.println("... (AdresseDAOImp) Erreur lors de la suppression ....");
-			
-		} // end catch
+			System.out.println("... (EtudiantDAOImp) Erreur lors de la suppression ....");
 
+		} // end catch
 	}
 
 	@Override
-	@Transactional(readOnly = true)
-	public List<Adresse> getAll() {
+	public List<Etudiant> getAll() {
 		try {
 
 			// 1. Recuperation de la session d'hibernate via la factory
 			Session session = this.sessionFactory.getCurrentSession();
 
 			// 2. Definition de la requête à envoyer
-			Query query = session.createQuery("FROM Adresse");
+			Query query = session.createQuery("FROM Etudiant");
 
 			// 3. Envoi + Execution + Resultat
-			List<Adresse> listeAdressesBDD = query.getResultList();
+			List<Etudiant> listeEtudiantsBDD = query.getResultList();
 
 			// 4. renvoi de la liste
-			return listeAdressesBDD;
+			return listeEtudiantsBDD;
 
 		} catch (Exception e) {
-			
-			System.out.println("... (AdresseDAOImpl) Erreur lors de la récupération de la liste des adresses ....");
-			
+
+			System.out.println("... (EtudiantDAOImpl) Erreur lors de la récupération de la liste des étudiants ....");
+
 		} // end catch
-		
 		return null;
-		
-	}//end getAll()
-	
-	
+	}
 
 	@Override
-	@Transactional(readOnly = true)
-	public Adresse getById(Integer idAdresse) {
+	public Etudiant getById(Integer idEtudiant) {
 		try {
 
 			Session session = this.sessionFactory.getCurrentSession();
-			Adresse adresse = session.find(Adresse.class, idAdresse);
+			
+			Etudiant etudiant = session.find(Etudiant.class, idEtudiant);
 
-			return adresse;
+			return etudiant;
 
 		} catch (Exception e) {
-			
-			System.out.println("... (AdresseDAOImp) Erreur lors de la récup d'une adresse via son id ....");
-			
+
+			System.out.println("... (EtudiantDAOImp) Erreur lors de la récup d'un étudiant via son id ....");
+
 		} // end catch
-		
 		return null;
-	}//end getById()
-	
-	//Setter
+	}
 
 	/**
 	 * Setter pour injection par modificateur
@@ -139,4 +125,4 @@ public class AdresseDAOImp implements IAdresseDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
-}//end class
+}// end class
