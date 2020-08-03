@@ -1,7 +1,11 @@
 package com.intiformation.AppSchool.modele;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,8 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class Personne {
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="ROLE",
+					 discriminatorType = DiscriminatorType.STRING)
+public abstract class Personne implements Serializable{
 	
 	//Propriétés
 	@Id
