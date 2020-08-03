@@ -11,7 +11,7 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-@DiscriminatorValue(value = "enseignants")
+@DiscriminatorValue(value = "enseignant")
 public class Enseignant extends Personne {
 	
 	// ---- Propriétés ----
