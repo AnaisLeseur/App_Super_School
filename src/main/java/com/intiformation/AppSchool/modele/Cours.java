@@ -13,7 +13,7 @@ public class Cours {
 	//--------------------------------prop--------------------------------------------------
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idCours;	
+	private int idCours;	
 	
 	private String libelle;
 	
@@ -23,17 +23,17 @@ public class Cours {
 	
 	private Date date;
 	
-	private Long FkEtduiant;
+	private int FkEtduiant;
 	
-	private Long FkMatiere;
+	private int FkMatiere;
 	
 	//-------------------------------ctor-------------------------------------------------------
 	
 	public Cours() {
 	}
 
-	public Cours(Long idCours, String libelle, String description, int duree, Date date, Long fkEtduiant,
-			Long fkMatiere) {
+	public Cours(int idCours, String libelle, String description, int duree, Date date, int fkEtduiant,
+			int fkMatiere) {
 		super();
 		this.idCours = idCours;
 		this.libelle = libelle;
@@ -44,7 +44,7 @@ public class Cours {
 		FkMatiere = fkMatiere;
 	}
 
-	public Cours(String libelle, String description, int duree, Date date, Long fkEtduiant, Long fkMatiere) {
+	public Cours(String libelle, String description, int duree, Date date, int fkEtduiant, int fkMatiere) {
 		super();
 		this.libelle = libelle;
 		this.description = description;
@@ -57,11 +57,11 @@ public class Cours {
 	//-------------------------------getter et setter-----------------------------------------
 
 
-	public Long getIdCours() {
+	public int getIdCours() {
 		return idCours;
 	}
 
-	public void setIdCours(Long idCours) {
+	public void setIdCours(int idCours) {
 		this.idCours = idCours;
 	}
 
@@ -97,19 +97,19 @@ public class Cours {
 		this.date = date;
 	}
 
-	public Long getFkEtduiant() {
+	public int getFkEtduiant() {
 		return FkEtduiant;
 	}
 
-	public void setFkEtduiant(Long fkEtduiant) {
+	public void setFkEtduiant(int fkEtduiant) {
 		FkEtduiant = fkEtduiant;
 	}
 
-	public Long getFkMatiere() {
+	public int getFkMatiere() {
 		return FkMatiere;
 	}
 
-	public void setFkMatiere(Long fkMatiere) {
+	public void setFkMatiere(int fkMatiere) {
 		FkMatiere = fkMatiere;
 	}
 

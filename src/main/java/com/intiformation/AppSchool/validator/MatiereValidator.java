@@ -1,11 +1,13 @@
 package com.intiformation.AppSchool.validator;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.intiformation.AppSchool.modele.Matiere;
 
+@Component //declaration de la class comme validateur (bean spring)
 public class MatiereValidator implements Validator {
 
 	@Override

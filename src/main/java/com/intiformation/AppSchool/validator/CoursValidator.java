@@ -2,12 +2,14 @@ package com.intiformation.AppSchool.validator;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.intiformation.AppSchool.modele.Cours;
 
+@Component //declaration de la class comme validateur (bean spring)
 public class CoursValidator implements Validator {
 
 	@Override

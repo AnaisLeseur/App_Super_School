@@ -12,11 +12,11 @@ public class Matiere {
 	//-------------------------prop-------------------------------------
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idMatiere;
+	private int idMatiere;
 	
 	private String libelle;
 	
-	private Long FkEnseignant;
+	private int FkEnseignant;
 	
 	//-------------------------ctor-------------------------------------
 
@@ -25,7 +25,7 @@ public class Matiere {
 	
 
 	
-	public Matiere(Long idMatiere, String libelle, Long fkEnseignant) {
+	public Matiere(int idMatiere, String libelle, int fkEnseignant) {
 		super();
 		this.idMatiere = idMatiere;
 		this.libelle = libelle;
@@ -33,7 +33,7 @@ public class Matiere {
 	}
 	
 
-	public Matiere(String libelle, Long fkEnseignant) {
+	public Matiere(String libelle, int fkEnseignant) {
 		super();
 		this.libelle = libelle;
 		this.FkEnseignant = fkEnseignant;
@@ -43,11 +43,11 @@ public class Matiere {
 
 	//-------------------------setter-------------------------------------
 
-	public Long getIdMatiere() {
+	public int getIdMatiere() {
 		return idMatiere;
 	}
 
-	public void setIdMatiere(Long idMatiere) {
+	public void setIdMatiere(int idMatiere) {
 		this.idMatiere = idMatiere;
 	}
 
@@ -61,13 +61,13 @@ public class Matiere {
 
 
 
-	public Long getFkEnseignant() {
+	public int getFkEnseignant() {
 		return FkEnseignant;
 	}
 
 
 
-	public void setFkEnseignant(Long fkEnseignant) {
+	public void setFkEnseignant(int fkEnseignant) {
 		FkEnseignant = fkEnseignant;
 	}
 	
