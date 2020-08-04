@@ -33,6 +33,7 @@ public class MatiereDAOImpl implements IMatiereDAO {
 			this.sessionFactory = sessionFactory;
 		}
 
+		@Transactional
 		@Override
 		public void add(Matiere pMatiere) {
 
@@ -118,12 +119,13 @@ public class MatiereDAOImpl implements IMatiereDAO {
 			} // end catch
 		}//end Matieredelete
 
+		@Transactional(readOnly=true)
 		@Override
 		public List<Matiere> getAll() {
 			try {
 				Session session = this.sessionFactory.getCurrentSession();
 
-				Query query = session.createQuery("From Employe");
+				Query query = session.createQuery("From Matiere");
 
 				// 3 envoie + exce +resul
 				List<Matiere> listeMatiereBDD = query.list();
@@ -135,6 +137,7 @@ public class MatiereDAOImpl implements IMatiereDAO {
 			} // end catch
 		}//end listeMatiere
 
+		@Transactional(readOnly=true)
 		@Override
 		public Matiere getById(Integer IdMatiere) {
 			try {

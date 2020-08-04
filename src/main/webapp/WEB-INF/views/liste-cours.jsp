@@ -46,8 +46,8 @@
 				<td>${cou.description}</td>
 				<td>${cou.duree}</td>
 				<td>${cou.date}</td>
-				<td>${mat.FkEtudiant}</td>
-				<td>${mat.FkMatiere}</td>
+				<td>${cou.fkEtudiant}</td>
+				<td>${cou.fkMatiere}</td>
 				
  
 
