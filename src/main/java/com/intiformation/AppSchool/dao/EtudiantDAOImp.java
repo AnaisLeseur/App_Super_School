@@ -82,7 +82,7 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 			Session session = this.sessionFactory.getCurrentSession();
 
 			// 2. Definition de la requête à envoyer
-			Query query = session.createQuery("FROM Etudiant");
+			Query<Etudiant> query = session.createQuery("FROM Etudiant");
 
 			// 3. Envoi + Execution + Resultat
 			List<Etudiant> listeEtudiantsBDD = query.getResultList();

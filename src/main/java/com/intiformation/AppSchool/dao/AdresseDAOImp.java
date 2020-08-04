@@ -89,7 +89,7 @@ public class AdresseDAOImp implements IAdresseDAO {
 			Session session = this.sessionFactory.getCurrentSession();
 
 			// 2. Definition de la requête à envoyer
-			Query query = session.createQuery("FROM Adresse");
+			Query<Adresse> query = session.createQuery("FROM Adresse");
 
 			// 3. Envoi + Execution + Resultat
 			List<Adresse> listeAdressesBDD = query.getResultList();

@@ -33,11 +33,11 @@ public class Cours {
 	private Long FkMatiere;
 	
 	//Ajout pour EtudiantCours Thomas
-	@ManyToMany(cascade=CascadeType.ALL)
+	/*@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="EtudiantCours",
 				joinColumns=@JoinColumn(name="promotion_id"),
 				inverseJoinColumns=@JoinColumn(name="etudiant_id"))
-	private List<Etudiant> listeEtudiants;
+	private List<Etudiant> listeEtudiants;*/
 	
 	//-------------------------------ctor-------------------------------------------------------
 	
@@ -126,12 +126,12 @@ public class Cours {
 		FkMatiere = fkMatiere;
 	}
 
-	public List<Etudiant> getListeEtudiants() {
+	/*public List<Etudiant> getListeEtudiants() {
 		return listeEtudiants;
 	}
 
 	public void setListeEtudiants(List<Etudiant> listeEtudiants) {
 		this.listeEtudiants = listeEtudiants;
-	}
+	}*/
 	
 }//end cours

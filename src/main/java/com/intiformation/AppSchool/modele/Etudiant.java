@@ -28,8 +28,8 @@ public class Etudiant extends Personne{
 	@ManyToMany
 	private List<Promotion> listePromotions;
 	
-	@OneToMany(mappedBy="etudiant")
-	private List<EtudiantCours> listeEtudiantCours;
+	/*@OneToMany(mappedBy="etudiant")
+	private List<EtudiantCours> listeEtudiantCours;*/
 	
 	
 	//Constructeurs

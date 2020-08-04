@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h1>Test</h1>
+	
+	<a href="${pageContext.request.contextPath}/etudiant/liste">To Etudiant</a>
 </body>
 </html>
