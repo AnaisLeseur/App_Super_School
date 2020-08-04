@@ -31,7 +31,7 @@ import com.intiformation.AppSchool.validator.AdministrateurValidator;
 public class AdministrateurController {
 	
 	// déclaration service
-	@Autowired // injection du bean de la couche service dans cette prop 'employeService'
+	@Autowired // injection du bean de la couche service dans cette prop 'adminService'
 	private IAdministrateurService adminService;
 
 	
@@ -48,7 +48,7 @@ public class AdministrateurController {
 	@Autowired
 	public AdministrateurController(IAdministrateurService adminService) {
 		this.adminService = adminService;
-	}// end ctor
+	}
 
 
 	/**
@@ -58,7 +58,7 @@ public class AdministrateurController {
 	 */
 	public void setAdminValidator(AdministrateurValidator adminValidator) {
 		this.adminValidator = adminValidator;
-	}// end ctor
+	}
 	
 	
 
@@ -87,7 +87,7 @@ public class AdministrateurController {
 		 */
 		return "Personnel/liste-administrateurs";
 		
-	}// end recupererListeEmployesBdd	
+	}// end recupererListeAdminBdd	
 	
 	
 	
@@ -156,7 +156,7 @@ public class AdministrateurController {
 									ModelMap model,
 									BindingResult resultatValidation) {
 		
-		// application du validateur sur l'objet pEmploye
+		// application du validateur sur l'objet pAdmin
 		adminValidator.validate(pAdmin, resultatValidation);
 		
 		// validation
@@ -219,6 +219,6 @@ public class AdministrateurController {
 		// 3. renvoi du nom de la vue logique de la vue :
 		return "redirect:/administrateurs/liste";
 		
-	}// end modifierEmployeBdd
+	}// end modifierAdminBdd
 
 }// end AdministrateurController

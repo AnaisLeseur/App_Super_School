@@ -25,6 +25,14 @@
 
 	<a href="${pageContext.request.contextPath}/cours/liste">To Cours</a>
 
+	<br/>
+	<br/>
+
+	<a href="${pageContext.request.contextPath}/enseignants/liste">Enseignants</a>
+
+
+
+
 
 </body>
 </html>
