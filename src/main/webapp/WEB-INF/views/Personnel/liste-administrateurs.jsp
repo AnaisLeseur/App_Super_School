@@ -27,7 +27,7 @@
 	 
 	 	<!--  Ajout d'un admin -->
 	 	<tr>
-	 		<td colspan="6" align="right">
+	 		<td colspan="7" align="right">
 	 			<%-- 
 	 				au click sur le lien =>
 	 					-> envoi d'une rqt http en get vers la methode "afficherFormAjoutAdmin()" 
