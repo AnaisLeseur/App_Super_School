@@ -5,7 +5,6 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.intiformation.AppSchool.modele.Matiere;
-import com.intiformation.springmvc.modele.Employe;
 
 public class MatiereValidator implements Validator {
 
