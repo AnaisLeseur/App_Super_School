@@ -39,7 +39,7 @@
 			<tr>
 				<td>${mat.idMatiere}</td>
 				<td>${mat.libelle}</td>
-				<td>${mat.FkEnseignant}</td>
+			 <td>${mat.fkEnseignant}</td> 
 				
  
 

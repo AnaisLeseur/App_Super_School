@@ -9,6 +9,7 @@
 <body>
 	<h1>Test</h1>
 	
+
 	<a href="${pageContext.request.contextPath}/etudiant/liste">To Etudiant</a>
 	
 	<br/>
@@ -16,6 +17,10 @@
 	
 	<a href="${pageContext.request.contextPath}/administrateurs/liste">Administateur</a>
 	
-	
+	<br/>
+	<br/>
+
+	<a href="${pageContext.request.contextPath}/cours/liste">To Cours</a>
+
 </body>
 </html>

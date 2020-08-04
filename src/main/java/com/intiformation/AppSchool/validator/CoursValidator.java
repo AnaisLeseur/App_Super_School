@@ -57,12 +57,12 @@ public class CoursValidator implements Validator {
 		} // validation duree
 
 		// validation de FKEtudiant
-		if (cours.getFkEtduiant() < 0) {
+		if (cours.getFkEtudiant() < 0) {
 
 			// créatio d'une erreur objet
 			errors.rejectValue("FkEtudiant", "notallowed.FkEtudiantCours", "La valeur ne peut pas être négative");
 
-		} else if (cours.getFkEtduiant() == 0) {
+		} else if (cours.getFkEtudiant() == 0) {
 
 			errors.rejectValue("FkEtudiant", "required.FkEtudiantCours", "La valeur ne peut pas être égal à 0");
 

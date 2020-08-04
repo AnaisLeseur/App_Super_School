@@ -121,12 +121,13 @@ public class CoursDAOImpl implements ICoursDAO {
 				} // end catch
 	}//end deleteCours
 
+	@Transactional(readOnly=true)
 	@Override
 	public List<Cours> getAll() {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 
-			Query query = session.createQuery("From Employe");
+			Query query = session.createQuery("From Cours");
 
 			// 3 envoie + exce +resul
 			List<Cours> listeCoursBDD = query.list();
@@ -138,6 +139,7 @@ public class CoursDAOImpl implements ICoursDAO {
 		} // end catch
 	}//listeCours
 
+	@Transactional(readOnly=true)
 	@Override
 	public Cours getById(Integer pIdCours) {
 

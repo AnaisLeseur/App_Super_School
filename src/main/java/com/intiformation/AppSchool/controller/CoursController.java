@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.modele.Cours;
-import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.service.ICoursService;
 import com.intiformation.AppSchool.validator.CoursValidator;
 

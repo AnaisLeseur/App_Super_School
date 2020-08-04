@@ -148,7 +148,7 @@ public class MatiereController {
 		 * @param resultatValidation contient le resultat du process de la validation
 		 */
 		@RequestMapping(value="/matiere/add", method=RequestMethod.POST)
-		public String ajouterEmployeBDD(@ModelAttribute("matiereCommand") @Validated Matiere pMatiere,
+		public String ajouterMatiereBDD(@ModelAttribute("matiereCommand") @Validated Matiere pMatiere,
 				                        ModelMap model, BindingResult resultatValidation ) {
 			
 			//validation de l'objet pEmploye
