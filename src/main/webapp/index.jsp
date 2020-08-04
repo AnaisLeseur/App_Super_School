@@ -9,6 +9,6 @@
 <body>
 	<h1>Test</h1>
 	
-	<a href="${pageContext.request.contextPath}/cours/liste">To Cours</a>
+	<a href="${pageContext.request.contextPath}/matiere/liste">To Cours</a>
 </body>
 </html>

@@ -137,7 +137,7 @@ public class CoursController {
 	 * @param resultatValidation contient le resultat du process de la validation
 	 */
 	@RequestMapping(value="/cours/add", method=RequestMethod.POST)
-	public String ajouterEmployeBDD(@ModelAttribute("matiereCommand") @Validated Cours pCours,
+	public String ajouterEmployeBDD(@ModelAttribute("coursCommand") @Validated Cours pCours,
 			                        ModelMap model, BindingResult resultatValidation ) {
 		
 		//validation de l'objet pEmploye
