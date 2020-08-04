@@ -3,10 +3,12 @@ package com.intiformation.AppSchool.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.IMatiereDAO;
 import com.intiformation.AppSchool.modele.Matiere;
 
+@Service
 public class MatiereServiceImpl implements IMatiereService {
 
 	@Autowired // ijection du bean de la doa dans cette prop

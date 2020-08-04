@@ -18,7 +18,7 @@ public class Cours {
 	//--------------------------------prop--------------------------------------------------
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idCours;	
+	private int idCours;	
 	
 	private String libelle;
 	
@@ -28,9 +28,9 @@ public class Cours {
 	
 	private Date date;
 	
-	private Long FkEtduiant;
+	private int FkEtduiant;
 	
-	private Long FkMatiere;
+	private int FkMatiere;
 	
 	//Ajout pour EtudiantCours Thomas
 	/*@ManyToMany(cascade=CascadeType.ALL)
@@ -44,8 +44,8 @@ public class Cours {
 	public Cours() {
 	}
 
-	public Cours(Long idCours, String libelle, String description, int duree, Date date, Long fkEtduiant,
-			Long fkMatiere) {
+	public Cours(int idCours, String libelle, String description, int duree, Date date, int fkEtduiant,
+			int fkMatiere) {
 		super();
 		this.idCours = idCours;
 		this.libelle = libelle;
@@ -56,7 +56,7 @@ public class Cours {
 		FkMatiere = fkMatiere;
 	}
 
-	public Cours(String libelle, String description, int duree, Date date, Long fkEtduiant, Long fkMatiere) {
+	public Cours(String libelle, String description, int duree, Date date, int fkEtduiant, int fkMatiere) {
 		super();
 		this.libelle = libelle;
 		this.description = description;
