@@ -70,13 +70,7 @@ public class Cours {
 	
 	//-------------------------------getter et setter-----------------------------------------
 
-	public Long getIdCours() {
-		return idCours;
-	}
-
-	public void setIdCours(Long idCours) {
-		this.idCours = idCours;
-	}
+	
 
 	public String getLibelle() {
 		return libelle;
@@ -110,21 +104,31 @@ public class Cours {
 		this.date = date;
 	}
 
-	public Long getFkEtduiant() {
+	public int getIdCours() {
+		return idCours;
+	}
+
+	public void setIdCours(int idCours) {
+		this.idCours = idCours;
+	}
+
+	public int getFkEtduiant() {
 		return FkEtduiant;
 	}
 
-	public void setFkEtduiant(Long fkEtduiant) {
+	public void setFkEtduiant(int fkEtduiant) {
 		FkEtduiant = fkEtduiant;
 	}
 
-	public Long getFkMatiere() {
+	public int getFkMatiere() {
 		return FkMatiere;
 	}
 
-	public void setFkMatiere(Long fkMatiere) {
+	public void setFkMatiere(int fkMatiere) {
 		FkMatiere = fkMatiere;
 	}
+
+	
 
 	/*public List<Etudiant> getListeEtudiants() {
 		return listeEtudiants;
