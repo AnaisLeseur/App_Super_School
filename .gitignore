@@ -1,8 +1,7 @@
 /.metadata/
 
-/target
-
-/.settings/
-.classpath
-.project
-.springBeans
+/target/
+/.classpath
+/*.project
+/.settings
+/*.springBeans

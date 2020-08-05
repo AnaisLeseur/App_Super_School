@@ -8,8 +8,8 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
-	<!-- ativaton de l'annotation des transaction -->
-	<!-- > annotation-driven = tx piloté par les annotations via un gestionnaire 
+	<!-- activation de l'annotation des transaction -->
+	<!-- > annotation-driven = tx pilotée par les annotations via un gestionnaire 
 		des tx proposé par spring (transaction-Manager) -->
 	<tx:annotation-driven
 		transaction-manager="transactionManagerBean" />
@@ -49,7 +49,7 @@
 			</props>
 		</property>
 
-		<!-- declaration des classes entités annotés avec @Entity -->
+		<!-- declaration des classes entités annotées avec @Entity -->
 		<property name="annotatedClasses">
 			<list>
 				<value>com.intiformation.AppSchool.modele.Administrateur</value>
@@ -61,6 +61,7 @@
 				<value>com.intiformation.AppSchool.modele.Matiere</value>
 				<value>com.intiformation.AppSchool.modele.Personne</value>
 				<value>com.intiformation.AppSchool.modele.Promotion</value>
+				<value>com.intiformation.AppSchool.modele.EnseigneJointure</value>
 
 			</list>
 

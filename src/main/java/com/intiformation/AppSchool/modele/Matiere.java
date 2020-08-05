@@ -16,7 +16,7 @@ public class Matiere {
 	
 	private String libelle;
 	
-	private int FkEnseignant;
+	private Long FkEnseignant;
 	
 	//-------------------------ctor-------------------------------------
 
@@ -25,7 +25,7 @@ public class Matiere {
 	
 
 	
-	public Matiere(int idMatiere, String libelle, int fkEnseignant) {
+	public Matiere(int idMatiere, String libelle, Long fkEnseignant) {
 		super();
 		this.idMatiere = idMatiere;
 		this.libelle = libelle;
@@ -33,7 +33,7 @@ public class Matiere {
 	}
 	
 
-	public Matiere(String libelle, int fkEnseignant) {
+	public Matiere(String libelle, Long fkEnseignant) {
 		super();
 		this.libelle = libelle;
 		this.FkEnseignant = fkEnseignant;
@@ -61,13 +61,13 @@ public class Matiere {
 
 
 
-	public int getFkEnseignant() {
+	public Long getFkEnseignant() {
 		return FkEnseignant;
 	}
 
 
 
-	public void setFkEnseignant(int fkEnseignant) {
+	public void setFkEnseignant(Long fkEnseignant) {
 		FkEnseignant = fkEnseignant;
 	}
 	

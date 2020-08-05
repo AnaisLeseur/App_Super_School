@@ -25,9 +25,9 @@ public class Cours {
 	
 	private Date date;
 	
-	private int FkEtduiant;
+	private Long fkEtudiant;
 	
-	private int FkMatiere;
+	private Long fkMatiere;
 	
 	//Ajout pour EtudiantCours Thomas
 	/*@OneToMany(mappedBy="etudiantEC")
@@ -38,39 +38,33 @@ public class Cours {
 	public Cours() {
 	}
 
-	public Cours(int idCours, String libelle, String description, int duree, Date date, int fkEtduiant,
-			int fkMatiere) {
+	public Cours(int idCours, String libelle, String description, int duree, Date date, Long fkEtduiant,
+			Long fkMatiere) {
 		super();
 		this.idCours = idCours;
 		this.libelle = libelle;
 		this.description = description;
 		this.duree = duree;
 		this.date = date;
-		FkEtduiant = fkEtduiant;
-		FkMatiere = fkMatiere;
+		this.fkEtudiant = fkEtduiant;
+		this.fkMatiere = fkMatiere;
 	}
 
-	public Cours(String libelle, String description, int duree, Date date, int fkEtduiant, int fkMatiere) {
+	public Cours(String libelle, String description, int duree, Date date, Long fkEtudiant, Long fkMatiere) {
 		super();
 		this.libelle = libelle;
 		this.description = description;
 		this.duree = duree;
 		this.date = date;
-		this.FkEtduiant = fkEtduiant;
-		this.FkMatiere = fkMatiere;
+		this.fkEtudiant = fkEtudiant;
+		this.fkMatiere = fkMatiere;
 	}
 	
 	
 	
 	//-------------------------------getter et setter-----------------------------------------
 
-	public int getIdCours() {
-		return idCours;
-	}
-
-	public void setIdCours(int idCours) {
-		this.idCours = idCours;
-	}
+	
 
 	public String getLibelle() {
 		return libelle;
@@ -104,23 +98,39 @@ public class Cours {
 		this.date = date;
 	}
 
-	public int getFkEtduiant() {
-		return FkEtduiant;
+	public int getIdCours() {
+		return idCours;
 	}
 
-	public void setFkEtduiant(int fkEtduiant) {
-		FkEtduiant = fkEtduiant;
+	public void setIdCours(int idCours) {
+		this.idCours = idCours;
 	}
 
-	public int getFkMatiere() {
-		return FkMatiere;
+	public Long getFkEtudiant() {
+		return fkEtudiant;
 	}
 
-	public void setFkMatiere(int fkMatiere) {
-		FkMatiere = fkMatiere;
+	public void setFkEtudiant(Long fkEtudiant) {
+		this.fkEtudiant = fkEtudiant;
 	}
-/*
-	public List<Etudiant> getListeEtudiants() {
+
+	public Long getFkMatiere() {
+		return fkMatiere;
+	}
+
+	public void setFkMatiere(Long fkMatiere) {
+		this.fkMatiere = fkMatiere;
+	}
+
+	
+
+	
+
+
+	
+	
+
+	/*public List<Etudiant> getListeEtudiants() {
 		return listeEtudiants;
 	}
 
