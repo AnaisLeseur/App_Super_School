@@ -44,5 +44,5 @@
 	     en recherchant dans le repertoir ou le dossier "/assets/" sous le dossier racine
 	     de l'application
 	 -->
-<mvc:resources location="/assets/**" mapping="/assets/"/>
+<mvc:resources location="/assets/" mapping="/assets/**"/>
 </beans>

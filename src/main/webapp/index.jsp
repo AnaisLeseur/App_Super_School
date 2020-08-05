@@ -10,5 +10,6 @@
 	<h1>Test</h1>
 	
 	<a href="${pageContext.request.contextPath}/etudiant/liste">To Etudiant</a>
+	<a href="${pageContext.request.contextPath}/adresse/liste">To Adresse</a>
 </body>
 </html>

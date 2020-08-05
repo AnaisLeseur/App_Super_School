@@ -49,7 +49,7 @@
 			</props>
 		</property>
 
-		<!-- declaration des classes entités annotés avec @etnity -->
+		<!-- declaration des classes entités annotés avec @Entity -->
 		<property name="annotatedClasses">
 			<list>
 				<value>com.intiformation.AppSchool.modele.Administrateur</value>
@@ -57,7 +57,7 @@
 				<value>com.intiformation.AppSchool.modele.Cours</value>
 				<value>com.intiformation.AppSchool.modele.Enseignant</value>
 				<value>com.intiformation.AppSchool.modele.Etudiant</value>
-				<!-- <value>com.intiformation.AppSchool.modele.EtudiantCours</value>  -->
+				<!-- <value>com.intiformation.AppSchool.modele.EtudiantCours</value> -->
 				<value>com.intiformation.AppSchool.modele.Matiere</value>
 				<value>com.intiformation.AppSchool.modele.Personne</value>
 				<value>com.intiformation.AppSchool.modele.Promotion</value>

@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.servlet.http.Part;
 
 @Entity
 @DiscriminatorValue(value = "Etudiant")
@@ -18,19 +20,23 @@ import javax.persistence.TemporalType;
 referencedColumnName="identifiant")
 public class Etudiant extends Personne{
 	
+	
 	//Propriétés
 	@Column(length=50)
 	private String photo;
 	
+	@Transient
+	private Part uploadedPhoto;
+	
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="listeEtudiants")
 	private List<Promotion> listePromotions;
-	
-	/*@OneToMany(mappedBy="etudiant")
-	private List<EtudiantCours> listeEtudiantCours;*/
-	
+	/*
+	@OneToMany(mappedBy="coursEC")
+	private List<EtudiantCours> listeEtudiantCours;
+	*/
 	
 	//Constructeurs
 	public Etudiant() {
@@ -79,4 +85,20 @@ public class Etudiant extends Personne{
 		this.listePromotions = listePromotions;
 	}
 
+	public Part getUploadedPhoto() {
+		return uploadedPhoto;
+	}
+
+	public void setUploadedPhoto(Part uploadedPhoto) {
+		this.uploadedPhoto = uploadedPhoto;
+	}
+/*
+	public List<EtudiantCours> getListeEtudiantCours() {
+		return listeEtudiantCours;
+	}
+
+	public void setListeEtudiantCours(List<EtudiantCours> listeEtudiantCours) {
+		this.listeEtudiantCours = listeEtudiantCours;
+	}
+*/
 }//end class

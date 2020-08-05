@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorColumn(name="ROLE",
+@DiscriminatorColumn(name="Role",
 					 discriminatorType = DiscriminatorType.STRING)
 public abstract class Personne implements Serializable{
 	
@@ -39,7 +39,7 @@ public abstract class Personne implements Serializable{
 	private String email;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(referencedColumnName="idAdresse")
+	@JoinColumn(name="FKadresseID",referencedColumnName="idAdresse")
 	private Adresse adresse;
 
 	

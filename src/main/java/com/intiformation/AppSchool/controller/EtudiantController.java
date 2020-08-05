@@ -1,11 +1,25 @@
 package com.intiformation.AppSchool.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,13 +32,28 @@ public class EtudiantController {
 
 	@Autowired
 	private IEtudiantService etudiantService;
+	
+	@Autowired
+	private ServletContext context;
 
 	public void setEtudiantService(IEtudiantService etudiantService) {
 		this.etudiantService = etudiantService;
 	}
+	
+	public void setContext(ServletContext context) {
+		this.context = context;
+	}
+
+
+	@InitBinder
+	public void bindingPreparation(WebDataBinder binder) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		CustomDateEditor orderDateEditor = new CustomDateEditor(dateFormat, true);
+		binder.registerCustomEditor(Date.class, orderDateEditor);
+	}
 
 	@RequestMapping(value = "/etudiant/liste", method = RequestMethod.GET)
-	public String recupererListeEmployeBdd(ModelMap model) {
+	public String recupererListeEtudiants(ModelMap model) {
 
 		// Renvoi de la liste vers la vue
 		model.addAttribute("attribut_listeEtudiants", etudiantService.findAll());
@@ -33,19 +62,49 @@ public class EtudiantController {
 		return "Etudiant/listeEtudiant";
 	}// end recupererListeEmployeBdd()
 
+	// --------------------------------------------------------//
+	// -----------------Ajout Etudiant-------------------------//
+	// --------------------------------------------------------//
+
 	@RequestMapping(value = "/etudiants/add-etudiant-form", method = RequestMethod.GET)
 	public ModelAndView AfficherFormulaireAdd() {
-
-		// Objet de commande
-		Etudiant etudiant = new Etudiant();
+		
+		Etudiant etudiant =  new Etudiant();
 
 		// return new ModelAndView(viewName, modelName, modelObject)
-		return new ModelAndView("Etudiant/addEtudiant", "etudiantAddCommand", etudiant);
+		return new ModelAndView("Etudiant/addEtudiant", "etudiantAddCommand",etudiant);
 
 	}// end AfficherFormulaire()
 
-	@RequestMapping(value = "/etudiants/add", method = RequestMethod.POST)
-	public String ajouterEtudiantsBDD(@ModelAttribute("etudiantAddCommand") Etudiant pEtudiant) {
+	@RequestMapping(value = "etudiant/add", method = RequestMethod.POST)
+	public String ajouterEtudiant(@ModelAttribute("etudiantAddCommand") Etudiant pEtudiant, ModelMap model) {
+		/*System.out.println(pEtudiant);
+		System.out.println(pEtudiant.getNom());
+		try {
+			
+			Part uploadedFile = pEtudiant.getUploadedPhoto();
+			
+			String fileName = uploadedFile.getSubmittedFileName();
+			
+			pEtudiant.setPhoto(fileName);
+			
+			InputStream imageContent = uploadedFile.getInputStream();
+
+			File targetFile = new File(context.getRealPath("/resources/images/photos"), fileName);
+
+			OutputStream outStream = new FileOutputStream(targetFile);
+			byte[] buf = new byte[1024];
+			int len;
+
+			while ((len = imageContent.read(buf)) > 0) {
+				outStream.write(buf, 0, len);
+			}
+
+			outStream.close();
+
+		} catch (IOException ex) {
+			System.out.println("erreur dans creation image");
+		}*/
 
 		// 1.ajout de l'employe à la bdd via la couche service
 		etudiantService.ajouter(pEtudiant);
@@ -55,4 +114,46 @@ public class EtudiantController {
 
 	}
 
+	// --------------------------------------------------------//
+	// -------------Modification Etudiant----------------------//
+	// --------------------------------------------------------//
+
+	@RequestMapping(value = "/etudiants/update-etudiant-form/{etudiantID}", method = RequestMethod.GET)
+	public ModelAndView afficherFormulaireModification(@PathVariable("etudiantID") int pId) {
+
+		// Return new ModelAndView(viewName, modelName, modelObject)
+		return new ModelAndView("Etudiant/updateEtudiant", "etudiantUpdateCommand", etudiantService.findById(pId));
+	}
+	
+
+	@RequestMapping(value = "/etudiant/update", method = RequestMethod.POST)
+	public String modifierEtudiant(@ModelAttribute("etudiantUpdateCommand") Etudiant pEtudiant) {
+
+		// 1.Modification de l'étudiant dans la BDD
+		etudiantService.modifier(pEtudiant);
+
+		// 2.Redirection
+		return "redirect:/etudiant/liste";
+	}
+
+	// --------------------------------------------------------//
+	// --------------Suppression Etudiant----------------------//
+	// --------------------------------------------------------//
+
+	@RequestMapping(value = "/etudiants/delete/{etudiantID}", method = RequestMethod.GET)
+	public String supprimerEtudiant(@PathVariable("etudiantID") int pId) {
+
+		// Suppression de l'etudiant dans la BDD
+		etudiantService.supprimer(pId);
+
+		// Redirection
+		return "redirect:/etudiant/liste";
+	}
+	
+	@RequestMapping(value = "/etudiant/see-etudiant/{etudiantID}", method = RequestMethod.GET)
+	public ModelAndView ConsulterEtudiant(@PathVariable("etudiantID") int pId) {
+
+		// Return new ModelAndView(viewName, modelName, modelObject)
+		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiantService.findById(pId));
+	}
 }

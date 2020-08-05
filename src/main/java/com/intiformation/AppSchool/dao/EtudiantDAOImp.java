@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Etudiant;
 
@@ -18,6 +19,7 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
+	@Transactional
 	public void add(Etudiant pEtudiant) {
 		// 1. Recuperation de la session d'hibernate via la factory
 		Session session = this.sessionFactory.getCurrentSession();
@@ -36,6 +38,7 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 	}
 
 	@Override
+	@Transactional
 	public void update(Etudiant pEtudiant) {
 		// 1. Recuperation de la session d'hibernate via la factory
 		Session session = this.sessionFactory.getCurrentSession();
@@ -54,6 +57,7 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 	}
 
 	@Override
+	@Transactional
 	public void delete(Integer idEtudiant) {
 		// 1. Recuperation de la session d'hibernate via la factory
 		Session session = this.sessionFactory.getCurrentSession();
@@ -75,6 +79,7 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Etudiant> getAll() {
 		try {
 
@@ -99,6 +104,7 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Etudiant getById(Integer idEtudiant) {
 		try {
 

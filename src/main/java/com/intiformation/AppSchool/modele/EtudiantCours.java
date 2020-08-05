@@ -19,11 +19,11 @@ public class EtudiantCours implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName="identifiant")
-	private Etudiant etudiant;
+	private Etudiant etudiantEC;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName="idCours")
-	private Cours cours;
+	private Cours coursEC;
 	
 	private boolean absence;
 	
@@ -36,16 +36,16 @@ public class EtudiantCours implements Serializable {
 	}
 
 	public EtudiantCours(Etudiant etudiant, Cours cours, boolean absence, String motif) {
-		this.etudiant = etudiant;
-		this.cours = cours;
+		this.etudiantEC = etudiant;
+		this.coursEC = cours;
 		this.absence = absence;
 		this.motif = motif;
 	}
 
 	public EtudiantCours(int idEtudiantCours, Etudiant etudiant, Cours cours, boolean absence, String motif) {
 		this.idEtudiantCours = idEtudiantCours;
-		this.etudiant = etudiant;
-		this.cours = cours;
+		this.etudiantEC = etudiant;
+		this.coursEC = cours;
 		this.absence = absence;
 		this.motif = motif;
 	}
@@ -61,19 +61,19 @@ public class EtudiantCours implements Serializable {
 	}
 
 	public Etudiant getEtudiant() {
-		return etudiant;
+		return etudiantEC;
 	}
 
 	public void setEtudiant(Etudiant etudiant) {
-		this.etudiant = etudiant;
+		this.etudiantEC = etudiant;
 	}
 
 	public Cours getCours() {
-		return cours;
+		return coursEC;
 	}
 
 	public void setCours(Cours cours) {
-		this.cours = cours;
+		this.coursEC = cours;
 	}
 
 	public boolean isAbsence() {

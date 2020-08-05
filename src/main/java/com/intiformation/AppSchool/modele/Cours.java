@@ -3,14 +3,11 @@ package com.intiformation.AppSchool.modele;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cours {
@@ -33,10 +30,7 @@ public class Cours {
 	private int FkMatiere;
 	
 	//Ajout pour EtudiantCours Thomas
-	/*@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="EtudiantCours",
-				joinColumns=@JoinColumn(name="promotion_id"),
-				inverseJoinColumns=@JoinColumn(name="etudiant_id"))
+	/*@OneToMany(mappedBy="etudiantEC")
 	private List<Etudiant> listeEtudiants;*/
 	
 	//-------------------------------ctor-------------------------------------------------------
@@ -70,11 +64,11 @@ public class Cours {
 	
 	//-------------------------------getter et setter-----------------------------------------
 
-	public Long getIdCours() {
+	public int getIdCours() {
 		return idCours;
 	}
 
-	public void setIdCours(Long idCours) {
+	public void setIdCours(int idCours) {
 		this.idCours = idCours;
 	}
 
@@ -110,28 +104,28 @@ public class Cours {
 		this.date = date;
 	}
 
-	public Long getFkEtduiant() {
+	public int getFkEtduiant() {
 		return FkEtduiant;
 	}
 
-	public void setFkEtduiant(Long fkEtduiant) {
+	public void setFkEtduiant(int fkEtduiant) {
 		FkEtduiant = fkEtduiant;
 	}
 
-	public Long getFkMatiere() {
+	public int getFkMatiere() {
 		return FkMatiere;
 	}
 
-	public void setFkMatiere(Long fkMatiere) {
+	public void setFkMatiere(int fkMatiere) {
 		FkMatiere = fkMatiere;
 	}
-
-	/*public List<Etudiant> getListeEtudiants() {
+/*
+	public List<Etudiant> getListeEtudiants() {
 		return listeEtudiants;
 	}
 
 	public void setListeEtudiants(List<Etudiant> listeEtudiants) {
 		this.listeEtudiants = listeEtudiants;
-	}*/
-	
+	}
+*/	
 }//end cours
