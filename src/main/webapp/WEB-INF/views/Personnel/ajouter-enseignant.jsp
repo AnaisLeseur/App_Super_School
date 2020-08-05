@@ -14,7 +14,7 @@
 </head>
 <body>
 
-
+<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
 
 
 	<br/><br/>
