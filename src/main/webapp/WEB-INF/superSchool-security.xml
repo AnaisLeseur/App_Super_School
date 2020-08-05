@@ -84,7 +84,7 @@
 					
 					<security:jdbc-user-service 	data-source-ref="dataSourceBean" 
 							users-by-username-query="SELECT identifiant, motDePasse, activated FROM personne WHERE identifiant=?"
-							authorities-by-username-query="SELECT identifiant, role, FROM personne 
+							authorities-by-username-query="SELECT identifiant, role FROM personne 
 															WHERE identifiant= ?"/>
 
 			</security:authentication-provider>
