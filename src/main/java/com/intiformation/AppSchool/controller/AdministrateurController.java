@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.intiformation.AppSchool.cryptage.PasswordEncoderGenerator;
 import com.intiformation.AppSchool.modele.Administrateur;
 import com.intiformation.AppSchool.service.IAdministrateurService;
 import com.intiformation.AppSchool.validator.AdministrateurValidator;
@@ -156,6 +157,15 @@ public class AdministrateurController {
 									ModelMap model,
 									BindingResult resultatValidation) {
 		
+		// récup du mdp mis dans le formulaire
+		String MdpNonCrypt = pAdmin.getMotDePasse();
+		System.out.println("String MdpNonCrypt =" + MdpNonCrypt);
+		
+		// invocation de la methode pour le cryptage
+		String MdpCrypt = PasswordEncoderGenerator.cryptageMdP(MdpNonCrypt);
+		
+		pAdmin.setMotDePasse(MdpCrypt);
+		System.out.println("String MdpCrypt =" + MdpCrypt);
 		// application du validateur sur l'objet pAdmin
 		adminValidator.validate(pAdmin, resultatValidation);
 		
@@ -212,6 +222,16 @@ public class AdministrateurController {
 	 */
 	@RequestMapping(value="/administrateurs/update", method=RequestMethod.POST)
 	public String modifierAdminBdd(@ModelAttribute("adminModifCommand") Administrateur pAdminToUpdate, ModelMap model) {
+		
+		// récup du mdp mis dans le formulaire
+		String MdpNonCryptToUpdate = pAdminToUpdate.getMotDePasse();
+		System.out.println("String MdpNonCryptToUpdate =" + MdpNonCryptToUpdate);
+		
+		// invocation de la methode pour le cryptage
+		String MdpCryptToUpdate = PasswordEncoderGenerator.cryptageMdP(MdpNonCryptToUpdate);
+		
+		pAdminToUpdate.setMotDePasse(MdpCryptToUpdate);
+		System.out.println("String MdpCryptToUpdate =" + MdpCryptToUpdate);
 		
 		// 1. modif de l'admin dans la bdd via service
 		adminService.modifier(pAdminToUpdate);

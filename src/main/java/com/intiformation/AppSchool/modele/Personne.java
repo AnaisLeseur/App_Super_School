@@ -26,7 +26,7 @@ public abstract class Personne implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int identifiant;
 	
-	@Column(length=30)
+	@Column(length=200)
 	private String motDePasse;
 	
 	@Column(length=30)
@@ -41,8 +41,10 @@ public abstract class Personne implements Serializable{
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="FKadresseID",referencedColumnName="idAdresse")
 	private Adresse adresse;
-
 	
+	private boolean activated = true;
+	
+
 	//Constructeurs 
 	public Personne() {
 	}
@@ -69,6 +71,20 @@ public abstract class Personne implements Serializable{
 		this.prenom = prenom;
 		this.email = email;
 		this.adresse = adresse;
+	}
+	
+	
+
+	public Personne(int identifiant, String motDePasse, String nom, String prenom, String email, Adresse adresse,
+			boolean activated) {
+		super();
+		this.identifiant = identifiant;
+		this.motDePasse = motDePasse;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.adresse = adresse;
+		this.activated = activated;
 	}
 
 	//Getter Setter
@@ -119,6 +135,14 @@ public abstract class Personne implements Serializable{
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+	}
+	
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
 	}
 
 }//end class

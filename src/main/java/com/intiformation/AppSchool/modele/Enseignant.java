@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  *
  */
 @Entity
-@DiscriminatorValue(value = "enseignants")
+@DiscriminatorValue(value = "Role_Enseignant")
 @PrimaryKeyJoinColumn(name="personne_id",
 referencedColumnName="identifiant")
 public class Enseignant extends Personne {
