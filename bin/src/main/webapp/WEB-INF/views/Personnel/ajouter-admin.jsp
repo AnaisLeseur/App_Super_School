@@ -1,33 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
  <!--  ajout de la taglib de spring mvc 'form' -->
  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
- 
- 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+       
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.erreurs_validation{color: red; 
-font-style: italic; 
-border: 1px dotted red; 
-margin: 15px;}
-
-</style>
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
 
 
+	
+		
+	<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
+
+	
+
+
+	
 	<br/><br/>
 	
 	<div align="center">
-		<h2>Formulaire d'ajout d'un enseignant</h2>
+		<h2>Formulaire d'ajout d'un administrateur</h2>
 	</div>
 
 	<br/>
@@ -35,14 +34,14 @@ margin: 15px;}
 	<div align="center">
 		
 		<!-- 
-				> modelAttribute : le nom de l'objet de commande defini dans la methode 'afficherFormAjoutEnseignant' de 'EnseignantController'
+				> modelAttribute : le nom de l'objet de commande defini dans la methode 'afficherFormAjoutAdmin' de 'AdministrateurController'
 			
-				> a la sousmission du formulaire => invocation de la meth 'ajouterEnseignantBdd' de 'EnseignantController' avec une rqt http en POST 
+				> a la sousmission du formulaire => invocation de la meth 'ajouterAdminBdd' de 'AdministrateurController' avec une rqt http en POST 
 		
 		 -->
-		<form:form 	modelAttribute="enseignantCommand" 
+		<form:form 	modelAttribute="adminCommand" 
 					method="POST" 
-					action="${pageContext.request.contextPath}/enseignants/add">
+					action="${pageContext.request.contextPath}/administrateurs/add">
 					
 				<%-- affichage des tous les msg d'erreur  --%>
 				<form:errors path="*" cssClass="erreurs_validation" element="div"/>
@@ -86,7 +85,6 @@ margin: 15px;}
 
 		</form:form>
 	</div>
-
 
 
 </body>

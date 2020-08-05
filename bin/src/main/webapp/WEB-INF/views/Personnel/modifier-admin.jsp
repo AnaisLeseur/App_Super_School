@@ -2,32 +2,25 @@
     pageEncoding="UTF-8"%>
     
     
- <!--  ajout de la taglib de spring mvc 'form' -->
- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
- 
+   <!--  ajout de la taglib de spring mvc 'form' -->
+   <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.erreurs_validation{color: red; 
-font-style: italic; 
-border: 1px dotted red; 
-margin: 15px;}
-
-</style>
 </head>
 <body>
-
 <a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
+
+
 
 
 	<br/><br/>
 	
 	<div align="center">
-		<h2>Formulaire d'ajout d'un enseignant</h2>
+		<h2>Formulaire de modification d'un administrateur</h2>
 	</div>
 
 	<br/>
@@ -35,21 +28,25 @@ margin: 15px;}
 	<div align="center">
 		
 		<!-- 
-				> modelAttribute : le nom de l'objet de commande defini dans la methode 'afficherFormAjoutEnseignant' de 'EnseignantController'
+				> modelAttribute : le nom de l'objet de commande defini dans la methode 'afficherFormModificationAdmin' de 'AdministrateurController'
 			
-				> a la sousmission du formulaire => invocation de la meth 'ajouterEnseignantBdd' de 'EnseignantController' avec une rqt http en POST 
+				> a la sousmission du formulaire => invocation de la meth 'modifierAdminBdd' de 'AdministrateurController' avec une rqt http en POST 
 		
 		 -->
-		<form:form 	modelAttribute="enseignantCommand" 
+		<form:form 	modelAttribute="adminModifCommand" 
 					method="POST" 
-					action="${pageContext.request.contextPath}/enseignants/add">
+					action="${pageContext.request.contextPath}/administrateurs/update">
 					
-				<%-- affichage des tous les msg d'erreur  --%>
-				<form:errors path="*" cssClass="erreurs_validation" element="div"/>
-					
-					
+			<%-- affichage des tous les msg d'erreur  --%>
+			<form:errors path="*" cssClass="erreurs_validation" element="div"/>
 					
 			<table width="60%">
+			
+				<!--  Récup de l'id de l'admin à modifier dans un champ caché  -->
+				<tr>
+					<td> <form:hidden path="identifiant"/> </td>
+				</tr>
+				
 				<tr>
 					<td><form:label path="nom">Nom :</form:label> </td>
 					<td><form:input path="nom"/> </td>
@@ -73,11 +70,11 @@ margin: 15px;}
 					<td><form:input type="password" required="true" path="motDePasse"/> </td>
 					<td> <form:errors path="motDePasse" cssStyle="	color: red; font-style: italic;" /> </td>
 				</tr>
-				
+					
 				
 				<tr>
 					<td colspan="3">
-						<input type="submit" value="Ajouter">
+						<input type="submit" value="Modifier">
 					</td>
 				</tr>		
 			
@@ -86,8 +83,7 @@ margin: 15px;}
 
 		</form:form>
 	</div>
-
-
+	
 
 </body>
 </html>
