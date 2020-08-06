@@ -27,7 +27,7 @@
 
 
 		<tr>
-			
+			<th>Id Promotion</th>
 			<th>Libelle</th>
 			
 			
@@ -37,11 +37,11 @@
 </tr>
 		<!-- données de la table
     -->
-		<c:forEach items="${attribut_liste_matiere}" var="mat">
+		<c:forEach items="${attribut_liste_promotion}" var="pro">
 			<tr>
-				<td>${mat.idMatiere}</td>
-				<td>${mat.libelle}</td>
-			 <td>${mat.fkEnseignant}</td> 
+				<td>${pro.idPromotion}</td>
+				<td>${pro.libelle}</td>
+			 
 				
  
 
@@ -49,7 +49,7 @@
 passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'employe à modifier
  -->
 				<td>
-				<a href="${pageContext.request.contextPath}/matiere/update-matiere-form?idmatiere=${mat.idMatiere}">
+				<a href="${pageContext.request.contextPath}/promotion/update-promotion-form?idpromotion=${pro.idPromotion}">
 						modifier
 						</a>
 						</td>
@@ -57,7 +57,7 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'emplo
 				<td>
 					<!-- au click sur le lien : envoie d'une requete http get vers la méthode supprimer -->
 					<a
-					href="${pageContext.request.contextPath}/matiere/delete/${mat.idMatiere}">
+					href="${pageContext.request.contextPath}/promotion/delete/${pro.idPromotion}">
 						supprimer</a>
 				</td>
 

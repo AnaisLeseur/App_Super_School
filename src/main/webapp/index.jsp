@@ -45,6 +45,7 @@
 	<br/>
 
 	<a href="${pageContext.request.contextPath}/enseignants/liste">Enseignants</a>
+	<a href="${pageContext.request.contextPath}/promotion/liste">Promotion</a>
 
 
 
