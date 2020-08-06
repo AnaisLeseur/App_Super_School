@@ -73,7 +73,7 @@
 		 <!-- 
 		 		> error-page : url vers laquelle le user est redirigé en cas d'erreur 403
 		  -->
-		  <security:access-denied-handler error-page="/authentification/403.jsp"/>
+		  <security:access-denied-handler error-page="/WEB-INF/views/authentification/403.jsp"/>
 		  
 		</security:http>	 
 		 
