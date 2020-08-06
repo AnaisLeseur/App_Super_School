@@ -13,7 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  *
  */
 @Entity
-@DiscriminatorValue(value = "administrateurs")
+@DiscriminatorValue(value = "Role_Admin")
 @PrimaryKeyJoinColumn(name="personne_id",
 					  referencedColumnName="identifiant")
 public class Administrateur extends Personne {
@@ -42,6 +42,13 @@ public class Administrateur extends Personne {
 
 	public Administrateur(String motDePasse, String nom, String prenom, String email) {
 		super(motDePasse, nom, prenom, email);
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Administrateur(int identifiant, String motDePasse, String nom, String prenom, String email, Adresse adresse,
+			boolean activated) {
+		super(identifiant, motDePasse, nom, prenom, email, adresse, activated);
 		// TODO Auto-generated constructor stub
 	}
 

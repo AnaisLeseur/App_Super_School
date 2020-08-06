@@ -2,7 +2,22 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
  
  <display-name>App_Super_School</display-name>
-
+  
+  <!--  config de spring security (config de l'interception des rqt)  -->
+	<!-- ============================================================= -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<!-- url-pattern : url à intercepter  -->
+		<!--  /* ==> ttes les url sont interceptées par le filtre -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
 	<!-- emplacement des fichiers de def des bean spring -->
 	<!-- déclaration du listener -->
 	<listener>
@@ -15,13 +30,14 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		/WEB-INF/applicationContext.xml 
-		/WEB-INF/gestionEtudiant-servlet.xml
+		/WEB-INF/gestionEtudiant-servlet.xml 
+		/WEB-INF/superSchool-security.xml
 		</param-value>
 	</context-param>
 
 
 
-	<!-- declration de la servlet de spring mvc -->
+	<!-- declaration de la servlet de spring mvc -->
 	<servlet>
 		<servlet-name>gestionEtudiant</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -35,9 +51,13 @@
 	</servlet-mapping>
  
   
+  <!--  fichier de démarrage -->
   <welcome-file-list>
  
     <welcome-file>index.jsp</welcome-file>
  
   </welcome-file-list>
+  
+
+	
 </web-app>

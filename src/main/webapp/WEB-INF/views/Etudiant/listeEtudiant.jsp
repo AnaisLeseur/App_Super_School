@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
+
+
 <h1>Liste des étudiants</h1>
 	 
 	 <table border="1" width="60%">

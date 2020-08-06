@@ -11,10 +11,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.erreurs_validation{color: red; 
+font-style: italic; 
+border: 1px dotted red; 
+margin: 15px;}
+
+</style>
 </head>
 <body>
 
-
+<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
 
 
 	<br/><br/>

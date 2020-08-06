@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.intiformation.AppSchool.cryptage.PasswordEncoderGenerator;
 import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.service.IEtudiantService;
 
@@ -110,6 +111,20 @@ public class EtudiantController {
 
 		// Update de la propriete photo de l'etudiant
 		etudiantService.modifier(pEtudiant);
+		
+		// Partie pour cryptage MDP 
+		//=========================
+		
+		// récup du mdp mis dans le formulaire
+		String MdpNonCrypt = pEtudiant.getMotDePasse();
+				
+		// invocation de la methode pour le cryptage
+		String MdpCrypt = PasswordEncoderGenerator.cryptageMdP(MdpNonCrypt);
+		
+		pEtudiant.setMotDePasse(MdpCrypt);
+		
+		// 1.ajout de l'employe à la bdd via la couche service
+		etudiantService.ajouter(pEtudiant);
 
 		//Redirection vers la methode de la recup de la liste
 		return "redirect:/etudiant/liste";
@@ -131,6 +146,18 @@ public class EtudiantController {
 	@RequestMapping(value = "/etudiant/update", method = RequestMethod.POST)
 	public String modifierEtudiant(@ModelAttribute("etudiantUpdateCommand") Etudiant pEtudiant) {
 
+		// Partie pour cryptage MDP 
+		//=========================
+		
+		// récup du mdp mis dans le formulaire
+		String MdpNonCrypt = pEtudiant.getMotDePasse();
+		
+		// invocation de la methode pour le cryptage
+		String MdpCrypt = PasswordEncoderGenerator.cryptageMdP(MdpNonCrypt);
+		
+		pEtudiant.setMotDePasse(MdpCrypt);
+
+		
 		// 1.Modification de l'étudiant dans la BDD
 		etudiantService.modifier(pEtudiant);
 
