@@ -2,6 +2,7 @@ package com.intiformation.AppSchool.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.IPromotionDAO;
@@ -10,6 +11,7 @@ import com.intiformation.AppSchool.modele.Promotion;
 @Service
 public class PromotionServiceImpl implements IPromotionService {
 
+	@Autowired
 	private IPromotionDAO promotionDAO;
 	
 	
@@ -42,14 +44,13 @@ public class PromotionServiceImpl implements IPromotionService {
 
 	@Override
 	public List<Promotion> findAll() {
-		// TODO Auto-generated method stub
-		return promotionDAO.getAll();
-	}
+		return promotionDAO.getAll() ;
+	}//end getAll
 
 	@Override
 	public Promotion findById(Integer idPromotion) {
 		// TODO Auto-generated method stub
 		return promotionDAO.getById(idPromotion);
-	}
+	}//end getById
 
-}
+}//end service
