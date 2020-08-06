@@ -7,6 +7,8 @@ import org.springframework.validation.Validator;
 
 import com.intiformation.AppSchool.modele.Promotion;
 
+
+
 @Component // déclaration de la classe comme validateur (bean spring)
 public class PromotionValidator implements Validator {
 
