@@ -14,7 +14,7 @@
 	<security:http auto-config="true" use-expressions="true">
 
 
-		<security:intercept-url pattern="/index.jsp" access="hasAnyRole('ROLE_ANONYMOUS', 'Role_Etudiant', 'Role_Enseignant', 'Role_Admin')"/>
+		<security:intercept-url pattern="/index.jsp*" access="hasAnyRole('ROLE_ANONYMOUS', 'Role_Etudiant', 'Role_Enseignant', 'Role_Admin')"/>
 		<security:intercept-url pattern="/Users*" access="hasAnyRole('Role_Etudiant', 'Role_Enseignant', 'Role_Admin')"/>
 		<security:intercept-url pattern="/Enseignant*" access="hasAnyRole('Role_Enseignant', 'Role_Admin')"/>
 		<security:intercept-url pattern="/Enseignant*" access="hasRole('Role_Admin')"/>
