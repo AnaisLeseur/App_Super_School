@@ -80,7 +80,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+      <img src="./assets/images/Login.png" id="icon" alt="User Icon" />
     </div>
 <c:url value="login" var="loginUrl"/>
     <!-- Login Form -->

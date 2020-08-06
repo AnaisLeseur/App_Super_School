@@ -44,9 +44,10 @@ img {
 
 
 footer {
-	background-color: white;
+	background-color: lightgrey;
 	padding-top: 0;
 	margin-top: 0cm;
+	font-size: large;
 }
 
 
@@ -374,7 +375,6 @@ input[type=text]:placeholder {
   width:30%;
 }
 
-
-
+Ò
 
 

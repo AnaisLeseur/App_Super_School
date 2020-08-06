@@ -1,50 +1,45 @@
 
-<footer class="page-footer font-small special-color-dark pt-4">
+<footer id="footer" class="page-footer font-small special-color-dark pt-4">
 
 
-		<div class="container" style="padding-top: 100px">
+		<div class="container" style="padding-top: 10px">
 
 
 			<div class="row" style="text-align: center">
 
 				<!--Information sur le site : adresse, numéro de téléphon et mail-->
 				<div class="col-md-4 mb-4">
-					<h:graphicImage
-						value="https://img.icons8.com/material-rounded/64/000000/worldwide-location.png"
-						width="40px" />
+						<img src="./assets/images/worldwide-location.png" alt="User Icon" width="50px" />
 					<br /> 1 rue Blup blup <br /> 33000, Paris <br /> FRANCE
 				</div>
 				<div class="col-md-4 mb-4">
-					<h:graphicImage
-						value="https://img.icons8.com/material-rounded/50/000000/phone-not-being-used.png"
-						width="40px" />
+					<img src="./assets/images/phone-not-being-used.png" alt="User Icon" width="50px" />
 					<br /> + 33 1 23 45 67 89<br />
 				</div>
 				<div class="col-md-4 mb-4">
-					<h:graphicImage
-						value="https://img.icons8.com/material-sharp/24/000000/important-mail.png"
-						width="40px" />
-					<br /> AppVoyage@voyage.com <br />
+					<img src="./assets/images/important-mail.png" alt="User Icon" width="50px" />
+					<br /> Contact@super_school.com  <br />
 				</div>
 
 			</div>
-			<div class="row">
-				<div style="text-align: center; padding-top: 30px">
+			
+			<div style="text-align: center">
+				<div style="text-align: center">
 
 					<!-- Liste de liens vers differents pages: non implémentées pour l'instant -->
-					<ul class="list-unstyled">
-						<li><a href="#top">Back to top</a></li>
-						<li><a href="https://blog.bootswatch.com"
+					
+						<a href="#top">Back to top | </a>
+						<a href="https://blog.bootswatch.com"
 							onclick="pageTracker._link(this.href); return false;">A
-								propos</a></li>
-						<li><a href="https://blog.bootswatch.com/rss/">Assistance</a></li>
-						<li><a href="https://twitter.com/bootswatch">FAQ</a></li>
+								propos | </a>
+						<a href="https://blog.bootswatch.com/rss/">Assistance | </a>
+						<a href="https://twitter.com/bootswatch">FAQ</a>
 
-					</ul>
+					
 				</div>
-				<br />
-			</div>
 
+			</div>
+<br/>
 
 		</div>
 		<!-- Copyright -->
