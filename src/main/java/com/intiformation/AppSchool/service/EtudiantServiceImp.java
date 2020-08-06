@@ -47,4 +47,11 @@ public class EtudiantServiceImp implements IEtudiantService{
 		return etudiantDAO.getById(idEtudiant);
 	}
 
+
+
+	@Override
+	public Etudiant ajouterReturnEtudiant(Etudiant pEtudiant) {
+		return etudiantDAO.addReturnEtudiant(pEtudiant);
+	}
+
 }//end class

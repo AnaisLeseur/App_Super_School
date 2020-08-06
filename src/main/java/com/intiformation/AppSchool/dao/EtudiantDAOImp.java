@@ -109,7 +109,7 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 		try {
 
 			Session session = this.sessionFactory.getCurrentSession();
-			
+
 			Etudiant etudiant = session.find(Etudiant.class, idEtudiant);
 
 			return etudiant;
@@ -129,6 +129,28 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 	 */
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	@Transactional
+	public Etudiant addReturnEtudiant(Etudiant pEtudiant) {
+		// 1. Recuperation de la session d'hibernate via la factory
+		Session session = this.sessionFactory.getCurrentSession();
+
+		try {
+
+			// 2. Ajout dans la BDD
+			session.save(pEtudiant);
+			session.flush();
+			return pEtudiant;
+
+		} catch (HibernateException e) {
+
+			// cas erreur : annulation de la transaction
+			System.out.println("... (EtudiantDAOImp) Erreur lors de l'ajout ....");
+
+		} // end catch
+		return null;
 	}
 
 }// end class

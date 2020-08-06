@@ -30,7 +30,7 @@ public class Cours {
 	private Long fkMatiere;
 	
 	//Ajout pour EtudiantCours Thomas
-	/*@OneToMany(mappedBy="etudiantEC")
+	/*@OneToMany(mappedBy="coursEC")
 	private List<Etudiant> listeEtudiants;*/
 	
 	//-------------------------------ctor-------------------------------------------------------
@@ -128,14 +128,13 @@ public class Cours {
 
 
 	
-	
-
-	/*public List<Etudiant> getListeEtudiants() {
+/*
+	public List<Etudiant> getListeEtudiants() {
 		return listeEtudiants;
 	}
 
 	public void setListeEtudiants(List<Etudiant> listeEtudiants) {
 		this.listeEtudiants = listeEtudiants;
-	}
-*/	
+	}*/
+	
 }//end cours

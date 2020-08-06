@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -12,11 +13,12 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import javax.servlet.http.Part;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @DiscriminatorValue(value = "Etudiant")
-@PrimaryKeyJoinColumn(name="personne_id",
+@PrimaryKeyJoinColumn(name="identifiant",
 referencedColumnName="identifiant")
 public class Etudiant extends Personne{
 	
@@ -26,22 +28,38 @@ public class Etudiant extends Personne{
 	private String photo;
 	
 	@Transient
-	private Part uploadedPhoto;
+	private MultipartFile uploadedPhoto;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	
 	@ManyToMany(mappedBy="listeEtudiants")
 	private List<Promotion> listePromotions;
-	/*
-	@OneToMany(mappedBy="coursEC")
-	private List<EtudiantCours> listeEtudiantCours;
-	*/
+	
+	/*@OneToMany(mappedBy="idEtudiantCours")
+	private List<EtudiantCours> listeEtudiantCours;*/
+	
 	
 	//Constructeurs
 	public Etudiant() {
 	}
 	
+	
+	public Etudiant(int identifiant, String motDePasse, String nom, String prenom, String email, Adresse adresse) {
+		super(identifiant, motDePasse, nom, prenom, email, adresse);
+	}
+
+
+	public Etudiant(int identifiant, String motDePasse, String nom, String prenom, String email) {
+		super(identifiant, motDePasse, nom, prenom, email);
+	}
+
+
+	public Etudiant(String motDePasse, String nom, String prenom, String email) {
+		super(motDePasse, nom, prenom, email);
+	}
+
+
 	public Etudiant(String photo, Date dateNaissance) {
 		this.photo = photo;
 		this.dateNaissance = dateNaissance;
@@ -85,11 +103,11 @@ public class Etudiant extends Personne{
 		this.listePromotions = listePromotions;
 	}
 
-	public Part getUploadedPhoto() {
+	public MultipartFile getUploadedPhoto() {
 		return uploadedPhoto;
 	}
 
-	public void setUploadedPhoto(Part uploadedPhoto) {
+	public void setUploadedPhoto(MultipartFile uploadedPhoto) {
 		this.uploadedPhoto = uploadedPhoto;
 	}
 /*
@@ -99,6 +117,14 @@ public class Etudiant extends Personne{
 
 	public void setListeEtudiantCours(List<EtudiantCours> listeEtudiantCours) {
 		this.listeEtudiantCours = listeEtudiantCours;
+	}*/
+
+
+	@Override
+	public String toString() {
+		return "Etudiant [photo=" + photo + ", uploadedPhoto=" + uploadedPhoto + ", dateNaissance=" + dateNaissance
+				+ ", listePromotions=" + listePromotions + "]";
 	}
-*/
+	
+	
 }//end class

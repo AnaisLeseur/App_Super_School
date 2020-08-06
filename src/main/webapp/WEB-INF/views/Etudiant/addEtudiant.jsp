@@ -3,11 +3,12 @@
 <%-- ajout de la taglib de spring mvc form --%>
 <%@taglib prefix="form"  uri="http://www.springframework.org/tags/form" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Etudiant</title>
 </head>
 <body>
 
@@ -15,7 +16,7 @@
 
 
 
-	<form:form modelAttribute="etudiantAddCommand" method="POST" action="${pageContext.request.contextPath}/etudiant/add">
+	<form:form enctype="multipart/form-data"  modelAttribute="etudiantAddCommand" method="POST" action="${pageContext.request.contextPath}/etudiant/add">
 	
 		<table width="60%">
 			
@@ -41,16 +42,12 @@
 			</tr>
 			
 			<tr>
-				<td><form:label path="photo">Photo</form:label></td>
-				<td><form:input path="photo"/></td>
-			</tr>
-			<%--
-			<tr>
 				<td><form:label path="uploadedPhoto">Photo</form:label></td>
 				<td><form:input type="file"  path="uploadedPhoto"/></td>
-				enctype="multipart/form-data" 
+				 
 			</tr>
-			 --%>
+			
+			 
 			<tr>
 				<td><form:label path="dateNaissance">Date de Naissance</form:label></td>
 				<td><form:input type="date" path="dateNaissance"/></td>

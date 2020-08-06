@@ -44,6 +44,10 @@
 	 	</tr>
 	 	</c:forEach>
 	 </table>
+	 
+	 <img src="${pageContext.request.contextPath}/assets/images/test.png" >
+	 
+	 
 
 </body>
 </html>

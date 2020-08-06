@@ -1,17 +1,17 @@
 package com.intiformation.AppSchool.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.Part;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.modele.Etudiant;
@@ -29,7 +30,7 @@ import com.intiformation.AppSchool.service.IEtudiantService;
 
 @Controller
 public class EtudiantController {
-
+	
 	@Autowired
 	private IEtudiantService etudiantService;
 	
@@ -78,38 +79,39 @@ public class EtudiantController {
 
 	@RequestMapping(value = "etudiant/add", method = RequestMethod.POST)
 	public String ajouterEtudiant(@ModelAttribute("etudiantAddCommand") Etudiant pEtudiant, ModelMap model) {
-		/*System.out.println(pEtudiant);
-		System.out.println(pEtudiant.getNom());
-		try {
-			
-			Part uploadedFile = pEtudiant.getUploadedPhoto();
-			
-			String fileName = uploadedFile.getSubmittedFileName();
-			
-			pEtudiant.setPhoto(fileName);
-			
-			InputStream imageContent = uploadedFile.getInputStream();
 
-			File targetFile = new File(context.getRealPath("/resources/images/photos"), fileName);
+		MultipartFile file = pEtudiant.getUploadedPhoto();
+		
+		// Ajout de l'etudiant à la BDD et recuperation de l'etudiant avec son id
+		pEtudiant = etudiantService.ajouterReturnEtudiant(pEtudiant);
+		
+		//Definition du nom de la photo comme : 'identifiant.extension'
+		pEtudiant.setPhoto(pEtudiant.getIdentifiant() + "." +FilenameUtils.getExtension(file.getOriginalFilename()));
+		
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
 
-			OutputStream outStream = new FileOutputStream(targetFile);
-			byte[] buf = new byte[1024];
-			int len;
+				// Création du fichier dans /assets/images/photosS
+				File serverFile = new File(context.getRealPath("/assets/images/photos")+ File.separator + pEtudiant.getPhoto());
+				
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+				
+				stream.write(bytes);
+				
+				stream.close();
 
-			while ((len = imageContent.read(buf)) > 0) {
-				outStream.write(buf, 0, len);
+			} catch (Exception e) {
+				System.out.println("Probleme lors de la sauvegarde du fichier");
 			}
+		} 
+		
+		
 
-			outStream.close();
+		// Update de la propriete photo de l'etudiant
+		etudiantService.modifier(pEtudiant);
 
-		} catch (IOException ex) {
-			System.out.println("erreur dans creation image");
-		}*/
-
-		// 1.ajout de l'employe à la bdd via la couche service
-		etudiantService.ajouter(pEtudiant);
-
-		// 2.redirection vers la methode de la recup de la liste
+		//Redirection vers la methode de la recup de la liste
 		return "redirect:/etudiant/liste";
 
 	}
