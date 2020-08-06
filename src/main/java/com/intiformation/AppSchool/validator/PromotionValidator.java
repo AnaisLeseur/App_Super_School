@@ -7,11 +7,9 @@ import org.springframework.validation.Validator;
 
 import com.intiformation.AppSchool.modele.Promotion;
 
-<<<<<<< HEAD
-@Component
-=======
+
+
 @Component // déclaration de la classe comme validateur (bean spring)
->>>>>>> fc0a1044224c3d75a282659d0e2b036e4f104f2a
 public class PromotionValidator implements Validator {
 
 	@Override
