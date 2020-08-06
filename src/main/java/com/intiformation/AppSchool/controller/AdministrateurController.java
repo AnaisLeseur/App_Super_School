@@ -159,13 +159,12 @@ public class AdministrateurController {
 		
 		// récup du mdp mis dans le formulaire
 		String MdpNonCrypt = pAdmin.getMotDePasse();
-		System.out.println("String MdpNonCrypt =" + MdpNonCrypt);
 		
 		// invocation de la methode pour le cryptage
 		String MdpCrypt = PasswordEncoderGenerator.cryptageMdP(MdpNonCrypt);
 		
 		pAdmin.setMotDePasse(MdpCrypt);
-		System.out.println("String MdpCrypt =" + MdpCrypt);
+
 		// application du validateur sur l'objet pAdmin
 		adminValidator.validate(pAdmin, resultatValidation);
 		
@@ -225,13 +224,11 @@ public class AdministrateurController {
 		
 		// récup du mdp mis dans le formulaire
 		String MdpNonCryptToUpdate = pAdminToUpdate.getMotDePasse();
-		System.out.println("String MdpNonCryptToUpdate =" + MdpNonCryptToUpdate);
 		
 		// invocation de la methode pour le cryptage
 		String MdpCryptToUpdate = PasswordEncoderGenerator.cryptageMdP(MdpNonCryptToUpdate);
 		
 		pAdminToUpdate.setMotDePasse(MdpCryptToUpdate);
-		System.out.println("String MdpCryptToUpdate =" + MdpCryptToUpdate);
 		
 		// 1. modif de l'admin dans la bdd via service
 		adminService.modifier(pAdminToUpdate);

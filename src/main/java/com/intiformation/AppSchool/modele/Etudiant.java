@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 import javax.servlet.http.Part;
 
 @Entity
-@DiscriminatorValue(value = "Etudiant")
+@DiscriminatorValue(value = "Role_Etudiant")
 @PrimaryKeyJoinColumn(name="personne_id",
 referencedColumnName="identifiant")
 public class Etudiant extends Personne{

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.intiformation.AppSchool.cryptage.PasswordEncoderGenerator;
 import com.intiformation.AppSchool.modele.Enseignant;
 import com.intiformation.AppSchool.service.IEnseignantService;
 import com.intiformation.AppSchool.validator.EnseignantValidator;
@@ -157,6 +158,14 @@ public class EnseignantController {
 									ModelMap model,
 									BindingResult resultatValidation) {
 		
+		// récup du mdp mis dans le formulaire
+		String MdpNonCrypt = pEnseignant.getMotDePasse();
+		
+		// invocation de la methode pour le cryptage
+		String MdpCrypt = PasswordEncoderGenerator.cryptageMdP(MdpNonCrypt);
+		
+		pEnseignant.setMotDePasse(MdpCrypt);
+		
 		// application du validateur sur l'objet pEnseignant
 		enseignantValidator.validate(pEnseignant, resultatValidation);
 		
@@ -214,6 +223,14 @@ public class EnseignantController {
 	@RequestMapping(value="/enseignants/update", method=RequestMethod.POST)
 	public String modifierEnseignantBdd(@ModelAttribute("enseignantModifCommand") Enseignant pEnseignantToUpdate, ModelMap model) {
 		
+		// récup du mdp mis dans le formulaire
+		String MdpNonCryptToUpdate = pEnseignantToUpdate.getMotDePasse();
+		
+		// invocation de la methode pour le cryptage
+		String MdpCryptToUpdate = PasswordEncoderGenerator.cryptageMdP(MdpNonCryptToUpdate);
+		
+		pEnseignantToUpdate.setMotDePasse(MdpCryptToUpdate);
+		
 		// 1. modif de l'enseignant dans la bdd via service
 		enseignantService.modifier(pEnseignantToUpdate);
 		
@@ -222,3 +239,4 @@ public class EnseignantController {
 		
 	}// end modifierEnseignantBdd
 }// end class
+
