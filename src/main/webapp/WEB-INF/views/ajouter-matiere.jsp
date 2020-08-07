@@ -19,7 +19,7 @@ margin: 15px;}
 </style>
 </head>
 <body>
-
+<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
 <div align="center">
     <h1>Formulaire d'une matiere à ajouter</h1>
     </div>

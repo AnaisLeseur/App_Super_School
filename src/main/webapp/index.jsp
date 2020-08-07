@@ -52,7 +52,7 @@
 	
 	<br/>
 	<br/>
-	<a href="WEB-INF/views/Fragments/Aide.jsp">Aide</a>
+	<a href="${pageContext.request.contextPath}/indexAide.jsp">Aide</a>
 	
 	
 

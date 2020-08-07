@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
 <h1>
 		<u>Liste des cours</u>
 	</h1>

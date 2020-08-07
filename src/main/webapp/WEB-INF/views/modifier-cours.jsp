@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
 <div align="center">
     <h1>Formulaire de modification d'un cours</h1>
     </div>
