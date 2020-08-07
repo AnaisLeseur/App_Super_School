@@ -56,7 +56,16 @@
 	<br />
 
 	<a href="${pageContext.request.contextPath}/enseignants/liste">Enseignants</a>
+	
+	<br/>
+	<br/>
 	<a href="${pageContext.request.contextPath}/promotion/liste">Promotion</a>
+	
+	<br/>
+	<br/>
+	<a href="${pageContext.request.contextPath}/indexAide.jsp">Aide</a>
+	
+	
 
 
 

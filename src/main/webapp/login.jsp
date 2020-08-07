@@ -8,14 +8,29 @@
  <%@taglib prefix="s" uri="http://www.springframework.org/security/tags" %>   
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html 	xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:b="http://bootsfaces.net/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Authentification</title>
+
+
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/perso.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.css">
+	
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <body>
 
+	<!-- Header -->
+	<!-- A FAIRE -->
+	<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
 
 	<!--  AFFICHAGE des MSG d'ERREURS  -->
 	<!--  ===========================  -->
@@ -32,7 +47,7 @@
 	<!--  FORMULAIRE D'AUTHENTIFICATION  -->
 	<!--  =============================  -->
 	<!--  l'url '/login' effectuant l'authentification à la sousmission du formulaire -->
-	
+<!-- 
 	<c:url value="login" var="loginUrl"/>
 	
 	   <form action="${loginUrl}" method="post">
@@ -43,14 +58,14 @@
 			</tr>
 			<tr>
 				<td>Mot de passe : </td>
-				<td> <input type="text" name="motDePasse"> </td>
+				<td> <input type="text" name="motDePasse" > </td>
 			</tr>
 			<tr>
 				<td colspan="2"> <input type="submit" value="Se connecter"> | <input type="reset" value="Reset"> </td>
 			</tr>
 		</table>
 	</form>
-
+ -->	
 	<!--  Affichage lien vers la page d'accueil  -->
 	<!--  =====================================  -->
 	<c:if test="${not empty param.logout_message}">
@@ -59,8 +74,28 @@
 		</a>
 	</c:if>
 	
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="./assets/images/Login.png" id="icon" alt="User Icon" />
+    </div>
+<c:url value="login" var="loginUrl"/>
+    <!-- Login Form -->
+    <form action="${loginUrl}" method="post">
+      <input type="text" id="login" class="fadeIn second" name="identifiant" placeholder="identifiant">
+      <input type="text" id="password" class="fadeIn third" name="motDePasse" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Se connecter">
+    </form>
 
+  </div>
+</div>
+
+	
+	<!-- footer -->
+	<jsp:include page="templates/footer.jsp"></jsp:include>
 
 </body>
 </html>

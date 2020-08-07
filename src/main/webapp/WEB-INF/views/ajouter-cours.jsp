@@ -20,7 +20,7 @@
 </style>
 </head>
 <body>
-
+<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
 	<div align="center">
 		<h1>Formulaire d'un cours à ajouter</h1>
 	</div>
