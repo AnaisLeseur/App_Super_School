@@ -10,6 +10,8 @@
 	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
 </head>
 <body>
+<jsp:include page="/Fragments/Header.jsp"/>
+
 	<h1>Etudiant N°${etudiantSeeCommand.identifiant }</h1>
 	<div class="card mb-10" style="max-width: 75%">
 		<div class="row no-gutters">

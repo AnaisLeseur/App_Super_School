@@ -10,6 +10,8 @@
 </head>
 <body>
 
+<jsp:include page="/Fragments/Header.jsp"/>
+
 <h1>Formulaire d'ajout d'un étudiant</h1>
 
 

@@ -8,8 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,21 +29,20 @@ import com.intiformation.AppSchool.service.IEtudiantService;
 
 @Controller
 public class EtudiantController {
-	
+
 	@Autowired
 	private IEtudiantService etudiantService;
-	
+
 	@Autowired
 	private ServletContext context;
 
 	public void setEtudiantService(IEtudiantService etudiantService) {
 		this.etudiantService = etudiantService;
 	}
-	
+
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
-
 
 	@InitBinder
 	public void bindingPreparation(WebDataBinder binder) {
@@ -70,63 +67,58 @@ public class EtudiantController {
 
 	@RequestMapping(value = "/etudiants/add-etudiant-form", method = RequestMethod.GET)
 	public ModelAndView AfficherFormulaireAdd() {
-		
-		Etudiant etudiant =  new Etudiant();
+
+		Etudiant etudiant = new Etudiant();
 
 		// return new ModelAndView(viewName, modelName, modelObject)
-		return new ModelAndView("Etudiant/addEtudiant", "etudiantAddCommand",etudiant);
+		return new ModelAndView("Etudiant/addEtudiant", "etudiantAddCommand", etudiant);
 
 	}// end AfficherFormulaire()
 
 	@RequestMapping(value = "etudiant/add", method = RequestMethod.POST)
 	public String ajouterEtudiant(@ModelAttribute("etudiantAddCommand") Etudiant pEtudiant, ModelMap model) {
 
+		// Partie pour cryptage MDP
+
+		// récup du mdp mis dans le formulaire
+		String MdpNonCrypt = pEtudiant.getMotDePasse();
+
+		// invocation de la methode pour le cryptage
+		String MdpCrypt = PasswordEncoderGenerator.cryptageMdP(MdpNonCrypt);
+
+		pEtudiant.setMotDePasse(MdpCrypt);
+
 		MultipartFile file = pEtudiant.getUploadedPhoto();
-		
+
 		// Ajout de l'etudiant à la BDD et recuperation de l'etudiant avec son id
 		pEtudiant = etudiantService.ajouterReturnEtudiant(pEtudiant);
-		
-		//Definition du nom de la photo comme : 'identifiant.extension'
-		pEtudiant.setPhoto(pEtudiant.getIdentifiant() + "." +FilenameUtils.getExtension(file.getOriginalFilename()));
-		
+
+		// Definition du nom de la photo comme : 'identifiant.extension'
+		pEtudiant.setPhoto(pEtudiant.getIdentifiant() + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
+
 		if (!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
 
 				// Création du fichier dans /assets/images/photosS
-				File serverFile = new File(context.getRealPath("/assets/images/photos")+ File.separator + pEtudiant.getPhoto());
-				
+				File serverFile = new File(
+						context.getRealPath("/assets/images/photos") + File.separator + pEtudiant.getPhoto());
+
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-				
+
 				stream.write(bytes);
-				
+
 				stream.close();
 
 			} catch (Exception e) {
 				System.out.println("Probleme lors de la sauvegarde du fichier");
 			}
-		} 
-		
-		
+		}
 
 		// Update de la propriete photo de l'etudiant
 		etudiantService.modifier(pEtudiant);
-		
-		// Partie pour cryptage MDP 
-		//=========================
-		
-		// récup du mdp mis dans le formulaire
-		String MdpNonCrypt = pEtudiant.getMotDePasse();
-				
-		// invocation de la methode pour le cryptage
-		String MdpCrypt = PasswordEncoderGenerator.cryptageMdP(MdpNonCrypt);
-		
-		pEtudiant.setMotDePasse(MdpCrypt);
-		
-		// 1.ajout de l'employe à la bdd via la couche service
-		etudiantService.ajouter(pEtudiant);
 
-		//Redirection vers la methode de la recup de la liste
+		// Redirection vers la methode de la recup de la liste
 		return "redirect:/etudiant/liste";
 
 	}
@@ -141,22 +133,19 @@ public class EtudiantController {
 		// Return new ModelAndView(viewName, modelName, modelObject)
 		return new ModelAndView("Etudiant/updateEtudiant", "etudiantUpdateCommand", etudiantService.findById(pId));
 	}
-	
 
 	@RequestMapping(value = "/etudiant/update", method = RequestMethod.POST)
 	public String modifierEtudiant(@ModelAttribute("etudiantUpdateCommand") Etudiant pEtudiant) {
 
-		// Partie pour cryptage MDP 
-		//=========================
-		
+		// Partie pour cryptage MDP
+
 		// récup du mdp mis dans le formulaire
 		String MdpNonCrypt = pEtudiant.getMotDePasse();
-		
+
 		// invocation de la methode pour le cryptage
 		String MdpCrypt = PasswordEncoderGenerator.cryptageMdP(MdpNonCrypt);
-		
-		pEtudiant.setMotDePasse(MdpCrypt);
 
+		pEtudiant.setMotDePasse(MdpCrypt);
 		
 		// 1.Modification de l'étudiant dans la BDD
 		etudiantService.modifier(pEtudiant);
@@ -178,7 +167,7 @@ public class EtudiantController {
 		// Redirection
 		return "redirect:/etudiant/liste";
 	}
-	
+
 	@RequestMapping(value = "/etudiant/see-etudiant/{etudiantID}", method = RequestMethod.GET)
 	public ModelAndView ConsulterEtudiant(@PathVariable("etudiantID") int pId) {
 
