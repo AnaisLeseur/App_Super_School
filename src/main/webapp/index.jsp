@@ -49,6 +49,12 @@
 	<br/>
 	<br/>
 	<a href="${pageContext.request.contextPath}/promotion/liste">Promotion</a>
+	
+	<br/>
+	<br/>
+	<a href="WEB-INF/views/Fragments/Aide.jsp">Aide</a>
+	
+	
 
 
 
