@@ -52,18 +52,18 @@ margin: 15px;}
                     <form:label path="motDePasse">Mot de Passe</form:label>
                     <form:input id="champPassword" type="password" class="form-control" path="motDePasse"
                             required="true"/>
-                    <a onclick="changeTypeInput()" href="#" style="color: #4db3e9 ;">Afficher/Masquer</a>
+                    <a onclick="changeTypeInput(event)" href="#" style="color: #4db3e9 ;">Afficher/Masquer</a>
                 </div>
             </div>
 
-            <form:label path="dateNaissance">Date de Naissance</form:label>
+            <form:label path="dateNaissance">Date de Naissance : </form:label>
             <form:input id="contrainteDate" type="date" path="dateNaissance" max="" required="true" />
             <form:errors path="dateNaissance" cssStyle="color : green; font-style: italic;" />
 
-            <form:label path="uploadedPhoto">Photo</form:label>
-            <form:input type="file" accept=".png, .jpg, .jpeg, .svg" path="uploadedPhoto" required="true" />
+            <form:label id="inputFile" path="uploadedPhoto">Photo : </form:label>
+            <form:input  type="file" accept=".png, .jpg, .jpeg, .svg" path="uploadedPhoto" required="true" />
 
-            <div>Adresse (optionnelle)</div>
+            <div id="adresseForm">Adresse (optionnelle)</div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <form:label path="adresse.rue">Rue</form:label>
@@ -80,7 +80,7 @@ margin: 15px;}
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Ajouter Etudiant</button>
+            <input id="inputSubmit" type="submit" class="btn btn-primary" value="Ajouter Etudiant"/>
         </div>
     </form:form>
 	

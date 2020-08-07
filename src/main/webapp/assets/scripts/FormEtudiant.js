@@ -14,6 +14,7 @@ today = yyyy + '-' + mm + '-' + dd;
 document.getElementById("contrainteDate").setAttribute("max", today);
 
 function changeTypeInput() {
+	event.preventDefault();
     var password = document.getElementById("champPassword");
     if (password.type === "password") {
         password.type = "text";

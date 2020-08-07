@@ -16,8 +16,7 @@
 
 <jsp:include page="/Fragments/Header.jsp"/>
 
-	<a href="${pageContext.request.contextPath}/index.jsp">Retour à la
-		page d'accueil</a>
+
 
 
 	<h1 id="TitreListe">Liste des étudiants</h1>

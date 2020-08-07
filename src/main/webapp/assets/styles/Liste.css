@@ -3,7 +3,8 @@
 	color: #2b73b3;
 	margin-left: 3rem;
 	margin-bottom: 2rem;
-	text-decoration:underline; 
+	text-decoration:underline;
+	margin-top: 2rem; 
 }
 
 .table{
@@ -33,7 +34,7 @@
   }
   
   #LogoAjout{
-  	
+  	width: 2rem;
   }
 
   #Ajout{
