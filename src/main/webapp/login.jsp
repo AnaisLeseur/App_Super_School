@@ -16,9 +16,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Authentification</title>
 
-
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/perso.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/perso.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
 	
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -29,8 +28,8 @@
 <body>
 
 	<!-- Header -->
-	<!-- A FAIRE -->
-	<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
+	<jsp:include page="/Fragments/Header.jsp"/>
+	
 
 	<!--  AFFICHAGE des MSG d'ERREURS  -->
 	<!--  ===========================  -->

@@ -10,9 +10,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/Liste.css" >
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
+
+	<!-- Header -->
+	<jsp:include page="/Fragments/Header.jsp"/>
+	
 
 
 	<%--
@@ -22,65 +31,67 @@
 				==> les données : model.addAttribute("attribut_liste_admins", listeAdminsBdd);
 	 --%>
 	 
-	 <h2><u>Liste des administrateurs</u></h2>
-	 
-	 <table border="1" width="60%">
-	 
-	 	<!--  Ajout d'un admin -->
-	 	<tr>
-	 		<td colspan="7" align="right">
-	 			<%-- 
-	 				au click sur le lien =>
-	 					-> envoi d'une rqt http en get vers la methode "afficherFormAjoutAdmin()" 
-	 						méth associée/mappé sur l'url : '/administrateurs/add-admin-form'
-	 			
-	 			 --%>
-	 			<a style="background-color: lightblue;" href="${pageContext.request.contextPath}/administrateurs/add-admin-form">
-	 				Ajouter un administrateur
-	 			</a>
-	 		</td>
-	 	</tr>
-	 
-		 <tr>
-		 	<th>ID</th>
-	 		<th>Mot De Passe</th>
-	 		<th>Nom</th>
-	 		<th>Prenom</th>
-	 		<th>Email</th>
-	 		
-	 		<th>Modifier</th>
-	 		<th>Supprimer</th>
-		 </tr>
-		 
-		 <!--  données de la table -->
-		 <c:forEach items="${attribut_liste_admins}" var="admin">
-		 	<tr>
-		 		<td>${admin.identifiant }</td>
-		 		<td>${admin.motDePasse }</td>
-		 		<td>${admin.nom }</td>
-		 		<td>${admin.prenom } </td>
-		 		<td>${admin.email }</td>
-		 		
+	 <h1 id="TitreListe">Liste des administrateurs </h1>
+	 	 
+	<table class="table table-striped table-bordered table-hover">
 
-		 		<!-- Colonne pour la modification de l'admin -->
-		 			<!--  au click sur le lien: 
-		 				-> envoi d'une rqt Http Get vers la methode "afficherFormModificationAdmin" 
-		 				-> passage d'un param de rqt nommé 'idAdmin' 
-		 			-->
-		 		<td><a href="${pageContext.request.contextPath}/administrateurs/update-admin-form?idAdmin=${admin.identifiant }">Modifier</a></td>
+		<thead class="thead-blue">
 
-		 			
-		 		<!-- Colonne pour la suppression de l'admin -->
+			<tr>
+				<th id="Ajout" colspan="8">
+					<a href="${pageContext.request.contextPath}/administrateurs/add-admin-form"><img
+						id="LogoAjout"  src="${pageContext.request.contextPath}/assets/images/person-plus.svg">
+						<span>Ajouter un administrateur</span>
+					</a>
+				</th>
+			</tr>
 
-		 		<!--  au click sur le lien: 
-		 				-> envoi d'une rqt Http Get vers la methode "supprimerAdminBdd" 
-		 		-->
-				<td><a href="${pageContext.request.contextPath}/administrateurs/delete/${admin.identifiant }">Supprimer</a></td>
-		 		
-		 	</tr>
-		 </c:forEach>
-		 
-	 </table>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Prenom</th>
+				<th scope="col">Email</th>
+
+				<th scope="col">Consulter</th>
+				<th scope="col">Modifier</th>
+				<th scope="col">Supprimer</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<c:forEach items="${attribut_liste_admins}" var="admin">
+				<tr>
+			 		<td>${admin.identifiant }</td>
+			 		<td>${admin.nom }</td>
+			 		<td>${admin.prenom } </td>
+			 		<td>${admin.email }</td>
+
+					<td>
+						<a href="${pageContext.request.contextPath}/administrateurs/see-admin/${admin.identifiant }">
+							<img src="${pageContext.request.contextPath}/assets/images/search.svg">
+						</a>
+					</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/administrateurs/update-admin-form?idAdmin=${admin.identifiant }">
+							<img src="${pageContext.request.contextPath}/assets/images/pencil.svg">
+						</a>
+					</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/administrateurs/delete/${admin.identifiant }">
+							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
+						</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+	<script
+		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js" type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js" type="text/javascript"></script>
+
+	 
 
 </body>
 </html>
