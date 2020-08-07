@@ -146,10 +146,10 @@ public class MatiereDAOImpl implements IMatiereDAO {
 
 				return emp;
 			} catch (Exception e) {
-				System.out.println("EmployeeDAOImpl erreur lors deu getbyid");
+				System.out.println("MatiereDAOImpl erreur lors deu getbyid");
 				throw e;
 			} // end catch
-		}
+		}//end getById
 
 	
 }//end class

@@ -5,6 +5,7 @@
 
 }
 
+/**
 
 h1 {
 	text-align: center;
@@ -12,6 +13,7 @@ h1 {
 	padding-bottom: 50px;
 	font-weight: bold;
 }
+*/
 
 #detail {
 	
@@ -38,9 +40,11 @@ form {
 	opacity: 0.95;
 }
 
+/**
 img {
 	opacity: inherit;
 }
+*/
 
 
 footer {
@@ -124,12 +128,14 @@ body {
   height: 100vh;
 }
 
+/*
 a {
   color: #92badd;
   display:inline-block;
   text-decoration: none;
   font-weight: 400;
 }
+*/
 
 h2 {
   text-align: center;

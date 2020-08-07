@@ -8,11 +8,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/Liste.css" >
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
 
-
+	<!-- Header -->
+	<jsp:include page="/Fragments/Header.jsp"/>
+	
 
 	<%--
 			-> traitement des données envoyées par le controller 'EnseignantController' 
