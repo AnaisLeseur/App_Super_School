@@ -22,7 +22,7 @@ margin: 15px;}
 
 <jsp:include page="/Fragments/Header.jsp"/>
 
-<h1 id="TitreForm">Formulaire d'ajout d'un ï¿½tudiant</h1>
+<h1 id="TitreForm">Formulaire d'ajout d'un Etudiant</h1>
 
 	
 	<form:form enctype="multipart/form-data" modelAttribute="etudiantAddCommand" method="POST"

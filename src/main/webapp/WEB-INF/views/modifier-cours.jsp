@@ -6,26 +6,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/FormEtudiant.css">
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
-<div align="center">
+
+<jsp:include page="/Fragments/Header.jsp"/>
+<div id="TitreForm">
     <h1>Formulaire de modification d'un cours</h1>
     </div>
     
-    <div align="center">
-         <%--
-         > modelAttribute = le nom  de l'objet de commande definit dans la methode afficherFormulaireAjout du controlleur
-         
-         > à la soumission du formulaire : invocation de la méthode "modifierEmployerBdd"
-                                           "EmplpoerController" avec une requete HTTP en post et l'url "/employes/add"
-           
-         
-          --%>
-         <form:form modelAttribute="coursModifCommand" method="POST" 
+   
+         <form:form enctype="multipart/form-data" modelAttribute="coursModifCommand" method="POST" 
          action="${pageContext.request.contextPath}/cours/update">
          
-         <table width="60%">
+         
          
          <!-- recup de l'id de l'employe a modifier dans un champs caché-->
          <tr>
@@ -34,73 +29,79 @@
          </td>
          </tr>
          
-               <tr>
-                  <td> <form:label path="idCours">Id Cours : </form:label> </td>
-                  <td> <form:input path="idCours"/> </td>
-                  <td> <form:errors path="idCours" cssStyle="color : green; font-style: italic;"/>  </td>
-              </tr>
+               <form:label path="idCours">Id Cours : </form:label> 
+                  <form:input path="idCours"/> 
+                   <form:errors path="idCours" cssStyle="color : green; font-style: italic;"/> 
               
-              <tr>
-					<td><form:label path="libelle">libelle : </form:label></td>
-					<td><form:input path="libelle" /></td>
-					<td><form:errors path="libelle"
-							cssStyle="color : green; font-style: italic;" /></td>
+              <div style="width: 80%;margin: auto;">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+			
+					<form:label path="libelle">Libelle : </form:label>
+					<form:input path="libelle" type="text" class="form-control" required="true"
+                            pattern="[A-Z][A-Za-z -]+"/>
+					<form:errors path="libelle"
+							cssStyle="color : red; font-style: italic;" />
 
-				</tr>
+				</div>
 
-				<tr>
-					<td><form:label path="description">description : </form:label>
-					</td>
-					<td><form:input path="description" /></td>
-					<td><form:errors path="description"
-							cssStyle="color : green; font-style: italic;" /></td>
+				<div class="form-group col-md-2"></div>
+                <div class="form-group col-md-5">
+                <form:label path="description">Description : </form:label>
+					
+					<form:input path="description" type="text" class="form-control" required="true"
+                            pattern="[A-Z][A-Za-z -]+" />
+					<form:errors path="description"
+							cssStyle="color : red; font-style: italic;" />
 
-				</tr>
+				</div>
+				</div>
+				<br><br><br>
+ <div class="form-row">
+                <div class="form-group col-md-5">
+				<form:label path="duree">duree : </form:label>
+					
+					<form:input path="duree"  class="form-control" required="true"/>
+					<form:errors path="duree"
+							cssStyle="color : red; font-style: italic;" />
+				</div>
+				
+				 <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-5">
+					<form:label path="date">Date : </form:label>			
+					<form:input path="date" type="date"  required="true"/>
+					<form:errors path="date"
+							cssStyle="color : green; font-style: italic;" />
 
-				<tr>
-					<td><form:label path="duree">duree : </form:label>
-					</td>
-					<td><form:input path="duree" /></td>
-					<td><form:errors path="duree"
-							cssStyle="color : green; font-style: italic;" /></td>
+				</div>
+				</div>
+				<br><br><br>
+<div class="form-row">
+				<div class="form-group col-md-5">
+				<form:label path="fkEtudiant">Fk Etudiant : </form:label>
+					<form:input path="fkEtudiant" required="true"/><form:errors path="fkEtudiant"
+							cssStyle="color : blue; font-style: italic;" />
+</div>
 
-				</tr>
-				<tr>
-					<td><form:label path="date">date : </form:label>
-					</td>
-					<td><form:input path="date" /></td>
-					<td><form:errors path="date"
-							cssStyle="color : green; font-style: italic;" /></td>
+				<div class="form-group col-md-2"></div>
+                <div class="form-group col-md-5">
+					<form:label path="fkMatiere">Fk Matiere : </form:label>
+					<form:input path="fkMatiere" required="true" /><form:errors path="fkMatiere"
+							cssStyle="color : blue; font-style: italic;" />
 
-				</tr>
-
-				<tr>
-					<td><form:label path="fkEtudiant">Fk Etudiant : </form:label>
-					</td>
-					<td><form:input path="fkEtudiant" /></td>
-					<td><form:errors path="fkEtudiant"
-							cssStyle="color : blue; font-style: italic;" /></td>
-
-				</tr>
-
-				<tr>
-					<td><form:label path="fkMatiere">Fk Matiere : </form:label></td>
-					<td><form:input path="fkMatiere" /></td>
-					<td><form:errors path="fkMatiere"
-							cssStyle="color : blue; font-style: italic;" /></td>
-
-				</tr>
+				</div>
+				
+				</div>
               
-              <tr>
-                 <td>
-                  <input type="submit" value="Modifier">
-                 </td>
-              </tr>
+                 <input id="inputSubmit" type="submit" class="btn btn-primary" value="Modifier">
+                
               
               
-         </table>
+         
          
          </form:form>
-    </div>
+   <script src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/scripts/FormEtudiant.js"></script>
 </body>
 </html>

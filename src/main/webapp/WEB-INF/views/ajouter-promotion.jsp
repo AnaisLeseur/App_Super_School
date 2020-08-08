@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/FormEtudiant.css">
 <style type="text/css">
 .erreurs_validation{color: red; 
 font-style: italic; 
@@ -16,50 +18,43 @@ margin: 15px;}
 </style>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
-<div align="center">
-    <h1>Formulaire d'une promotion à ajouter</h1>
+
+<jsp:include page="/Fragments/Header.jsp"/>
+<div id="TitreForm"><h1>Formulaire d'une promotion à ajouter</h1>
     </div>
     
-     <div align="center">
-         <%--
-         > modelAttribute = le nom  de l'objet de commande definit dans la methode afficherFormulaireAjout du controlleur
-         
-         > à la soumission du formulaire : invocation de la méthode "ajouterEmployerBdd"
-                                           "EmplpoerController" avec une requete HTTP en post et l'url "/employes/add"
-           
-         
-          --%>
-         <form:form modelAttribute="promotionCommand" method="POST" 
+    
+         <form:form enctype="multipart/form-data" modelAttribute="promotionCommand" method="POST" 
          action="${pageContext.request.contextPath}/promotion/add">
          
          
          <%-- affichage des erreurs --%>
          <form:errors path="*" cssClass="erreurs_validation" element="div"/>
-         
-         <table width="60%">
+        
               
+             <div style="width: 80%;margin: auto;">
+            <div class="form-row">
+                <div class="form-group col-md-5"> 
+            <form:label path="libelle">Libelle : </form:label> 
+                  <form:input path="libelle" type="text" class="form-control" required="true"
+                            pattern="[A-Z][A-Za-z -]+"/> 
+                  <form:errors path="libelle" cssStyle="color : green; font-style: italic;"/>  
               
-              <tr>
-                  <td> <form:label path="libelle">libelle : </form:label> </td>
-                  <td> <form:input path="libelle"/> </td>
-               <td> <form:errors path="libelle" cssStyle="color : green; font-style: italic;"/>  </td>
-                  
-              </tr>
-              
+             </div>
+             </div>
              
               
-              <tr>
-                 <td>
-                  <input type="submit" value="Ajouter">
-                 </td>
-              </tr>
+              
+                  <input  id="inputSubmit" type="submit" class="btn btn-primary" value="Ajouter">
+                </div> 
               
               
-         </table>
+        
          
          </form:form>
-    </div>
-
+    
+<script src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/scripts/FormEtudiant.js"></script>
 </body>
 </html>
