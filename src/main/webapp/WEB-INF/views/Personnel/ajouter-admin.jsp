@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Ajout d'un administrateur</title>
 <style type="text/css">
 .erreurs_validation{color: red; 
 font-style: italic; 

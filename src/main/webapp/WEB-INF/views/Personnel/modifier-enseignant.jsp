@@ -15,7 +15,7 @@
 	
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Modification d'un enseignant</title>
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
