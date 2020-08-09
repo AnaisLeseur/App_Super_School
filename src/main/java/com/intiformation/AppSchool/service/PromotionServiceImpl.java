@@ -22,22 +22,16 @@ public class PromotionServiceImpl implements IPromotionService {
 
 	@Override
 	public void ajouter(Promotion pPromotion) {
-
 		promotionDAO.add(pPromotion);
 	}//end ajout
 
 	@Override
 	public void modifier(Promotion pPromotion) {
-
 		promotionDAO.update(pPromotion);
-
-		
-		
 	}//end modif
 
 	@Override
 	public void supprimer(Integer idPromotion) {
-
 		promotionDAO.delete(idPromotion);
 		
 	}//end promotion
@@ -49,8 +43,12 @@ public class PromotionServiceImpl implements IPromotionService {
 
 	@Override
 	public Promotion findById(Integer idPromotion) {
-		// TODO Auto-generated method stub
 		return promotionDAO.getById(idPromotion);
 	}//end getById
+
+	@Override
+	public List<Promotion> findListNotLinkedToEtudiant(int pIdEtudiant) {
+		return promotionDAO.getListNotLinkedToEtudiant(pIdEtudiant);
+	}
 
 }//end service

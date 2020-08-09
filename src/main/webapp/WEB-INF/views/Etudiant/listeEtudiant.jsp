@@ -17,7 +17,6 @@
 
 <jsp:include page="/Fragments/Header.jsp"/>
 
-<a href="${pageContext.request.contextPath}/Etudiant/testCk">to test</a>
 
 
 	<h1 id="TitreListe">Liste des étudiants</h1>
@@ -80,13 +79,15 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<jsp:include page="/Fragments/footer.jsp" />
 
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js" type="text/javascript"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js" type="text/javascript"></script>
 
-
+	
 
 </body>
 </html>

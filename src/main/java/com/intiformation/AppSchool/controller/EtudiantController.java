@@ -6,12 +6,13 @@ import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,12 +24,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.cryptage.PasswordEncoderGenerator;
 import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.Promotion;
 import com.intiformation.AppSchool.service.IEtudiantService;
+import com.intiformation.AppSchool.service.IPromotionService;
 import com.intiformation.AppSchool.validator.EtudiantValidator;
 
 @Controller
@@ -36,12 +40,22 @@ public class EtudiantController {
 
 	@Autowired
 	private IEtudiantService etudiantService;
+	
+	@Autowired
+	private IPromotionService promotionService;
 
 	@Autowired
 	private ServletContext context;
 
 	@Autowired
 	private EtudiantValidator etudiantValidator;
+	
+	
+
+	// Setter pour injection
+	public void setPromotionService(IPromotionService promotionService) {
+		this.promotionService = promotionService;
+	}
 
 	public void setValidator(EtudiantValidator validator) {
 		this.etudiantValidator = validator;
@@ -55,37 +69,12 @@ public class EtudiantController {
 		this.context = context;
 	}
 
-	@InitBinder
+	@InitBinder({"etudiantAddCommand","etudiantUpdateCommand","etudiantBindPromo"})
 	public void bindingPreparation(WebDataBinder binder) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		CustomDateEditor orderDateEditor = new CustomDateEditor(dateFormat, true);
-		binder.registerCustomEditor(Date.class, orderDateEditor);
+		binder.registerCustomEditor(Date.class,"dateNaissance", orderDateEditor);
 	}
-
-	@RequestMapping(value = "/Etudiant/testCk", method = RequestMethod.GET)
-	public String test(ModelMap model) {
-
-		Etudiant etudiant = new Etudiant("123", "ert", "zer", "zer@oi.fr");
-
-		model.addAttribute("etudiant", etudiant);
-		// Renvoi de la liste vers la vue
-
-		// Renvoi du nom logique de la vue
-		return "Etudiant/testCkb";
-	}
-
-	@RequestMapping(value = "/etudiant/testcb", method = RequestMethod.POST)
-	public String testrecup(HttpServletRequest request) {
-
-		String[] essai = request.getParameterValues("test");
-
-		for (String string : essai) {
-			System.out.println(string);
-		}
-
-		// Renvoi du nom logique de la vue
-		return "redirect:/etudiant/liste";
-	}//
 
 	
 	
@@ -118,7 +107,7 @@ public class EtudiantController {
 	public String ajouterEtudiant(@ModelAttribute("etudiantAddCommand") @Validated Etudiant pEtudiant,
 			BindingResult bindingResult) {
 
-		etudiantValidator.validate(pEtudiant, bindingResult);
+		etudiantValidator.validateAdd(pEtudiant, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 
@@ -189,7 +178,7 @@ public class EtudiantController {
 	public String modifierEtudiant(@ModelAttribute("etudiantUpdateCommand") @Validated Etudiant pEtudiant,
 			BindingResult bindingResult) {
 
-		etudiantValidator.validate(pEtudiant, bindingResult);
+		etudiantValidator.validateUpdate(pEtudiant, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 
@@ -256,8 +245,108 @@ public class EtudiantController {
 	@RequestMapping(value = "/etudiant/see-etudiant/{etudiantID}", method = RequestMethod.GET)
 	public ModelAndView ConsulterEtudiant(@PathVariable("etudiantID") int pId) {
 
-
+		Etudiant etudiant = etudiantService.findById(pId);
+		
 		// Return new ModelAndView(viewName, modelName, modelObject)
-		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiantService.findById(pId));
+		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiant );
 	}
+	
+	
+	// --------------------------------------------------------//
+	// ----------------Binding Promotion-----------------------//
+	// --------------------------------------------------------//
+	
+	@RequestMapping(value = "/etudiant/linkPromotion/{etudiantID}", method = RequestMethod.GET)
+	public String toLinkPromotion(@PathVariable("etudiantID") int pId, ModelMap model) {
+				
+		model.addAttribute("etudiantBindPromo", etudiantService.findById(pId));
+		
+		model.addAttribute("liste_Promotion", promotionService.findListNotLinkedToEtudiant(pId));
+		
+		return "Etudiant/LinkPromotionToEtudiant";
+	}// end toLinkPromotion
+	
+
+	/**
+	 * Conversion des id des promotions en objet Promotion
+	 * @param binder
+	 */
+	@InitBinder
+	public void bindingPreparationPromo(WebDataBinder binder) {
+		
+		binder.registerCustomEditor(List.class,"listePromotions", new CustomCollectionEditor(List.class) {
+			
+            protected Object convertElement(Object element) {
+            	
+                if (element != null) {
+                    Integer Id = Integer.parseInt(element.toString());
+                    Promotion promo = promotionService.findById(Id);
+                    return promo;
+                }//end if
+                
+                return null;
+            }
+
+        });
+	}//end InitBinder
+	
+	/**
+	 * Lie l'étudiant aux promotions sélectionnées
+	 * 
+	 * @param etudiant
+	 * @return View
+	 */
+	@RequestMapping(value = "/promotion/bindPromotionToEtudiant", method = RequestMethod.POST)
+	public String BindPromotionToEtudiant(@ModelAttribute("etudiantBindPromo") Etudiant pEtudiant) {
+
+		etudiantService.modifier(pEtudiant);
+		
+		List<Promotion> listePromoSelected = pEtudiant.getListePromotions();
+
+		for (Promotion promotion : listePromoSelected) {
+			
+			List<Etudiant> listeEtudiant = promotion.getListeEtudiants();
+			
+			//Si pEtudiant n'est pas dans la liste de la promotion, on l'ajoute
+			if (listeEtudiant.indexOf(pEtudiant)==-1) {
+				
+				listeEtudiant.add(pEtudiant);
+				promotion.setListeEtudiants(listeEtudiant);
+				promotionService.modifier(promotion);
+			}//end if	
+		}//end for each
+		
+		return "redirect:/promotion/liste";
+	}// end BindPromotionToEtudiant()
+	
+	
+	@RequestMapping(value="/etudiants/deletePromotion", method=RequestMethod.GET)
+	public ModelAndView DeletePromotionFromEtudiant(@RequestParam("idPromo")int idPromotion, @RequestParam("idEtudiant")int idEtudiant) {
+		
+		//Recup de la promotion
+		Promotion promotion = promotionService.findById(idPromotion);
+		
+		//Suppression de l'etudiant de la propriété listeEtudiant de Promotion
+		List<Etudiant> listeEtudiant = promotion.getListeEtudiants();
+		
+		int index=0;
+		
+		for (Etudiant etudiants : listeEtudiant) {
+			if (etudiants.getIdentifiant()== idEtudiant) {
+				break;
+			}
+			index++;
+		}
+		
+		listeEtudiant.remove(index);
+		
+		//Sauvegarde dans la BDD
+		promotion.setListeEtudiants(listeEtudiant);
+		promotionService.modifier(promotion);
+		
+		//Renvoi de l'etudiant dans la vue seeEtudiant	
+		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiantService.findById(idEtudiant) );
+	}
+	
+	
 }

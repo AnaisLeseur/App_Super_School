@@ -87,6 +87,7 @@ margin: 15px;}
         </div>
     </form:form>
 	
+	<jsp:include page="/Fragments/footer.jsp" />
 	
 	 <script src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"></script>
     <script src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"></script>

@@ -76,12 +76,14 @@
                 </div>
             </div>
 
+			<form:hidden path="photo"/>
 			<form:hidden path="identifiant"/>
 			
             <input id="inputSubmit" type="submit" class="btn btn-primary" value="Modifier Etudiant"/>
         </div>
     </form:form>
 	
+	<jsp:include page="/Fragments/footer.jsp" />
 	
 	 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"></script>

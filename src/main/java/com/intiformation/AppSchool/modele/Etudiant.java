@@ -1,11 +1,14 @@
 package com.intiformation.AppSchool.modele;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -13,6 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -32,11 +37,12 @@ public class Etudiant extends Personne{
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	
-	@ManyToMany(mappedBy="listeEtudiants")
-	private List<Promotion> listePromotions;
+	@ManyToMany(mappedBy="listeEtudiants", fetch=FetchType.EAGER)
 	
-	/*@OneToMany(mappedBy="idEtudiantCours")
-	private List<EtudiantCours> listeEtudiantCours;*/
+	private List<Promotion> listePromotions = new ArrayList<>();
+	
+	@OneToMany(mappedBy="etudiantEC",cascade=CascadeType.ALL)
+	private List<EtudiantCours> listeEtudiantCours;
 	
 	
 	//Constructeurs
@@ -109,21 +115,13 @@ public class Etudiant extends Personne{
 	public void setUploadedPhoto(MultipartFile uploadedPhoto) {
 		this.uploadedPhoto = uploadedPhoto;
 	}
-/*
+
 	public List<EtudiantCours> getListeEtudiantCours() {
 		return listeEtudiantCours;
 	}
 
 	public void setListeEtudiantCours(List<EtudiantCours> listeEtudiantCours) {
 		this.listeEtudiantCours = listeEtudiantCours;
-	}*/
-
-
-	@Override
-	public String toString() {
-		return "Etudiant [photo=" + photo + ", uploadedPhoto=" + uploadedPhoto + ", dateNaissance=" + dateNaissance
-				+ ", listePromotions=" + listePromotions + "]";
 	}
-	
-	
+
 }//end class
