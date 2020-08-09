@@ -46,7 +46,7 @@
 				<th scope="col">FkEtudiant</th>
 				<th scope="col">FkMatiere</th>
 
-                <th scope="col">Consulter</th>
+                
 				<th scope="col">Modifier</th>
 				<th scope="col">Eliminer</th>
 			</tr>
