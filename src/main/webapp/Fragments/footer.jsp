@@ -9,15 +9,15 @@
 
 				<!--Information sur le site : adresse, numéro de téléphon et mail-->
 				<div class="col-md-4 mb-4">
-						<img src="./assets/images/worldwide-location.png" alt="User Icon" width="50px" />
+						<img src="${pageContext.request.contextPath}/assets/images/worldwide-location.png" alt="User Icon" width="50px" />
 					<br /> 1 rue Blup blup <br /> 33000, Paris <br /> FRANCE
 				</div>
 				<div class="col-md-4 mb-4">
-					<img src="./assets/images/phone-not-being-used.png" alt="User Icon" width="50px" />
+					<img src="${pageContext.request.contextPath}/assets/images/phone-not-being-used.png" alt="User Icon" width="50px" />
 					<br /> + 33 1 23 45 67 89<br />
 				</div>
 				<div class="col-md-4 mb-4">
-					<img src="./assets/images/important-mail.png" alt="User Icon" width="50px" />
+					<img src="${pageContext.request.contextPath}/assets/images/important-mail.png" alt="User Icon" width="50px" />
 					<br /> Contact@super_school.com  <br />
 				</div>
 
@@ -28,11 +28,11 @@
 
 					<!-- Liste de liens vers differents pages: non implémentées pour l'instant -->
 					
-						<a href="#top">Back to top | </a>
+						<a href="#top">Back to top  </a>|
 						<a href="https://blog.bootswatch.com"
 							onclick="pageTracker._link(this.href); return false;">A
-								propos | </a>
-						<a href="https://blog.bootswatch.com/rss/">Assistance | </a>
+								propos  </a>|
+						<a href="https://blog.bootswatch.com/rss/">Assistance  </a> |
 						<a href="https://twitter.com/bootswatch">FAQ</a>
 
 					
