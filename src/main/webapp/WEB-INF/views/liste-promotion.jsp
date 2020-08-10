@@ -13,6 +13,9 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
+	
+<link rel="stylesheet" 
+	href="${pageContext.request.contextPath}/assets/styles/perso.css">
 </head>
 <body>
 
@@ -83,6 +86,9 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'emplo
 		</tbody>
 
 	</table>
+	
+	<jsp:include page="/Fragments/footer.jsp" />
+	
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"
 		type="text/javascript"></script>
@@ -90,7 +96,6 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'emplo
 		src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"
 		type="text/javascript"></script>
 
-
-
 </body>
+
 </html>

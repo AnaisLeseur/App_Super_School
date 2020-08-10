@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%-- ajout de la taglib de spring mvc form --%>
 <%@taglib prefix="form"  uri="http://www.springframework.org/tags/form" %>
 
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<h1>Formulaire d'ajout d'un étudiant</h1>
+<h1>Formulaire d'ajout d'un Ã©tudiant</h1>
 
 
 
