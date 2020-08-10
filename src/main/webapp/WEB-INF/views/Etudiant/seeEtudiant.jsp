@@ -17,7 +17,10 @@
 	
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/perso.css">
 </head>
+
 <body>
 	<jsp:include page="/Fragments/Header.jsp" />
 
@@ -173,7 +176,6 @@
     <br/>
     
     <jsp:include page="/Fragments/footer.jsp" />
-
 
 </body>
 </html>
