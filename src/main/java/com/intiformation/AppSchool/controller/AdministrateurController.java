@@ -25,6 +25,7 @@ import com.intiformation.AppSchool.validator.AdministrateurValidator;
 /**
  * implementation d'un controleur spring mvc pour la gestion des administrateurs.
  * Gestion opération CRUD de l'administrateur
+ * 
  * @author anais
  *
  */
@@ -237,5 +238,21 @@ public class AdministrateurController {
 		return "redirect:/administrateurs/liste";
 		
 	}// end modifierAdminBdd
+	
+	
+	
+	/**
+	 * methode pour voir un admin dans la bdd..
+	 * meth invoquée au clic sur "la loupe" => voir les détails de l'admin
+	 * meth récupère l'objet de commande 'adminVoirCommand'
+	 * @param pIdAdmin
+	 * @return ModelAndView : le nom logique de la vue et le model Admin sélectionné avec l'Id 
+	 */
+	@RequestMapping(value = "/administrateurs/see-admin/{adminId}", method = RequestMethod.GET)
+	public ModelAndView ConsulterAdmin(@PathVariable("adminId") int pIdAdmin) {
+
+		// Return new ModelAndView(viewName, modelName, modelObject)
+		return new ModelAndView("Personnel/voir-admin", "adminVoirCommand", adminService.findById(pIdAdmin));
+	}// end ConsulterAdmin
 
 }// end AdministrateurController

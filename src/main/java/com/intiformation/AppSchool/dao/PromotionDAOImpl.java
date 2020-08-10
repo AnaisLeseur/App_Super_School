@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.modele.Promotion;
-@Transactional
+
 @Repository
 public class PromotionDAOImpl implements IPromotionDAO {
 	
@@ -35,8 +35,9 @@ public class PromotionDAOImpl implements IPromotionDAO {
 	}
 
 	@Override
+	@Transactional
 	public void add(Promotion pPromotion) {
-Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.sessionFactory.getCurrentSession();
 		
 		try {
 
@@ -57,6 +58,7 @@ Session session = this.sessionFactory.getCurrentSession();
 	}//end ajout
 
 	@Override
+	@Transactional
 	public void update(Promotion pPromotion) {
 
 
@@ -86,6 +88,7 @@ Session session = this.sessionFactory.getCurrentSession();
 	}//end  modif
 
 	@Override
+	@Transactional
 	public void delete(Integer idPromotion) {
 
 		// 1. recup de la session d'hibernate via la factory
@@ -116,14 +119,15 @@ Session session = this.sessionFactory.getCurrentSession();
 	}//end delete
 
 	@Override
+	@Transactional(readOnly=true)
 	public List<Promotion> getAll() {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 
-			Query query = session.createQuery("From Promotion");
+			Query<Promotion> query = session.createQuery("From Promotion");
 
 			// 3 envoie + exce +resul
-			List<Promotion> listePromotionBDD = query.list();
+			List<Promotion> listePromotionBDD = query.getResultList();
 
 			return listePromotionBDD;
 		} catch (Exception e) {
@@ -133,6 +137,7 @@ Session session = this.sessionFactory.getCurrentSession();
 	}//end getall
 
 	@Override
+	@Transactional(readOnly=true)
 	public Promotion getById(Integer idPromotion) {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
@@ -144,5 +149,28 @@ Session session = this.sessionFactory.getCurrentSession();
 			throw e;
 		} // end catch
 	}//end getbyId
+
+	
+	
+	@Override
+	@Transactional
+	public List<Promotion> getListNotLinkedToEtudiant(int pIdEtudiant) {
+		
+		Session session = this.sessionFactory.getCurrentSession();
+
+		//Construction de la requete
+		String RequeteListNotLinkedToEtudiant = "select p from Promotion p where p.idPromotion not in ( select p.idPromotion from Promotion p join p.listeEtudiants e where e.identifiant=:pIdEtudiant)";
+		Query<Promotion> listQuery = session.createQuery(RequeteListNotLinkedToEtudiant);
+		
+		//Passage de param
+		listQuery.setParameter("pIdEtudiant", pIdEtudiant);
+		
+		// envoi + exec + resultat
+		List<Promotion> listePromo =listQuery.getResultList();
+		
+		return listePromo;
+	}
+	
+	
 
 }//end class

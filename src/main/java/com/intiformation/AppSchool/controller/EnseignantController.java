@@ -238,5 +238,23 @@ public class EnseignantController {
 		return "redirect:/enseignants/liste";
 		
 	}// end modifierEnseignantBdd
+	
+	
+
+	/**
+	 * methode pour voir un enseignant dans la bdd..
+	 * meth invoquée au clic sur "la loupe" => voir les détails de l'enseignant 
+	 * meth récupère l'objet de commande 'enseignantVoirCommand'
+	 * @param pIdEnseignant
+	 * @return ModelAndView : le nom logique de la vue et le model Enseigant sélectionné avec l'Id 
+	 */
+	@RequestMapping(value = "/enseignants/see-enseignant/{enseignantId}", method = RequestMethod.GET)
+	public ModelAndView ConsulterEnseignant(@PathVariable("enseignantId") int pIdEnseignant) {
+
+		// Return new ModelAndView(viewName, modelName, modelObject)
+		return new ModelAndView("Personnel/voir-enseignant", "enseignantVoirCommand", enseignantService.findById(pIdEnseignant));
+	}// end ConsulterEnseignant
+
+	
 }// end class
 

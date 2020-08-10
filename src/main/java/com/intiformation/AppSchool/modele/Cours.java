@@ -3,6 +3,7 @@ package com.intiformation.AppSchool.modele;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,8 +34,8 @@ public class Cours {
 	private Long fkMatiere;
 	
 	//Ajout pour EtudiantCours Thomas
-	/*@OneToMany(mappedBy="coursEC")
-	private List<Etudiant> listeEtudiants;*/
+	@OneToMany(mappedBy="coursEC", cascade=CascadeType.ALL)
+	private List<EtudiantCours> listeEtudiantsCours;
 	
 	//-------------------------------ctor-------------------------------------------------------
 	
@@ -125,19 +126,12 @@ public class Cours {
 		this.fkMatiere = fkMatiere;
 	}
 
-	
-
-	
-
-
-	
-/*
-	public List<Etudiant> getListeEtudiants() {
-		return listeEtudiants;
+	public List<EtudiantCours> getListeEtudiantsCours() {
+		return listeEtudiantsCours;
 	}
 
-	public void setListeEtudiants(List<Etudiant> listeEtudiants) {
-		this.listeEtudiants = listeEtudiants;
-	}*/
-	
+	public void setListeEtudiantsCours(List<EtudiantCours> listeEtudiantsCours) {
+		this.listeEtudiantsCours = listeEtudiantsCours;
+	}
+
 }//end cours

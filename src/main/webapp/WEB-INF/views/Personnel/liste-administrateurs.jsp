@@ -9,13 +9,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Liste des administrateurs</title>
 
+<!-- style CSS  -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
 	
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css" >
+	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/perso.css">
+	
 </head>
 <body>
 
@@ -86,12 +90,13 @@
 		</tbody>
 	</table>
 
+	<!-- footer -->
+	<jsp:include page="/Fragments/footer.jsp"></jsp:include>
+
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js" type="text/javascript"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js" type="text/javascript"></script>
-
-	 
 
 </body>
 </html>

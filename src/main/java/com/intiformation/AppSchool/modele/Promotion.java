@@ -1,17 +1,22 @@
 package com.intiformation.AppSchool.modele;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Promotion implements Serializable{
@@ -24,14 +29,19 @@ public class Promotion implements Serializable{
 	@Column(length=30)
 	private String libelle;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade= {CascadeType.PERSIST,CascadeType.MERGE}, fetch=FetchType.EAGER)//Thomas : cascadeType.REMOVE supprime TROP de choses 
 	@JoinTable(name="Promotion_Etudiant",
 				joinColumns=@JoinColumn(name="promotion_id"),
 				inverseJoinColumns=@JoinColumn(name="etudiant_id"))
-	private List<Etudiant> listeEtudiants;
+	private List<Etudiant> listeEtudiants = new ArrayList<>();
 
 	//Constructeurs
 	public Promotion() {
+	}
+	
+	public Promotion(int idPromotion, String libelle) {
+		this.idPromotion = idPromotion;
+		this.libelle = libelle;
 	}
 
 	public Promotion(String libelle, List<Etudiant> listeEtudiants) {

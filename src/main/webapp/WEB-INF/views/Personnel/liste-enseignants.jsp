@@ -7,17 +7,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Liste des  enseignants</title>
 
+
+<!-- style CSS  -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
 
 <link rel="stylesheet"
+<<<<<<< HEAD
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
+=======
+	href="${pageContext.request.contextPath}/assets/styles/Liste.css" >
+	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/perso.css">
+	
+>>>>>>> 1f1f1223eebbbb5ce0618a40dbe2cbf04dca1f34
 </head>
 <body>
 
 	<!-- Header -->
+<<<<<<< HEAD
 	<jsp:include page="/Fragments/Header.jsp" />
 
 
@@ -32,11 +42,19 @@
 		<u>Liste des enseignants</u>
 	</h1>
 
+=======
+	<jsp:include page="/Fragments/Header.jsp"/>
+
+	 
+	 <h1 id="TitreListe">Liste des enseignants </h1>
+	 	 
+>>>>>>> 1f1f1223eebbbb5ce0618a40dbe2cbf04dca1f34
 	<table class="table table-striped table-bordered table-hover">
 
 		<thead class="thead-blue">
 
 			<tr>
+<<<<<<< HEAD
 				<th id="Ajout" colspan="8"><a
 					href="${pageContext.request.contextPath}/enseignants/add-enseignant-form"><img
 						id="LogoAjout"
@@ -48,14 +66,31 @@
 			<tr>
 				<th scope="col">ID</th>
 				<th scope="col">Mot De Passe</th>
+=======
+				<th id="Ajout" colspan="8">
+					<a href="${pageContext.request.contextPath}/enseignants/add-enseignant-form"><img
+						id="LogoAjout"  src="${pageContext.request.contextPath}/assets/images/person-plus.svg">
+						<span>Ajouter un enseignant</span>
+					</a>
+				</th>
+			</tr>
+
+			<tr>
+				<th scope="col">ID</th>
+>>>>>>> 1f1f1223eebbbb5ce0618a40dbe2cbf04dca1f34
 				<th scope="col">Nom</th>
 				<th scope="col">Prenom</th>
 				<th scope="col">Email</th>
 
+<<<<<<< HEAD
+=======
+				<th scope="col">Consulter</th>
+>>>>>>> 1f1f1223eebbbb5ce0618a40dbe2cbf04dca1f34
 				<th scope="col">Modifier</th>
 				<th scope="col">Supprimer</th>
 			</tr>
 		</thead>
+<<<<<<< HEAD
 		<!--  données de la table -->
 		<tbody>
 		<c:forEach items="${attribut_liste_enseignants}" var="enseignant">
@@ -83,6 +118,46 @@
 		 		-->
 				<td><a
 					href="${pageContext.request.contextPath}/enseignants/delete/${enseignant.identifiant }">Supprimer</a></td>
+=======
+
+		<tbody>
+			<c:forEach items="${attribut_liste_enseignants}" var="enseignant">
+				<tr>
+		 		<td>${enseignant.identifiant }</td>
+		 		<td>${enseignant.nom }</td>
+		 		<td>${enseignant.prenom } </td>
+		 		<td>${enseignant.email }</td>
+
+					<td>
+						<a href="${pageContext.request.contextPath}/enseignants/see-enseignant/${enseignant.identifiant }">
+							<img src="${pageContext.request.contextPath}/assets/images/search.svg">
+						</a>
+					</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/enseignants/update-enseignant-form?idEnseignant=${enseignant.identifiant }">
+							<img src="${pageContext.request.contextPath}/assets/images/pencil.svg">
+						</a>
+					</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/enseignants/delete/${enseignant.identifiant }">
+							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
+						</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+		
+	</table>
+
+	<script
+		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js" type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js" type="text/javascript"></script>
+
+	
+	<!-- footer -->
+	<jsp:include page="/Fragments/footer.jsp"></jsp:include> 
+>>>>>>> 1f1f1223eebbbb5ce0618a40dbe2cbf04dca1f34
 
 			</tr>
 		</c:forEach>

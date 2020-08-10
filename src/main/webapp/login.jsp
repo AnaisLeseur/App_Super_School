@@ -94,7 +94,7 @@
 
 	
 	<!-- footer -->
-	<jsp:include page="Fragments/footer.jsp"></jsp:include>
+	<jsp:include page="/Fragments/footer.jsp"></jsp:include>
 
 </body>
 </html>
