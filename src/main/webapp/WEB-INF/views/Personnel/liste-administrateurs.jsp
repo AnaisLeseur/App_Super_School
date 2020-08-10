@@ -18,7 +18,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css" >
 	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/perso.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/perso.css">
 	
 </head>
 <body>

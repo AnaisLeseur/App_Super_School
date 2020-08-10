@@ -1,28 +1,95 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
   <%-- taglibs core des jsp --%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
  
  
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<!-- style CSS  -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/Liste.css" >
+	
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/perso.css">
+	
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/Header.css">
+
 </head>
 <body>
-	<h1>Test</h1>
+
+<!-- Header -->
+
+<div class="containerTop">
+        <img id="imageTopBrand" src="${pageContext.request.contextPath}/assets/images/LogoCerveau.jpg">
+        <h1 id="TitreApp">SuperSchool</h1>
+
+        <a href=""><img id="drapeauFrance" src="${pageContext.request.contextPath}/assets/images/FlagFrance.png" ></a>
+        <a href=""><img id="drapeauUK" src="${pageContext.request.contextPath}/assets/images/FlagUK.png" ></a>
+        
+    </div>
+
+
+    <div id="separation">
+        <img id="userLogo" src="${pageContext.request.contextPath}/assets/images/User.png" >
+        <p id="userInfos">Bienvenue sur notre site </p>
+    </div>
+    
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="nav-link " style="float: right;" href="${pageContext.request.contextPath}/login.jsp" 
+                    >
+                    Se connecter
+                </a>
+        </div>
+    </nav>
 	
-		<!--  AFFICHAGE d'un MSG de d�connexion  -->
+		<!--  AFFICHAGE d'un MSG de déconnexion  -->
 	<!--  =================================  -->
 	<c:if test="${not empty param.logout_message}">
 		<font style="color: green; font-style: italic;">
-			Vous �tes d�connect� !!!
+			Vous êtes déconnecté !!!
 		</font>
 	</c:if>
 	
-	<a href="<c:url value='login.jsp' />">Se connecter</a>
+	
+	
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" 
+		style="max-height: 300px; margin-left:200px; margin-top:50px; margin-right:200px">
+  <ol class="carousel-indicators" >
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./src/main/webapp/assets/images/etablissement.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath}/assets/images/chapeau.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath}/assets/images/salle-pause.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 	
 
 	<a href="${pageContext.request.contextPath}/matiere/liste">To Matiere</a>
