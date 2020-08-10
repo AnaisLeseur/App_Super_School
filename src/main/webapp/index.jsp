@@ -46,8 +46,7 @@
 
 
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-                <a class="nav-link " style="float: right;" href="${pageContext.request.contextPath}/login.jsp" 
-                    >
+                <a class="nav-link " style="float: left" href="${pageContext.request.contextPath}/login.jsp" >
                     Se connecter
                 </a>
         </div>
@@ -64,21 +63,23 @@
 	
 	
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" 
-		style="max-height: 300px; margin-left:200px; margin-top:50px; margin-right:200px">
+		style="margin-left:100px; margin-top:50px; margin-right:0px;">
   <ol class="carousel-indicators" >
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="./src/main/webapp/assets/images/etablissement.png" class="d-block w-100" alt="...">
-    </div>
+      <img src="${pageContext.request.contextPath}/assets/images/etablissement.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
+      <h5>Une école</h5>
+   	  </div>
+    </div>	
     <div class="carousel-item">
-      <img src="${pageContext.request.contextPath}/assets/images/chapeau.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="${pageContext.request.contextPath}/assets/images/salle-pause.png" class="d-block w-100" alt="...">
+      <img src="${pageContext.request.contextPath}/assets/images/chapeau.jpg" class="d-block w-100" alt="...">
+    <div class="carousel-caption">
+      <h5>Un diplôme</h5>
+   	</div>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -90,7 +91,8 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-	
+
+<br/>
 
 	<a href="${pageContext.request.contextPath}/matiere/liste">To Matiere</a>
 	<br />
@@ -132,10 +134,14 @@
 	<br/>
 	<a href="${pageContext.request.contextPath}/aide/liste">Aide</a>
 	
-	
 
 
-
+<script
+		src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script
+		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script
+		src="${pageContext.request.contextPath}/assets/js/util.js" type="text/javascript"></script>
 
 
 </body>
