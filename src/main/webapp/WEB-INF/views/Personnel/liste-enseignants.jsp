@@ -23,7 +23,24 @@
 <body>
 
 	<!-- Header -->
-	<jsp:include page="/Fragments/Header.jsp"/>
+
+
+	<jsp:include page="/Fragments/Header.jsp" />
+
+
+	<%--
+			-> traitement des données envoyées par le controller 'EnseignantController' 
+				et la methode 'recupererListeEnseignantsBdd'
+				
+				==> les données : model.addAttribute("attribut_liste_enseignants", listeEnseignantsBdd);
+	 --%>
+
+	
+
+	
+
+
+
 
 	 
 	 <h1 id="TitreListe">Liste des enseignants </h1>
