@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Aide implements Serializable{
@@ -18,7 +19,8 @@ public class Aide implements Serializable{
 	@Column(length=50)
 	private String titre;
 	
-	@Column(length=1000)
+	
+	@Lob
 	private String contenu;
 
 	public Aide() {

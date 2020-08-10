@@ -132,7 +132,7 @@
 	
 	<br/>
 	<br/>
-	<a href="${pageContext.request.contextPath}/indexAide.jsp">Aide</a>
+	<a href="${pageContext.request.contextPath}/aide/liste">Aide</a>
 	
 
 

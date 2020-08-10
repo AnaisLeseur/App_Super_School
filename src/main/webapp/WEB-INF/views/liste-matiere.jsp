@@ -12,6 +12,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
 	
+	<link rel="stylesheet" 
+	href="${pageContext.request.contextPath}/assets/styles/perso.css">
+	
 	<!-- script du tricheur -->
 	
 	<link href="${pageContext.request.contextPath}/assets/css/all.min.css" rel="stylesheet" type="text/css">
@@ -92,6 +95,7 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'emplo
               </div>
             </div>
           </div>
+          	<jsp:include page="/Fragments/footer.jsp" />
 	<!-- script thomas -->
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"
