@@ -14,8 +14,19 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
 	
-<link rel="stylesheet" 
+	<link rel="stylesheet" 
 	href="${pageContext.request.contextPath}/assets/styles/perso.css">
+	
+	<!-- script du tricheur -->
+	
+	<link href="${pageContext.request.contextPath}/assets/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="${pageContext.request.contextPath}/assets/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="${pageContext.request.contextPath}/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -25,11 +36,13 @@
 		<u>Liste des promotions</u>
 	</h1>
 
-	<table class="table table-striped table-bordered table-hover">
-
-		<thead class="thead-blue">
-
-			<tr>
+	 <div class="card shadow mb-4">
+            
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+                  <thead class="thead-blue">
+                <tr>
 				<th id="Ajout" colspan="8"><a
 					href="${pageContext.request.contextPath}/promotion/add-promotion-form"><img
 						id="LogoAjout"
@@ -47,13 +60,10 @@
 				<th scope="col">Modifier</th>
 				<th scope="col">Eliminer</th>
 			</tr>
-
-		</thead>
-		<!-- données de la table
-    -->
-		<tbody>
-
-			<c:forEach items="${attribut_liste_promotion}" var="pro">
+                  </thead>
+                  
+                  <tbody>
+                <c:forEach items="${attribut_liste_promotion}" var="pro">
 				<tr>
 					<td>${pro.idPromotion}</td>
 					<td>${pro.libelle}</td>
@@ -83,18 +93,38 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'emplo
 				</tr>
 
 			</c:forEach>
-		</tbody>
-
-	</table>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 	
 	<jsp:include page="/Fragments/footer.jsp" />
 	
+	<!-- script thomas -->
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"
 		type="text/javascript"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"
 		type="text/javascript"></script>
+		<!-- script pour tricher -->
+			 <!-- Bootstrap core JavaScript-->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="${pageContext.request.contextPath}/assets/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.dataTables.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="${pageContext.request.contextPath}/assets/js/datatables-demo.js"></script>
 
 </body>
 
