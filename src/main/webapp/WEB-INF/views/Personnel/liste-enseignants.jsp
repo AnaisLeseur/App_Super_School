@@ -40,7 +40,7 @@
 		<u>Liste des enseignants</u>
 	</h1>
 
-	<jsp:include page="/Fragments/Header.jsp"/>
+	
 
 	 
 	 <h1 id="TitreListe">Liste des enseignants </h1>
