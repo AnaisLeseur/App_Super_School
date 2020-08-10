@@ -1,6 +1,6 @@
 #ModifierEtudiant{
     float: right;
-    margin-right: 1rem;
+    margin-right: 4rem;
 }
 
 #ModifierEtudiant img{
@@ -13,6 +13,7 @@
 
 #ModifierEtudiant a:hover{
     text-decoration: none;
+    
 }
 
 #DivInfosEtudiant{
@@ -29,9 +30,10 @@
 }
 
 #TitreIdEtudiant{
-	 margin-right: 1rem;
-	
+	 margin-top: 2rem;
+	 margin-left: 2rem;
 }
+
 
 .infosEtudiant{
     margin-bottom: 1rem;

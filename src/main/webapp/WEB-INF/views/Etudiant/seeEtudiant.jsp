@@ -4,6 +4,7 @@
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +26,7 @@
 	<jsp:include page="/Fragments/Header.jsp" />
 
 
-	<h1 id="TitreIdEtudiant">Etudiant
-		N°${etudiantSeeCommand.identifiant }</h1>
+	<h1 id="TitreIdEtudiant">Etudiant N°${etudiantSeeCommand.identifiant }</h1>
 
 	<div id="ModifierEtudiant">
 		<a
@@ -64,21 +64,23 @@
 
 			<c:if
 				test="${empty etudiantSeeCommand.adresse.rue and empty etudiantSeeCommand.adresse.ville and empty etudiantSeeCommand.adresse.codePostal }">
-				<a class="LinkRougeNull"
-					href="${pageContext.request.contextPath}/etudiants/update-etudiant-form/${etudiantSeeCommand.identifiant}">Aucune
-					adresse liée, veuillez ajouter une adresse</a>
+				<a class="LinkRougeNull" href="${pageContext.request.contextPath}/etudiants/update-etudiant-form/${etudiantSeeCommand.identifiant}">
+					Aucune adresse liée, veuillez ajouter une adresse
+				</a>
 			</c:if>
 
 			<c:if test="${not empty etudiantSeeCommand.adresse }">
 				<div id="infosAdresse">${etudiantSeeCommand.adresse.rue}
 					${etudiantSeeCommand.adresse.ville}
-					${etudiantSeeCommand.adresse.codePostal}</div>
+					${etudiantSeeCommand.adresse.codePostal}
+				</div>
 			</c:if>
 
 		</div>
 
 	</div>
 
+	<br/>
 
 	<div class="col-md-11" style="margin: auto;">
 
@@ -92,18 +94,15 @@
 		<a class="LinkRougeNull" href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Aucune promotion associée</a>
 	</c:if>
 	
-	
 	<c:if  test="${not empty etudiantSeeCommand.listePromotions}">
 	
 	
 	<table class="table table-striped table-bordered table-hover">
 
 		<thead class="thead-blue">
-
 			<tr>
 				<th scope="col">Id Promotion</th>
 				<th scope="col">Libelle</th>
-				
 				<th scope="col">Retirer</th>
 			</tr>
 
@@ -116,9 +115,11 @@
 					<td>${pro.idPromotion}</td>
 					<td>${pro.libelle}</td>
 					
-					<td><a
-						href="${pageContext.request.contextPath}/etudiants/deletePromotion?idPromo=${pro.idPromotion}&idEtudiant=${etudiantSeeCommand.identifiant}"><img
-							src="${pageContext.request.contextPath}/assets/images/x.svg"></a> </td>
+					<td>
+						<a href="${pageContext.request.contextPath}/etudiants/deletePromotion?idPromo=${pro.idPromotion}&idEtudiant=${etudiantSeeCommand.identifiant}">
+							<img src="${pageContext.request.contextPath}/assets/images/x.svg">
+						</a> 
+					</td>
 				</tr>
 
 			</c:forEach>
@@ -141,8 +142,8 @@
 
             <h1>Cours :</h1>
 
-            <a class="LinkRougeNull" href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Aucune
-                promotion associé</a>
+		<a class="LinkRougeNull" href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Aucune promotion associée</a>
+
 
 
             <table class="table table-striped table-bordered table-hover">
@@ -171,6 +172,13 @@
 
 
         </div>
+        
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
     </div>
     
     <br/>

@@ -48,9 +48,6 @@ img {
 
 
 footer {
-	bottom: 0px;
-    left: 0px;
-    right: 0px;
 	margin-top: 40px;
 	height: 40px;
 	font-size: large;
@@ -381,4 +378,15 @@ input[type=text]:placeholder {
 }
 
 
+#DivInfosAdmin{
+	max-width: 50%; 
+	margin-left:100px 
+	
+}
 
+.erreurs_validation{
+	color: red; 
+	font-style: italic; 
+	border: 1px dotted red; 
+	margin: 15px;
+}

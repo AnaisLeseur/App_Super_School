@@ -4,6 +4,8 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
  
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +16,29 @@
 	<!--  feuille de style -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/perso.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/SeeEtudiant.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/Liste.css">
+	
 </head>
 <body>
 	
 	<!--  header -->
 	<jsp:include page="/Fragments/Header.jsp"/>
 
-	<h1 style="margin-left:50px; margin-top:50px ">Administrateur N°${adminVoirCommand.identifiant }</h1>
-	<div class="card mb-10" style="max-width: 60%; margin-left:100px" >
-		<div class="row no-gutters">
+	<h1 id="TitreIdEtudiant">Administrateur N°${adminVoirCommand.identifiant }</h1>
+
+	<div id="ModifierEtudiant">
+		<a href="${pageContext.request.contextPath}/administrateurs/update-admin-form?idAdmin=${adminVoirCommand.identifiant }">
+			Modifier 
+			<img src="${pageContext.request.contextPath}/assets/images/arrow-counterclockwise.svg">
+		</a>
+	</div>
+	
+	<br/>
+	<br/>
+	
+	<div id="DivInfosAdmin" >
 			<div class="col-md-8">
-				<div class="card-body">
 					<h5 class="card-title">
 						<span id=span-nom>${adminVoirCommand.nom }</span> <span
 							id=span-prenom>${adminVoirCommand.prenom }</span>
@@ -35,15 +49,25 @@
 						</ul>
        				</div>
 					
-        <c:if test="${adminVoirCommand.adresse==null }">
-        	<p class="card-text">
-				<small class="text-muted"><a href="">Aucune adresse liée ...</a></small>
-			</p>
-        </c:if>
+        	<div class="Adresse">Adresse :</div>
+
+			<c:if
+				test="${empty adminVoirCommand.adresse.rue and empty adminVoirCommand.adresse.ville and empty adminVoirCommand.adresse.codePostal }">
+				<a class="LinkRougeNull" href="${pageContext.request.contextPath}/administrateurs/update-admin-form?idAdmin=${adminVoirCommand.identifiant }">
+					Aucune adresse liée, veuillez ajouter une adresse
+				</a>
+			</c:if>
+
+			<c:if test="${not empty adminVoirCommand.adresse }">
+				<div id="infosAdresse">${adminVoirCommand.adresse.rue}
+					${adminVoirCommand.adresse.ville}
+					${adminVoirCommand.adresse.codePostal}</div>
+			</c:if>
+
+		</div>
       </div>
-    </div>
-  </div>
-</div>
+
+
 
 	<!-- footer -->
 	<jsp:include page="/Fragments/footer.jsp"></jsp:include>

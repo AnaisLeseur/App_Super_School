@@ -17,7 +17,7 @@
 
 <jsp:include page="/Fragments/Header.jsp"/>
 
-<h1 id="TitreForm">Formulaire d'ajout d'un étudiant</h1>
+<h1 id="TitreForm">Formulaire de modification d'un étudiant</h1>
 	
 	<form:form enctype="multipart/form-data" modelAttribute="etudiantUpdateCommand" method="POST"
         action="${pageContext.request.contextPath}/etudiant/update">
