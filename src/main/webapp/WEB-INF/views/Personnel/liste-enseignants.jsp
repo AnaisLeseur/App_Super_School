@@ -34,14 +34,6 @@
 				
 				==> les données : model.addAttribute("attribut_liste_enseignants", listeEnseignantsBdd);
 	 --%>
-
-	
-
-	
-
-
-
-
 	 
 	 <h1 id="TitreListe">Liste des enseignants </h1>
 	 	 

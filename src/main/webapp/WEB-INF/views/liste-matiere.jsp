@@ -11,42 +11,53 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
+	
+	<!-- script du tricheur -->
+	
+	<link href="${pageContext.request.contextPath}/assets/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="${pageContext.request.contextPath}/assets/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="${pageContext.request.contextPath}/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
-<body>
-	<jsp:include page="/Fragments/Header.jsp" />
+<body id="page-top">
+<jsp:include page="/Fragments/Header.jsp" />
 
 	<h1 id="TitreListe">
-		<u>Liste des matières</u>
+		Liste des matières
 	</h1>
-
-	<table class="table table-striped table-bordered table-hover">
-
-		<thead class="thead-blue">
-
-			<tr>
+  
+       <div class="card shadow mb-4">
+            
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+                  <thead class="thead-blue">
+                  <tr>
 				<th id="Ajout" colspan="8"><a
 					href="${pageContext.request.contextPath}/matiere/add-matiere-form"><img
 						id="LogoAjout"
-						src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png"><span>Ajouter
+						src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png" width="5%"><span>Ajouter
 							Matiere</span></a></th>
 			</tr>
+                    <tr>
+				<th>Identifiant</th>
+				<th>Libelle</th>
+				<th>Fk Enseignant</th>
 
 
-			<tr>
-				<th scope="col">IdMatiere</th>
-				<th scope="col">Libelle</th>
-				<th scope="col">FkEnseignant</th>
-
-
-				<th scope="col">Modifier</th>
-				<th scope="col">Eliminer</th>
+				<th>Modifier</th>
+				<th>Supprimer</th>
+				
 			</tr>
-		</thead>
-		<!-- données de la table
-    -->
-		<tbody>
-			<c:forEach items="${attribut_liste_matiere}" var="mat">
+                  </thead>
+                  
+                  <tbody>
+                    <c:forEach items="${attribut_liste_matiere}" var="mat">
 				<tr>
 					<td>${mat.idMatiere}</td>
 					<td>${mat.libelle}</td>
@@ -76,14 +87,35 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'emplo
 				</tr>
 
 			</c:forEach>
-		</tbody>
-	</table>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+	<!-- script thomas -->
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"
 		type="text/javascript"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"
 		type="text/javascript"></script>
+		<!-- script pour tricher -->
+			 <!-- Bootstrap core JavaScript-->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="${pageContext.request.contextPath}/assets/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.dataTables.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="${pageContext.request.contextPath}/assets/js/datatables-demo.js"></script>
 
 </body>
 </html>

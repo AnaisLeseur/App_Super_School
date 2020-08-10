@@ -48,10 +48,15 @@ img {
 
 
 footer {
-	background-color: lightgrey;
-	padding-top: 0px;
-	margin-top: 50px;
+	bottom: 0px;
+    left: 0px;
+    right: 0px;
+	margin-top: 40px;
+	height: 40px;
 	font-size: large;
+    margin-bottom: 0px;
+    width: 100%;
+    position: relative;
 }
 
 

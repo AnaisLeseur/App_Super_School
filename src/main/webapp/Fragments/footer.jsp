@@ -2,7 +2,7 @@
 <footer id="footer" class="page-footer font-small special-color-dark pt-4" >
 
 
-		<div class="container" style="padding-top: 10px">
+		<div class="container" style="padding-top: 5px">
 
 
 			<div class="row" style="text-align: center">
@@ -44,7 +44,7 @@
 		</div>
 		<!-- Copyright -->
 		<div class="footer-copyright text-center py-3">
-			ï¿½ 2020 Copyright: <a href="https://mdbootstrap.com/">
+			© 2020 Copyright: <a href="https://mdbootstrap.com/">
 				Super School Web Site</a>
 		</div>
-		</footer>
+</footer>
