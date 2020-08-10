@@ -29,118 +29,42 @@
                         d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" />
                 </svg>
             </a>
-            <li class="nav-item dropdown">
                 <a class="nav-link " href="${pageContext.request.contextPath}/etudiant/liste" id="navbarDropdown" 
                     >
                     Etudiant
                 </a>
                 
-            </li>
 
-            <li class="nav-item dropdown">
+
                 <a class="nav-link " href="${pageContext.request.contextPath}/enseignants/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Enseignant
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Ajouter</a>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-info " type="submit" id="button-addon1">Modifier</button>
-                        <input type="text" class="form-control" placeholder="N°ID" style="width: 4.25rem">
-                    </div>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-info " type="submit" id="button-addon1">Supprimer</button>
-                        <input type="text" class="form-control" placeholder="N°ID" style="width: 4.25rem">
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Liste des enseignants</a>
-                </div>
-            </li>
 
-            <li class="nav-item dropdown">
                 <a class="nav-link " href="${pageContext.request.contextPath}/promotion/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Promotion
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Ajouter</a>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-info " type="submit" id="button-addon1">Modifier</button>
-                        <input type="text" class="form-control" placeholder="N°ID" style="width: 4.25rem">
-                    </div>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-info " type="submit" id="button-addon1">Supprimer</button>
-                        <input type="text" class="form-control" placeholder="N°ID" style="width: 4.25rem">
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Liste des Promotions</a>
-                </div>
-            </li>
 
-            <li class="nav-item dropdown">
                 <a class="nav-link " href="${pageContext.request.contextPath}/matiere/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Matières
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Ajouter</a>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-info " type="submit" id="button-addon1">Modifier</button>
-                        <input type="text" class="form-control" placeholder="N°ID" style="width: 4.25rem">
-                    </div>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-info " type="submit" id="button-addon1">Supprimer</button>
-                        <input type="text" class="form-control" placeholder="N°ID" style="width: 4.25rem">
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Liste des matières</a>
-                </div>
-            </li>
-
-            <li class="nav-item dropdown">
+                
                 <a class="nav-link " href="${pageContext.request.contextPath}/cours/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Cours
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Ajouter</a>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-info " type="submit" id="button-addon1">Modifier</button>
-                        <input type="text" class="form-control" placeholder="N°ID" style="width: 4.25rem">
-                    </div>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-info " type="submit" id="button-addon1">Supprimer</button>
-                        <input type="text" class="form-control" placeholder="N°ID" style="width: 4.25rem">
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Liste des cours</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
+
                 <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Absences
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Ajouter</a>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-info " type="submit" id="button-addon1">Modifier</button>
-                        <input type="text" class="form-control" placeholder="N°ID" style="width: 4.25rem">
-                    </div>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-info " type="submit" id="button-addon1">Supprimer</button>
-                        <input type="text" class="form-control" placeholder="N°ID" style="width: 4.25rem">
-                    </div>
-                    
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Liste des absences</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
+ 
              <a class="nav-link " href="${pageContext.request.contextPath}/indexAide.jsp" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Aide
                 </a>
-            </li>
+            
         </div>
     </nav>

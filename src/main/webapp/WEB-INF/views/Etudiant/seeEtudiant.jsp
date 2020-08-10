@@ -170,6 +170,8 @@
         </div>
     </div>
     
+    <br/>
+    
     <jsp:include page="/Fragments/footer.jsp" />
 
 

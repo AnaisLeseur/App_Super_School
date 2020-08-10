@@ -227,6 +227,8 @@ public class EtudiantController {
 			return "redirect:/etudiant/liste";
 		}
 	}//end modifierEtudiant()
+	
+	
 
 	// --------------------------------------------------------//
 	// --------------Suppression Etudiant----------------------//
