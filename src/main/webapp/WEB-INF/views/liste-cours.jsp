@@ -87,6 +87,7 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'emplo
 				</tr>
 
 			</c:forEach>
+		
 		</tbody>
 	</table>
 	

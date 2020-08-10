@@ -25,7 +25,7 @@
 	<a href="<c:url value='login.jsp' />">Se connecter</a>
 	
 
-	<a href="${pageContext.request.contextPath}/matiere/liste">To Cours</a>
+	<a href="${pageContext.request.contextPath}/matiere/liste">To Matiere</a>
 	<br />
 	<br />
 

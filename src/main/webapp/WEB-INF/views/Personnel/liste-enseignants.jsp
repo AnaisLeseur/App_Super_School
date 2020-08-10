@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,15 +11,15 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
-	
+
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/styles/Liste.css" >
+	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
 </head>
 <body>
 
 	<!-- Header -->
-	<jsp:include page="/Fragments/Header.jsp"/>
-	
+	<jsp:include page="/Fragments/Header.jsp" />
+
 
 	<%--
 			-> traitement des données envoyées par le controller 'EnseignantController' 
@@ -27,67 +27,75 @@
 				
 				==> les données : model.addAttribute("attribut_liste_enseignants", listeEnseignantsBdd);
 	 --%>
-	 
-	 <h2><u>Liste des enseignants</u></h2>
-	 
-	 <table border="1" width="60%">
-	 
-	 	<!--  Ajout d'un enseignant -->
-	 	<tr>
-	 		<td colspan="7" align="right">
-	 			<%-- 
-	 				au click sur le lien =>
-	 					-> envoi d'une rqt http en get vers la methode "afficherFormAjoutEnseignant()" 
-	 						méth associée/mappé sur l'url : '/enseignants/add-enseignant-form'
-	 			
-	 			 --%>
-	 			<a style="background-color: lightblue;" href="${pageContext.request.contextPath}/enseignants/add-enseignant-form">
-	 				Ajouter un enseignant
-	 			</a>
-	 		</td>
-	 	</tr>
-	 
-		 <tr>
-		 	<th>ID</th>
-	 		<th>Mot De Passe</th>
-	 		<th>Nom</th>
-	 		<th>Prenom</th>
-	 		<th>Email</th>
-	 		
-	 		<th>Modifier</th>
-	 		<th>Supprimer</th>
-		 </tr>
-		 
-		 <!--  données de la table -->
-		 <c:forEach items="${attribut_liste_enseignants}" var="enseignant">
-		 	<tr>
-		 		<td>${enseignant.identifiant }</td>
-		 		<td>${enseignant.motDePasse }</td>
-		 		<td>${enseignant.nom }</td>
-		 		<td>${enseignant.prenom } </td>
-		 		<td>${enseignant.email }</td>
-		 		
 
-		 		<!-- Colonne pour la modification de l'enseignant -->
-		 			<!--  au click sur le lien: 
+	<h1 id="TitreListe">
+		<u>Liste des enseignants</u>
+	</h1>
+
+	<table class="table table-striped table-bordered table-hover">
+
+		<thead class="thead-blue">
+
+			<tr>
+				<th id="Ajout" colspan="8"><a
+					href="${pageContext.request.contextPath}/enseignants/add-enseignant-form"><img
+						id="LogoAjout"
+						src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png">
+						<span>Ajouter un enseignant</span></a></th>
+			</tr>
+
+
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Mot De Passe</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Prenom</th>
+				<th scope="col">Email</th>
+
+				<th scope="col">Modifier</th>
+				<th scope="col">Supprimer</th>
+			</tr>
+		</thead>
+		<!--  données de la table -->
+		<tbody>
+		<c:forEach items="${attribut_liste_enseignants}" var="enseignant">
+			<tr>
+				<td>${enseignant.identifiant }</td>
+				<td>${enseignant.motDePasse }</td>
+				<td>${enseignant.nom }</td>
+				<td>${enseignant.prenom }</td>
+				<td>${enseignant.email }</td>
+
+
+				<!-- Colonne pour la modification de l'enseignant -->
+				<!--  au click sur le lien: 
 		 				-> envoi d'une rqt Http Get vers la methode "afficherFormModificationEnseignant" 
 		 				-> passage d'un param de rqt nommé 'idEnseignant' 
 		 			-->
-		 		<td><a href="${pageContext.request.contextPath}/enseignants/update-enseignant-form?idEnseignant=${enseignant.identifiant }">Modifier</a></td>
+				<td><a
+					href="${pageContext.request.contextPath}/enseignants/update-enseignant-form?idEnseignant=${enseignant.identifiant }">Modifier</a></td>
 
-		 			
-		 		<!-- Colonne pour la suppression de l'enseignant -->
 
-		 		<!--  au click sur le lien: 
+				<!-- Colonne pour la suppression de l'enseignant -->
+
+				<!--  au click sur le lien: 
 		 				-> envoi d'une rqt Http Get vers la methode "supprimerEnseignantBdd" 
 		 		-->
-				<td><a href="${pageContext.request.contextPath}/enseignants/delete/${enseignant.identifiant }">Supprimer</a></td>
-		 		
-		 	</tr>
-		 </c:forEach>
-		 
-	 </table>
+				<td><a
+					href="${pageContext.request.contextPath}/enseignants/delete/${enseignant.identifiant }">Supprimer</a></td>
 
-
+			</tr>
+		</c:forEach>
+		</tbody>
+		</table>
 </body>
+
+
+<script
+	src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"
+	type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"
+	type="text/javascript"></script>
+
 </html>

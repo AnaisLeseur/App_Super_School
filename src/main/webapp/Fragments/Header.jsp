@@ -30,7 +30,7 @@
                 </svg>
             </a>
             <li class="nav-item dropdown">
-                <a class="nav-link " href="#" id="navbarDropdown" 
+                <a class="nav-link " href="${pageContext.request.contextPath}/etudiant/liste" id="navbarDropdown" 
                     >
                     Etudiant
                 </a>
@@ -38,7 +38,7 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link " href="${pageContext.request.contextPath}/enseignants/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Enseignant
                 </a>
@@ -58,7 +58,7 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link " href="${pageContext.request.contextPath}/promotion/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Promotion
                 </a>
@@ -78,7 +78,7 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link " href="${pageContext.request.contextPath}/matiere/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Matières
                 </a>
@@ -98,7 +98,7 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link " href="${pageContext.request.contextPath}/cours/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Cours
                 </a>
@@ -135,6 +135,12 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Liste des absences</a>
                 </div>
+            </li>
+            <li class="nav-item dropdown">
+             <a class="nav-link " href="${pageContext.request.contextPath}/indexAide.jsp" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Aide
+                </a>
             </li>
         </div>
     </nav>
