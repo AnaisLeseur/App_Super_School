@@ -37,17 +37,17 @@
 
 
                 <a class="nav-link " href="${pageContext.request.contextPath}/enseignants/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                    >
                     Enseignant
                 </a>
 
                 <a class="nav-link " href="${pageContext.request.contextPath}/promotion/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                    >
                     Promotion
                 </a>
 
                 <a class="nav-link " href="${pageContext.request.contextPath}/matiere/liste" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                    >
                     Matières
                 </a>
                 
