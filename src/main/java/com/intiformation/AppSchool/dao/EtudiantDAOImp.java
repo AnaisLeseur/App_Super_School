@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.Promotion;
 
 @Repository
 public class EtudiantDAOImp implements IEtudiantDAO {
@@ -148,6 +149,33 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 
 			// cas erreur : annulation de la transaction
 			System.out.println("... (EtudiantDAOImp) Erreur lors de l'ajout ....");
+
+		} // end catch
+		return null;
+	}
+
+	@Override
+	public List<Promotion> getListPromoByIdEtudiant(int pIdEtudiant) {
+		
+		try {
+
+			// 1. Recuperation de la session d'hibernate via la factory
+			Session session = this.sessionFactory.getCurrentSession();
+
+			// 2. Definition de la requête à envoyer
+			Query<Promotion> query = session.createQuery("select e.listePromotions FROM Etudiant e where e.identifiant=:identifiant");
+
+			query.setParameter("identifiant", pIdEtudiant);
+			
+			// 3. Envoi + Execution + Resultat
+			List<Promotion> listePromoByEtudiant = query.getResultList();
+
+			// 4. renvoi de la liste
+			return listePromoByEtudiant;
+
+		} catch (Exception e) {
+
+			System.out.println("... (EtudiantDAOImpl) Erreur lors de la récupération de la liste des promotions ....");
 
 		} // end catch
 		return null;

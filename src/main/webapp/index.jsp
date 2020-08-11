@@ -63,22 +63,38 @@
 	
 	
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" 
-		style="margin-left:100px; margin-top:50px; margin-right:0px;">
+		style="margin-left:0px; margin-top:0px; margin-right:0px;">
   <ol class="carousel-indicators" >
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="${pageContext.request.contextPath}/assets/images/etablissement.jpg" class="d-block w-100" alt="...">
+      <img src="${pageContext.request.contextPath}/assets/images/etablissement.jpg" class="d-block w-100" alt="..." height="800px">
       <div class="carousel-caption">
       <h5>Une école</h5>
+      <small>
+      	un lieu d'apprentissage, un lieu de partage, un lieu de vie ...
+      </small>
    	  </div>
     </div>	
     <div class="carousel-item">
-      <img src="${pageContext.request.contextPath}/assets/images/chapeau.jpg" class="d-block w-100" alt="...">
+      <img src="${pageContext.request.contextPath}/assets/images/chapeau2.jpg" class="d-block w-100" alt="..." height="800px">
     <div class="carousel-caption">
       <h5>Un diplôme</h5>
+   	<small>
+      	un titre, un savoir-faire, un savoir-être ...
+      </small>
+   	</div>
+    </div>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath}/assets/images/salle-pause.jpg" class="d-block w-100" alt="..." height="800px">
+    <div class="carousel-caption">
+      <h5>Une vie</h5>
+   	<small>
+      	des pauses, des cafés et des bières !
+     </small>
    	</div>
     </div>
   </div>
@@ -134,7 +150,7 @@
 	<br/>
 	<a href="${pageContext.request.contextPath}/aide/liste">Aide</a>
 	
-
+<jsp:include page="/Fragments/footer.jsp" />
 
 <script
 		src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js" type="text/javascript"></script>
@@ -142,6 +158,7 @@
 		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script
 		src="${pageContext.request.contextPath}/assets/js/util.js" type="text/javascript"></script>
+
 
 
 </body>

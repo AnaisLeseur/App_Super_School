@@ -79,10 +79,9 @@
 				
 				 <div class="form-group col-md-2"></div>
                 <div class="form-group col-md-5">
-					<form:label path="date">Date : </form:label>			
-					<form:input path="date" type="date"  required="true"/>
-					<form:errors path="date"
-							cssStyle="color : green; font-style: italic;" />
+				<form:label path="date">Date: </form:label>
+            <form:input id="contrainteDate" type="date" path="date" max="" required="true" />
+            <form:errors path="date" cssStyle="color : green; font-style: italic;" />
 
 				</div>
 				</div>

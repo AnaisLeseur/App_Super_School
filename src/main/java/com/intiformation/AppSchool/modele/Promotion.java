@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -35,6 +36,8 @@ public class Promotion implements Serializable{
 				inverseJoinColumns=@JoinColumn(name="etudiant_id"))
 	private List<Etudiant> listeEtudiants = new ArrayList<>();
 
+	@OneToMany(mappedBy="promotion")
+	private List<Cours> listeCours = new ArrayList<>();
 	//Constructeurs
 	public Promotion() {
 	}
@@ -44,15 +47,21 @@ public class Promotion implements Serializable{
 		this.libelle = libelle;
 	}
 
+	public Promotion(List<Cours> listeCours , String libelle ) {
+		this.listeCours = listeCours;
+		this.libelle = libelle;
+	}
+
 	public Promotion(String libelle, List<Etudiant> listeEtudiants) {
 		this.libelle = libelle;
 		this.listeEtudiants = listeEtudiants;
 	}
-
-	public Promotion(int idPromotion, String libelle, List<Etudiant> listeEtudiants) {
+	
+	public Promotion(int idPromotion, String libelle, List<Etudiant> listeEtudiants, List<Cours> listeCours) {
 		this.idPromotion = idPromotion;
 		this.libelle = libelle;
 		this.listeEtudiants = listeEtudiants;
+		this.listeCours = listeCours;
 	}
 
 	//Getter Setter
@@ -78,6 +87,14 @@ public class Promotion implements Serializable{
 
 	public void setListeEtudiants(List<Etudiant> listeEtudiants) {
 		this.listeEtudiants = listeEtudiants;
+	}
+
+	public List<Cours> getListeCours() {
+		return listeCours;
+	}
+
+	public void setListeCours(List<Cours> listeCours) {
+		this.listeCours = listeCours;
 	}
 	
 }

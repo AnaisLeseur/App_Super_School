@@ -56,7 +56,7 @@
 				<th scope="col">Libelle</th>
 
 
-
+				<th scope="col">Consulter</th>
 				<th scope="col">Modifier</th>
 				<th scope="col">Eliminer</th>
 			</tr>
@@ -69,7 +69,11 @@
 					<td>${pro.libelle}</td>
 
 
-
+					<td>
+						<a href="${pageContext.request.contextPath}/promotion/see-promotion/${pro.idPromotion}">
+							<img src="${pageContext.request.contextPath}/assets/images/search.svg">
+						</a>
+					</td>
 
 					<!-- au click sur le lien : envoie d'ue requete HTTP en Get vers la méthode "afficherFormulaireModification()" 
 passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'employe à modifier
