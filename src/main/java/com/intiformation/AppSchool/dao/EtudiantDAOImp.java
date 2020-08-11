@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.Promotion;
 
@@ -18,7 +19,17 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
+	/**
+	 * Setter pour injection par modificateur
+	 * 
+	 * @param sessionFactory
+	 */
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	
 	@Override
 	@Transactional
 	public void add(Etudiant pEtudiant) {
@@ -123,15 +134,6 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 		return null;
 	}
 
-	/**
-	 * Setter pour injection par modificateur
-	 * 
-	 * @param sessionFactory
-	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
 	@Override
 	@Transactional
 	public Etudiant addReturnEtudiant(Etudiant pEtudiant) {
@@ -172,6 +174,33 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 
 			// 4. renvoi de la liste
 			return listePromoByEtudiant;
+
+		} catch (Exception e) {
+
+			System.out.println("... (EtudiantDAOImpl) Erreur lors de la récupération de la liste des promotions ....");
+
+		} // end catch
+		return null;
+	}
+
+
+	@Override
+	public List<Cours> getListCoursNotLinkedToEtudiant(int pIdEtudiant) {
+		try {
+
+			// 1. Recuperation de la session d'hibernate via la factory
+			Session session = this.sessionFactory.getCurrentSession();
+
+			// 2. Definition de la requête à envoyer
+			Query<Cours> query = session.createQuery("select c from Cours c where c.idCours not in (select c.idCours from Cours c join c.listeEtudiantsCours ec join ec.etudiantEC e where e.identifiant=:idEtudiant)");
+
+			query.setParameter("idEtudiant", pIdEtudiant);
+			
+			// 3. Envoi + Execution + Resultat
+			List<Cours> listeCours = query.getResultList();
+
+			// 4. renvoi de la liste
+			return listeCours;
 
 		} catch (Exception e) {
 

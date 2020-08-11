@@ -43,7 +43,7 @@
                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                   <thead class="thead-blue">
                <tr>
-				<th id="Ajout" colspan="8"><a
+				<th id="Ajout" colspan="7"><a
 					href="${pageContext.request.contextPath}/cours/add-cours-form"><img
 						id="LogoAjout"  src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png"><span>Ajouter
 							Cours</span></a></th>
@@ -57,8 +57,7 @@
 				<th scope="col">Description</th>
 				<th scope="col">Durée</th>
 				<th scope="col">Date</th>
-				<th scope="col">FkEtudiant</th>
-				<th scope="col">FkMatiere</th>
+			
 
                 
 				<th scope="col">Modifier</th>
@@ -76,8 +75,7 @@
 					<td>${cou.description}</td>
 					<td>${cou.duree}</td>
 					<td>${cou.date}</td>
-					<td>${cou.fkEtudiant}</td>
-					<td>${cou.fkMatiere}</td>
+
 
 
 

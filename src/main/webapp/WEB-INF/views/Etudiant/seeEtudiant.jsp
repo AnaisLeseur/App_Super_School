@@ -15,7 +15,7 @@
 	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/SeeEtudiant.css">
-	
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
 <link rel="stylesheet"
@@ -26,7 +26,8 @@
 	<jsp:include page="/Fragments/Header.jsp" />
 
 
-	<h1 id="TitreIdEtudiant">Etudiant N°${etudiantSeeCommand.identifiant }</h1>
+	<h1 id="TitreIdEtudiant">Etudiant
+		N°${etudiantSeeCommand.identifiant }</h1>
 
 	<div id="ModifierEtudiant">
 		<a
@@ -64,126 +65,156 @@
 
 			<c:if
 				test="${empty etudiantSeeCommand.adresse.rue and empty etudiantSeeCommand.adresse.ville and empty etudiantSeeCommand.adresse.codePostal }">
-				<a class="LinkRougeNull" href="${pageContext.request.contextPath}/etudiants/update-etudiant-form/${etudiantSeeCommand.identifiant}">
-					Aucune adresse liée, veuillez ajouter une adresse
-				</a>
+				<a class="LinkRougeNull"
+					href="${pageContext.request.contextPath}/etudiants/update-etudiant-form/${etudiantSeeCommand.identifiant}">
+					Aucune adresse liée, veuillez ajouter une adresse </a>
 			</c:if>
 
 			<c:if test="${not empty etudiantSeeCommand.adresse }">
 				<div id="infosAdresse">${etudiantSeeCommand.adresse.rue}
 					${etudiantSeeCommand.adresse.ville}
-					${etudiantSeeCommand.adresse.codePostal}
-				</div>
+					${etudiantSeeCommand.adresse.codePostal}</div>
 			</c:if>
 
 		</div>
 
 	</div>
 
-	<br/>
+	<br />
 
 	<div class="col-md-11" style="margin: auto;">
 
 
-        <div class="col-md-5" style="float: left;">
+		<div class="col-md-5" style="float: left;">
 
-            <h1>Promotions :</h1>
-	
-	
-	<c:if  test="${ empty etudiantSeeCommand.listePromotions}">
-		<a class="LinkRougeNull" href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Aucune promotion associée</a>
-	</c:if>
-	
-	<c:if  test="${not empty etudiantSeeCommand.listePromotions}">
-	
-	
-	<table class="table table-striped table-bordered table-hover">
+			<h1>Promotions :</h1>
 
-		<thead class="thead-blue">
-			<tr>
-				<th scope="col">Id Promotion</th>
-				<th scope="col">Libelle</th>
-				<th scope="col">Retirer</th>
-			</tr>
 
-		</thead>
+			<c:if test="${ empty etudiantSeeCommand.listePromotions}">
+				<a class="LinkRougeNull"
+					href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Aucune
+					promotion associée</a>
+			</c:if>
 
-		<tbody>
+			<c:if test="${not empty etudiantSeeCommand.listePromotions}">
 
-			<c:forEach items="${etudiantSeeCommand.listePromotions}" var="pro">
-				<tr>
-					<td>${pro.idPromotion}</td>
-					<td>${pro.libelle}</td>
-					
-					<td>
-						<a href="${pageContext.request.contextPath}/etudiants/deletePromotion?idPromo=${pro.idPromotion}&idEtudiant=${etudiantSeeCommand.identifiant}">
-							<img src="${pageContext.request.contextPath}/assets/images/x.svg">
-						</a> 
-					</td>
-				</tr>
 
-			</c:forEach>
-			
-			<tr>
-				<td colspan="3">
-					<a href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Ajouter Promotion</a>
-				</td>
-			</tr>
-			
-		</tbody>
+				<table class="table table-striped table-bordered table-hover">
 
-	</table>
-	
-	</c:if>
-	
+					<thead class="thead-blue">
+						<tr>
+							<th scope="col">Id Promotion</th>
+							<th scope="col">Libelle</th>
+							<th scope="col">Retirer</th>
+						</tr>
+
+					</thead>
+
+					<tbody>
+
+						<c:forEach items="${etudiantSeeCommand.listePromotions}" var="pro">
+							<tr>
+								<td>${pro.idPromotion}</td>
+								<td>${pro.libelle}</td>
+
+								<td><a
+									href="${pageContext.request.contextPath}/etudiants/deletePromotion?idPromo=${pro.idPromotion}&idEtudiant=${etudiantSeeCommand.identifiant}">
+										<img
+										src="${pageContext.request.contextPath}/assets/images/x.svg">
+								</a></td>
+							</tr>
+
+						</c:forEach>
+
+						<tr>
+							<td colspan="3"><a
+								href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Ajouter
+									Promotion</a></td>
+						</tr>
+
+					</tbody>
+
+				</table>
+
+			</c:if>
+
+		</div>
+
+		<div class="col-md-5" style="float: right;">
+
+			<h1>Cours :</h1>
+
+			<c:if test="${ empty etudiantSeeCommand.listeEtudiantCours}">
+				<a class="LinkRougeNull"
+					href="${pageContext.request.contextPath}/etudiant/linkEtudiantCours/${etudiantSeeCommand.identifiant}">Aucun
+					cours associé</a>
+			</c:if>
+
+			<c:if test="${not empty etudiantSeeCommand.listeEtudiantCours}">
+
+				<table class="table table-striped table-bordered table-hover">
+
+					<thead class="thead-blue">
+
+						<tr>
+							<th scope="col">Id Cours</th>
+							<th scope="col">Libelle</th>
+
+							<th scope="col">Appel</th>
+							
+							<th scope="col">Editer Appel</th>
+							<th scope="col">Supprimer</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody>
+
+						<c:forEach items="${etudiantSeeCommand.listeEtudiantCours}"
+							var="etudiantCours">
+							<tr>
+								<td>${etudiantCours.coursEC.idCours}</td>
+								<td>${etudiantCours.coursEC.libelle}</td>
+
+								<td><c:if test="${etudiantCours.absence}">Absent</c:if> <c:otherwise>Présent</c:otherwise>
+								</td>
+								
+								
+								<td><a
+									href="${pageContext.request.contextPath}/etudiants/deletePromotion?idPromo=${pro.idPromotion}&idEtudiant=${etudiantSeeCommand.identifiant}">
+										<img
+										src="${pageContext.request.contextPath}/assets/images/pencil.svg">
+								</a></td>
+								
+								<td><a
+									href="${pageContext.request.contextPath}/etudiants/deletePromotion?idPromo=${pro.idPromotion}&idEtudiant=${etudiantSeeCommand.identifiant}">
+										<img
+										src="${pageContext.request.contextPath}/assets/images/x.svg">
+								</a></td>
+								
+							</tr>
+
+						</c:forEach>
+						
+						<tr>
+							<td colspan="3"><a
+								href="${pageContext.request.contextPath}/etudiant/linkEtudiantCours/${etudiantSeeCommand.identifiant}">Ajouter
+									Cours</a></td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</c:if>
+		</div>
+
+		<br /> <br /> <br /> <br /> <br /> <br />
 	</div>
-	
-	<div class="col-md-5" style="float: right;">
 
-            <h1>Cours :</h1>
+	<br />
 
-		<a class="LinkRougeNull" href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Aucun cours associé</a>
-
-
-
-            <table class="table table-striped table-bordered table-hover">
-
-                <thead class="thead-blue">
-
-                    <tr>
-                        <th scope="col">Id Promotion</th>
-                        <th scope="col">Libelle</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <c:forEach items="${etudiantSeeCommand.listePromotions}" var="pro">
-                        <tr>
-                            <td>${pro.idPromotion}</td>
-                            <td>${pro.libelle}</td>
-                        </tr>
-
-                    </c:forEach>
-                </tbody>
-
-            </table>
-
-
-        </div>
-        
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-    </div>
-    
-    <br/>
-    
-    <jsp:include page="/Fragments/footer.jsp" />
+	<jsp:include page="/Fragments/footer.jsp" />
 
 </body>
 </html>

@@ -86,23 +86,6 @@
 				</div>
 				</div>
 				<br><br><br>
-<div class="form-row">
-				<div class="form-group col-md-5">
-				<form:label path="fkEtudiant">Fk Etudiant : </form:label>
-					<form:input path="fkEtudiant" required="true"/><form:errors path="fkEtudiant"
-							cssStyle="color : blue; font-style: italic;" />
-</div>
-
-				<div class="form-group col-md-2"></div>
-                <div class="form-group col-md-5">
-					<form:label path="fkMatiere">Fk Matiere : </form:label>
-					<form:input path="fkMatiere" required="true" /><form:errors path="fkMatiere"
-							cssStyle="color : blue; font-style: italic;" />
-
-				</div>
-				
-				</div>
-
 				
 					<input id="inputSubmit" type="submit" class="btn btn-primary" value="Ajouter">
 				

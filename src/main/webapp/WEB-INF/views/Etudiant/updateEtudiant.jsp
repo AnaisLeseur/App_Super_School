@@ -77,6 +77,10 @@
 			<form:hidden path="photo"/>
 			<form:hidden path="identifiant"/>
 			
+			<c:forEach items="listePromotions" var="promo">
+				<form:hidden path="listePromotions" value="${promo.idPromotion }" />
+			</c:forEach>
+			
             <input id="inputSubmit" type="submit" class="btn btn-primary" value="Modifier Etudiant"/>
         </div>
     </form:form>

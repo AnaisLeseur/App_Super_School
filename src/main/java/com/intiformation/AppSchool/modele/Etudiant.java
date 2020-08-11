@@ -18,6 +18,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -41,7 +43,8 @@ public class Etudiant extends Personne{
 	private List<Promotion> listePromotions = new ArrayList<>();
 	
 	@OneToMany(mappedBy="etudiantEC",cascade=CascadeType.ALL)
-	private List<EtudiantCours> listeEtudiantCours;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<EtudiantCours> listeEtudiantCours = new ArrayList<>();
 	
 	
 	//Constructeurs
