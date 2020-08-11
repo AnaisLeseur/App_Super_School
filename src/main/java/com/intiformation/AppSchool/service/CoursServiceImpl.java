@@ -55,4 +55,12 @@ public class CoursServiceImpl implements ICoursService {
 		return coursDAO.getAll();
 	}
 
+	/**
+	 * methode pour récupérer la liste des cours associés à une matiere 
+	 */
+	@Override
+	public List<Cours> recupCoursParMatiere(int pIdMatiere) {
+		return coursDAO.FindCoursAssociesAMatiere(pIdMatiere);
+	}// end recupCoursParMatiere
+
 }

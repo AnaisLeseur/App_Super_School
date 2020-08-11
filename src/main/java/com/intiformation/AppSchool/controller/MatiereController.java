@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.modele.Matiere;
+import com.intiformation.AppSchool.service.ICoursService;
 import com.intiformation.AppSchool.service.IMatiereService;
 import com.intiformation.AppSchool.validator.MatiereValidator;
 
@@ -26,12 +27,15 @@ import com.intiformation.AppSchool.validator.MatiereValidator;
 public class MatiereController {
 
 	// declaration de la couche service
-		@Autowired
-		private IMatiereService matiereService;
+	@Autowired
+	private IMatiereService matiereService;
 
-		@Autowired
-		private MatiereValidator matiereValidator;
-		
+	@Autowired
+	private MatiereValidator matiereValidator;
+	
+	// déclaration de la couche service de Cours 
+	@Autowired
+	private ICoursService coursService;
 		
 		
 		/**
@@ -47,8 +51,18 @@ public class MatiereController {
 			this.matiereValidator = matiereValidator;
 		}
 
+		
+		// Getter et setter pour coursService 
+		public ICoursService getCoursService() {
+			return coursService;
+		}
 
 
+		public void setCoursService(ICoursService coursService) {
+			this.coursService = coursService;
+		}
+		
+		
 
 
 		//-----------methode gestionnaire du controlleur -------------
@@ -229,7 +243,19 @@ public class MatiereController {
 		}//end modifier
 		
 		
+		// --------------------------------------------------------//
+		// ---------- Affichage liste COURS / MATIERE -------------//
+		// --------------------------------------------------------//
+		@RequestMapping(value = "/matiere/coursLinked/{idMatiere}", method = RequestMethod.GET)
+		public String MatiereLinkedCours(@PathVariable("idMatiere") int pIdMatiere, ModelMap model) {
+
+			model.addAttribute("listeCoursAssocMatiere", coursService.recupCoursParMatiere(pIdMatiere));
+
+			return "link-matiere-cours";
+		}// end toLinkPromotion
 		
 		
-	
+		
+		
+		
 }//end controller
