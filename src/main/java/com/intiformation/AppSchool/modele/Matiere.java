@@ -1,9 +1,12 @@
 package com.intiformation.AppSchool.modele;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Matiere {
@@ -16,7 +19,8 @@ public class Matiere {
 	
 	private String libelle;
 	
-	private Long FkEnseignant;
+	@OneToMany(mappedBy="matiere")
+	private List<Cours> listeCours;
 	
 	//-------------------------ctor-------------------------------------
 
@@ -25,18 +29,16 @@ public class Matiere {
 	
 
 	
-	public Matiere(int idMatiere, String libelle, Long fkEnseignant) {
+	public Matiere(int idMatiere, String libelle) {
 		super();
 		this.idMatiere = idMatiere;
 		this.libelle = libelle;
-		this.FkEnseignant = fkEnseignant;
 	}
 	
 
-	public Matiere(String libelle, Long fkEnseignant) {
+	public Matiere(String libelle) {
 		super();
 		this.libelle = libelle;
-		this.FkEnseignant = fkEnseignant;
 	}
 
 
@@ -59,17 +61,12 @@ public class Matiere {
 		this.libelle = libelle;
 	}
 
-
-
-	public Long getFkEnseignant() {
-		return FkEnseignant;
+	public List<Cours> getListeCours() {
+		return listeCours;
 	}
 
-
-
-	public void setFkEnseignant(Long fkEnseignant) {
-		FkEnseignant = fkEnseignant;
+	public void setListeCours(List<Cours> listeCours) {
+		this.listeCours = listeCours;
 	}
-	
 	
 }//end class
