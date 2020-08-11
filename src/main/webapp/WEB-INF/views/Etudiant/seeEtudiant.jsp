@@ -142,7 +142,7 @@
 
             <h1>Cours :</h1>
 
-		<a class="LinkRougeNull" href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Aucune promotion associée</a>
+		<a class="LinkRougeNull" href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Aucun cours associé</a>
 
 
 

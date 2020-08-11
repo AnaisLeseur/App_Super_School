@@ -35,10 +35,9 @@ public class PromotionController {
 
 	@Autowired
 	private PromotionValidator promotionValidator;
-	
+
 	@Autowired
 	private IEtudiantService etudiantService;
-	
 
 	public void setEtudiantService(IEtudiantService etudiantService) {
 		this.etudiantService = etudiantService;
@@ -232,6 +231,100 @@ public class PromotionController {
 		return "redirect:/promotion/liste";
 	}// end modifier
 
+	// ------------------------------------------------------//
+	// -----------------Get Promotion------------------------//
+	// ------------------------------------------------------//
+
+	@RequestMapping(value = "/promotion/see-promotion/{idPromotion}", method = RequestMethod.GET)
+	public ModelAndView ConsulterPromotion(@PathVariable("idPromotion") int pId) {
+
+		Promotion promotion = promotionService.findById(pId);
+
+		// Return new ModelAndView(viewName, modelName, modelObject)
+		return new ModelAndView("seePromotion", "promotionSeeCommand", promotion);
+	}//
+
+	// --------------------------------------------------------//
+	// ----------------Binding Promotion-----------------------//
+	// --------------------------------------------------------//
+
+	@RequestMapping(value = "/promotion/linkEtudiant/{idPromotion}", method = RequestMethod.GET)
+	public String toLinkEtudiant(@PathVariable("idPromotion") int pId, ModelMap model) {
+
+		model.addAttribute("promotionBindEtudiant", promotionService.findById(pId));
+
+		model.addAttribute("liste_Etudiant", promotionService.findListNotLinkedToPromotion(pId));
+
+		return "LinkEtudiantsToPromotion";
+	}// end toLinkPromotion
 	
+	
+	/**
+	 * Conversion des id des promotions en objet Promotion
+	 * @param binder
+	 */
+	@InitBinder
+	public void bindingPreparationPromo(WebDataBinder binder) {
+		
+		binder.registerCustomEditor(List.class,"listeEtudiants", new CustomCollectionEditor(List.class) {
+			
+            protected Object convertElement(Object element) {
+            	
+                if (element != null) {
+                    Integer Id = Integer.parseInt(element.toString());
+                    Etudiant etudiant = etudiantService.findById(Id);
+                    return etudiant;
+                }//end if
+                
+                return null;
+            }
+
+        });
+	}//end InitBinder
+	
+	
+	/**
+	 * Lie la promotion aux étudiants sélectionnées
+	 * 
+	 * @param etudiant
+	 * @return View
+	 */
+	@RequestMapping(value = "/promotion/bindEtudiantsToPromotion", method = RequestMethod.POST)
+	public String BindEtudiantsToPromotion(@ModelAttribute("promotionBindEtudiant") Promotion pPromotion) {
+		System.out.println("dans BindEtudiantsToPromotion");
+				
+		promotionService.modifier(pPromotion);
+		
+		return "redirect:/promotion/liste";
+	}// end BindPromotionToEtudiant()
+	
+	
+	@RequestMapping(value="/promotions/deleteEtudiant", method=RequestMethod.GET)
+	public ModelAndView DeleteEtudiantFromPromotion(@RequestParam("idPromo")int idPromotion, @RequestParam("idEtudiant")int idEtudiant) {
+		
+		//Recup de la promotion
+		Promotion promotion = promotionService.findById(idPromotion);
+		
+		//Suppression de l'etudiant de la propriété listeEtudiant de Promotion
+		List<Etudiant> listeEtudiant = promotion.getListeEtudiants();
+		
+		int index=0;
+		
+		for (Etudiant etudiants : listeEtudiant) {
+			if (etudiants.getIdentifiant()== idEtudiant) {
+				break;
+			}
+			index++;
+		}
+		
+		listeEtudiant.remove(index);
+		
+		//Sauvegarde dans la BDD
+		promotion.setListeEtudiants(listeEtudiant);
+		promotionService.modifier(promotion);
+		
+		//Renvoi de l'etudiant dans la vue seeEtudiant	
+		return new ModelAndView("seePromotion", "promotionSeeCommand", promotion );
+	}
 
 }// end class

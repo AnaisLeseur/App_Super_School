@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.IPromotionDAO;
+import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.Promotion;
 
 @Service
@@ -49,6 +50,16 @@ public class PromotionServiceImpl implements IPromotionService {
 	@Override
 	public List<Promotion> findListNotLinkedToEtudiant(int pIdEtudiant) {
 		return promotionDAO.getListNotLinkedToEtudiant(pIdEtudiant);
+	}
+
+	@Override
+	public List<Etudiant> findListNotLinkedToPromotion(int pIdPromotion) {
+		return promotionDAO.getListNotLinkedToPromotion(pIdPromotion);
+	}
+
+	@Override
+	public List<Etudiant> findListEtudiantByIdPromo(int pIdPromotion) {
+		return promotionDAO.getListEtudiantByIdPromo(pIdPromotion);
 	}
 
 }//end service

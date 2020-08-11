@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.IEtudiantDAO;
 import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.Promotion;
 
 @Service
 public class EtudiantServiceImp implements IEtudiantService{
@@ -52,6 +53,13 @@ public class EtudiantServiceImp implements IEtudiantService{
 	@Override
 	public Etudiant ajouterReturnEtudiant(Etudiant pEtudiant) {
 		return etudiantDAO.addReturnEtudiant(pEtudiant);
+	}
+
+
+
+	@Override
+	public List<Promotion> findListPromoByIdEtudiant(int pIdEtudiant) {
+		return etudiantDAO.getListPromoByIdEtudiant(pIdEtudiant);
 	}
 
 }//end class

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.modele.Promotion;
 
@@ -169,6 +170,50 @@ public class PromotionDAOImpl implements IPromotionDAO {
 		List<Promotion> listePromo =listQuery.getResultList();
 		
 		return listePromo;
+	}
+
+	@Override
+	@Transactional
+	public List<Etudiant> getListNotLinkedToPromotion(int pIdPromotion) {
+		Session session = this.sessionFactory.getCurrentSession();
+
+		//Construction de la requete
+		String RequeteListNotLinkedToPromotion = "select e from Etudiant e where e.identifiant not in ( select e.identifiant from Etudiant e join e.listePromotions p where p.idPromotion=:pIdPromotion)";
+		Query<Etudiant> listQuery = session.createQuery(RequeteListNotLinkedToPromotion);
+		
+		//Passage de param
+		listQuery.setParameter("pIdPromotion", pIdPromotion);
+		
+		// envoi + exec + resultat
+		List<Etudiant> listeEtudiant =listQuery.getResultList();
+		
+		return listeEtudiant;
+	}
+
+	@Override
+	public List<Etudiant> getListEtudiantByIdPromo(int pIdPromotion) {
+		try {
+
+			// 1. Recuperation de la session d'hibernate via la factory
+			Session session = this.sessionFactory.getCurrentSession();
+
+			// 2. Definition de la requête à envoyer
+			Query<Etudiant> query = session.createQuery("select p.listeEtudiants FROM Promotion p where p.idPromotion=:idPromo");
+
+			query.setParameter("idPromo", pIdPromotion);
+			
+			// 3. Envoi + Execution + Resultat
+			List<Etudiant> listeEtudiant = query.getResultList();
+
+			// 4. renvoi de la liste
+			return listeEtudiant;
+
+		} catch (Exception e) {
+
+			System.out.println("... (EtudiantDAOImpl) Erreur lors de la récupération de la liste des promotions ....");
+
+		} // end catch
+		return null;
 	}
 	
 	
