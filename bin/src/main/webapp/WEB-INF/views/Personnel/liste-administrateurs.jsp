@@ -9,10 +9,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Liste des administrateurs</title>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
+	
+	<link rel="stylesheet" 
+	href="${pageContext.request.contextPath}/assets/styles/perso.css">
+	
+	<!-- script du tricheur -->
+	
+	<link href="${pageContext.request.contextPath}/assets/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="${pageContext.request.contextPath}/assets/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="${pageContext.request.contextPath}/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+	
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
+
+	<!-- Header -->
+	<jsp:include page="/Fragments/Header.jsp"/>
+	
 
 
 	<%--
@@ -22,65 +46,91 @@
 				==> les données : model.addAttribute("attribut_liste_admins", listeAdminsBdd);
 	 --%>
 	 
-	 <h2><u>Liste des administrateurs</u></h2>
-	 
-	 <table border="1" width="60%">
-	 
-	 	<!--  Ajout d'un admin -->
-	 	<tr>
-	 		<td colspan="7" align="right">
-	 			<%-- 
-	 				au click sur le lien =>
-	 					-> envoi d'une rqt http en get vers la methode "afficherFormAjoutAdmin()" 
-	 						méth associée/mappé sur l'url : '/administrateurs/add-admin-form'
-	 			
-	 			 --%>
-	 			<a style="background-color: lightblue;" href="${pageContext.request.contextPath}/administrateurs/add-admin-form">
-	 				Ajouter un administrateur
-	 			</a>
-	 		</td>
-	 	</tr>
-	 
-		 <tr>
-		 	<th>ID</th>
-	 		<th>Mot De Passe</th>
-	 		<th>Nom</th>
-	 		<th>Prenom</th>
-	 		<th>Email</th>
-	 		
-	 		<th>Modifier</th>
-	 		<th>Supprimer</th>
-		 </tr>
-		 
-		 <!--  données de la table -->
-		 <c:forEach items="${attribut_liste_admins}" var="admin">
-		 	<tr>
-		 		<td>${admin.identifiant }</td>
-		 		<td>${admin.motDePasse }</td>
-		 		<td>${admin.nom }</td>
-		 		<td>${admin.prenom } </td>
-		 		<td>${admin.email }</td>
-		 		
+	 <h1 id="TitreListe">Liste des administrateurs </h1>
+	 	 
+	<div class="card shadow mb-4">
+            
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+                  <thead class="thead-blue">
+              <tr>
+				<th id="Ajout" colspan="8">
+					<a href="${pageContext.request.contextPath}/administrateurs/add-admin-form"><img
+						id="LogoAjout"  src="${pageContext.request.contextPath}/assets/images/person-plus.svg">
+						<span>Ajouter un administrateur</span>
+					</a>
+				</th>
+			</tr>
 
-		 		<!-- Colonne pour la modification de l'admin -->
-		 			<!--  au click sur le lien: 
-		 				-> envoi d'une rqt Http Get vers la methode "afficherFormModificationAdmin" 
-		 				-> passage d'un param de rqt nommé 'idAdmin' 
-		 			-->
-		 		<td><a href="${pageContext.request.contextPath}/administrateurs/update-admin-form?idAdmin=${admin.identifiant }">Modifier</a></td>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Prenom</th>
+				<th scope="col">Email</th>
 
-		 			
-		 		<!-- Colonne pour la suppression de l'admin -->
+				<th scope="col">Consulter</th>
+				<th scope="col">Modifier</th>
+				<th scope="col">Supprimer</th>
+			</tr>
+		</thead>
 
-		 		<!--  au click sur le lien: 
-		 				-> envoi d'une rqt Http Get vers la methode "supprimerAdminBdd" 
-		 		-->
-				<td><a href="${pageContext.request.contextPath}/administrateurs/delete/${admin.identifiant }">Supprimer</a></td>
-		 		
-		 	</tr>
-		 </c:forEach>
-		 
-	 </table>
+		<tbody>
+			<c:forEach items="${attribut_liste_admins}" var="admin">
+				<tr>
+			 		<td>${admin.identifiant }</td>
+			 		<td>${admin.nom }</td>
+			 		<td>${admin.prenom } </td>
+			 		<td>${admin.email }</td>
 
+					<td>
+						<a href="${pageContext.request.contextPath}/administrateurs/see-admin/${admin.identifiant }">
+							<img src="${pageContext.request.contextPath}/assets/images/search.svg">
+						</a>
+					</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/administrateurs/update-admin-form?idAdmin=${admin.identifiant }">
+							<img src="${pageContext.request.contextPath}/assets/images/pencil.svg">
+						</a>
+					</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/administrateurs/delete/${admin.identifiant }">
+							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
+						</a>
+					</td>
+				</tr>
+			</c:forEach>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+<!-- script thomas -->
+	<script
+		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"
+		type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"
+		type="text/javascript"></script>
+		<!-- script pour tricher -->
+			 <!-- Bootstrap core JavaScript-->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="${pageContext.request.contextPath}/assets/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.dataTables.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="${pageContext.request.contextPath}/assets/js/datatables-demo.js"></script>
+	<!-- footer -->
+	<jsp:include page="/Fragments/footer.jsp"></jsp:include> 
 </body>
 </html>

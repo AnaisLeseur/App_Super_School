@@ -1,0 +1,59 @@
+#TitreListe{
+	font-weight: bold;
+	color: #2b73b3;
+	margin-left: 3rem;
+	margin-bottom: 2rem;
+	text-decoration:underline;
+	margin-top: 2rem; 
+}
+
+.table{
+    width: 85%;
+    margin: auto;
+    margin-bottom: 5rem;
+  }
+  .table td{
+    border-color:#363636;
+    text-align: center;
+    
+  }
+
+  .thead-blue th{
+    color:#fff;
+    background-color:#2b73b3;
+    border-color:#363636;
+    text-align: center;
+  }
+
+  .thead-blue tr{
+    border-bottom: 5px solid;
+    border-color:#363636; 
+  }
+  .table-hover tbody tr:hover{
+    background-color: #4db3e9 ;
+    color:#363636 ;
+  }
+  
+  #LogoAjout{
+  	width: 2rem;
+  }
+
+  #Ajout{
+    text-align: left;
+    margin-left: 2rem;
+  }
+
+  #Ajout a{
+    margin-left: 2rem;
+  }
+
+  #Ajout span{
+    color: white;
+    margin-left: 1rem;
+  }
+
+  #Ajout span:hover{
+    color: #363636;
+    font-weight: bold;
+    text-decoration: none;
+  }

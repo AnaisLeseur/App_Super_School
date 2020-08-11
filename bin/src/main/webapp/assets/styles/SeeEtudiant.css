@@ -1,0 +1,73 @@
+#ModifierEtudiant{
+    float: right;
+    margin-right: 4rem;
+}
+
+#ModifierEtudiant img{
+    width: 3rem;
+}
+
+#ModifierEtudiant a{
+    color: #e8362c;
+}
+
+#ModifierEtudiant a:hover{
+    text-decoration: none;
+    
+}
+
+#DivInfosEtudiant{
+    width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+    padding-bottom: 3rem;
+    border-bottom: 2px solid #363636;
+}
+
+#PhotoEtudiant{
+    float: left;
+    width: 10rem;
+}
+
+#TitreIdEtudiant{
+	 margin-top: 2rem;
+	 margin-left: 2rem;
+}
+
+
+.infosEtudiant{
+    margin-bottom: 1rem;
+    margin-left: 12rem;
+}
+
+.infosEtudiant h2{
+    font-size: 1.25rem;
+}
+
+.infosEtudiant p{
+    margin-left: 3rem;
+}
+
+.infosEtudiant span{
+    text-transform: uppercase;
+}
+
+.Adresse{
+    margin-top: 2rem;
+    margin-left: 2rem;
+    font-size: 1.25rem;
+}
+
+.LinkRougeNull {
+	margin-top:1rem;
+    color: #e8362c; 
+}
+
+.LinkRougeNull:hover{
+    color: #e8362c; 
+}
+
+#infosAdresse{
+    margin-top: 1rem;
+    margin-left: 4rem;
+}
