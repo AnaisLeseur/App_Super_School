@@ -34,8 +34,9 @@
 				method="POST" 
 				action="${pageContext.request.contextPath}/enseignants/update">
 	      
-	   <!--  Récup de l'id de l'employé à modifier dans un champ caché  -->
-		<form:hidden path="identifiant"/> 
+	   <!--  Récup de l'id de l'enseignant à modifier dans un champ caché et de l'id de son adresse -->
+		<form:hidden path="identifiant"/>
+		<form:hidden path="adresse.idAdresse" />
 		
 	        <div style="width: 80%; margin: auto;">
             <div class="form-row">

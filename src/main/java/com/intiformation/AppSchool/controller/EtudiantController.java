@@ -178,7 +178,7 @@ public class EtudiantController {
 	public String modifierEtudiant(@ModelAttribute("etudiantUpdateCommand") @Validated Etudiant pEtudiant,
 			BindingResult bindingResult) {
 
-		etudiantValidator.validateUpdate(pEtudiant, bindingResult);
+		etudiantValidator.validateAdd(pEtudiant, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 

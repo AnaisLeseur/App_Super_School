@@ -220,7 +220,7 @@ public class AdministrateurController {
 	public String modifierAdminBdd(@ModelAttribute("adminModifCommand") @Validated Administrateur pAdminToUpdate, 
 									BindingResult bindingResult) {
 		
-		adminValidator.validateUpdate(pAdminToUpdate, bindingResult);
+		adminValidator.validate(pAdminToUpdate, bindingResult);
 		
 		if (bindingResult.hasErrors()) {
 
