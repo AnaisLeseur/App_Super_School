@@ -150,7 +150,7 @@
 	<br/>
 	<a href="${pageContext.request.contextPath}/aide/liste">Aide</a>
 	
-
+<jsp:include page="/Fragments/footer.jsp" />
 
 <script
 		src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js" type="text/javascript"></script>
@@ -158,6 +158,7 @@
 		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script
 		src="${pageContext.request.contextPath}/assets/js/util.js" type="text/javascript"></script>
+
 
 
 </body>

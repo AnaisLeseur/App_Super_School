@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,9 +32,13 @@ public class Cours {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
-	private Long fkEtudiant;
+	@ManyToOne
+	@JoinColumn(referencedColumnName="idPromotion")
+	private Promotion promotion;
 	
-	private Long fkMatiere;
+	@ManyToOne
+	@JoinColumn(referencedColumnName="idMatiere")
+	private Matiere matiere;
 	
 	//Ajout pour EtudiantCours Thomas
 	@OneToMany(mappedBy="coursEC", cascade=CascadeType.ALL)
@@ -42,34 +49,26 @@ public class Cours {
 	public Cours() {
 	}
 
-	public Cours(int idCours, String libelle, String description, int duree, Date date, Long fkEtduiant,
-			Long fkMatiere) {
-		super();
+	public Cours(int idCours, String libelle, String description, int duree, Date date) {
 		this.idCours = idCours;
 		this.libelle = libelle;
 		this.description = description;
 		this.duree = duree;
 		this.date = date;
-		this.fkEtudiant = fkEtduiant;
-		this.fkMatiere = fkMatiere;
+
 	}
 
-	public Cours(String libelle, String description, int duree, Date date, Long fkEtudiant, Long fkMatiere) {
-		super();
+	public Cours(String libelle, String description, int duree, Date date  ) {
 		this.libelle = libelle;
 		this.description = description;
 		this.duree = duree;
 		this.date = date;
-		this.fkEtudiant = fkEtudiant;
-		this.fkMatiere = fkMatiere;
 	}
-	
 	
 	
 	//-------------------------------getter et setter-----------------------------------------
 
 	
-
 	public String getLibelle() {
 		return libelle;
 	}
@@ -110,20 +109,20 @@ public class Cours {
 		this.idCours = idCours;
 	}
 
-	public Long getFkEtudiant() {
-		return fkEtudiant;
+	public Promotion getPromotion() {
+		return promotion;
 	}
 
-	public void setFkEtudiant(Long fkEtudiant) {
-		this.fkEtudiant = fkEtudiant;
+	public Matiere getMatiere() {
+		return matiere;
 	}
 
-	public Long getFkMatiere() {
-		return fkMatiere;
+	public void setMatiere(Matiere matiere) {
+		this.matiere = matiere;
 	}
 
-	public void setFkMatiere(Long fkMatiere) {
-		this.fkMatiere = fkMatiere;
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
 	}
 
 	public List<EtudiantCours> getListeEtudiantsCours() {
