@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+
+ 	<!-- ===  DEFINITION des UTILISATEURS autorisés (avec leur role)  === -->
+	<!-- ================================================================ -->
+
+	<!-- === AUTHENTIFICATION avec UN FORMULAIRE PERSONNALISE === -->
+
+	<security:http auto-config="true" use-expressions="true">
+
+
+		<security:intercept-url pattern="/index.jsp*" access="hasAnyRole('ROLE_ANONYMOUS', 'Role_Etudiant', 'Role_Enseignant', 'Role_Admin')"/>
+		<security:intercept-url pattern="/Users*" access="hasAnyRole('Role_Etudiant', 'Role_Enseignant', 'Role_Admin')"/>
+		<security:intercept-url pattern="/Enseignant*" access="hasAnyRole('Role_Enseignant', 'Role_Admin')"/>
+		<security:intercept-url pattern="/Enseignant*" access="hasRole('Role_Admin')"/>
+		
+		<!--  Formulaire Perso -->
+		<!-- 
+			> config de la balise sec:form-login et ses attributs :
+				-> login-page : url qui affiche notre formulaire d'authentification 
+				-> default-target-url : url vers laql le user est redirigé si authentification ok
+				-> authentication-failure-url : url vers laql le user est redirigé si authentification PAS OK 
+								(vers le formulaire), avec passage d'un param 'error=true'
+				-> login-processing-url : url sur laql spring security attend les params d'authentification
+								par defaut '/login'
+								c'est l'url pointée dans l'attribut 'action' de la page login.jsp
+				-> username-parameter / password-parameter : nom des params de la rqt (attributs name)
+								de la page 'login.jsp'
+				-> 
+		
+		 -->
+		<security:form-login login-page="/login.jsp" 
+						default-target-url="/accueil.jsp"
+						authentication-failure-url="/login.jsp?error=true"
+						login-processing-url="/login"
+						username-parameter="identifiant"
+						password-parameter="motDePasse"/>
+		
+		
+		<!--  Deconnexion de l'utilisateur -->
+		<!--  par defaut l'url de déconnexion est '/logout' 
+					> attribut de la balise 'logout': 
+						-> logout-success-url: url vers laql le user est redirigé après déconnexion : 
+								vers page 'login.jsp' avec passage d'un param nommé 'logout_message=true'
+						-> logout-url : Url de deconnexion
+						-> invalidate-session : destruction de la session http
+						
+		
+		 -->
+		 <security:logout 	logout-success-url="/index.jsp?logout_message=true" 
+		 				logout-url="/logout"
+		 				invalidate-session="true"/>
+		 
+		 
+		 <!--  Protection contre les attaques CSRF -->
+		 <!--  
+		 		> CSRF : cross Site Request Forgery 
+		 		
+		 		> par defaut la protection est activée
+		 		> pour désactivation : <sec:csrf disabled="true"/>
+		 		
+		 		
+		  -->
+		  <security:csrf disabled="true"/>
+		 
+		 
+		 <!--  configuration des erreurs 403  -->
+		 <!-- 
+		 		> error-page : url vers laquelle le user est redirigé en cas d'erreur 403
+		  -->
+		  <security:access-denied-handler error-page="/WEB-INF/views/authentification/403.jsp"/>
+		  
+		</security:http>	 
+		 
+		  
+	  	 <security:authentication-manager>
+			<security:authentication-provider>
+				<security:password-encoder hash="bcrypt"/>
+					
+					<security:jdbc-user-service 	data-source-ref="dataSourceBean" 
+							users-by-username-query="SELECT identifiant, motDePasse, activated FROM personne WHERE identifiant=?"
+							authorities-by-username-query="SELECT identifiant, role FROM personne 
+															WHERE identifiant= ?"/>
+
+			</security:authentication-provider>
+		</security:authentication-manager>
+	 
+		 
+		
+
+
+
+
+
+</beans>

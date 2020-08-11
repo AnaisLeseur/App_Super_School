@@ -55,7 +55,7 @@
 				<th scope="col">IdCours</th>
 				<th scope="col">Libelle</th>
 				<th scope="col">Description</th>
-				<th scope="col">Durée</th>
+				<th scope="col">Durï¿½e</th>
 				<th scope="col">Date</th>
 			
 
@@ -65,7 +65,7 @@
 			</tr>
 
 		</thead>
-		<!-- données de la table
+		<!-- donnï¿½es de la table
     -->
 		<tbody>
 			<c:forEach items="${attribut_liste_cours}" var="cou">
@@ -79,8 +79,8 @@
 
 
 
-					<!-- au click sur le lien : envoie d'ue requete HTTP en Get vers la méthode "afficherFormulaireModification()" 
-passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'employe à modifier
+					<!-- au click sur le lien : envoie d'ue requete HTTP en Get vers la mï¿½thode "afficherFormulaireModification()" 
+passage d'un param de requete nommï¿½ idemploye ayant la valeur de l'id de l'employe ï¿½ modifier
  -->
 					<td><a
 						href="${pageContext.request.contextPath}/cours/update-cours-form?idcours=${cou.idCours}">
@@ -88,7 +88,7 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'emplo
 							src="${pageContext.request.contextPath}/assets/images/pencil.svg"></a></td>
 					<!-- suppression -->
 					<td>
-						<!-- au click sur le lien : envoie d'une requete http get vers la méthode supprimer -->
+						<!-- au click sur le lien : envoie d'une requete http get vers la mï¿½thode supprimer -->
 						<a
 						href="${pageContext.request.contextPath}/cours/delete/${cou.idCours}">
 							<img

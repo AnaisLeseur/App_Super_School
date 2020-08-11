@@ -48,6 +48,7 @@ public class AdministrateurServiceImpl implements IAdministrateurService {
 	 */
 	@Override
 	public void modifier(Administrateur pAdmin) {
+		System.out.println("pAdmin: " + pAdmin.toString());
 		administrateurDAO.update(pAdmin);
 		
 	}// end modifier

@@ -6,14 +6,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/FormEtudiant.css">
+<style type="text/css">
+.erreurs_validation{color: red; 
+font-style: italic; 
+border: 1px dotted red; 
+margin: 15px;}
+
+</style>
 </head>
 <body>
-
-<div align="center">
+<jsp:include page="/Fragments/Header.jsp"/>
+<div id="TitreForm">
     <h1>Formulaire de modification d'une matiere</h1>
     </div>
     
-    <div align="center">
+   
          <%--
          > modelAttribute = le nom  de l'objet de commande definit dans la methode afficherFormulaireAjout du controlleur
          
@@ -22,10 +31,10 @@
            
          
           --%>
-         <form:form modelAttribute="matiereModifCommand" method="POST" 
+         <form:form enctype="multipart/form-data" modelAttribute="matiereModifCommand" method="POST" 
          action="${pageContext.request.contextPath}/matiere/update">
          
-         <table width="60%">
+        
          
          <!-- recup de l'id de l'employe a modifier dans un champs caché-->
          <tr>
@@ -34,37 +43,36 @@
          </td>
          </tr>
          
-               <tr>
-                  <td> <form:label path="idMatiere">Id Matiere : </form:label> </td>
-                  <td> <form:input path="idMatiere"/> </td>
-                  <td> <form:errors path="idMatiere" cssStyle="color : green; font-style: italic;"/>  </td>
-              </tr>
-              
-              <tr>
-                  <td> <form:label path="libelle">libelle : </form:label> </td>
-                  <td> <form:input path="libelle"/> </td>
-               <td> <form:errors path="libelle" cssStyle="color : green; font-style: italic;"/>  </td>
-                  
-              </tr>
-              
-              <tr>
-                  <td> <form:label path="FkEnseignant">FkEnseignant : </form:label> </td>
-                  <td> <form:input path="FkEnseignant"/> </td>
-                  <td> <form:errors path="FkEnseignant" cssStyle="color : blue; font-style: italic;"/>  </td>
-                  
-              </tr>
+            
+             <div style="width: 80%;margin: auto;">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                 <form:label path="libelle">Libelle : </form:label>
+                  <form:input path="libelle" type="text" class="form-control" required="true"
+                            pattern="[A-Z][A-Za-z -]+"/>
+                  <form:errors path="libelle" cssStyle="color : green; font-style: italic;"/>
+                   </div>
+
+				<div class="form-group col-md-2"></div>
+                <div class="form-group col-md-5">
+              <form:label path="FkEnseignant">FkEnseignant : </form:label> 
+               <form:input path="FkEnseignant" type="text" class="form-control" required="true"/> 
+                <form:errors path="FkEnseignant" cssStyle="color : blue; font-style: italic;"/>  
+              </div>
+              </div>
+              </div>
               
               <tr>
                  <td>
-                  <input type="submit" value="Modifier">
+                  <input id="inputSubmit" type="submit" class="btn btn-primary" value="Modifier">
                  </td>
               </tr>
               
               
-         </table>
+       
          
          </form:form>
-    </div>
+  
 
 
 </body>

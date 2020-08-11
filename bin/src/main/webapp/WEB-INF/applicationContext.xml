@@ -62,6 +62,7 @@
 				<value>com.intiformation.AppSchool.modele.Personne</value>
 				<value>com.intiformation.AppSchool.modele.Promotion</value>
 				<value>com.intiformation.AppSchool.modele.EnseigneJointure</value>
+				<value>com.intiformation.AppSchool.modele.Aide</value>
 
 			</list>
 

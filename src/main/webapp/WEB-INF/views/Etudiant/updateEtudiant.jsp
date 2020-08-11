@@ -61,21 +61,23 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <form:label path="adresse.rue">Rue</form:label>
-                        <form:input required="true" type="text" class="form-control" path="adresse.rue" pattern="[0-9]{1,3}[ ][A-Za-z' -]+"/>
+                        <form:input type="text" class="form-control" path="adresse.rue" pattern="[0-9]{1,3}[ ][A-Za-z' -]+"/>
                 </div>
                 <div class="form-group col-md-4">
                     <form:label path="adresse.ville">Ville</form:label>
-                        <form:input required="true" type="text" class="form-control" path="adresse.ville" patern="[A-Z][A-Za-z' -]+"/>
+                        <form:input type="text" class="form-control" path="adresse.ville" patern="[A-Z][A-Za-z' -]+"/>
                         
                 </div>
                 <div class="form-group col-md-2">
                     <form:label path="adresse.codePostal">Code Postal</form:label>
-                        <form:input required="true" type="text" class="form-control" path="adresse.codePostal" pattern="[0-9]{5}"/>
+                        <form:input type="text" class="form-control" path="adresse.codePostal" pattern="[0-9]{5}"/>
                 </div>
             </div>
 
+			<!--  Récup de l'id de l'étudiant à modifier dans un champ caché; de l'id de son adresse et le la photo -->
 			<form:hidden path="photo"/>
 			<form:hidden path="identifiant"/>
+			<form:hidden path="adresse.idAdresse" />
 			
 			<c:forEach items="listePromotions" var="promo">
 				<form:hidden path="listePromotions" value="${promo.idPromotion }" />

@@ -1,70 +1,125 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-</head>
-<body>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
 
-<h1>
-		<u>Liste des matières</u>
-	</h1>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
 	
-	<table border="1" width="60%">
+	<link rel="stylesheet" 
+	href="${pageContext.request.contextPath}/assets/styles/perso.css">
+	
+	<!-- script du tricheur -->
+	
+	<link href="${pageContext.request.contextPath}/assets/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-		<tr>
-			<td colspan="5" align="right">
-			<%--> au click sur le lien : envoie d'une requete http en get vers la méthode 'afficherFormulaireAjout()' --%>
-			<a style="background-color: lightBlue;"
-				href="${pageContext.request.contextPath}/matiere/add-matiere-form">
-					Ajout d'une matiere </a></td>
-		</tr>
+  <!-- Custom styles for this template -->
+  <link href="${pageContext.request.contextPath}/assets/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="${pageContext.request.contextPath}/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+<jsp:include page="/Fragments/Header.jsp" />
+
+	<h1 id="TitreListe">
+		Liste des matières
+	</h1>
+  
+       <div class="card shadow mb-4">
+            
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+                  <thead class="thead-blue">
+                  <tr>
+				<th id="Ajout" colspan="8"><a
+					href="${pageContext.request.contextPath}/matiere/add-matiere-form"><img
+						id="LogoAjout"
+						src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png" width="5%"><span>Ajouter
+							Matiere</span></a></th>
+			</tr>
+                    <tr>
+				<th>Identifiant</th>
+				<th>Libelle</th>
+				<th>Fk Enseignant</th>
 
 
-		<tr>
-			<th>IdMatiere</th>
-			<th>Libelle</th>
-			<th>FkEnseignant</th>
-			
-
-			<th>Modifier</th>
-		<th>Eliminer</th>
-</tr>
-		<!-- données de la table
-    -->
-		<c:forEach items="${attribut_liste_matiere}" var="mat">
-			<tr>
-				<td>${mat.idMatiere}</td>
-				<td>${mat.libelle}</td>
-			 <td>${mat.fkEnseignant}</td> 
+				<th>Modifier</th>
+				<th>Supprimer</th>
 				
- 
+			</tr>
+                  </thead>
+                  
+                  <tbody>
+                    <c:forEach items="${attribut_liste_matiere}" var="mat">
+				<tr>
+					<td>${mat.idMatiere}</td>
+					<td>${mat.libelle}</td>
+					<td>${mat.fkEnseignant}</td>
 
-<!-- au click sur le lien : envoie d'ue requete HTTP en Get vers la méthode "afficherFormulaireModification()" 
+
+
+					<!-- au click sur le lien : envoie d'ue requete HTTP en Get vers la méthode "afficherFormulaireModification()" 
 passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'employe à modifier
  -->
-				<td>
-				<a href="${pageContext.request.contextPath}/matiere/update-matiere-form?idmatiere=${mat.idMatiere}">
-						modifier
-						</a>
-						</td>
-				<!-- suppression -->
-				<td>
-					<!-- au click sur le lien : envoie d'une requete http get vers la méthode supprimer -->
-					<a
-					href="${pageContext.request.contextPath}/matiere/delete/${mat.idMatiere}">
-						supprimer</a>
-				</td>
+					<td><a
+						href="${pageContext.request.contextPath}/matiere/update-matiere-form?idmatiere=${mat.idMatiere}">
+							<img
+							src="${pageContext.request.contextPath}/assets/images/pencil.svg">
+					</a></td>
+					<!-- suppression -->
+					<td>
+						<!-- au click sur le lien : envoie d'une requete http get vers la méthode supprimer -->
+						<a
+						href="${pageContext.request.contextPath}/matiere/delete/${mat.idMatiere}">
+							<img
+							src="${pageContext.request.contextPath}/assets/images/trash.svg">
+					</a>
+					</td>
 
 
-			</tr>
+				</tr>
 
-		</c:forEach>
+			</c:forEach>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          	<jsp:include page="/Fragments/footer.jsp" />
+	<!-- script thomas -->
+	<script
+		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"
+		type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"
+		type="text/javascript"></script>
+		<!-- script pour tricher -->
+			 <!-- Bootstrap core JavaScript-->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
 
-		</table>
+  <!-- Core plugin JavaScript-->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="${pageContext.request.contextPath}/assets/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="${pageContext.request.contextPath}/assets/js/jquery.dataTables.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="${pageContext.request.contextPath}/assets/js/datatables-demo.js"></script>
 
 </body>
 </html>
