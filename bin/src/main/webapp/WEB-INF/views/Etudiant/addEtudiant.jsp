@@ -3,68 +3,95 @@
 <%-- ajout de la taglib de spring mvc form --%>
 <%@taglib prefix="form"  uri="http://www.springframework.org/tags/form" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/FormEtudiant.css">
+
+<style type="text/css">
+.erreurs_validation{color: red; 
+font-style: italic; 
+border: 1px dotted red; 
+margin: 15px;}
+
+</style>
 </head>
 <body>
 
-<h1>Formulaire d'ajout d'un étudiant</h1>
+<jsp:include page="/Fragments/Header.jsp"/>
 
+<h1 id="TitreForm">Formulaire d'ajout d'un Etudiant</h1>
 
-
-	<form:form modelAttribute="etudiantAddCommand" method="POST" action="${pageContext.request.contextPath}/etudiant/add">
 	
-		<table width="60%">
-			
-			
-			<tr>
-				<td><form:label path="motDePasse">MDP</form:label></td>
-				<td><form:input type="password"  path="motDePasse"/> </td>
-			</tr>
-			
-			<tr>
-				<td><form:label path="nom">Nom</form:label></td>
-				<td><form:input path="nom"/> </td>
-			</tr>
-			
-			<tr>
-				<td><form:label path="prenom">Prenom</form:label></td>
-				<td><form:input path="prenom"/></td>
-			</tr>
-			
-			<tr>
-				<td><form:label path="email">Email</form:label></td>
-				<td><form:input type="email" path="email"/></td>
-			</tr>
-			
-			<tr>
-				<td><form:label path="photo">Photo</form:label></td>
-				<td><form:input path="photo"/></td>
-			</tr>
-			<%--
-			<tr>
-				<td><form:label path="uploadedPhoto">Photo</form:label></td>
-				<td><form:input type="file"  path="uploadedPhoto"/></td>
-				enctype="multipart/form-data" 
-			</tr>
-			 --%>
-			<tr>
-				<td><form:label path="dateNaissance">Date de Naissance</form:label></td>
-				<td><form:input type="date" path="dateNaissance"/></td>
-			</tr>
-			 
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="Ajouter">
-				</td>
-			</tr>
-		
-		</table>
+	<form:form enctype="multipart/form-data" modelAttribute="etudiantAddCommand" method="POST"
+        action="${pageContext.request.contextPath}/etudiant/add">
+        <div style="width: 80%;margin: auto;">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <form:label path="nom">Nom</form:label>
+                        <form:input type="text" class="form-control" path="nom" required="true"
+                            pattern="[A-Z][A-Za-z -]+"/>
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-5">
+                    <form:label path="prenom">Prénom</form:label>
+                        <form:input type="text" class="form-control" path="prenom" required="true"
+                            pattern="[A-Z][A-Za-z -]+"/>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <form:label path="email">Email</form:label>
+                        <form:input type="text" class="form-control" path="email" required="true"/>
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-5">
+                    <form:label path="motDePasse">Mot de Passe</form:label>
+                    <form:input id="champPassword" type="password" class="form-control" path="motDePasse"
+                            required="true"/>
+                    <a onclick="changeTypeInput(event)" href="#" style="color: #4db3e9 ;">Afficher/Masquer</a>
+                </div>
+            </div>
+
+            <form:label path="dateNaissance">Date de Naissance : </form:label>
+            <form:input id="contrainteDate" type="date" path="dateNaissance" max="" required="true" />
+            <form:errors path="dateNaissance" cssStyle="color : green; font-style: italic;" />
+
+            <form:label id="inputFile" path="uploadedPhoto">Photo : </form:label>
+            <form:input  type="file" accept=".png, .jpg, .jpeg, .svg" path="uploadedPhoto" required="true" />
+
+            <div id="adresseForm">Adresse (optionnelle)</div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <form:label path="adresse.rue">Rue</form:label>
+                        <form:input type="text" class="form-control" path="adresse.rue" pattern="[0-9]{1,3}[ ][A-Za-z' -]+"/>
+                </div>
+                <div class="form-group col-md-4">
+                    <form:label path="adresse.ville">Ville</form:label>
+                        <form:input type="text" class="form-control" path="adresse.ville" patern="[A-Z][A-Za-z' -]+"/>
+                        
+                </div>
+                <div class="form-group col-md-2">
+                    <form:label path="adresse.codePostal">Code Postal</form:label>
+                        <form:input type="text" class="form-control" path="adresse.codePostal" pattern="[0-9]{5}"/>
+                </div>
+            </div>
+
+            <input id="inputSubmit" type="submit" class="btn btn-primary" value="Ajouter Etudiant"/>
+        </div>
+    </form:form>
 	
-	</form:form>
+	<jsp:include page="/Fragments/footer.jsp" />
+	
+	 <script src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/scripts/FormEtudiant.js"></script>
 
 </body>
 </html>

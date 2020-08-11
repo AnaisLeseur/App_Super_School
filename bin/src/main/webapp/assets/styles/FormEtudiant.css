@@ -1,0 +1,27 @@
+#TitreForm{
+	font-weight: bold;
+	color: #2b73b3;
+	margin-top:2rem;
+	margin-left: 3rem;
+	margin-bottom: 2rem;
+	text-decoration:underline; 
+}
+
+#inputFile{
+	margin-left: 5rem;
+}
+
+#adresseForm{
+	margin-top: 3rem;
+	margin-bottom: 1.5rem;
+	color: #2b73b3;
+	text-decoration: underline;
+	font-size: 1.5rem;
+}
+
+#inputSubmit{
+	margin-top: 2rem;
+	margin-bottom: 5rem;
+	width: 10rem;
+}
+

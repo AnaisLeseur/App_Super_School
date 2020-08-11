@@ -1,2 +1,54 @@
-coucou
-c'est adrien qui tente d'ouvrir son projet #tropdrole
+MODIF A FAIRE 
+
+
+Index.jsp: 
+-----------
+	> header / footer 
+	> "journal des news de l'école" genre 3 articles bidons (les inscriptions pour l'an prochain / options disponibles / ...
+	> if non connecté affiche => Se connecter ; sinon Se déconnecter
+
+
+Header :
+---------
+	> nom pour la connexion : if connecté : "Bonjour XX", sinon "Bienvenue,"
+	> lien dans la navbar 
+
+Footer: 
+--------
+	> copyright pb affichage
+
+
+Pour Adresse :
+---------------
+	> dans liste etudiant / admin / enseignant => lors de l'ajout => mettre possibilité ajout adresse 
+	> dans see-X.jsp => afficher l'adresse liée ou "pas d'adresse liée" et lien pour lier une adresse
+
+Security :
+----------
+	> vérifier les pages accessibles ou non selon l'authentification ! 
+
+Aide :
+-------
+	> 404 : sur "To Aide" dans index.jsp 
+	> faire une présentation header / footer 
+	> faire une page de récup de l'aide par les etu / enseignant
+
+Site multilingues:
+------------------
+	> ? 
+
+Exercice associés aux cours :
+------------------------------
+	> ? 
+
+gérer des services d’envoi par e-mail ou services Web :
+-------------------------------------------------------
+	> ? 
+
+Pour etudiant dans promo / matière dans ajouter un cours ...
+------------------------------------------------------------
+	> faire des choix déroulant pour choisir les liens a faire 
+
+Dans liste cours :
+------------------
+	> colonne 1 a ajouter pour faire clean 
