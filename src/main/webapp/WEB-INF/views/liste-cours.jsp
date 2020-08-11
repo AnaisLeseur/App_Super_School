@@ -45,7 +45,7 @@
            <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
              <thead class="thead-blue">
                	<tr>
-					<th id="Ajout" colspan="8">
+					<th id="Ajout" colspan="9">
 						<a href="${pageContext.request.contextPath}/cours/add-cours-form">
 							<img id="LogoAjout"
 								src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png">

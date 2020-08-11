@@ -23,13 +23,13 @@
 	<jsp:include page="/Fragments/Header.jsp"/>
 	
 	<div id="TitreForm">
-		<h1>Formulaire d'un cours à ajouter</h1>
+		<h1>Formulaire d'un cours ï¿½ ajouter</h1>
 	</div>
 
 	<%--
         > modelAttribute = le nom  de l'objet de commande definit dans la methode afficherFormulaireAjout du controlleur
         
-        > à la soumission du formulaire : invocation de la méthode "ajouterEmployerBdd"
+        > ï¿½ la soumission du formulaire : invocation de la mï¿½thode "ajouterEmployerBdd"
                                           "EmplpoerController" avec une requete HTTP en post et l'url "/employes/add"
           
         
