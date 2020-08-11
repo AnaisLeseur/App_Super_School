@@ -38,7 +38,6 @@ public class Etudiant extends Personne{
 	private Date dateNaissance;
 	
 	@ManyToMany(mappedBy="listeEtudiants", fetch=FetchType.EAGER)
-	
 	private List<Promotion> listePromotions = new ArrayList<>();
 	
 	@OneToMany(mappedBy="etudiantEC",cascade=CascadeType.ALL)

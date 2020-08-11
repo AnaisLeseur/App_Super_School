@@ -76,6 +76,9 @@ public class EtudiantController {
 		binder.registerCustomEditor(Date.class,"dateNaissance", orderDateEditor);
 	}
 
+	// ------------------------------------------------------//
+	// -----------------Get Etudiant-------------------------//
+	// ------------------------------------------------------//
 	
 	
 	@RequestMapping(value = "/etudiant/liste", method = RequestMethod.GET)
@@ -87,6 +90,16 @@ public class EtudiantController {
 		// Renvoi du nom logique de la vue
 		return "Etudiant/listeEtudiant";
 	}// end recupererListeEmployeBdd()
+	
+	
+	@RequestMapping(value = "/etudiant/see-etudiant/{etudiantID}", method = RequestMethod.GET)
+	public ModelAndView ConsulterEtudiant(@PathVariable("etudiantID") int pId) {
+
+		Etudiant etudiant = etudiantService.findById(pId);
+		
+		// Return new ModelAndView(viewName, modelName, modelObject)
+		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiant );
+	}
 
 	
 	// --------------------------------------------------------//
@@ -178,7 +191,7 @@ public class EtudiantController {
 	public String modifierEtudiant(@ModelAttribute("etudiantUpdateCommand") @Validated Etudiant pEtudiant,
 			BindingResult bindingResult) {
 
-		etudiantValidator.validateUpdate(pEtudiant, bindingResult);
+		etudiantValidator.validateAdd(pEtudiant, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 
@@ -220,6 +233,8 @@ public class EtudiantController {
 				}
 			}
 
+			pEtudiant.setListePromotions(etudiantService.findListPromoByIdEtudiant(pEtudiant.getIdentifiant()));
+			
 			// Modification de l'étudiant dans la BDD
 			etudiantService.modifier(pEtudiant);
 
@@ -242,15 +257,6 @@ public class EtudiantController {
 
 		// Redirection
 		return "redirect:/etudiant/liste";
-	}
-
-	@RequestMapping(value = "/etudiant/see-etudiant/{etudiantID}", method = RequestMethod.GET)
-	public ModelAndView ConsulterEtudiant(@PathVariable("etudiantID") int pId) {
-
-		Etudiant etudiant = etudiantService.findById(pId);
-		
-		// Return new ModelAndView(viewName, modelName, modelObject)
-		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiant );
 	}
 	
 	
