@@ -2,87 +2,119 @@
     pageEncoding="UTF-8"%>
     
     
-   <!--  ajout de la taglib de spring mvc 'form' -->
-   <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
- 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <!--  ajout de la taglib de spring mvc 'form' -->
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<!DOCTYPE>
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Modification d'un administrateur</title>
+	<title>Modification d'un administrateur</title>
+
+ 	<!--  Feuille de style -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/FormEtudiant.css">
+	
 </head>
+
 <body>
-<a href="${pageContext.request.contextPath}/index.jsp">Retour à la page d'accueil</a>
 
 
 
+	<!--  header -->
+	<jsp:include page="/Fragments/Header.jsp"/>
 
-	<br/><br/>
 	
-	<div align="center">
-		<h2>Formulaire de modification d'un administrateur</h2>
-	</div>
-
-	<br/>
+	<h1 id="TitreForm">Formulaire de modification d'un administrateur</h1>
 	
-	<div align="center">
+	<%-- affichage des tous les msg d'erreur  --%>
+	<form:errors path="*" cssClass="erreurs_validation" element="div"/>
 		
-		<!-- 
-				> modelAttribute : le nom de l'objet de commande defini dans la methode 'afficherFormModificationAdmin' de 'AdministrateurController'
-			
-				> a la sousmission du formulaire => invocation de la meth 'modifierAdminBdd' de 'AdministrateurController' avec une rqt http en POST 
-		
-		 -->
+		<!--  formulaire pour la modification -->
 		<form:form 	modelAttribute="adminModifCommand" 
 					method="POST" 
 					action="${pageContext.request.contextPath}/administrateurs/update">
-					
-			<%-- affichage des tous les msg d'erreur  --%>
-			<form:errors path="*" cssClass="erreurs_validation" element="div"/>
-					
-			<table width="60%">
+        	
+        	<!--  Récup de l'id de l'admin à modifier dans un champ caché  -->
+			<form:hidden path="identifiant"/>
 			
-				<!--  Récup de l'id de l'admin à modifier dans un champ caché  -->
-				<tr>
-					<td> <form:hidden path="identifiant"/> </td>
-				</tr>
-				
-				<tr>
-					<td><form:label path="nom">Nom :</form:label> </td>
-					<td><form:input path="nom"/> </td>
-					<td> <form:errors path="nom" cssStyle="	color: red; font-style: italic;" /> </td>
-				</tr>			
-			
-				<tr>
-					<td><form:label path="prenom">Prenom :</form:label></td>
-					<td><form:input path="prenom"/></td>
-					<td> <form:errors path="prenom" cssStyle="	color: red; font-style: italic;" /> </td>
-				</tr>			
-			
-				<tr>
-					<td><form:label path="email">Email : </form:label></td>
-					<td><form:input path="email"/></td>
-					<td> <form:errors path="email" cssStyle="	color: red; font-style: italic;" /> </td>
-				</tr>
+	        <div style="width: 80%; margin: auto;">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <form:label path="nom">Nom</form:label>
+                        <form:input type="text" class="form-control" path="nom" required="true"
+                            		pattern="[A-Z][A-Za-z -]+" placeholder="Nom"/>
+                </div>
+                
+                <div class="form-group col-md-8"></div>
+                
+                <div class="form-group col-md-5">
+                    <form:label path="prenom">Prénom</form:label>
+                        <form:input type="text" class="form-control" path="prenom" required="true"
+                            		pattern="[A-Z][A-Za-z -]+" placeholder="Prenom"/>
+                </div>
+                
+                <div class="form-group col-md-8"></div>
 
-				<tr>
-					<td><form:label path="motDePasse">MDP :</form:label></td>
-					<td><form:input type="password" required="true" path="motDePasse"/> </td>
-					<td> <form:errors path="motDePasse" cssStyle="	color: red; font-style: italic;" /> </td>
-				</tr>
-					
-				
-				<tr>
-					<td colspan="3">
-						<input type="submit" value="Modifier">
-					</td>
-				</tr>		
-			
-			
-			</table>
+                <div class="form-group col-md-5">
+                    <form:label path="email">Email</form:label>
+                        <form:input type="text" class="form-control" path="email" required="true"
+                       				 placeholder="email@mail.com" />
+                </div>
 
-		</form:form>
-	</div>
+                <div class="form-group col-md-8"></div>
+                
+                <div class="form-group col-md-5">
+                    <form:label path="motDePasse">Mot de Passe</form:label>
+                    <form:input id="champPassword" type="password" class="form-control" path="motDePasse"
+                           		 required="true" placeholder="Mot de Passe"/>
+                    <a onclick="changeTypeInput(event)" href="#" style="color: #4db3e9 ;">Afficher/Masquer</a>
+                </div>
+            </div>
+
+          	<br/> 
+          	
+            <div id="adresseForm">Adresse (optionnelle)</div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <form:label path="adresse.rue">Rue</form:label>
+                        <form:input type="text" class="form-control" path="adresse.rue" 
+                        			pattern="[0-9]{1,3}[ ][A-Za-z' -]+" placeholder="123 rue de la republique" />
+                </div>
+                
+                <div class="form-group col-md-8"></div>
+                
+                <div class="form-group col-md-5">
+                    <form:label path="adresse.codePostal">Code Postal</form:label>
+                        <form:input type="text" class="form-control" path="adresse.codePostal" 
+                        			pattern="[0-9]{5}" placeholder="12345"/>
+                </div>
+                
+                <div class="form-group col-md-8"></div>
+                
+                <div class="form-group col-md-5">
+                    <form:label path="adresse.ville">Ville</form:label>
+                        <form:input type="text" class="form-control" path="adresse.ville" 
+                        			patern="[A-Z][A-Za-z' -]+" placeholder="Ville"/>
+                        
+                </div>
+               
+            </div>
+
+            <button id="inputSubmit" class="btn btn-primary" type="submit">Modifier l'administrateur</button>
+        </div>
+    </form:form>
+	
+	
+	<!--  Footer  -->
+	<jsp:include page="/Fragments/footer.jsp" />
+	
+	
+	<!--  Script JS -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/scripts/FormEtudiant.js"></script>
 	
 
 </body>

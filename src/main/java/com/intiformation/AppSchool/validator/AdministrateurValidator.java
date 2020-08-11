@@ -37,20 +37,59 @@ public class AdministrateurValidator implements Validator {
 		@Override
 		public void validate(Object objetAValider, Errors errors) {
 
-
-		
 			// 2. validation du champ motDePasse
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "motDePasse", "required.motDePasse", "le champs Mot de passe est obligatoire");
 			
 			// 2. validation du champ nom
-					ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nom", "required.nomEnseignant", "le champs nom est obligatoire");
-					
-					// 2. validation du champ penom
-					ValidationUtils.rejectIfEmptyOrWhitespace(errors, "prenom", "required.prenomEnseignant", "le champs prenom est obligatoire");
-					
-					// 2. validation du champ email
-					ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required.emailEnseignant", "le champs email est obligatoire");
-					
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nom", "required.nomEnseignant", "le champs nom est obligatoire");
+			
+			// 2. validation du champ penom
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "prenom", "required.prenomEnseignant", "le champs prenom est obligatoire");
+			
+			// 2. validation du champ email
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required.emailEnseignant", "le champs email est obligatoire");
+			
+			
+			// vérif de l'adresse
+			Administrateur administrateur = (Administrateur) objetAValider;
+
+			if (!((administrateur.getAdresse().getRue().isEmpty() && administrateur.getAdresse().getVille().isEmpty()
+					&& administrateur.getAdresse().getCodePostal().isEmpty())
+					|| (!administrateur.getAdresse().getRue().isEmpty() && !administrateur.getAdresse().getVille().isEmpty()
+							&& !administrateur.getAdresse().getCodePostal().isEmpty()))) {
+
+				errors.rejectValue("adresse", "notallowed.adresse", "Remplissez tout les champs de l'adresse ou aucun");
+
+			}// end if 
+		
 	}// end validate
+		
+
+		public void validateUpdate(Object objetAValider, Errors errors) {
+
+			// 2. validation du champ motDePasse
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "motDePasse", "required.motDePasse", "le champs Mot de passe est obligatoire");
+			
+			// 2. validation du champ nom
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nom", "required.nomEnseignant", "le champs nom est obligatoire");
+			
+			// 2. validation du champ penom
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "prenom", "required.prenomEnseignant", "le champs prenom est obligatoire");
+			
+			// 2. validation du champ email
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required.emailEnseignant", "le champs email est obligatoire");
+			
+			
+			// vérif de l'adresse
+			Administrateur administrateur = (Administrateur) objetAValider;
+
+			if (!(!administrateur.getAdresse().getRue().isEmpty() && !administrateur.getAdresse().getVille().isEmpty()
+							&& !administrateur.getAdresse().getCodePostal().isEmpty())) {
+
+				errors.rejectValue("adresse", "notallowed.adresse", "Remplissez tout les champs de l'adresse ou aucun");
+
+			}// end if 
+		
+	}// end validateUpdate
 
 }// end class

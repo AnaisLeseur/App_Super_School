@@ -155,37 +155,33 @@ public class AdministrateurController {
 	 */
 	@RequestMapping(value="/administrateurs/add", method=RequestMethod.POST)
 	public String ajouterAdminBdd(@ModelAttribute("adminCommand") @Validated Administrateur pAdmin, 
-									ModelMap model,
 									BindingResult resultatValidation) {
 		
-		// récup du mdp mis dans le formulaire
-		String MdpNonCrypt = pAdmin.getMotDePasse();
-		
-		// invocation de la methode pour le cryptage
-		String MdpCrypt = PasswordEncoderGenerator.cryptageMdP(MdpNonCrypt);
-		
-		pAdmin.setMotDePasse(MdpCrypt);
-
 		// application du validateur sur l'objet pAdmin
 		adminValidator.validate(pAdmin, resultatValidation);
 		
-		// validation
 		if (resultatValidation.hasErrors()) {
-			
 			// si on entre dans le IF => la validation a détecté des erreurs
 			
 			// => redirection vers la page du formulaire d'ajout : 'Personnel/ajouter-admin.jsp"
 			return "Personnel/ajouter-admin"; // nom logique de la vue 
 			
 		} else {
-			
 			// la validation n'a pas détecté d'erreurs
+			
+			// récup du mdp mis dans le formulaire
+			String MdpNonCrypt = pAdmin.getMotDePasse();
+			
+			// invocation de la methode pour le cryptage
+			String MdpCrypt = PasswordEncoderGenerator.cryptageMdP(MdpNonCrypt);
+			
+			pAdmin.setMotDePasse(MdpCrypt);
 
-		// 1. ajout de l'admin à la bdd via la couche service 
-		adminService.ajouter(pAdmin);
+			// 1. ajout de l'admin à la bdd via la couche service 
+			adminService.ajouter(pAdmin);
 		
-		// 2. redirection vers la page liste-administrateurs.jsp
-		return "redirect:/administrateurs/liste";
+			// 2. redirection vers la page liste-administrateurs.jsp
+			return "redirect:/administrateurs/liste";
 
 		}// end else
 	}// end ajouterAdminBdd
@@ -221,22 +217,40 @@ public class AdministrateurController {
 	 * @return: le nom logique de la vue (redirection)
 	 */
 	@RequestMapping(value="/administrateurs/update", method=RequestMethod.POST)
-	public String modifierAdminBdd(@ModelAttribute("adminModifCommand") Administrateur pAdminToUpdate, ModelMap model) {
+	public String modifierAdminBdd(@ModelAttribute("adminModifCommand") @Validated Administrateur pAdminToUpdate, 
+									BindingResult bindingResult) {
 		
-		// récup du mdp mis dans le formulaire
-		String MdpNonCryptToUpdate = pAdminToUpdate.getMotDePasse();
+		adminValidator.validateUpdate(pAdminToUpdate, bindingResult);
 		
-		// invocation de la methode pour le cryptage
-		String MdpCryptToUpdate = PasswordEncoderGenerator.cryptageMdP(MdpNonCryptToUpdate);
+		if (bindingResult.hasErrors()) {
+
+			return "Personnel/modifier-admin";
+
+		} else {
+			
+		//Si  !( MDP BDD = MDP input ) alors cryptage du nouveau MDP
+			System.out.println("pAdminToUpdate.getIdentifiant():" + pAdminToUpdate.getIdentifiant());
+			System.out.println("pAdminToUpdate.getIdentifiant().getMotDePasse():" + adminService.findById(pAdminToUpdate.getIdentifiant()).getMotDePasse());
+			System.out.println("equals(pAdminToUpdate.getMotDePasse():" + pAdminToUpdate.getMotDePasse());
+		if(!(adminService.findById(pAdminToUpdate.getIdentifiant()).getMotDePasse().equals(pAdminToUpdate.getMotDePasse()))) {
 		
-		pAdminToUpdate.setMotDePasse(MdpCryptToUpdate);
+			// récup du mdp mis dans le formulaire
+			String MdpNonCryptToUpdate = pAdminToUpdate.getMotDePasse();
+			
+			// invocation de la methode pour le cryptage
+			String MdpCryptToUpdate = PasswordEncoderGenerator.cryptageMdP(MdpNonCryptToUpdate);
+			
+			pAdminToUpdate.setMotDePasse(MdpCryptToUpdate);
+			
+			System.out.println("pAdminToUpdate.setMotDePasse(MdpCryptToUpdate);" + pAdminToUpdate.toString());
+		}// end if
 		
 		// 1. modif de l'admin dans la bdd via service
 		adminService.modifier(pAdminToUpdate);
 		
 		// 3. renvoi du nom de la vue logique de la vue :
 		return "redirect:/administrateurs/liste";
-		
+		}// end else
 	}// end modifierAdminBdd
 	
 	
