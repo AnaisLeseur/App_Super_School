@@ -60,12 +60,12 @@ public class EtudiantCours implements Serializable {
 		this.idEtudiantCours = idEtudiantCours;
 	}
 
-	public Boolean isAbsence() {
-		return absence;
-	}
-
 	public void setAbsence(Boolean absence) {
 		this.absence = absence;
+	}
+	
+	public Boolean getAbsence() {
+		return absence;
 	}
 
 	public String getMotif() {
@@ -91,6 +91,7 @@ public class EtudiantCours implements Serializable {
 	public void setCoursEC(Cours coursEC) {
 		this.coursEC = coursEC;
 	}
+	
 	
 	
 

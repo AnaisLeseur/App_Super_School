@@ -170,7 +170,7 @@
 					</thead>
 
 					<tbody>
-
+						
 						<c:forEach items="${etudiantSeeCommand.listeEtudiantCours}"
 							var="etudiantCours">
 							<tr>
@@ -178,14 +178,16 @@
 								<td>${etudiantCours.coursEC.libelle}</td>
 
 								<td>
-									<c:if test="${etudiantCours.absence}">Absent</c:if> 
-									<c:if test="${not etudiantCours.absence}">Présent</c:if>
-									<c:if test="${empty etudiantCours.absence}">-</c:if>
+									<c:choose>
+										<c:when test="${etudiantCours.absence}">Présent</c:when>
+										<c:when test="${empty etudiantCours.absence}">-</c:when>
+										<c:otherwise>Absent</c:otherwise>
+									</c:choose>
 								</td>
 								
 								
 								<td><a
-									href="${pageContext.request.contextPath}/etudiants/editEtudiantCours?idEtudiantCours=${etudiantCours.idEtudiantCours}&idEtudiant=${etudiantSeeCommand.identifiant}">
+									href="${pageContext.request.contextPath}/etudiants/edit-form-EtudiantCours/${etudiantCours.idEtudiantCours}">
 										<img
 										src="${pageContext.request.contextPath}/assets/images/pencil.svg">
 								</a></td>
@@ -197,7 +199,7 @@
 								</a></td>
 								
 							</tr>
-
+							
 						</c:forEach>
 						
 						<tr>

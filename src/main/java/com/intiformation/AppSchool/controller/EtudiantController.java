@@ -89,7 +89,6 @@ public class EtudiantController {
 
 	@InitBinder({ "etudiantAddCommand", "etudiantUpdateCommand", "etudiantBindPromo","etudiantBindEtudiantCours" })
 	public void bindingPreparation(WebDataBinder binder) {
-		System.out.println("dans le binder date");
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		CustomDateEditor orderDateEditor = new CustomDateEditor(dateFormat, true);
 		binder.registerCustomEditor(Date.class, "dateNaissance", orderDateEditor);
@@ -447,5 +446,25 @@ public class EtudiantController {
 		// Renvoi de l'etudiant dans la vue seeEtudiant
 		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiantService.findById(idEtudiant));
 	}
+	
+	@RequestMapping(value = "/etudiants/edit-form-EtudiantCours/{idEtudiantCours}", method = RequestMethod.GET)
+	public ModelAndView AfficherFormEtudiantCours(@PathVariable("idEtudiantCours") int idEtudiantCours) {
+				
+		// Renvoi de l'etudiant dans la vue seeEtudiant
+		return new ModelAndView("Etudiant/formEtudiantCours", "etudiantCoursEditCommand", etudiantCoursService.findById(idEtudiantCours));
+	}
+	
+	@RequestMapping(value ="/etudiant/editEtudiantCours", method = RequestMethod.POST)
+	public String EditEtudiantCoursFromEtudiant(@ModelAttribute("etudiantCoursEditCommand") EtudiantCours pEtudiantCours) {
+
+		if (pEtudiantCours.getEtudiantEC()==null) {
+			System.out.println("etudiantEC est null");
+		}else {
+			System.out.println(pEtudiantCours.getEtudiantEC().getIdentifiant());
+		}
+		
+		
+		return "redirect:/etudiant/liste";
+	}// end EditEtudiantCoursFromEtudiant()
 
 }
