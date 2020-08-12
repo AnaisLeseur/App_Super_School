@@ -2,9 +2,18 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+<%-- ajout de la taglib de spring mvc form --%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
 <!DOCTYPE html>
 <html>
-<head>
+<head
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" 
+	xmlns:p="http://primefaces.org/ui">
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Liste des cours</title>
@@ -63,6 +72,7 @@
 	                
 					<th scope="col">Modifier</th>
 					<th scope="col">Supprimer</th>
+					<th scope="col">Lier</th>
 				</tr>
 
 		</thead>
@@ -91,6 +101,22 @@
 							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
 						</a>
 					</td>
+					
+					<!-- lier cours à une matiere -->
+					<td>  
+						
+						<form:select path="">
+							  <form:option value="NONE" label="--- Select ---" />
+							  <form:options items="${attribut_listeMatiereBddPourAssos}" />
+				      	</form:select>
+                               
+	
+					</td>
+					
+					
+					
+					
+					
 				</tr>
 
 			</c:forEach>
@@ -99,6 +125,7 @@
       </div>
     </div>
   </div>
+  
   
   	<!-- footer -->
 	<jsp:include page="/Fragments/footer.jsp"></jsp:include> 

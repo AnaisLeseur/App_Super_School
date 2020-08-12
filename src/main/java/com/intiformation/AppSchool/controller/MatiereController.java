@@ -256,6 +256,16 @@ public class MatiereController {
 		
 		
 		
+
+		public List<Matiere> recupererListeMatiereBDDPourLierCours() {
+			
+			// 1. recup de la liste des employés dans la bdd via le service
+			List<Matiere> listeMatiereBdd = matiereService.findAllMatiere();
+			
+
+			return listeMatiereBdd;
+			
+		}//end recupListe
 		
 		
 }//end controller

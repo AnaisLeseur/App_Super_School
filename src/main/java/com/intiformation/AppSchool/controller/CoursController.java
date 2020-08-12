@@ -25,8 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.modele.Promotion;
 import com.intiformation.AppSchool.service.ICoursService;
+import com.intiformation.AppSchool.service.IMatiereService;
 import com.intiformation.AppSchool.service.IPromotionService;
 import com.intiformation.AppSchool.validator.CoursValidator;
 
@@ -43,7 +45,8 @@ public class CoursController {
 	@Autowired
 	private IPromotionService promotionService;
 	
-	
+	@Autowired
+	private IMatiereService matiereService;
 	
 
 	public void setPromotionService(IPromotionService promotionService) {
@@ -81,6 +84,12 @@ public class CoursController {
 		
 		// 2. on utilise model pour renvoyer la liste vers la vue 
 		model.addAttribute("attribut_liste_cours", listeCoursBdd);
+		
+		// récup de la liste des matières disponibles pour faire l'association
+		List<Matiere> listeMatiereBddPourAssos = matiereService.findAllMatiere();
+		
+		// on utilise model pour renvoyer la liste des matieres vers la vue 
+		model.addAttribute("attribut_listeMatiereBddPourAssos", listeMatiereBddPourAssos);
 		
 		// 3 renvoi du nom logique de la vue
 		/**
@@ -332,7 +341,30 @@ public class CoursController {
 		}
 		
 		
-	
+		/**
+		 * Lier le cours à une matière
+		 * 
+		 * @param 
+		 * @return View
+		 */
+		@RequestMapping(value = "/", method = RequestMethod.POST)
+		public String CoursMatiereLink(@ModelAttribute("CoursMatiereLink") Cours pCours) {
+
+
+			
+		// récup du cours à modifier 
+		// récup de la metière choisie 
+			
+		// 	
+		pCours.setMatiere();
+		
+		// modification du cours dans la bdd 
+		coursService.modfierCours(pCours);
+			
+		
+			
+			return "redirect:/cours/liste";
+		}// end BindPromotionToEtudiant()
 
 	
 }//end controller
