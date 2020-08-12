@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,7 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.modele.Cours;
+import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.Promotion;
 import com.intiformation.AppSchool.service.ICoursService;
+import com.intiformation.AppSchool.service.IPromotionService;
 import com.intiformation.AppSchool.validator.CoursValidator;
 
 @Controller // declaration de la classe comme controller spring mvc
@@ -35,6 +39,16 @@ public class CoursController {
 	
 	@Autowired
 	private CoursValidator coursValidator;
+	
+	@Autowired
+	private IPromotionService promotionService;
+	
+	
+	
+
+	public void setPromotionService(IPromotionService promotionService) {
+		this.promotionService = promotionService;
+	}
 
 	/**
 	 * setter de la couche service pour injection spring
@@ -221,6 +235,104 @@ public class CoursController {
 		return "redirect:/cours/liste";
 	}//end modifier
 	
+	// --------------------------------------------------------//
+		// ----------------Binding Promotion-----------------------//
+		// --------------------------------------------------------//
+		
+		@RequestMapping(value = "/cours/linkPromotion/{coursID}", method = RequestMethod.GET)
+		public String toLinkPromotion(@PathVariable("coursID") int pId, ModelMap model) {
+					
+			model.addAttribute("coursBindPromo", coursService.findByIdCours(pId));
+			
+			model.addAttribute("liste_Promotion", promotionService.findListNotLinkedToCours(pId));
+			
+			return "LinkPromotionToCours";
+		}// end toLinkPromotion
+		
+
+		/**
+		 * Conversion des id des promotions en objet Promotion
+		 * @param binder
+		 */
+		@InitBinder
+		public void bindingPreparationPromo(WebDataBinder binder) {
+			
+			binder.registerCustomEditor(List.class,"promotionControllerCours", new CustomCollectionEditor(List.class) {
+				
+	            protected Object convertElement(Object element) {
+	            	
+	                if (element != null) {
+	                    Integer Id = Integer.parseInt(element.toString());
+	                    Promotion promo = promotionService.findById(Id);
+	                    return promo;
+	                }//end if
+	                
+	                return null;
+	            }
+
+	        });
+		}//end InitBinder
+		
+		/**
+		 * Lie l'étudiant aux promotions sélectionnées
+		 * 
+		 * @param etudiant
+		 * @return View
+		 */
+		@RequestMapping(value = "/promotion/bindPromotionToCours", method = RequestMethod.POST)
+		public String BindPromotionToCours(@ModelAttribute("coursBindPromo") Cours pCours) {
+
+			coursService.modfierCours(pCours);
+			
+			Promotion promotion= pCours.getPromotion();
+
+			
+				
+				List<Cours> listeCours = promotion.getListeCours();
+				
+				//Si pEtudiant n'est pas dans la liste de la promotion, on l'ajoute
+				if (listeCours.indexOf(pCours)==-1) {
+					
+					listeCours.add(pCours);
+					promotion.setListeCours(listeCours);
+					promotionService.modifier(promotion);
+				}//end if	
+		
+			
+			return "redirect:/promotion/liste";
+		}// end BindPromotionToEtudiant()
+		
+		
+		@RequestMapping(value="/cours/deletePromotion", method=RequestMethod.GET)
+		public ModelAndView DeletePromotionFromEtudiant(@RequestParam("idPromo")int idPromotion, @RequestParam("idCours")int idCours) {
+			
+			//Recup de la promotion
+			Promotion promotion = promotionService.findById(idPromotion);
+			
+			//Suppression de l'etudiant de la propriété listeEtudiant de Promotion
+			List<Cours> listeEtudiant = promotion.getListeCours();
+			
+			int index=0;
+			
+			for (Cours etudiants : listeEtudiant) {
+				if (etudiants.getIdCours()== idCours) {
+					break;
+				}
+				index++;
+			}
+			
+			listeEtudiant.remove(index);
+			
+			//Sauvegarde dans la BDD
+			promotion.setListeCours(listeEtudiant);
+			promotionService.modifier(promotion);
+			
+			//Renvoi de l'etudiant dans la vue seeEtudiant	
+			return new ModelAndView("Cours/seeEtudiant", "coursSeeCommand", coursService.findByIdCours(idCours) );
+		}
+		
+		
 	
+
 	
 }//end controller

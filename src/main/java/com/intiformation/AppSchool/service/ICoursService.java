@@ -3,6 +3,8 @@ package com.intiformation.AppSchool.service;
 import java.util.List;
 
 import com.intiformation.AppSchool.modele.Cours;
+import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.Promotion;
 
 
 /**
@@ -24,6 +26,10 @@ public interface ICoursService {
 	
 	/*__________ Méthodés spécifiques pour le gestion des Cours __________*/ 
 	public List<Cours> recupCoursParMatiere (int pIdMatiere);
+	
+public Cours ajouterReturnCours(Cours pCours);
+	
+	public List<Promotion> findListPromoByIdCours(int pIdCours);
 	
 	
 }//end interface

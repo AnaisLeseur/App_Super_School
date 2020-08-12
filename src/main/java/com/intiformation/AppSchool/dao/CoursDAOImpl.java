@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Cours;
+import com.intiformation.AppSchool.modele.Promotion;
 
 
 @Repository
@@ -185,5 +186,54 @@ public class CoursDAOImpl implements ICoursDAO {
 			throw e;
 		} // end catch
 	}// end FindCoursAssociesAMatiere
+
+
+	@Override
+	public Cours addReturnCours(Cours pCours) {
+		// 1. Recuperation de la session d'hibernate via la factory
+				Session session = this.sessionFactory.getCurrentSession();
+
+				try {
+
+					// 2. Ajout dans la BDD
+					session.save(pCours);
+					session.flush();
+					return pCours;
+
+				} catch (HibernateException e) {
+
+					// cas erreur : annulation de la transaction
+					System.out.println("... (pCours) Erreur lors de addReturnCours ....");
+
+				} // end catch
+				return null;
+	}
+
+
+	@Override
+	public List<Promotion> getListPromoByIdCours(int pIdCours) {
+		try {
+
+			// 1. Recuperation de la session d'hibernate via la factory
+			Session session = this.sessionFactory.getCurrentSession();
+
+			// 2. Definition de la requête à envoyer
+			Query<Promotion> query = session.createQuery("select c.promotion FROM Cours c where c.idCours=:identifiant");
+
+			query.setParameter("identifiant", pIdCours);
+			
+			// 3. Envoi + Execution + Resultat
+			List<Promotion> listePromoByCours = query.getResultList();
+
+			// 4. renvoi de la liste
+			return listePromoByCours;
+
+		} catch (Exception e) {
+
+			System.out.println("... (EtudiantDAOImpl) Erreur lors de la récupération de la liste des promotions ....");
+
+		} // end catch
+		return null;
+	}
 
 }//end class
