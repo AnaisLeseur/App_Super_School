@@ -13,32 +13,26 @@
 	<h1 id="TitreForm">Formulaire d'envoie de mail</h1>
 
 	
-	<form method="POST" action="${pageContext.request.contextPath}/mail/send">
+	<form:form modelAttribute="mailToSend" method="POST" action="${pageContext.request.contextPath}/mail/send">
 
         <div style="width: 80%;margin: auto;">
             <div class="form-row">
                 <div class="form-group col-md-5">
-                    <label for="fromMail">Votre mail</label>
-                        <input type="text" class="form-control" required="true" id="fromMail"/>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-5">
-                    <label for="sujetMail">Objet du mail</label>
-                        <input type="text" class="form-control" required="true" id="sujetMail"/>
+                    <form:label path="Subject">Objet du mail</form:label>
+                        <form:input type="text" class="form-control" required="true" path="Subject"/>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-5">
-                    <label for="contentMail">Contenu du mail</label>
-                        <input type="text" class="form-control" required="true" id="contentMail"/>
+                    <form:label path="content">Contenu du mail</form:label>
+                        <form:input type="text" class="form-control" required="true" path="content"/>
                 </div>
             </div>
 
             <input id="inputSubmit" type="submit" class="btn btn-primary" value="Envoyer email"/>
         </div>
-    </form>
+    </form:form>
 
 </body>
 </html>
