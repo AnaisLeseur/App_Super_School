@@ -3,10 +3,12 @@ package com.intiformation.AppSchool.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.IEtudiantCoursDAO;
 import com.intiformation.AppSchool.modele.EtudiantCours;
 
+@Service
 public class EtudiantCoursServiceImp implements IEtudiantCoursService{
 	
 	@Autowired 

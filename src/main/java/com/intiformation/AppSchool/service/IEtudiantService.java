@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.EtudiantCours;
 import com.intiformation.AppSchool.modele.Promotion;
 
 public interface IEtudiantService extends IUniverselService<Etudiant>{
@@ -11,6 +12,9 @@ public interface IEtudiantService extends IUniverselService<Etudiant>{
 	public Etudiant ajouterReturnEtudiant(Etudiant pEtudiant);
 	
 	public List<Promotion> findListPromoByIdEtudiant(int pIdEtudiant);
+	
+	public List<EtudiantCours> findListEtudiantCoursByIdEtudiant(int pIdEtudiant);
+
 	
 	public List<Cours> findListCoursNotLinkedToEtudiant (int pIdEtudiant);
 

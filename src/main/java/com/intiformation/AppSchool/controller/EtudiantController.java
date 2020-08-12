@@ -29,8 +29,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.cryptage.PasswordEncoderGenerator;
+import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.EtudiantCours;
 import com.intiformation.AppSchool.modele.Promotion;
+import com.intiformation.AppSchool.service.ICoursService;
+import com.intiformation.AppSchool.service.IEtudiantCoursService;
 import com.intiformation.AppSchool.service.IEtudiantService;
 import com.intiformation.AppSchool.service.IPromotionService;
 import com.intiformation.AppSchool.validator.EtudiantValidator;
@@ -40,9 +44,15 @@ public class EtudiantController {
 
 	@Autowired
 	private IEtudiantService etudiantService;
+	
+	@Autowired
+	private IEtudiantCoursService etudiantCoursService;
 
 	@Autowired
 	private IPromotionService promotionService;
+	
+	@Autowired
+	private ICoursService coursService;
 
 	@Autowired
 	private ServletContext context;
@@ -51,12 +61,22 @@ public class EtudiantController {
 	private EtudiantValidator etudiantValidator;
 
 	// Setter pour injection
+	
+	
 	public void setPromotionService(IPromotionService promotionService) {
 		this.promotionService = promotionService;
 	}
 
-	public void setValidator(EtudiantValidator validator) {
-		this.etudiantValidator = validator;
+	public void setEtudiantCoursService(IEtudiantCoursService etudiantCoursService) {
+		this.etudiantCoursService = etudiantCoursService;
+	}
+
+	public void setEtudiantValidator(EtudiantValidator etudiantValidator) {
+		this.etudiantValidator = etudiantValidator;
+	}
+
+	public void setCoursService(ICoursService coursService) {
+		this.coursService = coursService;
 	}
 
 	public void setEtudiantService(IEtudiantService etudiantService) {
@@ -67,8 +87,9 @@ public class EtudiantController {
 		this.context = context;
 	}
 
-	@InitBinder({ "etudiantAddCommand", "etudiantUpdateCommand", "etudiantBindPromo" })
+	@InitBinder({ "etudiantAddCommand", "etudiantUpdateCommand", "etudiantBindPromo","etudiantBindEtudiantCours" })
 	public void bindingPreparation(WebDataBinder binder) {
+		System.out.println("dans le binder date");
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		CustomDateEditor orderDateEditor = new CustomDateEditor(dateFormat, true);
 		binder.registerCustomEditor(Date.class, "dateNaissance", orderDateEditor);
@@ -301,6 +322,8 @@ public class EtudiantController {
 
 		etudiantService.modifier(pEtudiant);
 
+		//Promotion côté maitre de la relation
+		//Obligation de faire l'update côté promotion
 		List<Promotion> listePromoSelected = pEtudiant.getListePromotions();
 
 		for (Promotion promotion : listePromoSelected) {
@@ -360,6 +383,69 @@ public class EtudiantController {
 		model.addAttribute("liste_Cours", etudiantService.findListCoursNotLinkedToEtudiant(pId));
 
 		return "Etudiant/LinkCoursToEtudiant";
-	}// end toLinkPromotion
+	}// end toLinkPromotion  
+	
+	
+	/**
+	 * Conversion des id des cours et des id des étudiants en objet EtudiantCours
+	 * @param binder
+	 */
+	@InitBinder
+	public void bindingPreparationEtudiantCours(WebDataBinder binder) {
+
+		binder.registerCustomEditor(List.class, "listeEtudiantCours", new CustomCollectionEditor(List.class) {
+
+			protected Object convertElement(Object element) {
+
+				if (element != null) {
+					String [] stringSplit = element.toString().split("-");
+					
+					Integer IdCours = Integer.parseInt(stringSplit[0]);
+					Cours cours = coursService.findByIdCours(IdCours);
+					
+					Integer IdEtudiant = Integer.parseInt(stringSplit[1]);
+					Etudiant etudiant = etudiantService.findById(IdEtudiant);
+					
+					return new EtudiantCours(etudiant, cours, null, "");
+				} // end if
+
+				return null;
+			}
+
+		});
+	}// end InitBinder
+
+	
+	
+	/**
+	 * Lie l'étudiant aux cours sélectionnées
+	 * @param etudiant
+	 * @return View
+	 */
+	@RequestMapping(value = "/etudiant/bindCoursToEtudiant", method = RequestMethod.POST)
+	public String BindCoursToEtudiant(@ModelAttribute("etudiantBindEtudiantCours") Etudiant pEtudiant) {
+
+		//Recuperation de la liste des EtudiantCours
+		List<EtudiantCours> listeEtudiantCours = pEtudiant.getListeEtudiantCours();
+		
+		//Ajout des EtudiantCours dans la BDD
+		for (EtudiantCours etudiantCours : listeEtudiantCours) {
+			etudiantCoursService.ajouter(etudiantCours);
+		}
+		
+		return "redirect:/etudiant/see-etudiant/"+pEtudiant.getIdentifiant();
+	}// end BindCoursToEtudiant()
+	
+	
+	
+	@RequestMapping(value = "/etudiants/deleteEtudiantCours", method = RequestMethod.GET)
+	public ModelAndView DeleteCoursFromEtudiant(@RequestParam("idEtudiantCours") int idEtudiantCours,
+			@RequestParam("idEtudiant") int idEtudiant) {
+		
+		etudiantCoursService.supprimer(idEtudiantCours);
+		
+		// Renvoi de l'etudiant dans la vue seeEtudiant
+		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiantService.findById(idEtudiant));
+	}
 
 }

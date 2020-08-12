@@ -25,7 +25,7 @@ public class EtudiantCours implements Serializable {
 	@JoinColumn(referencedColumnName="idCours")
 	private Cours coursEC;
 	
-	private boolean absence;
+	private Boolean absence;
 	
 	@Column(length=200)
 	private String motif;
@@ -35,14 +35,14 @@ public class EtudiantCours implements Serializable {
 	public EtudiantCours() {
 	}
 
-	public EtudiantCours(Etudiant etudiant, Cours cours, boolean absence, String motif) {
+	public EtudiantCours(Etudiant etudiant, Cours cours, Boolean absence, String motif) {
 		this.etudiantEC = etudiant;
 		this.coursEC = cours;
 		this.absence = absence;
 		this.motif = motif;
 	}
 
-	public EtudiantCours(int idEtudiantCours, Etudiant etudiant, Cours cours, boolean absence, String motif) {
+	public EtudiantCours(int idEtudiantCours, Etudiant etudiant, Cours cours, Boolean absence, String motif) {
 		this.idEtudiantCours = idEtudiantCours;
 		this.etudiantEC = etudiant;
 		this.coursEC = cours;
@@ -60,27 +60,11 @@ public class EtudiantCours implements Serializable {
 		this.idEtudiantCours = idEtudiantCours;
 	}
 
-	public Etudiant getEtudiant() {
-		return etudiantEC;
-	}
-
-	public void setEtudiant(Etudiant etudiant) {
-		this.etudiantEC = etudiant;
-	}
-
-	public Cours getCours() {
-		return coursEC;
-	}
-
-	public void setCours(Cours cours) {
-		this.coursEC = cours;
-	}
-
-	public boolean isAbsence() {
+	public Boolean isAbsence() {
 		return absence;
 	}
 
-	public void setAbsence(boolean absence) {
+	public void setAbsence(Boolean absence) {
 		this.absence = absence;
 	}
 
@@ -91,6 +75,24 @@ public class EtudiantCours implements Serializable {
 	public void setMotif(String motif) {
 		this.motif = motif;
 	}
+
+	public Etudiant getEtudiantEC() {
+		return etudiantEC;
+	}
+
+	public void setEtudiantEC(Etudiant etudiantEC) {
+		this.etudiantEC = etudiantEC;
+	}
+
+	public Cours getCoursEC() {
+		return coursEC;
+	}
+
+	public void setCoursEC(Cours coursEC) {
+		this.coursEC = coursEC;
+	}
+	
+	
 
 }
 

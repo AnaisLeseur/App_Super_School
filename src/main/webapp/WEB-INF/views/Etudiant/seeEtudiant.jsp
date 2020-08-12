@@ -177,18 +177,21 @@
 								<td>${etudiantCours.coursEC.idCours}</td>
 								<td>${etudiantCours.coursEC.libelle}</td>
 
-								<td><c:if test="${etudiantCours.absence}">Absent</c:if> <c:otherwise>Présent</c:otherwise>
+								<td>
+									<c:if test="${etudiantCours.absence}">Absent</c:if> 
+									<c:if test="${not etudiantCours.absence}">Présent</c:if>
+									<c:if test="${empty etudiantCours.absence}">-</c:if>
 								</td>
 								
 								
 								<td><a
-									href="${pageContext.request.contextPath}/etudiants/deletePromotion?idPromo=${pro.idPromotion}&idEtudiant=${etudiantSeeCommand.identifiant}">
+									href="${pageContext.request.contextPath}/etudiants/editEtudiantCours?idEtudiantCours=${etudiantCours.idEtudiantCours}&idEtudiant=${etudiantSeeCommand.identifiant}">
 										<img
 										src="${pageContext.request.contextPath}/assets/images/pencil.svg">
 								</a></td>
 								
 								<td><a
-									href="${pageContext.request.contextPath}/etudiants/deletePromotion?idPromo=${pro.idPromotion}&idEtudiant=${etudiantSeeCommand.identifiant}">
+									href="${pageContext.request.contextPath}/etudiants/deleteEtudiantCours?idEtudiantCours=${etudiantCours.idEtudiantCours}&idEtudiant=${etudiantSeeCommand.identifiant}">
 										<img
 										src="${pageContext.request.contextPath}/assets/images/x.svg">
 								</a></td>
@@ -198,7 +201,7 @@
 						</c:forEach>
 						
 						<tr>
-							<td colspan="3"><a
+							<td colspan="5"><a
 								href="${pageContext.request.contextPath}/etudiant/linkEtudiantCours/${etudiantSeeCommand.identifiant}">Ajouter
 									Cours</a></td>
 						</tr>

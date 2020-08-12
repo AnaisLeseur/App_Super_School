@@ -25,7 +25,7 @@
 
 
 	<form:form method="POST" modelAttribute="etudiantBindEtudiantCours"
-		action="${pageContext.request.contextPath}/promotion/bindPromotionToEtudiant">
+		action="${pageContext.request.contextPath}/etudiant/bindCoursToEtudiant">
 
 		<table class="table table-striped table-bordered table-hover">
 
@@ -46,8 +46,8 @@
 						<td>${cours.idCours}</td>
 						<td>${cours.libelle}</td>
 
-						<td><form:checkbox path="listePromotions"
-								value="${cours.idCours}" /></td>
+						<td><form:checkbox path="listeEtudiantCours"
+								value="${cours.idCours}-${etudiantBindEtudiantCours.identifiant}" /></td>
 					</tr>
 
 				</c:forEach>

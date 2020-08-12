@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="form"  uri="http://www.springframework.org/tags/form" %>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,10 +81,6 @@
 			<form:hidden path="photo"/>
 			<form:hidden path="identifiant"/>
 			<form:hidden path="adresse.idAdresse" />
-			
-			<c:forEach items="listePromotions" var="promo">
-				<form:hidden path="listePromotions" value="${promo.idPromotion }" />
-			</c:forEach>
 			
             <input id="inputSubmit" type="submit" class="btn btn-primary" value="Modifier Etudiant"/>
         </div>

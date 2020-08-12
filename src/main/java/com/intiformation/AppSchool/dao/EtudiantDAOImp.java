@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.EtudiantCours;
 import com.intiformation.AppSchool.modele.Promotion;
 
 @Repository
@@ -157,6 +158,7 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Promotion> getListPromoByIdEtudiant(int pIdEtudiant) {
 		
 		try {
@@ -185,6 +187,7 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Cours> getListCoursNotLinkedToEtudiant(int pIdEtudiant) {
 		try {
 
@@ -205,6 +208,34 @@ public class EtudiantDAOImp implements IEtudiantDAO {
 		} catch (Exception e) {
 
 			System.out.println("... (EtudiantDAOImpl) Erreur lors de la récupération de la liste des promotions ....");
+
+		} // end catch
+		return null;
+	}
+
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<EtudiantCours> getListEtudiantCoursByIdEtudiant(int pIdEtudiant) {
+		try {
+
+			// 1. Recuperation de la session d'hibernate via la factory
+			Session session = this.sessionFactory.getCurrentSession();
+
+			// 2. Definition de la requête à envoyer
+			Query<EtudiantCours> query = session.createQuery("select e.listeEtudiantCours FROM Etudiant e where e.identifiant=:identifiant");
+
+			query.setParameter("identifiant", pIdEtudiant);
+			
+			// 3. Envoi + Execution + Resultat
+			List<EtudiantCours> listeEtudiantCours = query.getResultList();
+
+			// 4. renvoi de la liste
+			return listeEtudiantCours;
+
+		} catch (Exception e) {
+
+			System.out.println("... (EtudiantDAOImpl) Erreur lors de la récupération de la liste des EtudiantCours ....");
 
 		} // end catch
 		return null;
