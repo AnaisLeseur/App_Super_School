@@ -37,6 +37,10 @@
 				<tr>
 					<th scope="col">Identifiant du cours</th>
 					<th scope="col">Libelle</th>
+					<th scope="col">Description</th>
+					<th scope="col">Durée</th>
+					<th scope="col">Date</th>
+					<th scope="col">Promotion</th>
 				</tr>
 
 			</thead>
@@ -45,8 +49,12 @@
 
 				<c:forEach items="${listeCoursAssocMatiere}" var="cours">
 					<tr>
-						<td>${cours.identifiant}</td>
+						<td>${cours.idCours}</td>
 						<td>${cours.libelle}</td>
+						<td>${cours.description}</td>
+						<td>${cours.duree}</td>
+						<td>${cours.date}</td>
+						<td> <!--  ${cours.promotion} --></td>
 					</tr>
 
 				</c:forEach>

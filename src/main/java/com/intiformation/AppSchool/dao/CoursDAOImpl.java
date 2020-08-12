@@ -168,7 +168,8 @@ public class CoursDAOImpl implements ICoursDAO {
 			Session session = this.sessionFactory.getCurrentSession();
 
 			// requete HQL 
-			Query<Cours> query = session.createQuery("from cours c where c.idMatiere=:idMatiere");
+			Query<Cours> query = session.createQuery("Select c FROM Cours c join c.matiere  m  WHERE m.idMatiere = :idMatiere");
+			
 
 			// passage du param : pIdMatiere
 			query.setParameter("idMatiere", pIdMatiere);
@@ -177,6 +178,7 @@ public class CoursDAOImpl implements ICoursDAO {
 			List<Cours> listeCoursParMatiere = query.getResultList();
 
 			return listeCoursParMatiere;
+			
 		} catch (Exception e) {
 			System.out.println("CoursDAOImpl = erreur lors de la récupératio de"
 					+ " la liste des cours par matiere : FindCoursAssociesAMatiere");
