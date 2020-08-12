@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"%>
+    
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
 
@@ -26,8 +24,8 @@
 <jsp:include page="/Fragments/Header.jsp"/>
 
 
-	<form:form method="POST" modelAttribute="etudiantBindPromo"
-		action="${pageContext.request.contextPath}/promotion/bindPromotionToEtudiant">
+	<form:form method="POST" modelAttribute="etudiantBindEtudiantCours"
+		action="${pageContext.request.contextPath}/etudiant/bindCoursToEtudiant">
 
 		<table class="table table-striped table-bordered table-hover">
 
@@ -43,13 +41,13 @@
 
 			<tbody>
 
-				<c:forEach items="${liste_Promotion}" var="promotion">
+				<c:forEach items="${liste_Cours}" var="cours">
 					<tr>
-						<td>${promotion.idPromotion}</td>
-						<td>${promotion.libelle}</td>
+						<td>${cours.idCours}</td>
+						<td>${cours.libelle}</td>
 
-						<td><form:checkbox path="listePromotions"
-								value="${promotion.idPromotion}" /></td>
+						<td><form:checkbox path="listeEtudiantCours"
+								value="${cours.idCours}-${etudiantBindEtudiantCours.identifiant}" /></td>
 					</tr>
 
 				</c:forEach>
@@ -69,16 +67,14 @@
 
 		<form:hidden path="dateNaissance" />
 		<form:hidden path="photo" />
-		
-		
 
 
 		<input type="submit" class="btn btn-primary"
-			value="Attribuer Promotion(s)" />
+			value="Attribuer Cours" />
 
 	</form:form>
 	
 	<jsp:include page="/Fragments/footer.jsp" />
-
+	
 </body>
 </html>

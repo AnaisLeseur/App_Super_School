@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.IEtudiantDAO;
+import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.EtudiantCours;
 import com.intiformation.AppSchool.modele.Promotion;
 
 @Service
@@ -14,13 +16,13 @@ public class EtudiantServiceImp implements IEtudiantService{
 	
 	@Autowired 
 	private IEtudiantDAO etudiantDAO;
+	
 	/**
 	 * setter pour injection par modificateur de spring
 	 */
 	public void setEtudiantDAO(IEtudiantDAO etudiantDAO) {
 		this.etudiantDAO = etudiantDAO;
 	}
-	
 	
 
 	@Override
@@ -60,6 +62,18 @@ public class EtudiantServiceImp implements IEtudiantService{
 	@Override
 	public List<Promotion> findListPromoByIdEtudiant(int pIdEtudiant) {
 		return etudiantDAO.getListPromoByIdEtudiant(pIdEtudiant);
+	}
+
+
+	@Override
+	public List<Cours> findListCoursNotLinkedToEtudiant(int pIdEtudiant) {
+		return etudiantDAO.getListCoursNotLinkedToEtudiant(pIdEtudiant);
+	}
+
+
+	@Override
+	public List<EtudiantCours> findListEtudiantCoursByIdEtudiant(int pIdEtudiant) {
+		return etudiantDAO.getListEtudiantCoursByIdEtudiant(pIdEtudiant);
 	}
 
 }//end class
