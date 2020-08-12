@@ -16,8 +16,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,7 +40,7 @@ public class Etudiant extends Personne{
 	@ManyToMany(mappedBy="listeEtudiants", fetch=FetchType.EAGER)
 	private List<Promotion> listePromotions = new ArrayList<>();
 	
-	@OneToMany(mappedBy="etudiantEC",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="etudiantEC",cascade= {CascadeType.PERSIST,CascadeType.MERGE})
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<EtudiantCours> listeEtudiantCours = new ArrayList<>();
 	
@@ -51,21 +49,17 @@ public class Etudiant extends Personne{
 	public Etudiant() {
 	}
 	
-	
 	public Etudiant(int identifiant, String motDePasse, String nom, String prenom, String email, Adresse adresse) {
 		super(identifiant, motDePasse, nom, prenom, email, adresse);
 	}
-
 
 	public Etudiant(int identifiant, String motDePasse, String nom, String prenom, String email) {
 		super(identifiant, motDePasse, nom, prenom, email);
 	}
 
-
 	public Etudiant(String motDePasse, String nom, String prenom, String email) {
 		super(motDePasse, nom, prenom, email);
 	}
-
 
 	public Etudiant(String photo, Date dateNaissance) {
 		this.photo = photo;

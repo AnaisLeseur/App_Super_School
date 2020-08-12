@@ -32,7 +32,7 @@ public class MailController {
 
 	}// end AfficherFormulaireMailSTMP()
 	
-	@RequestMapping(value = "mail/send", method = RequestMethod.POST)
+	@RequestMapping(value = "/mail/send", method = RequestMethod.POST)
 	public void envoyerMailSMTP() {
 		System.out.println("ICI");
 		String username = "...@gmail.com"; // adresse mail GMAIL

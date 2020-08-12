@@ -341,6 +341,7 @@ public class EtudiantController {
 		return "redirect:/promotion/liste";
 	}// end BindPromotionToEtudiant()
 
+	
 	@RequestMapping(value = "/etudiants/deletePromotion", method = RequestMethod.GET)
 	public ModelAndView DeletePromotionFromEtudiant(@RequestParam("idPromo") int idPromotion,
 			@RequestParam("idEtudiant") int idEtudiant) {
@@ -369,6 +370,7 @@ public class EtudiantController {
 		// Renvoi de l'etudiant dans la vue seeEtudiant
 		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiantService.findById(idEtudiant));
 	}
+	
 
 	// --------------------------------------------------------//
 	// --------------Binding EtudiantCours---------------------//
@@ -441,8 +443,8 @@ public class EtudiantController {
 	public ModelAndView DeleteCoursFromEtudiant(@RequestParam("idEtudiantCours") int idEtudiantCours,
 			@RequestParam("idEtudiant") int idEtudiant) {
 		
-		etudiantCoursService.supprimer(idEtudiantCours);
-		
+		etudiantCoursService.supprimer(idEtudiantCours);		
+	
 		// Renvoi de l'etudiant dans la vue seeEtudiant
 		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiantService.findById(idEtudiant));
 	}
@@ -457,12 +459,14 @@ public class EtudiantController {
 	@RequestMapping(value ="/etudiant/editEtudiantCours", method = RequestMethod.POST)
 	public String EditEtudiantCoursFromEtudiant(@ModelAttribute("etudiantCoursEditCommand") EtudiantCours pEtudiantCours) {
 
-		if (pEtudiantCours.getEtudiantEC()==null) {
-			System.out.println("etudiantEC est null");
-		}else {
-			System.out.println(pEtudiantCours.getEtudiantEC().getIdentifiant());
-		}
+
+		//Recup de l'EtudiantCours contenant coursEC et etudianEC
+		EtudiantCours etudiantCoursBDD = etudiantCoursService.findById(pEtudiantCours.getIdEtudiantCours());
 		
+		pEtudiantCours.setCoursEC(etudiantCoursBDD.getCoursEC());
+		pEtudiantCours.setEtudiantEC(etudiantCoursBDD.getEtudiantEC());
+		
+		etudiantCoursService.modifier(pEtudiantCours);
 		
 		return "redirect:/etudiant/liste";
 	}// end EditEtudiantCoursFromEtudiant()

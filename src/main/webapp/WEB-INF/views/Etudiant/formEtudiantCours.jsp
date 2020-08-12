@@ -10,16 +10,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+    
 </head>
 <body>
 
-	<form:form modelAttribute="etudiantCoursEditCommand" method="POST" action="/etudiant/editEtudiantCours">
-		<form:input type="textarea" path="motif"/>
-		<form:checkbox path="absence"/>
+<jsp:include page="/Fragments/Header.jsp"/>
+
+
+<h1>Edition de l'appel pour le cours(${etudiantCoursEditCommand.coursEC.libelle}) pour ${etudiantCoursEditCommand.etudiantEC.nom} ${etudiantCoursEditCommand.etudiantEC.prenom}</h1>
+
+	<form:form modelAttribute="etudiantCoursEditCommand" method="POST" action="${pageContext.request.contextPath}/etudiant/editEtudiantCours">
 		
-		<input type="submit" value="Editer absence">
+		<form:label  path="motif">Présence au cours : </form:label>
+		<form:checkbox  class="form-control" path="absence"/>
+		
+		<form:label path="motif">Motif de l'absence : </form:label>
+		<form:textarea class="form-control" path="motif"/>
+		
+		<form:hidden path="idEtudiantCours"/>
+		
+		<input type="submit" class="btn btn-primary" value="Editer absence">
 	
 	</form:form>
 	
+		<jsp:include page="/Fragments/footer.jsp" />
+	
+	 <script src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"></script>
 </body>
 </html>
