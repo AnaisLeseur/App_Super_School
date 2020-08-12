@@ -149,9 +149,41 @@ public class CoursDAOImpl implements ICoursDAO {
 
 			return emp;
 		} catch (Exception e) {
-			System.out.println("EmployeeDAOImpl erreur lors deu getbyid");
+			System.out.println("CoursDAOImpl erreur lors deu getbyid");
 			throw e;
 		} // end catch
 	}//end getById
+
+
+	/**
+	 * methode pour récupérer la liste des cours appartenant/liés à une matière
+	 * @param pIdMatiere : id de la matière 
+	 * @return : la liste des cours associés
+	 */
+	@Override
+	@Transactional
+	public List<Cours> FindCoursAssociesAMatiere(int pIdMatiere) {
+		try {
+			// récup de la session 
+			Session session = this.sessionFactory.getCurrentSession();
+
+			// requete HQL 
+			Query<Cours> query = session.createQuery("Select c FROM Cours c join c.matiere  m  WHERE m.idMatiere = :idMatiere");
+			
+
+			// passage du param : pIdMatiere
+			query.setParameter("idMatiere", pIdMatiere);
+			
+			// envoi + exec + result
+			List<Cours> listeCoursParMatiere = query.getResultList();
+
+			return listeCoursParMatiere;
+			
+		} catch (Exception e) {
+			System.out.println("CoursDAOImpl = erreur lors de la récupératio de"
+					+ " la liste des cours par matiere : FindCoursAssociesAMatiere");
+			throw e;
+		} // end catch
+	}// end FindCoursAssociesAMatiere
 
 }//end class

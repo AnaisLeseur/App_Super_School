@@ -25,3 +25,11 @@
 	width: 10rem;
 }
 
+.erreurs_validation{
+	color: red; 
+	font-style: italic; 
+	border: 1px dotted red; 
+	margin: 15px;
+}
+
+

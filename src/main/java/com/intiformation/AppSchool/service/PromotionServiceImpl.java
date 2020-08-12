@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.IPromotionDAO;
+import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.Promotion;
 
@@ -60,6 +61,24 @@ public class PromotionServiceImpl implements IPromotionService {
 	@Override
 	public List<Etudiant> findListEtudiantByIdPromo(int pIdPromotion) {
 		return promotionDAO.getListEtudiantByIdPromo(pIdPromotion);
+	}
+
+	@Override
+	public List<Promotion> findListNotLinkedToCours(int pIdCours) {
+		// TODO Auto-generated method stub
+		return promotionDAO.getListNotLinkedToCours(pIdCours);
+	}
+
+	@Override
+	public List<Cours> findListNotLinkedToPromotionCours(int pIdPromotion) {
+		// TODO Auto-generated method stub
+		return promotionDAO.getListNotLinkedToPromotionCours(pIdPromotion);
+	}
+
+	@Override
+	public List<Cours> findListCoursByIdPromo(int pIdPromotion) {
+		// TODO Auto-generated method stub
+		return promotionDAO.getListCoursByIdPromo(pIdPromotion);
 	}
 
 }//end service
