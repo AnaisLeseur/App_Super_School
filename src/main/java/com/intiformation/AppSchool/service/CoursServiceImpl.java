@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.ICoursDAO;
 import com.intiformation.AppSchool.modele.Cours;
+import com.intiformation.AppSchool.modele.Promotion;
 
 @Service
 public class CoursServiceImpl implements ICoursService {
@@ -62,5 +63,17 @@ public class CoursServiceImpl implements ICoursService {
 	public List<Cours> recupCoursParMatiere(int pIdMatiere) {
 		return coursDAO.FindCoursAssociesAMatiere(pIdMatiere);
 	}// end recupCoursParMatiere
+
+	@Override
+	public Cours ajouterReturnCours(Cours pCours) {
+		// TODO Auto-generated method stub
+		return coursDAO.addReturnCours(pCours);
+	}
+
+	@Override
+	public List<Promotion> findListPromoByIdCours(int pIdCours) {
+		// TODO Auto-generated method stub
+		return coursDAO.getListPromoByIdCours(pIdCours);
+	}
 
 }
