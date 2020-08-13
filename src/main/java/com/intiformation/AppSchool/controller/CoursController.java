@@ -2,6 +2,7 @@ package com.intiformation.AppSchool.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -110,7 +111,21 @@ public class CoursController {
 
 		// 2. on utilise model pour renvoyer la liste vers la vue
 		model.addAttribute("attribut_liste_cours", listeCoursBdd);
+<<<<<<< Updated upstream
 
+=======
+		
+		// récup de la liste des matières disponibles pour faire l'association
+		List<Matiere> listeMatiereBddPourAssos = matiereService.findAllMatiere();
+		
+		// on utilise model pour renvoyer la liste des matieres vers la vue 
+		model.addAttribute("attribut_listeMatiereBddPourAssos", listeMatiereBddPourAssos);
+		
+		
+		Cours cours = new Cours();
+		model.addAttribute("attribut-cours", cours);
+		
+>>>>>>> Stashed changes
 		// 3 renvoi du nom logique de la vue
 		/**
 		 * > resolution de la vue par le viewResolver :
@@ -345,9 +360,24 @@ public class CoursController {
 			}
 			index++;
 		}
+<<<<<<< Updated upstream
+=======
+		
+		
+		
+		/**
+		 * Lier le cours à une matière
+		 * 
+		 * @param 
+		 * @return View
+		 */
+		@RequestMapping(value = "/cours/linkToMatiere", method = RequestMethod.POST)
+		public String CoursMatiereLink(@ModelAttribute("attribut-cours") Cours pCours) {
+>>>>>>> Stashed changes
 
 		listeEtudiant.remove(index);
 
+<<<<<<< Updated upstream
 		// Sauvegarde dans la BDD
 		promotion.setListeCours(listeEtudiant);
 		promotionService.modifier(promotion);
@@ -489,3 +519,27 @@ public class CoursController {
 	 */
 
 }// end controller
+=======
+			
+		// récup du cours à modifier 
+		// récup de la metière choisie 
+		int idMatiere = pCours.getMatiere().getIdMatiere();
+		
+		Matiere matiere = matiereService.findByIdMatiere(idMatiere);
+		Cours coursMatiere = coursService.findByIdCours(pCours.getIdCours());
+		// 	
+		coursMatiere.setMatiere(matiere);
+		
+		// modification du cours dans la bdd 
+		coursService.modfierCours(coursMatiere);
+			
+		return "redirect:/cours/liste";
+			}// end BindPromotionToEtudiant()
+
+	
+
+		
+
+		
+}//end controller
+>>>>>>> Stashed changes

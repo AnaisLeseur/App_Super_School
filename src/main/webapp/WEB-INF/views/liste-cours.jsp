@@ -60,6 +60,7 @@
 					<th scope="col">Description</th>
 					<th scope="col">Durée (min)</th>
 					<th scope="col">Date</th>
+					<th scope="col">Libelle de la matière</th>
 	                
 	                 <th scope="col">Consulter</th>
 	                <th scope="col">Attribuer</th>
@@ -78,6 +79,7 @@
 					<td>${cou.description}</td>
 					<td>${cou.duree}</td>
 					<td>${cou.date}</td>
+<<<<<<< Updated upstream
 					
 					<td>
 						<a href="${pageContext.request.contextPath}/cours/see-cours/${cou.idCours }"><img
@@ -90,6 +92,9 @@
 							<img src="${pageContext.request.contextPath}/assets/images/person-plus.svg">
 						</a>
 					</td>
+=======
+					<td>${cou.matiere.libelle}</td>
+>>>>>>> Stashed changes
 
 					<!--  modification du cours -->
 					<td>
@@ -105,6 +110,27 @@
 							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
 						</a>
 					</td>
+<<<<<<< Updated upstream
+=======
+					
+					<!-- lier cours à une matiere -->
+					<td>  
+						<form:form action="${pageContext.request.contextPath}/cours/linkToMatiere" modelAttribute="attribut-cours" method="POST"> 
+	 						<form:select path="matiere.idMatiere">
+								  <form:option value="0" label="--- Select ---" />
+								  <form:options items="${attribut_listeMatiereBddPourAssos}" itemValue="idMatiere" itemLabel="libelle" />
+					      	</form:select>
+					      	<form:hidden path="idCours" value="${cou.idCours }" />
+					      	<input type="submit" value="Lier le cours à cette matière" />
+                        </form:form>
+   
+					</td>
+					
+					
+					
+					
+					
+>>>>>>> Stashed changes
 				</tr>
 
 			</c:forEach>
