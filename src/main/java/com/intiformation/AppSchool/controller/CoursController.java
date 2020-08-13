@@ -2,6 +2,7 @@ package com.intiformation.AppSchool.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -28,10 +29,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.EtudiantCours;
+import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.modele.Promotion;
 import com.intiformation.AppSchool.service.ICoursService;
 import com.intiformation.AppSchool.service.IEtudiantCoursService;
 import com.intiformation.AppSchool.service.IEtudiantService;
+import com.intiformation.AppSchool.service.IMatiereService;
 import com.intiformation.AppSchool.service.IPromotionService;
 import com.intiformation.AppSchool.validator.CoursValidator;
 
@@ -47,6 +50,9 @@ public class CoursController {
 
 	@Autowired
 	private IEtudiantCoursService etudiantCoursService;
+	
+	@Autowired
+	private IMatiereService matiereService;
 
 	@Autowired
 	private CoursValidator coursValidator;
@@ -110,6 +116,17 @@ public class CoursController {
 
 		// 2. on utilise model pour renvoyer la liste vers la vue
 		model.addAttribute("attribut_liste_cours", listeCoursBdd);
+		
+		// récup de la liste des matières disponibles pour faire l'association
+		List<Matiere> listeMatiereBddPourAssos = matiereService.findAllMatiere();
+		
+		// on utilise model pour renvoyer la liste des matieres vers la vue 
+		model.addAttribute("attribut_listeMatiereBddPourAssos", listeMatiereBddPourAssos);
+		
+		
+		Cours cours = new Cours();
+		model.addAttribute("attribut-cours", cours);
+		
 
 		// 3 renvoi du nom logique de la vue
 		/**
@@ -346,6 +363,7 @@ public class CoursController {
 			index++;
 		}
 
+
 		listeEtudiant.remove(index);
 
 		// Sauvegarde dans la BDD
@@ -488,4 +506,36 @@ public class CoursController {
 	 * 
 	 */
 
-}// end controller
+
+
+
+/**
+ * Lier le cours à une matière
+ * 
+ * @param 
+ * @return View
+ */
+@RequestMapping(value = "/cours/linkToMatiere", method = RequestMethod.POST)
+public String CoursMatiereLink(@ModelAttribute("attribut-cours") Cours pCours) {	
+		// récup du cours à modifier 
+		// récup de la metière choisie 
+		int idMatiere = pCours.getMatiere().getIdMatiere();
+		
+		Matiere matiere = matiereService.findByIdMatiere(idMatiere);
+		Cours coursMatiere = coursService.findByIdCours(pCours.getIdCours());
+		// 	
+		coursMatiere.setMatiere(matiere);
+		
+		// modification du cours dans la bdd 
+		coursService.modfierCours(coursMatiere);
+			
+		return "redirect:/cours/liste";
+			}// end BindPromotionToEtudiant()
+
+	
+
+		
+
+		
+}//end controller
+
