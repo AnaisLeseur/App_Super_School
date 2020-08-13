@@ -29,10 +29,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.EtudiantCours;
+import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.modele.Promotion;
 import com.intiformation.AppSchool.service.ICoursService;
 import com.intiformation.AppSchool.service.IEtudiantCoursService;
 import com.intiformation.AppSchool.service.IEtudiantService;
+import com.intiformation.AppSchool.service.IMatiereService;
 import com.intiformation.AppSchool.service.IPromotionService;
 import com.intiformation.AppSchool.validator.CoursValidator;
 
@@ -48,6 +50,9 @@ public class CoursController {
 
 	@Autowired
 	private IEtudiantCoursService etudiantCoursService;
+	
+	@Autowired
+	private IMatiereService matiereService;
 
 	@Autowired
 	private CoursValidator coursValidator;
@@ -111,9 +116,6 @@ public class CoursController {
 
 		// 2. on utilise model pour renvoyer la liste vers la vue
 		model.addAttribute("attribut_liste_cours", listeCoursBdd);
-<<<<<<< Updated upstream
-
-=======
 		
 		// récup de la liste des matières disponibles pour faire l'association
 		List<Matiere> listeMatiereBddPourAssos = matiereService.findAllMatiere();
@@ -125,7 +127,7 @@ public class CoursController {
 		Cours cours = new Cours();
 		model.addAttribute("attribut-cours", cours);
 		
->>>>>>> Stashed changes
+
 		// 3 renvoi du nom logique de la vue
 		/**
 		 * > resolution de la vue par le viewResolver :
@@ -360,24 +362,10 @@ public class CoursController {
 			}
 			index++;
 		}
-<<<<<<< Updated upstream
-=======
-		
-		
-		
-		/**
-		 * Lier le cours à une matière
-		 * 
-		 * @param 
-		 * @return View
-		 */
-		@RequestMapping(value = "/cours/linkToMatiere", method = RequestMethod.POST)
-		public String CoursMatiereLink(@ModelAttribute("attribut-cours") Cours pCours) {
->>>>>>> Stashed changes
+
 
 		listeEtudiant.remove(index);
 
-<<<<<<< Updated upstream
 		// Sauvegarde dans la BDD
 		promotion.setListeCours(listeEtudiant);
 		promotionService.modifier(promotion);
@@ -518,9 +506,17 @@ public class CoursController {
 	 * 
 	 */
 
-}// end controller
-=======
-			
+
+
+
+/**
+ * Lier le cours à une matière
+ * 
+ * @param 
+ * @return View
+ */
+@RequestMapping(value = "/cours/linkToMatiere", method = RequestMethod.POST)
+public String CoursMatiereLink(@ModelAttribute("attribut-cours") Cours pCours) {	
 		// récup du cours à modifier 
 		// récup de la metière choisie 
 		int idMatiere = pCours.getMatiere().getIdMatiere();
@@ -542,4 +538,4 @@ public class CoursController {
 
 		
 }//end controller
->>>>>>> Stashed changes
+

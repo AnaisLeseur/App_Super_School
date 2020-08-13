@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%-- ajout de la taglib de spring mvc form --%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +49,7 @@
            <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
              <thead class="thead-blue">
                	<tr>
-					<th id="Ajout" colspan="9">
+					<th id="Ajout" colspan="11">
 						<a href="${pageContext.request.contextPath}/cours/add-cours-form">
 							<img id="LogoAjout"
 								src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png">
@@ -66,6 +70,7 @@
 	                <th scope="col">Attribuer</th>
 					<th scope="col">Modifier</th>
 					<th scope="col">Supprimer</th>
+					<th scope="col">Lier</th>
 				</tr>
 
 		</thead>
@@ -79,7 +84,7 @@
 					<td>${cou.description}</td>
 					<td>${cou.duree}</td>
 					<td>${cou.date}</td>
-<<<<<<< Updated upstream
+
 					
 					<td>
 						<a href="${pageContext.request.contextPath}/cours/see-cours/${cou.idCours }"><img
@@ -92,9 +97,9 @@
 							<img src="${pageContext.request.contextPath}/assets/images/person-plus.svg">
 						</a>
 					</td>
-=======
+
 					<td>${cou.matiere.libelle}</td>
->>>>>>> Stashed changes
+
 
 					<!--  modification du cours -->
 					<td>
@@ -110,8 +115,7 @@
 							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
 						</a>
 					</td>
-<<<<<<< Updated upstream
-=======
+
 					
 					<!-- lier cours à une matiere -->
 					<td>  
@@ -130,7 +134,7 @@
 					
 					
 					
->>>>>>> Stashed changes
+
 				</tr>
 
 			</c:forEach>
