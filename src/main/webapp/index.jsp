@@ -4,7 +4,7 @@
   <%-- taglibs core des jsp --%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
  
- <%@taglib uri="https://www.springframework.org/tags" prefix="spring"%>  
+ <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
  
  
 <!DOCTYPE html>
@@ -41,7 +41,7 @@
 
     <div id="separation">
         <img id="userLogo" src="${pageContext.request.contextPath}/assets/images/User.png" >
-        <p id="userInfos"><spring:message code="index.accueil" />< </p>
+        <p id="userInfos"><spring:message code="index.accueil"/>< </p>
     </div>
     
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
