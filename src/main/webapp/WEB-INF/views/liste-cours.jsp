@@ -67,10 +67,10 @@
 					<th scope="col">Libelle de la matière</th>
 	                
 	                 <th scope="col">Consulter</th>
-	                <th scope="col">Attribuer</th>
+	                <th scope="col">Attribuer Etudiant</th>
 					<th scope="col">Modifier</th>
 					<th scope="col">Supprimer</th>
-					<th scope="col">Lier</th>
+					<th scope="col">Associer Matiere</th>
 				</tr>
 
 		</thead>
@@ -84,6 +84,7 @@
 					<td>${cou.description}</td>
 					<td>${cou.duree}</td>
 					<td>${cou.date}</td>
+					<td>${cou.matiere.libelle}</td>
 
 					
 					<td>
@@ -98,7 +99,7 @@
 						</a>
 					</td>
 
-					<td>${cou.matiere.libelle}</td>
+					
 
 
 					<!--  modification du cours -->
@@ -129,10 +130,6 @@
                         </form:form>
    
 					</td>
-					
-					
-					
-					
 					
 
 				</tr>
