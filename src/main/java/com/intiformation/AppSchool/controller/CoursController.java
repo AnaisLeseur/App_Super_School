@@ -29,10 +29,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.EtudiantCours;
+import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.modele.Promotion;
 import com.intiformation.AppSchool.service.ICoursService;
 import com.intiformation.AppSchool.service.IEtudiantCoursService;
 import com.intiformation.AppSchool.service.IEtudiantService;
+import com.intiformation.AppSchool.service.IMatiereService;
 import com.intiformation.AppSchool.service.IPromotionService;
 import com.intiformation.AppSchool.validator.CoursValidator;
 
@@ -42,6 +44,9 @@ public class CoursController {
 	// declaration de la couche service
 	@Autowired
 	private ICoursService coursService;
+	
+	@Autowired
+	private IMatiereService matiereService;
 
 	@Autowired
 	private IEtudiantService etudiantService;
@@ -54,6 +59,12 @@ public class CoursController {
 
 	@Autowired
 	private IPromotionService promotionService;
+	
+	
+
+	public void setMatiereService(IMatiereService matiereService) {
+		this.matiereService = matiereService;
+	}
 
 	public void setEtudiantService(IEtudiantService etudiantService) {
 		this.etudiantService = etudiantService;
@@ -111,9 +122,6 @@ public class CoursController {
 
 		// 2. on utilise model pour renvoyer la liste vers la vue
 		model.addAttribute("attribut_liste_cours", listeCoursBdd);
-<<<<<<< Updated upstream
-
-=======
 		
 		// récup de la liste des matières disponibles pour faire l'association
 		List<Matiere> listeMatiereBddPourAssos = matiereService.findAllMatiere();
@@ -125,7 +133,6 @@ public class CoursController {
 		Cours cours = new Cours();
 		model.addAttribute("attribut-cours", cours);
 		
->>>>>>> Stashed changes
 		// 3 renvoi du nom logique de la vue
 		/**
 		 * > resolution de la vue par le viewResolver :
@@ -360,8 +367,18 @@ public class CoursController {
 			}
 			index++;
 		}
-<<<<<<< Updated upstream
-=======
+		
+		listeEtudiant.remove(index);
+
+
+		// Sauvegarde dans la BDD
+		promotion.setListeCours(listeEtudiant);
+		promotionService.modifier(promotion);
+
+		// Renvoi de l'etudiant dans la vue seeEtudiant
+		return new ModelAndView("Cours/seeEtudiant", "coursSeeCommand", coursService.findByIdCours(idCours));
+	}
+
 		
 		
 		
@@ -373,18 +390,23 @@ public class CoursController {
 		 */
 		@RequestMapping(value = "/cours/linkToMatiere", method = RequestMethod.POST)
 		public String CoursMatiereLink(@ModelAttribute("attribut-cours") Cours pCours) {
->>>>>>> Stashed changes
+			// récup du cours à modifier 
+			// récup de la metière choisie 
+			int idMatiere = pCours.getMatiere().getIdMatiere();
+			
+			Matiere matiere = matiereService.findByIdMatiere(idMatiere);
+			Cours coursMatiere = coursService.findByIdCours(pCours.getIdCours());
+			// 	
+			coursMatiere.setMatiere(matiere);
+			
+			// modification du cours dans la bdd 
+			coursService.modfierCours(coursMatiere);
+				
+			return "redirect:/cours/liste";
+			
+		}// end BindPromotionToEtudiant()
 
-		listeEtudiant.remove(index);
-
-<<<<<<< Updated upstream
-		// Sauvegarde dans la BDD
-		promotion.setListeCours(listeEtudiant);
-		promotionService.modifier(promotion);
-
-		// Renvoi de l'etudiant dans la vue seeEtudiant
-		return new ModelAndView("Cours/seeEtudiant", "coursSeeCommand", coursService.findByIdCours(idCours));
-	}
+		
 
 	// --------------------------------------------------------//
 	// --------------Binding EtudiantCours---------------------//
@@ -500,6 +522,7 @@ public class CoursController {
 			  
 		return "redirect:/cours/liste"; 
 	}// end AppelEtudiantCoursFromCours()
+	
 	/*
 	 *  A adapter, provient de Etudiant Controller
 	 * 
@@ -519,27 +542,4 @@ public class CoursController {
 	 */
 
 }// end controller
-=======
-			
-		// récup du cours à modifier 
-		// récup de la metière choisie 
-		int idMatiere = pCours.getMatiere().getIdMatiere();
-		
-		Matiere matiere = matiereService.findByIdMatiere(idMatiere);
-		Cours coursMatiere = coursService.findByIdCours(pCours.getIdCours());
-		// 	
-		coursMatiere.setMatiere(matiere);
-		
-		// modification du cours dans la bdd 
-		coursService.modfierCours(coursMatiere);
-			
-		return "redirect:/cours/liste";
-			}// end BindPromotionToEtudiant()
 
-	
-
-		
-
-		
-}//end controller
->>>>>>> Stashed changes

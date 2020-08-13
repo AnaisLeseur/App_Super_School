@@ -39,12 +39,7 @@ public class MailController {
 	public String envoyerMailSMTP(@ModelAttribute("mailToSend") Mail pMail) {
 		String username = "superschoolinti@gmail.com"; // adresse mail GMAIL
 		String password = "SuperSchool123"; // mot de passe 
-<<<<<<< HEAD
-		
-			
-=======
 
->>>>>>> 46d0fa366017a905495822185aa452916d4e75c0
 			// Etape 1 : Création de la session
 			Properties props = new Properties();
 			props.put("mail.smtp.auth", "true");
