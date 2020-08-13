@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
     
   <%-- taglibs core des jsp --%>
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+ 
+ <%@taglib uri="https://www.springframework.org/tags" prefix="spring"%>  
  
  
 <!DOCTYPE html>
@@ -39,7 +41,7 @@
 
     <div id="separation">
         <img id="userLogo" src="${pageContext.request.contextPath}/assets/images/User.png" >
-        <p id="userInfos">Bienvenue sur notre site </p>
+        <p id="userInfos"><spring:message code="index.accueil" />< </p>
     </div>
     
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
