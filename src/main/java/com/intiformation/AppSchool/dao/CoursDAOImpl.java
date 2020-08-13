@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Cours;
+import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.Promotion;
 
 
@@ -231,6 +232,34 @@ public class CoursDAOImpl implements ICoursDAO {
 		} catch (Exception e) {
 
 			System.out.println("... (EtudiantDAOImpl) Erreur lors de la récupération de la liste des promotions ....");
+
+		} // end catch
+		return null;
+	}
+
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Etudiant> getListEtudiantNotLinkedToCours(int pIdCours) {
+		try {
+
+			// 1. Recuperation de la session d'hibernate via la factory
+			Session session = this.sessionFactory.getCurrentSession();
+
+			// 2. Definition de la requête à envoyer
+			Query<Etudiant> query = session.createQuery("select e from Etudiant e where e.identifiant not in (select e.identifiant from Etudiant e join e.listeEtudiantCours ec join ec.coursEC c where c.idCours=:idCours)");
+
+			query.setParameter("idCours", pIdCours);
+			
+			// 3. Envoi + Execution + Resultat
+			List<Etudiant> listeEtudiant = query.getResultList();
+
+			// 4. renvoi de la liste
+			return listeEtudiant;
+
+		} catch (Exception e) {
+
+			System.out.println("... (EtudiantDAOImpl) Erreur lors de la récupération de la liste des étudiants ....");
 
 		} // end catch
 		return null;

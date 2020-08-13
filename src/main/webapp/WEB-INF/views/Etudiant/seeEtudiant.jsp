@@ -214,12 +214,14 @@
 			</c:if>
 		</div>
 
-		<br /> <br /> <br /> <br /> <br /> <br />
+		
 	</div>
 
-	<br />
-
+	<br /><br /> <br /> <br /> <br /> <br /> <br />
+	
+	<hr/>
+<div style="margin-top:10rem;">
 	<jsp:include page="/Fragments/footer.jsp" />
-
+</div>
 </body>
 </html>

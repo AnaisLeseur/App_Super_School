@@ -55,12 +55,14 @@
 				</tr>
 			
 				<tr>
-					<th scope="col">Identifiant</th>
+					<th scope="col">ID</th>
 					<th scope="col">Libelle</th>
 					<th scope="col">Description</th>
 					<th scope="col">Durée</th>
 					<th scope="col">Date</th>
 	                
+	                 <th scope="col">Consulter</th>
+	                <th scope="col">Attribuer</th>
 					<th scope="col">Modifier</th>
 					<th scope="col">Supprimer</th>
 				</tr>
@@ -76,6 +78,18 @@
 					<td>${cou.description}</td>
 					<td>${cou.duree}</td>
 					<td>${cou.date}</td>
+					
+					<td>
+						<a href="${pageContext.request.contextPath}/cours/see-cours/${cou.idCours }"><img
+							src="${pageContext.request.contextPath}/assets/images/search.svg">
+						</a>
+					</td>
+					
+					<td>
+						<a href="${pageContext.request.contextPath}/cours/linkEtudiantCours/${cou.idCours}">
+							<img src="${pageContext.request.contextPath}/assets/images/person-plus.svg">
+						</a>
+					</td>
 
 					<!--  modification du cours -->
 					<td>

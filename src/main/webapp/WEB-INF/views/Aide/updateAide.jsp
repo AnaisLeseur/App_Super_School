@@ -16,25 +16,40 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  
+  <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/FormAide.css">
+	
+		<link rel="stylesheet" 
+	href="${pageContext.request.contextPath}/assets/styles/perso.css">
 </head>
 <body>
 
+<jsp:include page="/Fragments/Header.jsp"/>
+
+<h1>Modification d'une aide</h1>
+
+<div id="contenuForm">
+
 <form:form modelAttribute="aideModifCommand" method="POST" action="${pageContext.request.contextPath}/aide/update">
 
-	<form:label path="titre">Titre</form:label>
-	<form:input type="text" path="titre"/>
-	<br/>
+	<form:label path="titre">Titre :</form:label>
+	<form:input class="form-control" type="text" path="titre"/>
+	<br/><br/>
 	
-	<form:label path="contenu">Editez le contenu de la page d'aide</form:label>
-	<br/>
+	<form:label path="contenu">Editez le contenu de la page d'aide :</form:label>
  	<form:textarea id="summernote" path="contenu"></form:textarea>
- 	<input id="inputSubmit" type="submit" class="btn btn-primary" value="Ajouter Aide"/>
+ 	
+ 	<form:hidden path="aideId"/>
+ 	<input id="inputSubmit" type="submit" class="btn btn-primary" value="Modifier Aide"/>
 </form:form>
-
+</div>
 <script>
     $(document).ready(function() {
         $('#summernote').summernote();
     });
   </script>
+  
+  <jsp:include page="/Fragments/footer.jsp" />
 </body>
 </html>

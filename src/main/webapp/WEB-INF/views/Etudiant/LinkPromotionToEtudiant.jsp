@@ -18,6 +18,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
 	
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/Link.css">
+	
 
 
 </head>
@@ -73,7 +76,7 @@
 		
 
 
-		<input type="submit" class="btn btn-primary"
+		<input id="InputSubmit" type="submit" class="btn btn-primary"
 			value="Attribuer Promotion(s)" />
 
 	</form:form>

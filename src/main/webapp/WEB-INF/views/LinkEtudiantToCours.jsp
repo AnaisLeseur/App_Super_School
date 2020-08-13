@@ -26,17 +26,17 @@
 
 <jsp:include page="/Fragments/Header.jsp"/>
 
-<h1>Attribution de cours à ${etudiantBindEtudiantCours.nom} ${etudiantBindEtudiantCours.prenom}</h1>
+<h1>Attribution d'étudiant au cours ${coursBindEtudiantCours.libelle}</h1>
 
-	<form:form method="POST" modelAttribute="etudiantBindEtudiantCours"
-		action="${pageContext.request.contextPath}/etudiant/bindCoursToEtudiant">
+	<form:form method="POST" modelAttribute="coursBindEtudiantCours"
+		action="${pageContext.request.contextPath}/cours/bindEtudiantToCours">
 
 		<table class="table table-striped table-bordered table-hover">
 
 			<thead class="thead-blue">
 				<tr>
-					<th scope="col">Id Promotion</th>
-					<th scope="col">Libelle</th>
+					<th scope="col">ID</th>
+					<th scope="col">Etudiant</th>
 
 					<th scope="col">Attribuer</th>
 				</tr>
@@ -45,13 +45,13 @@
 
 			<tbody>
 
-				<c:forEach items="${liste_Cours}" var="cours">
+				<c:forEach items="${liste_Etudiants}" var="etudiant">
 					<tr>
-						<td>${cours.idCours}</td>
-						<td>${cours.libelle}</td>
+						<td>${etudiant.identifiant}</td>
+						<td>${etudiant.nom} ${etudiant.prenom}</td>
 
-						<td><form:checkbox path="listeEtudiantCours"
-								value="${cours.idCours}-${etudiantBindEtudiantCours.identifiant}" /></td>
+						<td><form:checkbox path="listeEtudiantsCours"
+								value="${coursBindEtudiantCours.idCours}-${etudiant.identifiant}" /></td>
 					</tr>
 
 				</c:forEach>
@@ -59,7 +59,7 @@
 		</table>
 
 		<input id="InputSubmit" type="submit" class="btn btn-primary"
-			value="Attribuer Cours" />
+			value="Attribuer Etudiant" />
 
 	</form:form>
 	
