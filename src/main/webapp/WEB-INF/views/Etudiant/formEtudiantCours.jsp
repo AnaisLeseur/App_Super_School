@@ -13,27 +13,34 @@
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
     
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/Link.css">
+    
 </head>
 <body>
 
 <jsp:include page="/Fragments/Header.jsp"/>
 
 
-<h1>Edition de l'appel pour le cours(${etudiantCoursEditCommand.coursEC.libelle}) pour ${etudiantCoursEditCommand.etudiantEC.nom} ${etudiantCoursEditCommand.etudiantEC.prenom}</h1>
+<h1>Appel pour le cours : ${etudiantCoursEditCommand.coursEC.libelle}</h1>
 
+<div style="width: 90%;margin: auto;">
+
+	<h2>${etudiantCoursEditCommand.etudiantEC.nom} ${etudiantCoursEditCommand.etudiantEC.prenom}</h2>
+	
 	<form:form modelAttribute="etudiantCoursEditCommand" method="POST" action="${pageContext.request.contextPath}/etudiant/editEtudiantCours">
 		
-		<form:label  path="motif">Présence au cours : </form:label>
-		<form:checkbox  class="form-control" path="absence"/>
-		
+		<form:label style="margin-bottom:0" path="absence">Présence au cours : </form:label>
+		<form:checkbox  class="form-control" path="absence" style="width:30%;"/> 
+
 		<form:label path="motif">Motif de l'absence : </form:label>
-		<form:textarea class="form-control" path="motif"/>
+		<form:textarea style="margin-bottom:2rem" class="form-control" path="motif"/>
 		
 		<form:hidden path="idEtudiantCours"/>
 		
-		<input type="submit" class="btn btn-primary" value="Editer absence">
+		<input id="InputSubmit" type="submit" class="btn btn-primary" value="Editer absence">
 	
 	</form:form>
+</div>
 	
 		<jsp:include page="/Fragments/footer.jsp" />
 	

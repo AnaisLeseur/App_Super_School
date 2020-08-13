@@ -99,7 +99,7 @@
 							<td>
 								<!-- au click sur le lien : envoie d'une requete http get vers la méthode MatiereLinkedCours -->
 								<a href="${pageContext.request.contextPath}/matiere/coursLinked/${mat.idMatiere}">
-									<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
+									<img src="${pageContext.request.contextPath}/assets/images/info-circle.svg">
 								</a>
 							</td>
 						</tr>

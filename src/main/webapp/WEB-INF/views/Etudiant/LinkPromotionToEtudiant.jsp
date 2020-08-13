@@ -28,6 +28,9 @@
 
 <jsp:include page="/Fragments/Header.jsp"/>
 
+<h1>Attribution de promotions à l'étudiant : ${etudiantBindPromo.nom} ${etudiantBindPromo.prenom}</h1>
+
+
 
 	<form:form method="POST" modelAttribute="etudiantBindPromo"
 		action="${pageContext.request.contextPath}/promotion/bindPromotionToEtudiant">
