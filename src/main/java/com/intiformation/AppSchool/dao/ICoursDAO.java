@@ -24,9 +24,11 @@ public interface ICoursDAO extends IUniverselDAO<Cours> {
 	 */
 	public List<Cours> FindCoursAssociesAMatiere (int pIdMatiere);
 	
-public Cours addReturnCours(Cours pCours);
+	public Cours addReturnCours(Cours pCours);
 	
 	public List<Promotion> getListPromoByIdCours(int pIdCours);
+	
+	public List<Etudiant> getListEtudiantNotLinkedToCours (int pIdCours);
 	
 
 }//end interface

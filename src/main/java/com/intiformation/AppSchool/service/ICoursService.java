@@ -27,9 +27,11 @@ public interface ICoursService {
 	/*__________ Méthodés spécifiques pour le gestion des Cours __________*/ 
 	public List<Cours> recupCoursParMatiere (int pIdMatiere);
 	
-public Cours ajouterReturnCours(Cours pCours);
+	public Cours ajouterReturnCours(Cours pCours);
 	
 	public List<Promotion> findListPromoByIdCours(int pIdCours);
+	
+	public List<Etudiant> findListEtudiantNotLinkedToCours (int pIdCours);
 	
 	
 }//end interface

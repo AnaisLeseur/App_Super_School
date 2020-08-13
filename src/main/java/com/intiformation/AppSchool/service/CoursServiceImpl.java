@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.ICoursDAO;
 import com.intiformation.AppSchool.modele.Cours;
+import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.Promotion;
 
 @Service
@@ -24,7 +25,6 @@ public class CoursServiceImpl implements ICoursService {
 	
 	@Override
 	public void ajouterCours(Cours pCours) {
-		// TODO Auto-generated method stub
 		coursDAO.add(pCours);
 	}
 
@@ -32,14 +32,12 @@ public class CoursServiceImpl implements ICoursService {
 
 	@Override
 	public void modfierCours(Cours pCours) {
-     
 		coursDAO.update(pCours);
 		
 	}
 
 	@Override
 	public void supprimerCours(int pIdCours) {
-		// TODO Auto-generated method stub
 		coursDAO.delete(pIdCours);
 	}
 
@@ -52,7 +50,6 @@ public class CoursServiceImpl implements ICoursService {
 
 	@Override
 	public List<Cours> findAllCours() {
-		// TODO Auto-generated method stub
 		return coursDAO.getAll();
 	}
 
@@ -66,14 +63,17 @@ public class CoursServiceImpl implements ICoursService {
 
 	@Override
 	public Cours ajouterReturnCours(Cours pCours) {
-		// TODO Auto-generated method stub
 		return coursDAO.addReturnCours(pCours);
 	}
 
 	@Override
 	public List<Promotion> findListPromoByIdCours(int pIdCours) {
-		// TODO Auto-generated method stub
 		return coursDAO.getListPromoByIdCours(pIdCours);
+	}
+
+	@Override
+	public List<Etudiant> findListEtudiantNotLinkedToCours(int pIdCours) {
+		return coursDAO.getListEtudiantNotLinkedToCours(pIdCours);
 	}
 
 }

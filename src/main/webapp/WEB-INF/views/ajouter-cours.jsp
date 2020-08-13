@@ -71,7 +71,7 @@
 			
  			<div class="form-row">
                 <div class="form-group col-md-5">
-					<form:label path="duree">duree : </form:label>
+					<form:label path="duree">Duree : </form:label>
 					
 					<form:input path="duree"  class="form-control" required="true"/>
 					<form:errors path="duree"
@@ -82,7 +82,7 @@
                 <div class="form-group col-md-5">
 					<form:label path="date">Date: </form:label>
            			<form:input id="contrainteDate" type="date" path="date" 
-           						max="" required="true" />
+           						min="" required="true" />
            			<form:errors path="date" cssStyle="color : green; font-style: italic;" />
 
 				</div>	
@@ -101,7 +101,7 @@
  	<!-- script -->
  	<script src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"></script>
     <script src="${pageContext.request.contextPath}/assets/scripts/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/scripts/FormEtudiant.js"></script>	
+    <script src="${pageContext.request.contextPath}/assets/scripts/FormCours.js"></script>	
 
 </body>
 </html>

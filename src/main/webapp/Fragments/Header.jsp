@@ -12,7 +12,7 @@
     <div id="separation">
         <img id="userLogo" src="${pageContext.request.contextPath}/assets/images/User.png" >
         <p id="userInfos">{sessionScope.(attribut a definir).nom} - Admin</p>
-        <a href="#"><img id="AideImage" src="${pageContext.request.contextPath}/assets/images/Aide.png" ></a>
+        <a href="${pageContext.request.contextPath}/aide/liste"><img id="AideImage" src="${pageContext.request.contextPath}/assets/images/Aide.png" ></a>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,10 +55,6 @@
 
                 <a class="nav-link " href="#" id="navbarDropdown">
                     Absences
-                </a>
- 
-             <a class="nav-link " href="${pageContext.request.contextPath}/indexAide.jsp" id="navbarDropdown">
-                    Aide
                 </a>
             
         </div>
