@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
+
 </head>
 <body>
 
@@ -16,17 +18,18 @@
 	<form:form modelAttribute="mailToSend" method="POST" action="${pageContext.request.contextPath}/mail/send">
 
         <div style="width: 80%;margin: auto;">
+        
             <div class="form-row">
                 <div class="form-group col-md-5">
                     <form:label path="Subject">Objet du mail</form:label>
-                        <form:input type="text" class="form-control" required="true" path="Subject"/>
+                        <form:input type="text" class="form-control" id="exampleFormControlInput1" required="true" path="Subject"/>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-5">
                     <form:label path="content">Contenu du mail</form:label>
-                        <form:input type="text" class="form-control" required="true" path="content"/>
+                        <form:textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" required="true" path="content"/>
                 </div>
             </div>
 
