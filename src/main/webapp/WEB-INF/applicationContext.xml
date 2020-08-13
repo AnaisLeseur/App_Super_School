@@ -79,6 +79,7 @@
 			le gestionnaire des tx -->
 		<property name="sessionFactory" ref="sessionFactoryBean" />
 	</bean>
+	
 
 	<!-- activation de la detection des annotations. ex @Autowired -->
 	<context:annotation-config />

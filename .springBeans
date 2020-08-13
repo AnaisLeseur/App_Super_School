@@ -11,6 +11,7 @@
 		<config>src/main/webapp/WEB-INF/superSchool-security.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/applicationContext.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

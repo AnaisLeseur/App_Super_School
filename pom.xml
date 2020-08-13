@@ -10,13 +10,6 @@
 
 	<name>App_superschool Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	
-	<parent>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-parent</artifactId>
-      <version>1.5.8.RELEASE</version>
-      <relativePath />
-   </parent>
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- ++++++++ propriéts du projet +++++++++++++++++++++++ -->
@@ -201,22 +194,7 @@
 		</dependency>
 
 		<!-- internationalisation -->
-		  <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-web</artifactId>
-      </dependency>
-
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-test</artifactId>
-         <scope>test</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-thymeleaf</artifactId>
-      </dependency>
-
+		
 	</dependencies>
 
 
