@@ -218,6 +218,7 @@ public class PromotionDAOImpl implements IPromotionDAO {
 	}
 
 	@Override
+	@Transactional
 	public List<Promotion> getListNotLinkedToCours(int pIdCours) {
 		Session session = this.sessionFactory.getCurrentSession();
 
@@ -235,11 +236,12 @@ public class PromotionDAOImpl implements IPromotionDAO {
 	}
 
 	@Override
+	@Transactional
 	public List<Cours> getListNotLinkedToPromotionCours(int pIdPromotion) {
 		Session session = this.sessionFactory.getCurrentSession();
 
 		//Construction de la requete
-		String RequeteListNotLinkedToPromotionCours = "select c from Cours c where c.identifiant not in ( select e.identifiant from Cours c join c.promotion p where p.idPromotion=:pIdPromotion)";
+		String RequeteListNotLinkedToPromotionCours = "select c from Cours c where c.idCours not in ( select c.idCours from Cours c join c.promotion p where p.idPromotion=:pIdPromotion)";
 		Query<Cours> listQuery = session.createQuery(RequeteListNotLinkedToPromotionCours);
 		
 		//Passage de param
