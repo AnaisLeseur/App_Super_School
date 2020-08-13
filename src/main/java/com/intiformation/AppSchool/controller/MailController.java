@@ -34,18 +34,11 @@ public class MailController {
 
 	}// end AfficherFormulaireMailSTMP()
 	
-<<<<<<< HEAD
+
 	@RequestMapping(value = "mail/send", method = RequestMethod.POST)
 	public String envoyerMailSMTP(@ModelAttribute("mailToSend") Mail pMail) {
 		String username = "superschoolinti@gmail.com"; // adresse mail GMAIL
 		String password = "SuperSchool123"; // mot de passe 
-=======
-	@RequestMapping(value = "/mail/send", method = RequestMethod.POST)
-	public void envoyerMailSMTP() {
-		System.out.println("ICI");
-		String username = "...@gmail.com"; // adresse mail GMAIL
-		String password = "..."; // mot de passe 
->>>>>>> 6f31308738317e2e7f6b1caf33bb81151e34d8be
 		
 			
 			// Etape 1 : Création de la session

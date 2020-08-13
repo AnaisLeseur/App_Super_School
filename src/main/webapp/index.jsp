@@ -150,6 +150,10 @@
 	<br/>
 	<a href="${pageContext.request.contextPath}/aide/liste">Aide</a>
 	
+	<br/>
+	<br/>
+	<a href="${pageContext.request.contextPath}/international.jsp">Inter</a>
+	
 <jsp:include page="/Fragments/footer.jsp" />
 
 <script
