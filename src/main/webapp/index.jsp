@@ -34,6 +34,7 @@
 <div class="containerTop">
         <img id="imageTopBrand" src="${pageContext.request.contextPath}/assets/images/LogoCerveau.jpg">
         <h1 id="TitreApp">SuperSchool</h1>
+        <h2> </h2>
 
         <a href=""><img id="drapeauFrance" src="${pageContext.request.contextPath}/assets/images/FlagFrance.png" ></a>
         <a href=""><img id="drapeauUK" src="${pageContext.request.contextPath}/assets/images/FlagUK.png" ></a>
@@ -43,7 +44,7 @@
 
     <div id="separation">
         <img id="userLogo" src="${pageContext.request.contextPath}/assets/images/User.png" >
-        <p id="userInfos"><spring:message code="index.accueil" />< </p>
+        <p id="userInfos" style="color: black;"><spring:message code="index.accueil" /></p>
     </div>
     
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
