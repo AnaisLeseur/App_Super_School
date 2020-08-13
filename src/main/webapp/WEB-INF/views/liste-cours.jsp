@@ -58,7 +58,7 @@
 					<th scope="col">ID</th>
 					<th scope="col">Libelle</th>
 					<th scope="col">Description</th>
-					<th scope="col">Durée</th>
+					<th scope="col">Durée (min)</th>
 					<th scope="col">Date</th>
 	                
 	                 <th scope="col">Consulter</th>

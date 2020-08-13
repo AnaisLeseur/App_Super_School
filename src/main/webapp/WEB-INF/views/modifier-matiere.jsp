@@ -52,13 +52,7 @@ margin: 15px;}
                             pattern="[A-Z][A-Za-z -]+"/>
                   <form:errors path="libelle" cssStyle="color : green; font-style: italic;"/>
                    </div>
-
-				<div class="form-group col-md-2"></div>
-                <div class="form-group col-md-5">
-              <form:label path="FkEnseignant">FkEnseignant : </form:label> 
-               <form:input path="FkEnseignant" type="text" class="form-control" required="true"/> 
-                <form:errors path="FkEnseignant" cssStyle="color : blue; font-style: italic;"/>  
-              </div>
+               
               </div>
               </div>
               
