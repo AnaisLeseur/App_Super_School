@@ -66,11 +66,13 @@
 					<th scope="col">Date</th>
 					<th scope="col">Libelle de la matière</th>
 	                
-	                 <th scope="col">Consulter</th>
+	                <th scope="col">Consulter</th>
 	                <th scope="col">Attribuer Etudiant</th>
+	                <th scope="col">Associer Promotion</th>
 					<th scope="col">Modifier</th>
 					<th scope="col">Supprimer</th>
 					<th scope="col">Associer Matiere</th>
+					
 				</tr>
 
 		</thead>
@@ -99,7 +101,12 @@
 						</a>
 					</td>
 
-					
+					<!-- lier le cours à une promotion -->
+					<td>
+						<a href="${pageContext.request.contextPath}/cours/linkPromotion/${cou.idCours}">
+							<img src="${pageContext.request.contextPath}/assets/images/person-plus.svg">
+						</a>
+					</td>					
 
 
 					<!--  modification du cours -->

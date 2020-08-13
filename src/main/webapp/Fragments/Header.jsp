@@ -1,11 +1,12 @@
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/Header.css">
 
 <div class="containerTop">
         <img id="imageTopBrand" src="${pageContext.request.contextPath}/assets/images/LogoCerveau.jpg">
         <h1 id="TitreApp">SuperSchool</h1>
 
-        <a href=""><img id="drapeauFrance" src="${pageContext.request.contextPath}/assets/images/FlagFrance.png" ></a>
-        <a href=""><img id="drapeauUK" src="${pageContext.request.contextPath}/assets/images/FlagUK.png" ></a>
+        <a href="${pageContext.request.contextPath}/Langue"><img id="drapeauFrance" src="${pageContext.request.contextPath}/assets/images/FlagFrance.png" ></a>
+        <a href="${pageContext.request.contextPath}/Langue"><img id="drapeauUK" src="${pageContext.request.contextPath}/assets/images/FlagUK.png" ></a>
         
     </div>
 
