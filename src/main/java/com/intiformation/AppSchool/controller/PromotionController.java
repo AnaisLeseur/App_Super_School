@@ -386,16 +386,29 @@ public class PromotionController {
 		 */
 		@RequestMapping(value = "/promotion/bindCoursToPromotion", method = RequestMethod.POST)
 		public String BindCoursToPromotion(@ModelAttribute("promotionBindCours") Promotion pPromotion) {
-			System.out.println("dans BindCoursToPromotion");
+			System.out.println("\n\ndans BindCoursToPromotion");
 					
 //			promotionService.modifier(pPromotion);
 			int idPromo = pPromotion.getIdPromotion();
 			Promotion promotion = promotionService.findById(idPromo);
+			List<Cours> listeCours = promotion.getListeCours();
+			if (pPromotion.getListeCours()!=null) {
+				for (Cours cours : pPromotion.getListeCours()) {
+					listeCours.add(cours);
+					Cours coursLieAPromo = coursService.findByIdCours(cours.getIdCours());
+					coursLieAPromo.setPromotion(promotion);
+					coursService.modfierCours(coursLieAPromo);
+					System.out.println("\n\nici");
+				}
+			}
+			promotion.setListeCours(listeCours);
+			promotionService.modifier(promotion);
 			
-//			coursService.modfierCours();
+			System.out.println("\n\nla");
+			
 			
 			return "redirect:/promotion/liste";
-		}// end BindPromotionToEtudiant()
+		}// end BindCoursToPromotion()
 		
 		
 		@RequestMapping(value="/promotions/deleteCours", method=RequestMethod.GET)

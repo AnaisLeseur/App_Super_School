@@ -90,7 +90,7 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'empl
 					<td>
 						<!-- au click sur le lien : envoie d'une requete http get vers la méthode  -->
 						<a href="${pageContext.request.contextPath}/promotion/linkCours/${pro.idPromotion}">
-							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
+							<img src="${pageContext.request.contextPath}/assets/images/info-circle.svg">
 						</a>
 					</td>
 					

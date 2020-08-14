@@ -212,7 +212,7 @@ public class CoursController {
 	 *            contient le resultat du process de la validation
 	 */
 	@RequestMapping(value = "/cours/add", method = RequestMethod.POST)
-	public String ajouterEmployeBDD(@ModelAttribute("coursCommand") @Validated Cours pCours, ModelMap model,
+	public String ajouterCoursBDD(@ModelAttribute("coursCommand") @Validated Cours pCours, ModelMap model,
 			BindingResult resultatValidation) {
 
 		// validation de l'objet pEmploye
@@ -350,6 +350,12 @@ public class CoursController {
 
 		// modification du cours dans la bdd
 		coursService.modfierCours(coursPromo);
+		
+		List<Cours> ListeCoursDansPromo = promo.getListeCours();
+		ListeCoursDansPromo.add(coursPromo);
+		promo.setListeCours(ListeCoursDansPromo);
+		
+		promotionService.modifier(promo);
 
 		return "redirect:/cours/liste";
 	}// end BindPromotionToCours()
