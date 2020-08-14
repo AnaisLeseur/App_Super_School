@@ -17,7 +17,8 @@
 					<br /> + 33 1 23 45 67 89<br />
 				</div>
 				<div class="col-md-4 mb-4">
-					<img src="${pageContext.request.contextPath}/assets/images/important-mail.png" alt="User Icon" width="50px" />
+					<a href="${pageContext.request.contextPath}/mail/send-mail-form"><img
+					src="${pageContext.request.contextPath}/assets/images/important-mail.png"></a>
 					<br /> Contact@super_school.com  <br />
 				</div>
 

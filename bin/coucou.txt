@@ -1,9 +1,41 @@
+
+Reste à faire :
+==============
+
+table de jointure enseigne (enseignant / matiere / promo)
+lien promo- cours (A TERMINER)
+l'internationalisation (A TERMINER)
+
+
 MODIF A FAIRE 
+============
+
+
+	
+> affichage promotion => consulter : info de promo ? + mise en page (<br>
+	
+> affichage promotion => consulter => attrib etu => bouton pour valider l'étudiant à mettre dans la promo
+	
+> encodage en UTF-8 (pb avec les accents !) 
+	
+> matiere : img pour "cours liés à la matière" à changer
+	
+> matière => cours liés à la matière => colonne promo ? 
+	
+> l'enseignant doit afficher récap afficher les cours par promotion, matière et date.
+
+> cours => consulter => remove étudiant => 404
+
+> lien absence : retirer l'onglet "absence" de la navbar ? 
+
+> dans aide : header (navbar non correcte)
+
+
+
 
 
 Index.jsp: 
------------
-	> header / footer 
+----------- 
 	> "journal des news de l'école" genre 3 articles bidons (les inscriptions pour l'an prochain / options disponibles / ...
 	> if non connecté affiche => Se connecter ; sinon Se déconnecter
 
@@ -11,17 +43,8 @@ Index.jsp:
 Header :
 ---------
 	> nom pour la connexion : if connecté : "Bonjour XX", sinon "Bienvenue,"
-	> lien dans la navbar 
-
-Footer: 
---------
-	> copyright pb affichage
 
 
-Pour Adresse :
----------------
-	> dans liste etudiant / admin / enseignant => lors de l'ajout => mettre possibilité ajout adresse 
-	> dans see-X.jsp => afficher l'adresse liée ou "pas d'adresse liée" et lien pour lier une adresse
 
 Security :
 ----------
@@ -29,13 +52,12 @@ Security :
 
 Aide :
 -------
-	> 404 : sur "To Aide" dans index.jsp 
-	> faire une présentation header / footer 
-	> faire une page de récup de l'aide par les etu / enseignant
+	> dans ajout aide => mise en forme du bouton pour valider 
+
 
 Site multilingues:
 ------------------
-	> ? 
+	> en cours
 
 Exercice associés aux cours :
 ------------------------------
@@ -43,12 +65,11 @@ Exercice associés aux cours :
 
 gérer des services d’envoi par e-mail ou services Web :
 -------------------------------------------------------
-	> ? 
+	> onglet ? Ou juste footer ? 
 
-Pour etudiant dans promo / matière dans ajouter un cours ...
-------------------------------------------------------------
-	> faire des choix déroulant pour choisir les liens a faire 
 
-Dans liste cours :
-------------------
-	> colonne 1 a ajouter pour faire clean 
+
+
+
+
+

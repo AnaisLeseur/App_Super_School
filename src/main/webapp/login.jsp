@@ -6,6 +6,7 @@
  
   <%-- taglibs s de spring security --%>
  <%@taglib prefix="s" uri="http://www.springframework.org/security/tags" %>   
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -36,8 +37,8 @@
 	<!--  en cas d'echec d'authentification -->
 	<c:if test="${not empty param.error}">
 		<font style="color: red; font-style: italic;">
-			Erreur d'authentification. Identifiant ou MdP invalide !!!
-			<b>Raison</b> : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+			<fmt:message key="8"/>
+			<b>Cause by</b> : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 		</font>
 	
 	</c:if>
@@ -69,7 +70,7 @@
 	<!--  =====================================  -->
 	<c:if test="${not empty param.logout_message}">
 		<a href="${pageContext.request.contextPath}/index.jsp">
-			Retour à la page d'accueil
+			<fmt:message key="9"/>
 		</a>
 	</c:if>
 	

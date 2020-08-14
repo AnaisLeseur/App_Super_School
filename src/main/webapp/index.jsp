@@ -69,7 +69,7 @@
 
         <div class="container d-flex flex-column flex-md-row justify-content-between">
                 <a class="nav-link " style="float: left" href="${pageContext.request.contextPath}/login.jsp" >
-                    Se connecter
+                    <fmt:message key="Seconnecter"/>
                 </a>
         </div>
     </nav>
@@ -78,7 +78,7 @@
 	<!--  =================================  -->
 	<c:if test="${not empty param.logout_message}">
 		<font style="color: green; font-style: italic;">
-			Vous êtes déconnecté !!!
+                    <fmt:message key="Sedeconnecter"/>
 		</font>
 	</c:if>
 	
@@ -95,38 +95,38 @@
     <div class="carousel-item active">
       <img src="${pageContext.request.contextPath}/assets/images/etablissement.jpg" class="d-block w-100" alt="..." height="800px">
       <div class="carousel-caption">
-      <h5>Une école</h5>
+      <h5><fmt:message key="ecole"/></h5>
       <small>
-      	un lieu d'apprentissage, un lieu de partage, un lieu de vie ...
+<fmt:message key="1"/>
       </small>
    	  </div>
     </div>	
     <div class="carousel-item">
       <img src="${pageContext.request.contextPath}/assets/images/chapeau2.jpg" class="d-block w-100" alt="..." height="800px">
     <div class="carousel-caption">
-      <h5>Un diplôme</h5>
+      <h5><fmt:message key="2"/></h5>
    	<small>
-      	un titre, un savoir-faire, un savoir-être ...
+      	<fmt:message key="3"/>
       </small>
    	</div>
     </div>
     <div class="carousel-item">
       <img src="${pageContext.request.contextPath}/assets/images/salle-pause.jpg" class="d-block w-100" alt="..." height="800px">
     <div class="carousel-caption">
-      <h5>Une vie</h5>
+      <h5><fmt:message key="4"/></h5>
    	<small>
-      	des pauses, des cafés et des bières !
+      	<fmt:message key="5"/>
      </small>
    	</div>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
+    <span class="sr-only"><fmt:message key="6"/></span>
   </a>
   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
+    <span class="sr-only"><fmt:message key="7"/></span>
   </a>
 </div>
 

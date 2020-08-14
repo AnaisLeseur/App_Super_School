@@ -18,12 +18,18 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
 	
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/Link.css">
+	
 
 
 </head>
 <body>
 
 <jsp:include page="/Fragments/Header.jsp"/>
+
+<h1>Attribution de promotions à l'étudiant : ${etudiantBindPromo.nom} ${etudiantBindPromo.prenom}</h1>
+
 
 
 	<form:form method="POST" modelAttribute="etudiantBindPromo"
@@ -69,9 +75,11 @@
 
 		<form:hidden path="dateNaissance" />
 		<form:hidden path="photo" />
+		
+		
 
 
-		<input type="submit" class="btn btn-primary"
+		<input id="InputSubmit" type="submit" class="btn btn-primary"
 			value="Attribuer Promotion(s)" />
 
 	</form:form>

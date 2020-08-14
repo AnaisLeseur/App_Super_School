@@ -6,6 +6,7 @@
  
   <%-- taglibs s de spring security --%>
  <%@taglib prefix="s" uri="http://www.springframework.org/security/tags" %>   
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
  
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,7 +24,7 @@
 	
 		<%-- affichage de l'identifiant de l'utilisateur --%>
 		<h3>
-			Bienvenue, <s:authentication property="name"/>
+			<fmt:message key="accueil"/> <s:authentication property="name"/>
 		</h3>
 		<br/>
 		<%-- affichage des roles du user --%>

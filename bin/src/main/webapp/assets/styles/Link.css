@@ -1,0 +1,22 @@
+h1{
+	font-weight: bold;
+	color: #2b73b3;
+	margin-left: 3rem;
+	margin-bottom: 2rem;
+	text-decoration:underline;
+	margin-top: 2rem; 
+}
+
+h2{
+	color: #363636;
+	margin-left: 3rem;
+	margin-bottom: 2rem;
+	margin-top: 2rem; 
+	font-style: italic;
+}
+
+
+#InputSubmit{
+	width: auto;
+	margin-left: 10%;
+}

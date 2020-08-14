@@ -17,12 +17,15 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
 	
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/Link.css">
+	
 </head>
 <body>
 
 <jsp:include page="/Fragments/Header.jsp"/>
 
-
+<h1>Attribution d'étudiants à la promotion : ${promotionBindEtudiant.libelle}</h1>
 
 	<form:form method="POST" modelAttribute="promotionBindEtudiant"
 		action="${pageContext.request.contextPath}/promotion/bindEtudiantsToPromotion">
@@ -57,7 +60,7 @@
 		<form:hidden path="idPromotion" />
 		<form:hidden path="libelle" />
 		
-		<input type="submit" class="btn btn-primary"
+		<input id="InputSubmit" type="submit" class="btn btn-primary"
 			value="Attribuer Etudiant(s)" />
 
 	</form:form>

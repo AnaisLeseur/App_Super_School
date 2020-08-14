@@ -1,0 +1,14 @@
+h1{
+	font-weight: bold;
+	color: #2b73b3;
+	margin-left: 3rem;
+	margin-bottom: 2rem;
+	text-decoration:underline;
+	margin-top: 2rem; 
+}
+
+#contenuForm{
+	width: 90%;
+	margin: auto;
+	margin-bottom: 5rem;
+}

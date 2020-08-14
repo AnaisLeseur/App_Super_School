@@ -3,6 +3,7 @@
 
 <%-- ajout de la taglib de spring mvc form --%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,7 @@
 	<jsp:include page="/Fragments/Header.jsp"/>
 	
 	<div id="TitreForm">
-		<h1>Formulaire d'un cours � ajouter</h1>
+		<h1><fmt:message key="10"/></h1>
 	</div>
 
 	<%--
