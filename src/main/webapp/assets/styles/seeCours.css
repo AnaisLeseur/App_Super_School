@@ -1,0 +1,63 @@
+#ModifierCours{
+    float: right;
+    margin-right: 4rem;
+}
+
+#ModifierCours img{
+    width: 3rem;
+}
+
+#ModifierCours a{
+    color: #e8362c;
+}
+
+#ModifierCours a:hover{
+    text-decoration: none;
+    
+}
+
+#DivInfosCours{
+    width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+    padding-bottom: 3rem;
+    border-bottom: 2px solid #363636;
+}
+
+#PhotoCours{
+    float: left;
+    width: 10rem;
+}
+
+#TitreIdCours{
+	 margin-top: 2rem;
+	 margin-left: 2rem;
+}
+
+
+.infosCours{
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+}
+
+.infosCours h2{
+    font-size: 1.25rem;
+}
+
+.infosCours p{
+    margin-left: 3rem;
+}
+
+.infosCours span{
+    text-transform: uppercase;
+}
+
+.LinkRougeNull {
+    margin-top:1rem;
+    margin-left: 3rem;
+    color: #e8362c; 
+}
+
+.LinkRougeNull:hover{
+    color: #e8362c; 
+}

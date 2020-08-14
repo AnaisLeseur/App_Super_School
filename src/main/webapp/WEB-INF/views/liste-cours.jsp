@@ -49,7 +49,7 @@
            <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
              <thead class="thead-blue">
                	<tr>
-					<th id="Ajout" colspan="13">
+					<th id="Ajout" colspan="11">
 						<a href="${pageContext.request.contextPath}/cours/add-cours-form">
 							<img id="LogoAjout"
 								src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png">
@@ -61,18 +61,16 @@
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Libelle</th>
-					<th scope="col">Description</th>
-					<th scope="col">Durée (min)</th>
 					<th scope="col">Date</th>
-					<th scope="col">Libelle de la matière</th>
-					<th scope="col">Libelle de la promotion</th>
+					<th scope="col">Matière</th>
+					<th scope="col">Promotion</th>
 	                
 	                <th scope="col">Consulter</th>
+	                <th scope="col">Modifier</th>
 	                <th scope="col">Attribuer Etudiant</th>
 	                <th scope="col">Associer Promotion</th>
-					<th scope="col">Modifier</th>
-					<th scope="col">Supprimer</th>
 					<th scope="col">Associer Matiere</th>
+					<th scope="col">Supprimer</th>
 					
 				</tr>
 
@@ -84,8 +82,6 @@
 				<tr>
 					<td>${cou.idCours}</td>
 					<td>${cou.libelle}</td>
-					<td>${cou.description}</td>
-					<td>${cou.duree}</td>
 					<td>${cou.date}</td>
 					<td>${cou.matiere.libelle}</td>
 					<td>${cou.promotion.libelle}</td>
@@ -96,12 +92,20 @@
 						</a>
 					</td>
 					
+					<!-- Modifier -->
+					
+					<td>
+						<a href="${pageContext.request.contextPath}/cours/update-cours-form?idcours=${cou.idCours }">
+							<img src="${pageContext.request.contextPath}/assets/images/pencil.svg">
+						</a>
+					</td>
+					
 					<td>
 						<a href="${pageContext.request.contextPath}/cours/linkEtudiantCours/${cou.idCours}">
 							<img src="${pageContext.request.contextPath}/assets/images/person-plus.svg">
 						</a>
 					</td>
-
+					
 
 					<!-- lier cours à une PROMOTION avec liste déroulante -->
 					<td>  
@@ -111,29 +115,10 @@
 								  <form:options items="${liste_Promotion}" itemValue="idPromotion" itemLabel="libelle" />
 					      	</form:select>
 					      	<form:hidden path="idCours" value="${cou.idCours }" />
-					      	<input type="submit" value="Lier le cours à cette promotion" />
+					      	<input type="submit" value="Attribuer" style="padding: 5px 10px 5px 10px"/>
                         </form:form>
    
 					</td>
-
-
-
-
-					<!--  modification du cours -->
-					<td>
-						<a href="${pageContext.request.contextPath}/cours/update-cours-form?idcours=${cou.idCours}">
-							<img src="${pageContext.request.contextPath}/assets/images/pencil.svg">
-						</a>
-					</td>
-					
-					<!-- suppression -->
-					<td>
-						<!-- au click sur le lien : envoie d'une requete http get vers la méthode supprimer -->
-						<a href="${pageContext.request.contextPath}/cours/delete/${cou.idCours}">
-							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
-						</a>
-					</td>
-
 					
 					<!-- lier cours à une matiere -->
 					<td>  
@@ -143,9 +128,16 @@
 								  <form:options items="${attribut_listeMatiereBddPourAssos}" itemValue="idMatiere" itemLabel="libelle" />
 					      	</form:select>
 					      	<form:hidden path="idCours" value="${cou.idCours }" />
-					      	<input type="submit" value="Lier le cours à cette matière" />
+					      	<input type="submit" value="Attribuer" style="padding: 5px 10px 5px 10px" />
                         </form:form>
-   
+					</td>
+					
+					<!-- suppression -->
+					<td>
+						<!-- au click sur le lien : envoie d'une requete http get vers la méthode supprimer -->
+						<a href="${pageContext.request.contextPath}/cours/delete/${cou.idCours}">
+							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
+						</a>
 					</td>
 					
 
