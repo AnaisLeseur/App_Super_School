@@ -2,13 +2,10 @@ package com.intiformation.AppSchool.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
@@ -288,12 +285,19 @@ public class CoursController {
 	public String toLinkPromotion(@PathVariable("coursID") int pId, ModelMap model) {
 
 		model.addAttribute("coursBindPromo", coursService.findByIdCours(pId));
-
+		
+		// --------------------------------------------------------//
+		//findListNotLinkedToCours ne sert a rien / prendre getAll
+		// --------------------------------------------------------//
+		
 		model.addAttribute("liste_Promotion", promotionService.findListNotLinkedToCours(pId));
 
 		return "LinkPromotionToCours";
 	}// end toLinkPromotion
-
+	
+	// --------------------------------------------------------//
+	//ne marchera pas => Dans 'Cours' pas de List<Promotion> mais UNE Promotion
+	// --------------------------------------------------------//
 	/**
 	 * Conversion des id des promotions en objet Promotion
 	 * 
@@ -318,6 +322,11 @@ public class CoursController {
 		});
 	}// end InitBinder
 
+	
+	
+	// --------------------------------------------------------//
+	//Bad request a cause de l'initBinder
+	// --------------------------------------------------------//
 	/**
 	 * Lie l'étudiant aux promotions sélectionnées
 	 * 
@@ -343,6 +352,8 @@ public class CoursController {
 
 		return "redirect:/promotion/liste";
 	}// end BindPromotionToEtudiant()
+	
+	
 
 	@RequestMapping(value = "/cours/deletePromotion", method = RequestMethod.GET)
 	public ModelAndView DeletePromotionFromEtudiant(@RequestParam("idPromo") int idPromotion,

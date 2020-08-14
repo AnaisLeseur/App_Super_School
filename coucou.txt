@@ -28,7 +28,7 @@ MODIF A FAIRE
 
 > lien absence : retirer l'onglet "absence" de la navbar ? 
 
-
+> dans aide : header (navbar non correcte)
 
 
 

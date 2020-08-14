@@ -358,7 +358,7 @@ public class PromotionController {
 		 * Conversion des id des promotions en objet Promotion
 		 * @param binder
 		 */
-		@InitBinder
+		@InitBinder({"promotionBindCours"})
 		public void bindingPreparationPromoToCours(WebDataBinder binder) {
 			
 			binder.registerCustomEditor(List.class,"listeCours", new CustomCollectionEditor(List.class) {

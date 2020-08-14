@@ -58,7 +58,8 @@
 
 				<th scope="col">Consulter</th>
 				<th scope="col">Modifier</th>
-				<th scope="col">Eliminer</th>
+				<th scope="col">Lier à un cours</th>
+				<th scope="col">Supprimer</th>
 			</tr>
                   </thead>
                   
@@ -78,11 +79,23 @@
 					<!-- au click sur le lien : envoie d'ue requete HTTP en Get vers la méthode "afficherFormulaireModification()" 
 passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'employe à modifier
  -->
-					<td><a
-						href="${pageContext.request.contextPath}/promotion/update-promotion-form?idpromotion=${pro.idPromotion}">
+					<td>
+						<a href="${pageContext.request.contextPath}/promotion/update-promotion-form?idpromotion=${pro.idPromotion}">
 							<img
 							src="${pageContext.request.contextPath}/assets/images/pencil.svg">
-					</a></td>
+						</a>
+					</td>
+					
+					<!-- Lier la promo à un cours -->
+					<td>
+						<!-- au click sur le lien : envoie d'une requete http get vers la méthode  -->
+						<a href="${pageContext.request.contextPath}/promotion/linkCours/${pro.idPromotion}">
+							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
+						</a>
+					</td>
+					
+					
+					
 					<!-- suppression -->
 					<td>
 						<!-- au click sur le lien : envoie d'une requete http get vers la méthode supprimer -->

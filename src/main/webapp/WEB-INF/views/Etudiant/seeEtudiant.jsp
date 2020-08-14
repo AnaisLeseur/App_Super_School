@@ -82,10 +82,10 @@
 
 	<br />
 
-	<div class="col-md-11" style="margin: auto;">
+	<div style="margin: auto;display: inline-flex;width: 100%;">
 
 
-		<div class="col-md-5" style="float: left;">
+		<div class="col-md-6" >
 
 			<h1>Promotions :</h1>
 
@@ -140,7 +140,7 @@
 
 		</div>
 
-		<div class="col-md-5" style="float: right;">
+		<div class="col-md-6" >
 
 			<h1>Cours :</h1>
 
@@ -217,11 +217,8 @@
 		
 	</div>
 
-	<br /><br /> <br /> <br /> <br /> <br /> <br />
-	
-	<hr/>
-<div style="margin-top:10rem;">
+
 	<jsp:include page="/Fragments/footer.jsp" />
-</div>
+
 </body>
 </html>
