@@ -50,7 +50,8 @@
 					
 		
 		<div class="card-text">
-
+			<h2 style="color: black;">Adresse :</h2>
+			<br/>
 			<c:if
 				test="${empty enseignantVoirCommand.adresse.rue and empty enseignantVoirCommand.adresse.ville and empty enseignantVoirCommand.adresse.codePostal }">
 				<a class="LinkRougeNull" href="${pageContext.request.contextPath}/enseignants/update-enseignant-form?idEnseignant=${enseignantVoirCommand.identifiant }">
@@ -60,7 +61,7 @@
 
 			<c:if test="${not empty enseignantVoirCommand.adresse }">
 				
-				<h2 style="color: black;">Adresse :</h2>
+				
 				<p style="margin-bottom: 0px; margin-left: 20px;">${enseignantVoirCommand.adresse.rue}</p>
 				<p style="margin-top: 0px; margin-left: 20px;">${enseignantVoirCommand.adresse.codePostal} ${enseignantVoirCommand.adresse.ville}</p>
 			</c:if>
@@ -69,6 +70,53 @@
 
       </div>
     </div>
+    
+    
+    <div style="margin: auto;width: 95%;">
+
+			<h3 style="margin-top: 2rem;">Associations matière/promotion :</h3>
+
+
+			<c:if test="${ empty enseignantVoirCommand.listeEnseigneJointureEns}">
+				<a class="LinkRougeNull"
+					href="${pageContext.request.contextPath}/enseigneJointure/liste/${enseignantVoirCommand.identifiant}/E">Aucune
+					promotion ou matière associée</a>
+			</c:if>
+
+			<c:if test="${not empty enseignantVoirCommand.listeEnseigneJointureEns}">
+				<a 	href="${pageContext.request.contextPath}/enseigneJointure/liste/${enseignantVoirCommand.identifiant}/E" style="margin-left: 6rem;">Gerer les 
+				associations avec promotion ou matière</a>
+
+				<table class="table table-striped table-bordered table-hover" style="padding-top: 1.5rem;">
+
+					<thead class="thead-blue">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Promotion</th>
+							<th scope="col">Matiere</th>
+						</tr>
+
+					</thead>
+
+					<tbody>
+
+						<c:forEach items="${enseignantVoirCommand.listeEnseigneJointureEns}" var="ej">
+							<tr>
+								<td>${ej.idEnseigneJointure}</td>
+								<td>${ej.promotionEJ.libelle}</td>
+								<td>${ej.matiereEJ.libelle}</td>
+
+							</tr>
+
+						</c:forEach>
+
+					</tbody>
+
+				</table>
+
+			</c:if>
+
+		</div>
 
 
 	<!-- footer -->

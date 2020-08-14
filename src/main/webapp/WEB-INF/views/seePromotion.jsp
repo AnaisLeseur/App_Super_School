@@ -25,9 +25,9 @@
 <jsp:include page="/Fragments/Header.jsp"/>
  <h1>Promotion : ${promotionSeeCommand.libelle}</h1>
  
- <a href="${pageContext.request.contextPath}/enseigneJointure/liste/${promotionSeeCommand.idPromotion}/P">lien test</a>
+ <a style="margin-left: 5rem;" href="${pageContext.request.contextPath}/enseigneJointure/liste/${promotionSeeCommand.idPromotion}/P">Gérer les associations Matière/Enseignant</a>
 
-<div class="col-md-11" style="margin: auto;">
+<div class="col-md-11" style="margin: auto;padding-top: 2rem;">
 
 
         <div class="col-md-5" style="float: left;">
