@@ -4,12 +4,11 @@
   <%-- taglibs core des jsp --%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
  
-<<<<<<< HEAD
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
-=======
+
 <!--  ajout de la taglib de spring mvc 'form' -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
->>>>>>> 6321db9e84a82ac6a74ff35d586ad5523fbf9158
+
 
  
  
@@ -35,20 +34,34 @@
 
 <!-- Header -->
 
+<c:choose>
+<c:when test="${param.lang == 'fr'}">
+	<fmt:setBundle basename="messages_fr"/>
+</c:when>
+<c:when test="${param.lang == 'en'}">
+	<fmt:setBundle basename="messages_en"/>
+</c:when>
+<c:otherwise>
+	<fmt:setBundle basename="messages"/>
+</c:otherwise>
+</c:choose>
+
 <div class="containerTop">
         <img id="imageTopBrand" src="${pageContext.request.contextPath}/assets/images/LogoCerveau.jpg">
         <h1 id="TitreApp">SuperSchool</h1>
         <h2> </h2>
 
-        <a href=""><img id="drapeauFrance" src="${pageContext.request.contextPath}/assets/images/FlagFrance.png" ></a>
-        <a href=""><img id="drapeauUK" src="${pageContext.request.contextPath}/assets/images/FlagUK.png" ></a>
+        <a href="?lang=fr"><img id="drapeauFrance" src="${pageContext.request.contextPath}/assets/images/FlagFrance.png" ></a>
+        <a href="?lang=en"><img id="drapeauUK" src="${pageContext.request.contextPath}/assets/images/FlagUK.png" ></a>
         
     </div>
 
 
     <div id="separation">
         <img id="userLogo" src="${pageContext.request.contextPath}/assets/images/User.png" >
-        <p id="userInfos" style="color: black;"><fmt:message key="label.accueil" /></p>
+        <p id="userInfos" style="color: black;">
+        <fmt:message key="accueil"/>
+        </p>
     </div>
     
       <nav class="navbar navbar-expand-lg navbar-light bg-light">

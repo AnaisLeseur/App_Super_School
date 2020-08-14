@@ -82,28 +82,7 @@
 		<property name="sessionFactory" ref="sessionFactoryBean" />
 	</bean>
 	
-	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="classpath:messages" />
-		<property name="defaultEncoding" value="UTF-8" />
-	</bean>
-
-	<bean id="localeResolver"
-		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-		<property name="defaultLocale" value="fr"/>
-		<property name="cookieName" value="myAppLocaleCookie"/>
-		<property name="cookieMaxAge" value="3600"/>
-	</bean>
-
-	<mvc:interceptors>
-		<mvc:interceptor>
-		<mvc:mapping path="/**"/>
-		<bean
-			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-			<property name="paramName" value="locale" />
-		</bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
+	
 
 	<!-- activation de la detection des annotations. ex @Autowired -->
 	<context:annotation-config />
