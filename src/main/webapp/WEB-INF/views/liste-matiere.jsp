@@ -37,6 +37,19 @@
 </head>
 
 <body id="page-top">
+<c:choose>
+<c:when test="${param.lang =='fr'}">
+	<fmt:setBundle basename="messages_fr"/>
+</c:when>
+<c:when test="${param.lang =='en'}">
+	<fmt:setBundle basename="messages_en"/>
+</c:when>
+<c:otherwise>
+	<fmt:setBundle basename="messages"/>
+</c:otherwise>
+</c:choose>
+
+
 
 	<!--  HEADER  -->
 	<jsp:include page="/Fragments/Header.jsp" />
@@ -66,15 +79,11 @@
 						<th>Id</th>
 						<th><fmt:message key="11"/></th>
 
-<<<<<<< HEAD
+
 						<th><fmt:message key="modif"/></th>
 						<th><fmt:message key="supp"/></th>
 						<th><fmt:message key="courslimat"/></th>
-=======
-						<th>Modifier</th>
-						<th>Supprimer</th>
-						<th>Voir les cours liés à la matière</th>
->>>>>>> 477750f94da984b31404d8fc5b17d4c07e7d3be0
+
 				
 					</tr>
                   </thead>

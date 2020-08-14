@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voir les détail du cours</title>
+    <title>Voir les détails du cours</title>
     
     <!--  Feuille de style -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">

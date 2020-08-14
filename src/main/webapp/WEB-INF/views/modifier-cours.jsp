@@ -2,14 +2,10 @@
 	pageEncoding="UTF-8"%>
 	
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<<<<<<< HEAD
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-=======
-
 <!DOCTYPE html>
->>>>>>> 477750f94da984b31404d8fc5b17d4c07e7d3be0
 <html>
 <head>
 

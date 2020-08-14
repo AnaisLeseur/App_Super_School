@@ -31,12 +31,32 @@
   <link href="${pageContext.request.contextPath}/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body>
+<c:choose>
+<c:when test="${param.lang =='fr'}">
+	<fmt:setBundle basename="messages_fr"/>
+</c:when>
+<c:when test="${param.lang =='en'}">
+	<fmt:setBundle basename="messages_en"/>
+</c:when>
+<c:otherwise>
+	<fmt:setBundle basename="messages"/>
+</c:otherwise>
+</c:choose>
 
+<div class="containerTop">
+        <img id="imageTopBrand" src="${pageContext.request.contextPath}/assets/images/LogoCerveau.jpg">
+        <h1 id="TitreApp">SuperSchool</h1>
+        <h2> </h2>
+
+        <a href="?lang=fr"><img id="drapeauFrance" src="${pageContext.request.contextPath}/assets/images/FlagFrance.png" ></a>
+        <a href="?lang=en"><img id="drapeauUK" src="${pageContext.request.contextPath}/assets/images/FlagUK.png" ></a>
+        
+    </div>
 	<!--  HEADER  -->
 	<jsp:include page="/Fragments/Header.jsp" />
 
 	<h1 id="TitreListe">
-<<<<<<< HEAD
+
 		<u><fmt:message key="listepro"/></u>
 	</h1>
 
@@ -66,36 +86,7 @@
 				<th scope="col"><fmt:message key="supp"/></th>
 			</tr>
                   </thead>
-=======
-		Liste des promotions
-	</h1>
 
-	 <div class="card shadow mb-4">     
-       <div class="card-body">
-         <div class="table-responsive">
-           <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
-      		  <thead class="thead-blue">
-          
-	           <tr>
-					<th id="Ajout" colspan="8"><a
-						href="${pageContext.request.contextPath}/promotion/add-promotion-form"><img
-							id="LogoAjout"
-							src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png"><span>Ajouter
-								Promotion</span></a></th>
-				</tr>
-
-		
-				<!--  ligne des header  -->
-				<tr>
-					<th scope="col">Identifiant de la Promotion</th>
-					<th scope="col">Libelle</th>
-					<th scope="col">Consulter</th>
-					<th scope="col">Modifier</th>
-					<th scope="col">Lier à un cours</th>
-					<th scope="col">Supprimer</th>
-				</tr>
-              </thead>
->>>>>>> 477750f94da984b31404d8fc5b17d4c07e7d3be0
                   
              <!--  Body de la table -->
              <tbody>
