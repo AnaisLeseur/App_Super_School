@@ -48,7 +48,7 @@
 				<div class="form-group col-md-5">
 					<form:label path="description">Description : </form:label>
 
-					<form:input path="description" type="text" class="form-control"
+					<form:textarea path="description" type="text" class="form-control"
 						required="true" pattern="[A-Z][A-Za-z -]+" />
 					<form:errors path="description"
 						cssStyle="color : red; font-style: italic;" />
