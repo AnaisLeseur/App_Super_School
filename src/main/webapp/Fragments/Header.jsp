@@ -55,9 +55,7 @@
                     Cours
                 </a>
 
-                <a class="nav-link " href="#" id="navbarDropdown">
-                    Absences
-                </a>
+
             
         </div>
     </nav>

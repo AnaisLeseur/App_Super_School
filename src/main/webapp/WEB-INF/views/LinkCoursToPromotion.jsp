@@ -7,6 +7,7 @@
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +28,7 @@
 <jsp:include page="/Fragments/Header.jsp"/>
 <br/>
 
- <h1>Choisir les cours de la promotion sélectionnée</h1>
+ <h1><fmt:message key="25"/></h1>
  <br/>
 
 	<form:form method="POST" modelAttribute="promotionBindCours"
@@ -38,12 +39,12 @@
 			<thead class="thead-blue">
 				<tr>
 					<th scope="col">ID Cours</th>
-					<th scope="col">Libelle</th>
+					<th scope="col"><fmt:message key="11"/></th>
 
 					<th scope="col">Description</th>
-					<th scope="col">Duree</th>
+					<th scope="col"><fmt:message key="12"/></th>
 					<th scope="col">Date</th>
-					<th scope="col">Lier le cours à la promotion</th>
+					<th scope="col"><fmt:message key="26"/></th>
 					
 				</tr>
 

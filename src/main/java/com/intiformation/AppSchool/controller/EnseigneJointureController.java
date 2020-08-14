@@ -106,13 +106,19 @@ public class EnseigneJointureController {
 	
 	@RequestMapping(value = "/enseigneJointure/addEnseigneJointure", method = RequestMethod.POST)
 	public String AddEnseigneJointure(@ModelAttribute("enseigneJointureCommand") @Validated EnseigneJointure enseigneJointure,
-			BindingResult bindingResult) {
+			BindingResult bindingResult, ModelMap model) {
 		
 		ejValidator.validate(enseigneJointure, bindingResult);
 		
 		if (bindingResult.hasErrors()) {
 			
-			return "redirect:/enseigneJointure/liste/0/X";
+			model.addAttribute("attribut_listeEnseignants", enseignantService.findAll());
+			model.addAttribute("attribut_listePromotions", promotionService.findAll());
+			model.addAttribute("attribut_listeMatieres", matiereService.findAllMatiere());
+			
+			model.addAttribute("attribut_listeEnseigneJointures", enseigneJointureService.findAll());
+			
+			return "FormListEnseigneJointure";
 		}
 				
 		int idEnseignant = enseigneJointure.getEnseignantEJ().getIdentifiant();
@@ -121,14 +127,20 @@ public class EnseigneJointureController {
 				
 		if (idEnseignant!=0) {
 			enseigneJointure.setEnseignantEJ(enseignantService.findById(idEnseignant));
+		}else {
+			enseigneJointure.setEnseignantEJ(null);
 		}
 		
 		if (idPromotion!=0) {
 			enseigneJointure.setPromotionEJ(promotionService.findById(idPromotion));
+		}else {
+			enseigneJointure.setPromotionEJ(null);
 		}
 		
 		if (idMatiere!=0) {
 			enseigneJointure.setMatiereEJ(matiereService.findByIdMatiere(idMatiere));
+		}else {
+			enseigneJointure.setMatiereEJ(null);
 		}
 		
 		enseigneJointureService.ajouter(enseigneJointure);

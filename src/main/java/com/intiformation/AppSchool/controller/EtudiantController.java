@@ -107,6 +107,7 @@ public class EtudiantController {
 		// Renvoi du nom logique de la vue
 		return "Etudiant/listeEtudiant";
 	}// end recupererListeEtudiants()
+	
 
 	@RequestMapping(value = "/etudiant/see-etudiant/{etudiantID}", method = RequestMethod.GET)
 	public ModelAndView ConsulterEtudiant(@PathVariable("etudiantID") int pId) {
@@ -116,6 +117,7 @@ public class EtudiantController {
 		// Return new ModelAndView(viewName, modelName, modelObject)
 		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiant);
 	}//end ConsulterEtudiant()
+	
 
 	// --------------------------------------------------------//
 	// -----------------Ajout Etudiant-------------------------//
@@ -133,11 +135,13 @@ public class EtudiantController {
 
 	@RequestMapping(value = "etudiant/add", method = RequestMethod.POST)
 	public String ajouterEtudiant(@ModelAttribute("etudiantAddCommand") @Validated Etudiant pEtudiant,
-			BindingResult bindingResult) {
+			BindingResult bindingResult, ModelMap model) {
 
 		etudiantValidator.validate(pEtudiant, bindingResult);
 
 		if (bindingResult.hasErrors()) {
+			
+			model.addAttribute("etudiantAddCommand", new Etudiant());
 
 			return "Etudiant/addEtudiant";
 
@@ -203,11 +207,13 @@ public class EtudiantController {
 
 	@RequestMapping(value = "/etudiant/update", method = RequestMethod.POST)
 	public String modifierEtudiant(@ModelAttribute("etudiantUpdateCommand") @Validated Etudiant pEtudiant,
-			BindingResult bindingResult) {
+			BindingResult bindingResult, ModelMap model) {
 
 		etudiantValidator.validate(pEtudiant, bindingResult);
 
 		if (bindingResult.hasErrors()) {
+			
+			model.addAttribute("etudiantUpdateCommand", etudiantService.findById(pEtudiant.getIdentifiant()));
 
 			return "Etudiant/updateEtudiant";
 
@@ -440,14 +446,14 @@ public class EtudiantController {
 	
 	
 	@RequestMapping(value = "/etudiants/deleteEtudiantCours", method = RequestMethod.GET)
-	public ModelAndView DeleteCoursFromEtudiant(@RequestParam("idEtudiantCours") int idEtudiantCours,
-			@RequestParam("idEtudiant") int idEtudiant) {
+	public ModelAndView DeleteCoursFromEtudiant(@RequestParam("idEtudiantCours") int idEtudiantCours, @RequestParam("idEtudiant") int idEtudiant) {
 		
 		etudiantCoursService.supprimer(idEtudiantCours);		
 	
 		// Renvoi de l'etudiant dans la vue seeEtudiant
 		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiantService.findById(idEtudiant));
 	}//DeleteCoursFromEtudiant()
+	
 	
 	@RequestMapping(value = "/etudiants/edit-form-EtudiantCours/{idEtudiantCours}", method = RequestMethod.GET)
 	public ModelAndView AfficherFormEtudiantCours(@PathVariable("idEtudiantCours") int idEtudiantCours) {
@@ -456,9 +462,9 @@ public class EtudiantController {
 		return new ModelAndView("Etudiant/formEtudiantCours", "etudiantCoursEditCommand", etudiantCoursService.findById(idEtudiantCours));
 	}//AfficherFormEtudiantCours()
 	
+	
 	@RequestMapping(value ="/etudiant/editEtudiantCours", method = RequestMethod.POST)
 	public String EditEtudiantCoursFromEtudiant(@ModelAttribute("etudiantCoursEditCommand") EtudiantCours pEtudiantCours) {
-
 
 		//Recup de l'EtudiantCours contenant coursEC et etudianEC
 		EtudiantCours etudiantCoursBDD = etudiantCoursService.findById(pEtudiantCours.getIdEtudiantCours());

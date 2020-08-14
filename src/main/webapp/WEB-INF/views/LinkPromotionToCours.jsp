@@ -6,6 +6,7 @@
  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +29,7 @@
 <jsp:include page="/Fragments/Header.jsp"/>
 <br/>
 
- <h1>Choisir la promotion qui participera au cours choisi ${idCours} </h1>
+ <h1><fmt:message key="32"/> ${idCours} </h1>
  <br/>
 
 	<form:form method="POST" modelAttribute="coursBindPromo"
@@ -38,10 +39,10 @@
 
 			<thead class="thead-blue">
 				<tr>
-					<th scope="col">Id Promotion</th>
-					<th scope="col">Libelle</th>
+					<th scope="col">Id <fmt:message key="23"/></th>
+					<th scope="col"><fmt:message key="11"/></th>
 
-					<th scope="col">Attribuer</th>
+					<th scope="col"><fmt:message key="29"/></th>
 				</tr>
 
 			</thead>

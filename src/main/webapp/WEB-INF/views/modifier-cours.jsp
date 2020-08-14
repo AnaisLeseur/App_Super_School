@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
@@ -15,7 +17,7 @@
 
 	<jsp:include page="/Fragments/Header.jsp" />
 	<div id="TitreForm">
-		<h1>Formulaire de modification d'un cours</h1>
+		<h1><fmt:message key="formmodifcours"/></h1>
 	</div>
 
 
@@ -25,7 +27,7 @@
 
 
 
-		<!-- recup de l'id de l'employe a modifier dans un champs caché-->
+		<!-- recup de l'id de l'employe a modifier dans un champs cachÃ©-->
 		
 			<td><form:hidden path="idCours" /></td>
 		
@@ -36,7 +38,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-5">
 
-					<form:label path="libelle">Libelle : </form:label>
+					<form:label path="libelle"><fmt:message key="11"/></form:label>
 					<form:input path="libelle" type="text" class="form-control"
 						required="true" pattern="[A-Z][A-Za-z -]+" />
 					<form:errors path="libelle"
@@ -48,7 +50,7 @@
 				<div class="form-group col-md-5">
 					<form:label path="description">Description : </form:label>
 
-					<form:input path="description" type="text" class="form-control"
+					<form:textarea path="description" type="text" class="form-control"
 						required="true" pattern="[A-Z][A-Za-z -]+" />
 					<form:errors path="description"
 						cssStyle="color : red; font-style: italic;" />
@@ -58,7 +60,7 @@
 			<br> <br> <br>
 			<div class="form-row">
 				<div class="form-group col-md-5">
-					<form:label path="duree">Durée : </form:label>
+					<form:label path="duree"><fmt:message key="12"/></form:label>
 
 					<form:input path="duree" class="form-control" required="true" />
 					<form:errors path="duree"

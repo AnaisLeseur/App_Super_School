@@ -3,7 +3,9 @@
 
     
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+ 
     
 <!DOCTYPE html>
 <html>
@@ -28,19 +30,19 @@
 
 
 	<h1 id="TitreListe">
-		Liste des cours associés à la matière selectionnée: 
+		<fmt:message key="31"/>
 	</h1>
 
 		<table class="table table-striped table-bordered table-hover">
 
 			<thead class="thead-blue">
 				<tr>
-					<th scope="col">Identifiant du cours</th>
-					<th scope="col">Libelle</th>
+					<th scope="col">ID <fmt:message key="cours"/></th>
+					<th scope="col"><fmt:message key="11"/></th>
 					<th scope="col">Description</th>
-					<th scope="col">Durée</th>
+					<th scope="col"><fmt:message key="12"/></th>
 					<th scope="col">Date</th>
-					<th scope="col">Promotion</th>
+					<th scope="col"><fmt:message key="23"/></th>
 				</tr>
 
 			</thead>

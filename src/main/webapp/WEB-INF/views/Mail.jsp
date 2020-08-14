@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,24 +13,36 @@
 
 </head>
 <body>
-
-	<h1 id="TitreForm">Formulaire d'envoie de mail</h1>
-
+	
 	
 	<form:form modelAttribute="mailToSend" method="POST" action="${pageContext.request.contextPath}/mail/send">
 
         <div style="width: 80%;margin: auto;">
         
+        	<div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="AdresseReception"><fmt:message key="adresserecep"/></label>
+                        <input type="text" class="form-control" id="AdresseReception" value="superschoolinti@gmail.com" readonly="readonly"/>
+                </div>
+            </div>
+        
+        	<div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="AdresseReception"><fmt:message key="adresseem"/></label>
+                        <input type="text" class="form-control" id="AdresseEmission" value="superschoolinti@gmail.com" readonly="readonly"/>
+                </div>
+            </div>
+        
             <div class="form-row">
                 <div class="form-group col-md-5">
-                    <form:label path="Subject">Objet du mail</form:label>
+                    <form:label path="Subject"><fmt:message key="objmail"/></form:label>
                         <form:input type="text" class="form-control" id="exampleFormControlInput1" required="true" path="Subject"/>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-5">
-                    <form:label path="content">Contenu du mail</form:label>
+                    <form:label path="content"><fmt:message key="contmail"/></form:label>
                         <form:textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" required="true" path="content"/>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +21,12 @@
 
 	<jsp:include page="/Fragments/Header.jsp" />
 	
-	<h1>Modification du lien Enseignant/Matiere/Promotion</h1>
+	<h1><fmt:message key="24"/></h1>
 	
 	<form:form modelAttribute="enseigneJointureEditCommand" method="POST" action="${pageContext.request.contextPath}/enseigneJointure/updateEJ">
 
 <div class="form-row">
-	<form:label class="LabelForm" path="enseignantEJ.identifiant">Enseignant :</form:label>
+	<form:label class="LabelForm" path="enseignantEJ.identifiant"><fmt:message key="21"/></form:label>
 	<form:select class="SelectForm" path="enseignantEJ.identifiant">
 		<form:option value="0" label="--- Select ---" />
 		<form:options items="${attribut_listeEnseignants}"
@@ -35,7 +35,7 @@
 </div>
 
 <div class="form-row">
-	<form:label class="LabelForm" path="matiereEJ.idMatiere">Matiere :</form:label>
+	<form:label class="LabelForm" path="matiereEJ.idMatiere"><fmt:message key="22"/></form:label>
 	<form:select class="SelectForm" path="matiereEJ.idMatiere">
 		<form:option value="0" label="--- Select ---" />
 		<form:options items="${attribut_listeMatieres}" itemValue="idMatiere"
@@ -44,7 +44,7 @@
  </div>
  
  <div class="form-row">
-	<form:label class="LabelForm" path="promotionEJ.idPromotion">Promotion :</form:label>
+	<form:label class="LabelForm" path="promotionEJ.idPromotion"><fmt:message key="23"/></form:label>
 	<form:select class="SelectForm" path="promotionEJ.idPromotion">
 		<form:option value="0" label="--- Select ---" />
 		<form:options items="${attribut_listePromotions}"

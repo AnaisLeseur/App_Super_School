@@ -47,7 +47,7 @@ public class CoursController {
 
 	@Autowired
 	private IEtudiantCoursService etudiantCoursService;
-	
+
 	@Autowired
 	private IMatiereService matiereService;
 
@@ -113,24 +113,22 @@ public class CoursController {
 
 		// 2. on utilise model pour renvoyer la liste vers la vue
 		model.addAttribute("attribut_liste_cours", listeCoursBdd);
-		
+
 		// récup de la liste des matières disponibles pour faire l'association
 		List<Matiere> listeMatiereBddPourAssos = matiereService.findAllMatiere();
-		
-		// on utilise model pour renvoyer la liste des matieres vers la vue 
+
+		// on utilise model pour renvoyer la liste des matieres vers la vue
 		model.addAttribute("attribut_listeMatiereBddPourAssos", listeMatiereBddPourAssos);
-		
-		
+
 		Cours cours = new Cours();
 		model.addAttribute("attribut-cours", cours);
-		
-		
+
 		// récup de la liste des promotion disponibles pour faire l'association
 		List<Promotion> listePromoBddPourAssos = promotionService.findAll();
-		
-		// on utilise model pour renvoyer la liste des matieres vers la vue 
+
+		// on utilise model pour renvoyer la liste des matieres vers la vue
 		model.addAttribute("liste_Promotion", listePromoBddPourAssos);
-		
+
 		model.addAttribute("coursBindPromo", cours);
 
 		// 3 renvoi du nom logique de la vue
@@ -214,7 +212,7 @@ public class CoursController {
 	 *            contient le resultat du process de la validation
 	 */
 	@RequestMapping(value = "/cours/add", method = RequestMethod.POST)
-	public String ajouterEmployeBDD(@ModelAttribute("coursCommand") @Validated Cours pCours, ModelMap model,
+	public String ajouterCoursBDD(@ModelAttribute("coursCommand") @Validated Cours pCours, ModelMap model,
 			BindingResult resultatValidation) {
 
 		// validation de l'objet pEmploye
@@ -293,18 +291,18 @@ public class CoursController {
 	public String toLinkPromotion(@PathVariable("coursID") int pId, ModelMap model) {
 
 		model.addAttribute("coursBindPromo", coursService.findByIdCours(pId));
-		
+
 		// --------------------------------------------------------//
-		//findListNotLinkedToCours ne sert a rien / prendre getAll
+		// findListNotLinkedToCours ne sert a rien / prendre getAll
 		// --------------------------------------------------------//
-		
+
 		model.addAttribute("liste_Promotion", promotionService.findListNotLinkedToCours(pId));
 
 		return "LinkPromotionToCours";
 	}// end toLinkPromotion
-	
+
 	// --------------------------------------------------------//
-	//ne marchera pas => Dans 'Cours' pas de List<Promotion> mais UNE Promotion
+	// ne marchera pas => Dans 'Cours' pas de List<Promotion> mais UNE Promotion
 	// --------------------------------------------------------//
 	/**
 	 * Conversion des id des promotions en objet Promotion
@@ -329,20 +327,9 @@ public class CoursController {
 
 		});
 	}// end InitBinder
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
-	
 	// --------------------------------------------------------//
-	//Bad request a cause de l'initBinder
+	// Bad request a cause de l'initBinder
 	// --------------------------------------------------------//
 	/**
 	 * Lie le cours à la promo choisie dans la liste déroulante
@@ -353,52 +340,41 @@ public class CoursController {
 	@RequestMapping(value = "/promotion/bindPromotionToCours", method = RequestMethod.POST)
 	public String BindPromotionToCours(@ModelAttribute("coursBindPromo") Cours pCours) {
 
-		// récup de la promo choisie 
+		// récup de la promo choisie
 		int idPromotion = pCours.getPromotion().getIdPromotion();
 
 		Promotion promo = promotionService.findById(idPromotion);
 		Cours coursPromo = coursService.findByIdCours(pCours.getIdCours());
-		// 	
+		//
 		coursPromo.setPromotion(promo);
-		
-		// modification du cours dans la bdd 
+
+		// modification du cours dans la bdd
 		coursService.modfierCours(coursPromo);
-			
+		
+		List<Cours> ListeCoursDansPromo = promo.getListeCours();
+		ListeCoursDansPromo.add(coursPromo);
+		promo.setListeCours(ListeCoursDansPromo);
+		
+		promotionService.modifier(promo);
+
 		return "redirect:/cours/liste";
-			}// end BindPromotionToCours()
-			
-		
-		
-		
-		
-		
-/*		
-		coursService.modfierCours(pCours);
+	}// end BindPromotionToCours()
 
-		Promotion promotion = pCours.getPromotion();
-
-		List<Cours> listeCours = promotion.getListeCours();
-
-		// Si pEtudiant n'est pas dans la liste de la promotion, on l'ajoute
-		if (listeCours.indexOf(pCours) == -1) {
-
-			listeCours.add(pCours);
-			promotion.setListeCours(listeCours);
-			promotionService.modifier(promotion);
-		} // end if
-
-		return "redirect:/promotion/liste";
-*/
-
-	
-	
-	
-	
-
-	
-	
-	
-	
+	/*
+	 * coursService.modfierCours(pCours);
+	 * 
+	 * Promotion promotion = pCours.getPromotion();
+	 * 
+	 * List<Cours> listeCours = promotion.getListeCours();
+	 * 
+	 * // Si pEtudiant n'est pas dans la liste de la promotion, on l'ajoute if
+	 * (listeCours.indexOf(pCours) == -1) {
+	 * 
+	 * listeCours.add(pCours); promotion.setListeCours(listeCours);
+	 * promotionService.modifier(promotion); } // end if
+	 * 
+	 * return "redirect:/promotion/liste";
+	 */
 
 	@RequestMapping(value = "/cours/deletePromotion", method = RequestMethod.GET)
 	public ModelAndView DeletePromotionFromEtudiant(@RequestParam("idPromo") int idPromotion,
@@ -418,7 +394,6 @@ public class CoursController {
 			}
 			index++;
 		}
-
 
 		listeEtudiant.remove(index);
 
@@ -449,7 +424,7 @@ public class CoursController {
 	 * 
 	 * @param binder
 	 */
-	@InitBinder({"coursBindEtudiantCours"})
+	@InitBinder({ "coursBindEtudiantCours" })
 	public void bindingPreparationEtudiantCours(WebDataBinder binder) {
 		System.out.println("---------------------------------------------------");
 		System.out.println("dans le binder Cours attribution etudiant");
@@ -501,11 +476,11 @@ public class CoursController {
 	@RequestMapping(value = "/cours/edit-form-EtudiantCours/{coursId}", method = RequestMethod.GET)
 	public ModelAndView AfficherFormEtudiantCours(@PathVariable("coursId") int idCours) {
 
-		// Renvoi de l'etudiant dans la vue seeEtudiant 
-		return new ModelAndView("formAppelEtudiantCours", "AppelEtudiantCommand",coursService.findByIdCours(idCours));
+		// Renvoi de l'etudiant dans la vue seeEtudiant
+		return new ModelAndView("formAppelEtudiantCours", "AppelEtudiantCommand", coursService.findByIdCours(idCours));
 	}
-	
-	@InitBinder({"AppelEtudiantCommand"})
+
+	@InitBinder({ "AppelEtudiantCommand" })
 	public void bindingPreparationAppel(WebDataBinder binder) {
 		System.out.println("---------------------------------------------------");
 		System.out.println("dans le binder Cours appel");
@@ -527,71 +502,55 @@ public class CoursController {
 
 		});
 	}
-	
-	@RequestMapping(value ="/cours/AppelEtudiantsFromCours", method = RequestMethod.POST) 
-	public String AppelEtudiantCoursFromCours(@ModelAttribute("AppelEtudiantCommand") Cours cours,@RequestParam("checkboxAbsence") String[] listeAbsence,
-			@RequestParam("motif") String[] listeMotif) {
-		
-		int index=0;
+
+	@RequestMapping(value = "/cours/AppelEtudiantsFromCours", method = RequestMethod.POST)
+	public String AppelEtudiantCoursFromCours(@ModelAttribute("AppelEtudiantCommand") Cours cours,
+			@RequestParam("checkboxAbsence") String[] listeAbsence, @RequestParam("motif") String[] listeMotif) {
+
+		int index = 0;
 		for (EtudiantCours ec : cours.getListeEtudiantsCours()) {
-			
+
 			ec.setMotif(listeMotif[index]);
-			ec.setAbsence(listeAbsence[index].equals("1")?true:false);
-			
+			ec.setAbsence(listeAbsence[index].equals("1") ? true : false);
+
 			etudiantCoursService.modifier(ec);
 			index++;
 		}
-			  
-		return "redirect:/cours/liste"; 
+
+		return "redirect:/cours/liste";
 	}// end AppelEtudiantCoursFromCours()
-	/*
-	 *  A adapter, provient de Etudiant Controller
+
+	@RequestMapping(value = "/cours/deleteEtudiantCours", method = RequestMethod.GET)
+	public ModelAndView DeleteEtudiantFromCours(@RequestParam("idEtudiantCours") int idEtudiantCours,
+				@RequestParam("idCours") int idCours) {
+
+		etudiantCoursService.supprimer(idEtudiantCours);
+
+		// Renvoi du cours dans la vue seeCours
+		return new ModelAndView("seeCours", "coursSeeCommand", coursService.findByIdCours(idCours));
+	}
+
+	/**
+	 * Lier le cours à une matière
 	 * 
-	 * @RequestMapping(value = "/etudiants/deleteEtudiantCours", method =
-	 * RequestMethod.GET) public ModelAndView
-	 * DeleteCoursFromEtudiant(@RequestParam("idEtudiantCours") int idEtudiantCours,
-	 * 
-	 * @RequestParam("idEtudiant") int idEtudiant) {
-	 * 
-	 * etudiantCoursService.supprimer(idEtudiantCours);
-	 * 
-	 * // Renvoi de l'etudiant dans la vue seeEtudiant return new
-	 * ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand",
-	 * etudiantService.findById(idEtudiant)); }
-	 * 
-	 * 
+	 * @param
+	 * @return View
 	 */
-
-
-
-
-/**
- * Lier le cours à une matière
- * 
- * @param 
- * @return View
- */
-@RequestMapping(value = "/cours/linkToMatiere", method = RequestMethod.POST)
-public String CoursMatiereLink(@ModelAttribute("attribut-cours") Cours pCours) {	
-		// récup du cours à modifier 
-		// récup de la metière choisie 
+	@RequestMapping(value = "/cours/linkToMatiere", method = RequestMethod.POST)
+	public String CoursMatiereLink(@ModelAttribute("attribut-cours") Cours pCours) {
+		// récup du cours à modifier
+		// récup de la metière choisie
 		int idMatiere = pCours.getMatiere().getIdMatiere();
-		
+
 		Matiere matiere = matiereService.findByIdMatiere(idMatiere);
 		Cours coursMatiere = coursService.findByIdCours(pCours.getIdCours());
-		// 	
+		//
 		coursMatiere.setMatiere(matiere);
-		
-		// modification du cours dans la bdd 
+
+		// modification du cours dans la bdd
 		coursService.modfierCours(coursMatiere);
-			
+
 		return "redirect:/cours/liste";
-			}// end BindPromotionToEtudiant()
+	}// end BindPromotionToEtudiant()
 
-	
-
-		
-
-		
-}//end controller
-
+}// end controller

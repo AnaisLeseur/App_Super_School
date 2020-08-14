@@ -3,6 +3,7 @@
     
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,10 +37,10 @@
 
 						<tr>
 							<th scope="col">ID</th>
-							<th scope="col">Etudiant</th>
+							<th scope="col"><fmt:message key="17"/></th>
 
-							<th scope="col">Appel</th>
-							<th scope="col">Motif</th>
+							<th scope="col"><fmt:message key="18"/></th>
+							<th scope="col"><fmt:message key="19"/></th>
 							
 
 						</tr>

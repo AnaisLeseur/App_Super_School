@@ -3,6 +3,8 @@
     
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +40,7 @@
 <jsp:include page="/Fragments/Header.jsp" />
 
 
-	<h1 id="TitreListe">Liste des Liens Enseignants/Matieres/Promotions</h1>
+	<h1 id="TitreListe"><fmt:message key="20"/></h1>
  
 	 <div class="card shadow mb-4">           
        <div class="card-body">
@@ -48,12 +50,12 @@
 			
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">Enseignant</th>
-					<th scope="col">Matiere</th>
-					<th scope="col">Promotion</th>
+					<th scope="col"><fmt:message key="21"/></th>
+					<th scope="col"><fmt:message key="22"/></th>
+					<th scope="col"><fmt:message key="23"/></th>
 	                
-					<th scope="col">Modifier</th>
-					<th scope="col">Supprimer</th>
+					<th scope="col"><fmt:message key="modif"/></th>
+					<th scope="col"><fmt:message key="supp"/></th>
 					
 				</tr>
 

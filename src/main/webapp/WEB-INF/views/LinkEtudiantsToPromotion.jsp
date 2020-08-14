@@ -3,6 +3,8 @@
     
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +27,7 @@
 
 <jsp:include page="/Fragments/Header.jsp"/>
 
-<h1>Attribution d'étudiants à la promotion : ${promotionBindEtudiant.libelle}</h1>
+<h1><fmt:message key="27"/> : ${promotionBindEtudiant.libelle}</h1>
 
 	<form:form method="POST" modelAttribute="promotionBindEtudiant"
 		action="${pageContext.request.contextPath}/promotion/bindEtudiantsToPromotion">
@@ -34,10 +36,10 @@
 
 			<thead class="thead-blue">
 				<tr>
-					<th scope="col">ID Etudiant</th>
-					<th scope="col">Nom Prenom</th>
+					<th scope="col">ID <fmt:message key="17"/></th>
+					<th scope="col"><fmt:message key="28"/></th>
 
-					<th scope="col">Attribuer</th>
+					<th scope="col"><fmt:message key="29"/></th>
 				</tr>
 
 			</thead>

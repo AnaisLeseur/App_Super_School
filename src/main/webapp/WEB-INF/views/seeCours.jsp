@@ -14,7 +14,7 @@
     <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/styles/SeeEtudiant.css">
+	href="${pageContext.request.contextPath}/assets/styles/seeCours.css">
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
@@ -26,51 +26,65 @@
 <jsp:include page="/Fragments/Header.jsp" />
 
 
-	<h1 id="TitreIdEtudiant">Etudiant
-		N°${etudiantSeeCommand.identifiant }</h1>
+	<h1 id="TitreIdCours">Cours
+		N°${coursSeeCommand.idCours }</h1>
 
-	<div id="ModifierEtudiant">
+	<div id="ModifierCours">
 		<a
-			href="${pageContext.request.contextPath}/etudiants/update-etudiant-form/${etudiantSeeCommand.identifiant }">
+			href="${pageContext.request.contextPath}/cours/update-cours-form?idcours=${coursSeeCommand.idCours }">
 			Modifier <img
 			src="${pageContext.request.contextPath}/assets/images/arrow-counterclockwise.svg">
 		</a>
 	</div>
 
-	<div id="DivInfosEtudiant">
+	<div id="DivInfosCours">
 
-		<div>
-			<div class="infosEtudiant">
-				<h2>Libelle :</h2>
-				<p>
-					<span>${coursSeeCommand.libelle }</span>
-				</p>
-			</div>
-
-			<div class="infosEtudiant">
-				<h2>Email :</h2>
-				<p>${coursSeeCommand.duree }</p>
-			</div>
-
-			<div class="infosEtudiant">
+        <div class="infosCours" style="float: right;width: 50%;">
+            <h2>Description :</h2>
+            <p>
+                ${coursSeeCommand.description }
+            </p>
+        </div>
+        <div class="infosCours">
+            <h2>Libelle :</h2>
+            <p>
+                <span>${coursSeeCommand.libelle }</span>
+            </p>
+        </div>
+        
+			
+            
+            <div class="infosCours">
 				<h2>Date du Cours :</h2>
 				<p>${coursSeeCommand.date }</p>
 			</div>
 
-			<div class="Adresse">Matiere :</div>
+			<div class="infosCours">
+				<h2>Durée (min) :</h2>
+				<p>${coursSeeCommand.duree }</p>
+			</div>
 
-			<c:if
+            <div class="infosCours">
+				<h2>Matière :</h2>
+                <p>${coursSeeCommand.matiere.libelle}</p>
+                <c:if
 				test="${empty coursSeeCommand.matiere }">
 				<a class="LinkRougeNull"
-					href="#">
-					Aucune adresse liée, veuillez ajouter une adresse </a>
+					href="${pageContext.request.contextPath}/cours/liste">
+					Aucune matière liée, veuillez ajouter une matière </a>
 			</c:if>
-
-			<c:if test="${not empty etudiantSeeCommand.adresse }">
-				<div id="infosAdresse">${coursSeeCommand.matiere.libelle}</div>
+			</div>
+			
+			 <div class="infosCours">
+				<h2>Promotion :</h2>
+                <p>${coursSeeCommand.promotion.libelle}</p>
+                <c:if
+				test="${empty coursSeeCommand.promotion }">
+				<a class="LinkRougeNull"
+					href="${pageContext.request.contextPath}/cours/liste">
+					Aucune promotion liée, veuillez ajouter une promotion </a>
 			</c:if>
-
-		</div>
+			</div>
 
 	</div>
 
@@ -125,7 +139,7 @@
 								<td>${etudiantCours.motif}</td>
 								
 								<td><a
-									href="${pageContext.request.contextPath}/etudiants/deleteEtudiantCours?idEtudiantCours=${etudiantCours.idEtudiantCours}&idEtudiant=${etudiantSeeCommand.identifiant}">
+									href="${pageContext.request.contextPath}/cours/deleteEtudiantCours?idEtudiantCours=${etudiantCours.idEtudiantCours}&idCours=${coursSeeCommand.idCours}">
 										<img
 										src="${pageContext.request.contextPath}/assets/images/x.svg">
 								</a></td>

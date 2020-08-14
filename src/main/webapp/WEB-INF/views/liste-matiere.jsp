@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -42,7 +43,7 @@
 
 
 	<h1 id="TitreListe">
-		Liste des matières
+		<fmt:message key="listemat"/>
 	</h1>
   
        <div class="card shadow mb-4">
@@ -62,12 +63,12 @@
 						</th>
 					</tr>
                     <tr>
-						<th>Identifiant</th>
-						<th>Libelle</th>
+						<th>Id</th>
+						<th><fmt:message key="11"/></th>
 
-						<th>Modifier</th>
-						<th>Supprimer</th>
-						<th>Cours liés à la matière</th>
+						<th><fmt:message key="modif"/></th>
+						<th><fmt:message key="supp"/></th>
+						<th><fmt:message key="courslimat"/></th>
 				
 					</tr>
                   </thead>

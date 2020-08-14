@@ -16,24 +16,10 @@
 
 		<security:intercept-url pattern="/index.jsp*" access="hasAnyRole('ROLE_ANONYMOUS', 'Role_Etudiant', 'Role_Enseignant', 'Role_Admin')"/>
 		<security:intercept-url pattern="/Users*" access="hasAnyRole('Role_Etudiant', 'Role_Enseignant', 'Role_Admin')"/>
-		<security:intercept-url pattern="/Enseignant*" access="hasAnyRole('Role_Enseignant', 'Role_Admin')"/>
-		<security:intercept-url pattern="/Enseignant*" access="hasRole('Role_Admin')"/>
+		<security:intercept-url pattern="/enseignants*" access="hasAnyRole('Role_Enseignant', 'Role_Admin')"/>
+		<security:intercept-url pattern="/promotion*" access="hasRole('Role_Admin')"/>
 		
 		<!--  Formulaire Perso -->
-		<!-- 
-			> config de la balise sec:form-login et ses attributs :
-				-> login-page : url qui affiche notre formulaire d'authentification 
-				-> default-target-url : url vers laql le user est redirigé si authentification ok
-				-> authentication-failure-url : url vers laql le user est redirigé si authentification PAS OK 
-								(vers le formulaire), avec passage d'un param 'error=true'
-				-> login-processing-url : url sur laql spring security attend les params d'authentification
-								par defaut '/login'
-								c'est l'url pointée dans l'attribut 'action' de la page login.jsp
-				-> username-parameter / password-parameter : nom des params de la rqt (attributs name)
-								de la page 'login.jsp'
-				-> 
-		
-		 -->
 		<security:form-login login-page="/login.jsp" 
 						default-target-url="/accueil.jsp"
 						authentication-failure-url="/login.jsp?error=true"
@@ -52,7 +38,7 @@
 						
 		
 		 -->
-		 <security:logout 	logout-success-url="/index.jsp?logout_message=true" 
+		 <security:logout logout-success-url="/index.jsp?logout_message=true" 
 		 				logout-url="/logout"
 		 				invalidate-session="true"/>
 		 
