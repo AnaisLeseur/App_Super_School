@@ -25,9 +25,9 @@
 <body>
 
 <jsp:include page="/Fragments/Header.jsp"/>
-<br/>
 
- <h1>Choisir les cours de la promotion sélectionnée</h1>
+
+ <h1 id="TitreListe">Choisir les cours de la promotion N° ${promotionBindCours.idPromotion }:  ${promotionBindCours.libelle }  </h1>
  <br/>
 
 	<form:form method="POST" modelAttribute="promotionBindCours"
@@ -37,9 +37,8 @@
 
 			<thead class="thead-blue">
 				<tr>
-					<th scope="col">ID Cours</th>
+					<th scope="col">Identifiant du Cours</th>
 					<th scope="col">Libelle</th>
-
 					<th scope="col">Description</th>
 					<th scope="col">Duree</th>
 					<th scope="col">Date</th>
@@ -72,8 +71,7 @@
 		<form:hidden path="idPromotion" />
 		<form:hidden path="libelle" />
 		
-		<input type="submit" class="btn btn-primary"
-			value="Attribuer Cours" />
+		<button id="inputSubmitBtn" class="btn btn-primary" type="submit">Attribuer Cours</button>
 
 	</form:form>
 	

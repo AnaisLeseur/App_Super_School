@@ -9,7 +9,7 @@
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>Liste des matières</title>
 	
 	<!--  Feuilles de styles  -->
 	
@@ -67,7 +67,7 @@
 
 						<th>Modifier</th>
 						<th>Supprimer</th>
-						<th>Cours liés à la matière</th>
+						<th>Voir les cours liés à la matière</th>
 				
 					</tr>
                   </thead>

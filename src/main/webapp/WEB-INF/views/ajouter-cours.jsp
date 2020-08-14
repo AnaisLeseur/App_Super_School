@@ -9,7 +9,7 @@
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>Ajout d'un cours</title>
 
 	<!-- stylecss pour la validation -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
@@ -22,18 +22,10 @@
 	<!--  HEADER -->
 	<jsp:include page="/Fragments/Header.jsp"/>
 	
-	<div id="TitreForm">
-		<h1>Formulaire d'un cours à ajouter</h1>
-	</div>
+		<h1 id="TitreForm">Formulaire pour l'ajout d'un cours</h1>
 
-	<%--
-        > modelAttribute = le nom  de l'objet de commande definit dans la methode afficherFormulaireAjout du controlleur
-        
-        > ï¿½ la soumission du formulaire : invocation de la mï¿½thode "ajouterEmployerBdd"
-                                          "EmplpoerController" avec une requete HTTP en post et l'url "/employes/add"
-          
-        
-         --%>
+		<br/>
+
 		<form:form enctype="multipart/form-data" 
 					modelAttribute="coursCommand" 
 					method="POST"
@@ -67,7 +59,7 @@
 				</div>
 			</div>
 			
-			<br><br>
+			<br>
 			
  			<div class="form-row">
                 <div class="form-group col-md-5">
@@ -80,7 +72,7 @@
 				
 				<div class="form-group col-md-2"></div>
                 <div class="form-group col-md-5">
-					<form:label path="date">Date: </form:label>
+					<form:label path="date">Date: </form:label><br>
            			<form:input id="contrainteDate" type="date" path="date" 
            						min="" required="true" />
            			<form:errors path="date" cssStyle="color : green; font-style: italic;" />
@@ -88,7 +80,7 @@
 				</div>	
 			</div>
 			
-			<br><br>
+			<br>
 			
 			<input id="inputSubmit" type="submit" class="btn btn-primary" value="Ajouter">
 

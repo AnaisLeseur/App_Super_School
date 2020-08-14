@@ -1,36 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html>
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
+<title>Modification du cours</title>
+
+	<!--  feuille de style -->
+	<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
-<link rel="stylesheet"
+	
+	<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/FormEtudiant.css">
+
 </head>
 <body>
 
+	<!-- Header  -->
 	<jsp:include page="/Fragments/Header.jsp" />
-	<div id="TitreForm">
-		<h1>Formulaire de modification d'un cours</h1>
-	</div>
+	
+	<h1 id="TitreForm">Formulaire pour la modification du cours N° ${coursModifCommand.idCours } </h1>
 
+	<br/>
 
 	<form:form enctype="multipart/form-data"
 		modelAttribute="coursModifCommand" method="POST"
 		action="${pageContext.request.contextPath}/cours/update">
 
-
-
 		<!-- recup de l'id de l'employe a modifier dans un champs caché-->
-		
-			<td><form:hidden path="idCours" /></td>
-		
-
-
+		<form:hidden path="idCours" />
 
 		<div style="width: 80%; margin: auto;">
 			<div class="form-row">
@@ -55,7 +57,9 @@
 
 				</div>
 			</div>
-			<br> <br> <br>
+			
+			<br> 
+			
 			<div class="form-row">
 				<div class="form-group col-md-5">
 					<form:label path="duree">Durée : </form:label>
@@ -67,7 +71,7 @@
 
 				<div class="form-group col-md-2"></div>
 				<div class="form-group col-md-5">
-					<form:label path="date">Date : </form:label>
+					<form:label path="date">Date : </form:label><br>
 					<form:input id="contrainteDate" min="" path="date" type="date"
 						required="true" />
 					<form:errors path="date"
@@ -75,10 +79,16 @@
 
 				</div>
 			</div>
-			<br> <br> <br> <input id="inputSubmit" type="submit"
+			<br> 
+			<input id="inputSubmit" type="submit"
 				class="btn btn-primary" value="Modifier">
 		</div>
 	</form:form>
+	
+	<!--  FOOTER -->
+	<jsp:include page="/Fragments/footer.jsp" />
+	
+	<!--  SCRIPT -->
 	<script
 		src="${pageContext.request.contextPath}/assets/scripts/jquery-3.4.1.js"></script>
 	<script
