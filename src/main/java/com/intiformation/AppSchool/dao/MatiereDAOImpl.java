@@ -125,7 +125,7 @@ public class MatiereDAOImpl implements IMatiereDAO {
 			try {
 				Session session = this.sessionFactory.getCurrentSession();
 
-				Query query = session.createQuery("From Matiere");
+				Query<Matiere> query = session.createQuery("From Matiere");
 
 				// 3 envoie + exce +resul
 				List<Matiere> listeMatiereBDD = query.list();

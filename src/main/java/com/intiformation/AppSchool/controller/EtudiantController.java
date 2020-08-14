@@ -106,7 +106,7 @@ public class EtudiantController {
 
 		// Renvoi du nom logique de la vue
 		return "Etudiant/listeEtudiant";
-	}// end recupererListeEmployeBdd()
+	}// end recupererListeEtudiants()
 
 	@RequestMapping(value = "/etudiant/see-etudiant/{etudiantID}", method = RequestMethod.GET)
 	public ModelAndView ConsulterEtudiant(@PathVariable("etudiantID") int pId) {
@@ -115,7 +115,7 @@ public class EtudiantController {
 
 		// Return new ModelAndView(viewName, modelName, modelObject)
 		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiant);
-	}
+	}//end ConsulterEtudiant()
 
 	// --------------------------------------------------------//
 	// -----------------Ajout Etudiant-------------------------//
@@ -129,13 +129,13 @@ public class EtudiantController {
 		// return new ModelAndView(viewName, modelName, modelObject)
 		return new ModelAndView("Etudiant/addEtudiant", "etudiantAddCommand", etudiant);
 
-	}// end AfficherFormulaire()
+	}// end AfficherFormulaireAdd()
 
 	@RequestMapping(value = "etudiant/add", method = RequestMethod.POST)
 	public String ajouterEtudiant(@ModelAttribute("etudiantAddCommand") @Validated Etudiant pEtudiant,
 			BindingResult bindingResult) {
 
-		etudiantValidator.validateAdd(pEtudiant, bindingResult);
+		etudiantValidator.validate(pEtudiant, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 
@@ -205,7 +205,7 @@ public class EtudiantController {
 	public String modifierEtudiant(@ModelAttribute("etudiantUpdateCommand") @Validated Etudiant pEtudiant,
 			BindingResult bindingResult) {
 
-		etudiantValidator.validateAdd(pEtudiant, bindingResult);
+		etudiantValidator.validate(pEtudiant, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 
@@ -270,7 +270,7 @@ public class EtudiantController {
 
 		// Redirection
 		return "redirect:/etudiant/liste";
-	}
+	}//end supprimerEtudiant()
 
 	// --------------------------------------------------------//
 	// ----------------Binding Promotion-----------------------//
@@ -369,7 +369,7 @@ public class EtudiantController {
 
 		// Renvoi de l'etudiant dans la vue seeEtudiant
 		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiantService.findById(idEtudiant));
-	}
+	}//end DeletePromotionFromEtudiant()
 	
 
 	// --------------------------------------------------------//
@@ -447,14 +447,14 @@ public class EtudiantController {
 	
 		// Renvoi de l'etudiant dans la vue seeEtudiant
 		return new ModelAndView("Etudiant/seeEtudiant", "etudiantSeeCommand", etudiantService.findById(idEtudiant));
-	}
+	}//DeleteCoursFromEtudiant()
 	
 	@RequestMapping(value = "/etudiants/edit-form-EtudiantCours/{idEtudiantCours}", method = RequestMethod.GET)
 	public ModelAndView AfficherFormEtudiantCours(@PathVariable("idEtudiantCours") int idEtudiantCours) {
 				
-		// Renvoi de l'etudiant dans la vue seeEtudiant
+		// Renvoi de l'etudiant dans la vue formEtudiantCours
 		return new ModelAndView("Etudiant/formEtudiantCours", "etudiantCoursEditCommand", etudiantCoursService.findById(idEtudiantCours));
-	}
+	}//AfficherFormEtudiantCours()
 	
 	@RequestMapping(value ="/etudiant/editEtudiantCours", method = RequestMethod.POST)
 	public String EditEtudiantCoursFromEtudiant(@ModelAttribute("etudiantCoursEditCommand") EtudiantCours pEtudiantCours) {

@@ -24,6 +24,8 @@
 
 <jsp:include page="/Fragments/Header.jsp"/>
  <h1>Promotion : ${promotionSeeCommand.libelle}</h1>
+ 
+ <a href="${pageContext.request.contextPath}/enseigneJointure/liste/${promotionSeeCommand.idPromotion}/P">lien test</a>
 
 <div class="col-md-11" style="margin: auto;">
 

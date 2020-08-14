@@ -132,7 +132,7 @@ public class AdministrateurDAOImpl implements IAdministrateurDAO {
 			Session session = this.sessionFactory.getCurrentSession();
 			
 			// 2. def de la Rqt à envoyer (HQL) 
-			Query query = session.createQuery("FROM Administrateur");
+			Query<Administrateur> query = session.createQuery("FROM Administrateur");
 			
 			// 3. envoi + exec + resultat
 			List<Administrateur> listeAdminBdd = query.getResultList();

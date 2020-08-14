@@ -3,6 +3,8 @@ package com.intiformation.AppSchool.modele;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,47 +22,71 @@ import javax.persistence.ManyToOne;
 public class EnseigneJointure implements Serializable {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idEnseigneJointure;
+	
     @ManyToOne
     @JoinColumn(name = "EnseigneJointure_matiere", referencedColumnName = "idMatiere")
-	private Matiere matiere; 
+	private Matiere matiereEJ; 
 
-	@Id
     @ManyToOne
     @JoinColumn(name = "EnseigneJointure_promotion", referencedColumnName = "idPromotion")
-	private Promotion promotion; 
+	private Promotion promotionEJ; 
 	
-	@Id
     @ManyToOne
     @JoinColumn(name = "EnseigneJointure_enseignant", referencedColumnName = "identifiant")
-	private Enseignant enseignant;
+	private Enseignant enseignantEJ;
 
-	
+	//Constructeurs
+    
+	public EnseigneJointure(Matiere matiereEJ, Promotion promotionEJ, Enseignant enseignantEJ) {
+		this.matiereEJ = matiereEJ;
+		this.promotionEJ = promotionEJ;
+		this.enseignantEJ = enseignantEJ;
+	}
+
+	public EnseigneJointure(int idEnseigneJointure, Matiere matiereEJ, Promotion promotionEJ, Enseignant enseignantEJ) {
+		this.idEnseigneJointure = idEnseigneJointure;
+		this.matiereEJ = matiereEJ;
+		this.promotionEJ = promotionEJ;
+		this.enseignantEJ = enseignantEJ;
+	}
+
+	public EnseigneJointure() {
+	}
 	
 	// ---- Getters / Setters ----
 
-	public Matiere getMatiere() {
-		return matiere;
+	public Matiere getMatiereEJ() {
+		return matiereEJ;
 	}
 
-	public void setMatiere(Matiere matiere) {
-		this.matiere = matiere;
+	public void setMatiereEJ(Matiere matiereEJ) {
+		this.matiereEJ = matiereEJ;
 	}
 
-	public Promotion getPromotion() {
-		return promotion;
+	public Promotion getPromotionEJ() {
+		return promotionEJ;
 	}
 
-	public void setPromotion(Promotion promotion) {
-		this.promotion = promotion;
+	public void setPromotionEJ(Promotion promotionEJ) {
+		this.promotionEJ = promotionEJ;
 	}
 
-	public Enseignant getEnseignant() {
-		return enseignant;
+	public Enseignant getEnseignantEJ() {
+		return enseignantEJ;
 	}
 
-	public void setEnseignant(Enseignant enseignant) {
-		this.enseignant = enseignant;
+	public void setEnseignantEJ(Enseignant enseignantEJ) {
+		this.enseignantEJ = enseignantEJ;
 	}
 
+	public int getIdEnseigneJointure() {
+		return idEnseigneJointure;
+	}
 
+	public void setIdEnseigneJointure(int idEnseigneJointure) {
+		this.idEnseigneJointure = idEnseigneJointure;
+	}
+	
 }// end class

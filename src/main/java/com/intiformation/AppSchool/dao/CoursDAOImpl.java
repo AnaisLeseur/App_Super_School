@@ -129,7 +129,7 @@ public class CoursDAOImpl implements ICoursDAO {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 
-			Query query = session.createQuery("From Cours");
+			Query<Cours> query = session.createQuery("From Cours");
 
 			// 3 envoie + exce +resul
 			List<Cours> listeCoursBDD = query.list();

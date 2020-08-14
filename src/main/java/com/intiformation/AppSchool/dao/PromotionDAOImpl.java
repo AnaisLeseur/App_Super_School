@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
-import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.modele.Promotion;
 
 @Repository

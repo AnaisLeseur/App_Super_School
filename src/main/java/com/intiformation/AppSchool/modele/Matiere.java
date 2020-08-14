@@ -1,12 +1,17 @@
 package com.intiformation.AppSchool.modele;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Matiere {
@@ -22,12 +27,14 @@ public class Matiere {
 	@OneToMany(mappedBy="matiere")
 	private List<Cours> listeCours;
 	
+	@OneToMany(mappedBy="matiereEJ",cascade= {CascadeType.PERSIST,CascadeType.MERGE})
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<EnseigneJointure> listeEnseigneJointureMat= new ArrayList<>();
+	
 	//-------------------------ctor-------------------------------------
 
 	public Matiere() {
 	}
-	
-
 	
 	public Matiere(int idMatiere, String libelle) {
 		super();
@@ -35,12 +42,10 @@ public class Matiere {
 		this.libelle = libelle;
 	}
 	
-
 	public Matiere(String libelle) {
 		super();
 		this.libelle = libelle;
 	}
-
 
 
 	//-------------------------setter-------------------------------------
@@ -67,6 +72,14 @@ public class Matiere {
 
 	public void setListeCours(List<Cours> listeCours) {
 		this.listeCours = listeCours;
+	}
+
+	public List<EnseigneJointure> getListeEnseigneJointureMat() {
+		return listeEnseigneJointureMat;
+	}
+
+	public void setListeEnseigneJointureMat(List<EnseigneJointure> listeEnseigneJointureMat) {
+		this.listeEnseigneJointureMat = listeEnseigneJointureMat;
 	}
 	
 }//end class

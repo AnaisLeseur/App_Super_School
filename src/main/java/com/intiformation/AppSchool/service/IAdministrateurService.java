@@ -1,6 +1,5 @@
 package com.intiformation.AppSchool.service;
 
-import java.util.List;
 
 import com.intiformation.AppSchool.modele.Administrateur;
 

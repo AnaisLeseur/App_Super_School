@@ -40,6 +40,12 @@ public class Promotion implements Serializable{
 	@OneToMany(mappedBy="promotion", cascade={CascadeType.PERSIST,CascadeType.MERGE})
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Cours> listeCours = new ArrayList<>();
+	
+	
+	@OneToMany(mappedBy="promotionEJ",cascade= {CascadeType.PERSIST,CascadeType.MERGE})
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<EnseigneJointure> listeEnseigneJointurePromo= new ArrayList<>();
+	
 	//Constructeurs
 	public Promotion() {
 	}
@@ -97,6 +103,14 @@ public class Promotion implements Serializable{
 
 	public void setListeCours(List<Cours> listeCours) {
 		this.listeCours = listeCours;
+	}
+
+	public List<EnseigneJointure> getListeEnseigneJointurePromo() {
+		return listeEnseigneJointurePromo;
+	}
+
+	public void setListeEnseigneJointurePromo(List<EnseigneJointure> listeEnseigneJointurePromo) {
+		this.listeEnseigneJointurePromo = listeEnseigneJointurePromo;
 	}
 	
 }

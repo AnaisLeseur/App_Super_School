@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Aide;
-import com.intiformation.AppSchool.modele.Matiere;
 
 @Transactional
 @Repository
@@ -118,7 +117,7 @@ public class AideDAOImpl implements IAideDAO {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 
-			Query query = session.createQuery("From Aide");
+			Query<Aide> query = session.createQuery("From Aide");
 
 			// 3 envoie + exce +resul
 			List<Aide> listeAideBDD = query.list();
