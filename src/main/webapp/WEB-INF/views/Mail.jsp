@@ -11,13 +11,25 @@
 
 </head>
 <body>
-
-	<h1 id="TitreForm">Formulaire d'envoie de mail</h1>
-
+	
 	
 	<form:form modelAttribute="mailToSend" method="POST" action="${pageContext.request.contextPath}/mail/send">
 
         <div style="width: 80%;margin: auto;">
+        
+        	<div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="AdresseReception">Adresse de réception</label>
+                        <input type="text" class="form-control" id="AdresseReception" value="superschoolinti@gmail.com" readonly="readonly"/>
+                </div>
+            </div>
+        
+        	<div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="AdresseReception">Adresse d'émission</label>
+                        <input type="text" class="form-control" id="AdresseEmission" value="superschoolinti@gmail.com" readonly="readonly"/>
+                </div>
+            </div>
         
             <div class="form-row">
                 <div class="form-group col-md-5">

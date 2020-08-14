@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%-- ajout de la taglib de spring mvc form --%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -8,7 +8,7 @@
 <html>
 <head>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 
 	<!-- stylecss pour la validation -->
@@ -23,13 +23,13 @@
 	<jsp:include page="/Fragments/Header.jsp"/>
 	
 	<div id="TitreForm">
-		<h1>Formulaire d'un cours � ajouter</h1>
+		<h1>Formulaire d'un cours ï¿½ ajouter</h1>
 	</div>
 
 	<%--
         > modelAttribute = le nom  de l'objet de commande definit dans la methode afficherFormulaireAjout du controlleur
         
-        > � la soumission du formulaire : invocation de la m�thode "ajouterEmployerBdd"
+        > ï¿½ la soumission du formulaire : invocation de la mï¿½thode "ajouterEmployerBdd"
                                           "EmplpoerController" avec une requete HTTP en post et l'url "/employes/add"
           
         

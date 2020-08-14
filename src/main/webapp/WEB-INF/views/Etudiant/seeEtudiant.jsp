@@ -61,7 +61,7 @@
 				<p>${etudiantSeeCommand.dateNaissance }</p>
 			</div>
 
-			<div class="Adresse">Adresse :</div>
+			<div class="infosEtudiant">
 
 			<c:if
 				test="${empty etudiantSeeCommand.adresse.rue and empty etudiantSeeCommand.adresse.ville and empty etudiantSeeCommand.adresse.codePostal }">
@@ -71,10 +71,12 @@
 			</c:if>
 
 			<c:if test="${not empty etudiantSeeCommand.adresse }">
-				<div id="infosAdresse">${etudiantSeeCommand.adresse.rue}
-					${etudiantSeeCommand.adresse.ville}
-					${etudiantSeeCommand.adresse.codePostal}</div>
+				<h2>Adresse :</h2>
+				<p style="margin-bottom: 0px;">${etudiantSeeCommand.adresse.rue}</p>
+				<p style="margin-top: 0px;">${etudiantSeeCommand.adresse.codePostal} ${etudiantSeeCommand.adresse.ville}</p>
 			</c:if>
+			
+			</div>
 
 		</div>
 

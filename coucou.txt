@@ -4,7 +4,6 @@ Reste à faire :
 
 table de jointure enseigne (enseignant / matiere / promo)
 lien promo- cours (A TERMINER)
-l'internationalisation (A TERMINER)
 
 
 MODIF A FAIRE 
@@ -16,8 +15,6 @@ MODIF A FAIRE
 					+ afficher les cours liés à cette promo (table)
 	
 > affichage promotion => consulter => attrib etu => bouton pour valider l'étudiant à mettre dans la promo
-	
-> encodage en UTF-8 (pb avec les accents !) 
 	
 > matiere : img pour "cours liés à la matière" à changer
 	
@@ -56,11 +53,6 @@ Security :
 Aide :
 -------
 	> dans ajout aide => mise en forme du bouton pour valider 
-
-
-Site multilingues:
-------------------
-	> en cours
 
 Exercice associés aux cours :
 ------------------------------
