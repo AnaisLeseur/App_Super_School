@@ -26,14 +26,11 @@
 
 
 		<!-- recup de l'id de l'employe a modifier dans un champs caché-->
-		<tr>
+		
 			<td><form:hidden path="idCours" /></td>
-		</tr>
+		
 
-		<form:label path="idCours">Id Cours : </form:label>
-		<form:input path="idCours" />
-		<form:errors path="idCours"
-			cssStyle="color : green; font-style: italic;" />
+
 
 		<div style="width: 80%; margin: auto;">
 			<div class="form-row">

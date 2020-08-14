@@ -2,13 +2,10 @@ package com.intiformation.AppSchool.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
@@ -296,12 +293,19 @@ public class CoursController {
 	public String toLinkPromotion(@PathVariable("coursID") int pId, ModelMap model) {
 
 		model.addAttribute("coursBindPromo", coursService.findByIdCours(pId));
-
+		
+		// --------------------------------------------------------//
+		//findListNotLinkedToCours ne sert a rien / prendre getAll
+		// --------------------------------------------------------//
+		
 		model.addAttribute("liste_Promotion", promotionService.findListNotLinkedToCours(pId));
 
 		return "LinkPromotionToCours";
 	}// end toLinkPromotion
-
+	
+	// --------------------------------------------------------//
+	//ne marchera pas => Dans 'Cours' pas de List<Promotion> mais UNE Promotion
+	// --------------------------------------------------------//
 	/**
 	 * Conversion des id des promotions en objet Promotion
 	 * 
@@ -335,6 +339,11 @@ public class CoursController {
 	
 	
 
+	
+	
+	// --------------------------------------------------------//
+	//Bad request a cause de l'initBinder
+	// --------------------------------------------------------//
 	/**
 	 * Lie le cours à la promo choisie dans la liste déroulante
 	 * 
