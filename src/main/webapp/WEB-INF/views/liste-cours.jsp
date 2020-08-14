@@ -49,7 +49,7 @@
            <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
              <thead class="thead-blue">
                	<tr>
-					<th id="Ajout" colspan="11">
+					<th id="Ajout" colspan="13">
 						<a href="${pageContext.request.contextPath}/cours/add-cours-form">
 							<img id="LogoAjout"
 								src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png">
@@ -65,6 +65,7 @@
 					<th scope="col">Durée (min)</th>
 					<th scope="col">Date</th>
 					<th scope="col">Libelle de la matière</th>
+					<th scope="col">Libelle de la promotion</th>
 	                
 	                <th scope="col">Consulter</th>
 	                <th scope="col">Attribuer Etudiant</th>
@@ -87,7 +88,7 @@
 					<td>${cou.duree}</td>
 					<td>${cou.date}</td>
 					<td>${cou.matiere.libelle}</td>
-
+					<td>${cou.promotion.libelle}</td>
 					
 					<td>
 						<a href="${pageContext.request.contextPath}/cours/see-cours/${cou.idCours }"><img
@@ -101,12 +102,21 @@
 						</a>
 					</td>
 
-					<!-- lier le cours à une promotion -->
-					<td>
-						<a href="${pageContext.request.contextPath}/cours/linkPromotion/${cou.idCours}">
-							<img src="${pageContext.request.contextPath}/assets/images/person-plus.svg">
-						</a>
-					</td>					
+
+					<!-- lier cours à une PROMOTION avec liste déroulante -->
+					<td>  
+						<form:form action="${pageContext.request.contextPath}/promotion/bindPromotionToCours" modelAttribute="coursBindPromo" method="POST"> 
+	 						<form:select path="promotion.idPromotion">
+								  <form:option value="0" label="--- Select ---" />
+								  <form:options items="${liste_Promotion}" itemValue="idPromotion" itemLabel="libelle" />
+					      	</form:select>
+					      	<form:hidden path="idCours" value="${cou.idCours }" />
+					      	<input type="submit" value="Lier le cours à cette promotion" />
+                        </form:form>
+   
+					</td>
+
+
 
 
 					<!--  modification du cours -->

@@ -40,6 +40,9 @@ public class Promotion implements Serializable{
 	@OneToMany(mappedBy="promotion", cascade={CascadeType.PERSIST,CascadeType.MERGE})
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Cours> listeCours = new ArrayList<>();
+	
+	
+	
 	//Constructeurs
 	public Promotion() {
 	}

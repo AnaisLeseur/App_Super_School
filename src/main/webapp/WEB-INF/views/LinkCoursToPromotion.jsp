@@ -25,8 +25,10 @@
 <body>
 
 <jsp:include page="/Fragments/Header.jsp"/>
+<br/>
 
-
+ <h1>Choisir les cours de la promotion sélectionnée</h1>
+ <br/>
 
 	<form:form method="POST" modelAttribute="promotionBindCours"
 		action="${pageContext.request.contextPath}/promotion/bindCoursToPromotion">
