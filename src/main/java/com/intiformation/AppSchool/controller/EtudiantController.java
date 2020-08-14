@@ -135,11 +135,13 @@ public class EtudiantController {
 
 	@RequestMapping(value = "etudiant/add", method = RequestMethod.POST)
 	public String ajouterEtudiant(@ModelAttribute("etudiantAddCommand") @Validated Etudiant pEtudiant,
-			BindingResult bindingResult) {
+			BindingResult bindingResult, ModelMap model) {
 
 		etudiantValidator.validate(pEtudiant, bindingResult);
 
 		if (bindingResult.hasErrors()) {
+			
+			model.addAttribute("etudiantAddCommand", new Etudiant());
 
 			return "Etudiant/addEtudiant";
 
@@ -205,11 +207,13 @@ public class EtudiantController {
 
 	@RequestMapping(value = "/etudiant/update", method = RequestMethod.POST)
 	public String modifierEtudiant(@ModelAttribute("etudiantUpdateCommand") @Validated Etudiant pEtudiant,
-			BindingResult bindingResult) {
+			BindingResult bindingResult, ModelMap model) {
 
 		etudiantValidator.validate(pEtudiant, bindingResult);
 
 		if (bindingResult.hasErrors()) {
+			
+			model.addAttribute("etudiantUpdateCommand", etudiantService.findById(pEtudiant.getIdentifiant()));
 
 			return "Etudiant/updateEtudiant";
 
