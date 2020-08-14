@@ -16,11 +16,14 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/Liste.css">
 	
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/styles/seePromotion.css">
+	
 </head>
 <body>
 
 <jsp:include page="/Fragments/Header.jsp"/>
- <h1>Promotions : ${promotionSeeCommand.libelle}</h1>
+ <h1>Promotion : ${promotionSeeCommand.libelle}</h1>
 
 <div class="col-md-11" style="margin: auto;">
 

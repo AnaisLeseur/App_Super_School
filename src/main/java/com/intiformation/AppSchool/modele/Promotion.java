@@ -16,6 +16,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 
 @Entity
 public class Promotion implements Serializable{
@@ -34,7 +37,8 @@ public class Promotion implements Serializable{
 				inverseJoinColumns=@JoinColumn(name="etudiant_id"))
 	private List<Etudiant> listeEtudiants = new ArrayList<>();
 
-	@OneToMany(mappedBy="promotion")
+	@OneToMany(mappedBy="promotion", cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Cours> listeCours = new ArrayList<>();
 	//Constructeurs
 	public Promotion() {

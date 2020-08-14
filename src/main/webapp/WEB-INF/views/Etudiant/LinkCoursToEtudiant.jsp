@@ -57,7 +57,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
+		<form:hidden path="identifiant"/>
 		<input id="InputSubmit" type="submit" class="btn btn-primary"
 			value="Attribuer Cours" />
 

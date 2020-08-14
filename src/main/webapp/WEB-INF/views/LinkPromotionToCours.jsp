@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    
+    
+ <!--  ajout de la taglib de spring mvc 'form' -->
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,8 +50,12 @@
 						<td>${promotion.idPromotion}</td>
 						<td>${promotion.libelle}</td>
 
-						<td><form:checkbox path="promotionControllerCours"
-								value="${promotion.idPromotion}" /></td>
+						<td>
+						
+						<form:checkbox path="promotionControllerCours"
+								value="${promotion.idPromotion}" />
+								
+						</td>
 					</tr>
 
 				</c:forEach>

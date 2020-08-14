@@ -4,7 +4,8 @@
   <%-- taglibs core des jsp --%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
  
- <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<!--  ajout de la taglib de spring mvc 'form' -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
  
  
