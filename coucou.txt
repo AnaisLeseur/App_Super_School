@@ -2,40 +2,58 @@
 Reste à faire :
 ==============
 
-(table de jointure enseigne (enseignant / matiere / promo)) => FAIT
+
 lien promo- cours (A TERMINER)
 
 
 MODIF A FAIRE 
 ============
 
->Image dans Promotion : lier un cours à changer	+ mise en forme de l'input dans la page d'attribution des cours à une promotion
+> Image dans Promotion : mise en forme de l'input dans la page d'attribution des cours à une promotion + titre (ajout style liste ?)
+		
 	
 > affichage promotion => consulter : info de promo ? + mise en page (<br>) 
 					+ afficher les cours liés à cette promo (table)
 	
-> affichage promotion => consulter => attrib etu => bouton pour valider l'étudiant à mettre dans la promo
+> affichage promotion => consulter => attrib etudiant => bouton pour valider l'étudiant à mettre dans la promo: faire l'affichage correct
 	
-<<<<<<< HEAD
-> matiere : img pour "cours liés à la matière" à changer
-=======
+
 > encodage en UTF-8 (pb avec les accents !) 
 	
-(> matiere : img pour "cours liés à la matière" à changer)  => FAIT
->>>>>>> f2830e07f35ed46a6cc831edf8f4082612d23979
 	
 > matière => cours liés à la matière => colonne promo ? 
+
+> dans matière: on ne peut pas lier un cours ?! Juste afficher la liste des cours de cette matière
 	
 > l'enseignant doit afficher récap afficher les cours par promotion, matière et date.
 
-(> cours => consulter => remove étudiant => 404										)
-(			=> mise en page avec correction de l'affichage (étudiant n°)			) => FAIT
-(			=> afficher les infos sur "matière" et "promo" liées à cours consulté	)
-
-(> lien absence : retirer l'onglet "absence" de la navbar ? ) =>Fait
 
 > dans aide : header (navbar non correcte)
 
+
+> liens pour aller a enseigneJointure dans promo matiere et enseignant (pour l'instant seulement dans promotion sous le nom lien test)
+
+
+> dans les formulaires de modif faire des bouton annuler la modif (= retour à la liste)
+
+> Cours-liste => consulter : 
+		-> manque footer 
+		-> faire 1 seule colonne avec ttes les infos du cours ou 2 colonnes équivalentes
+		-> 
+
+> Cours => modifier => manque footer 
+
+> format de la date de naissance ? 
+
+
+> si un étudiant est dans une promo alors il récupère (automatiquement) tous les cours associés à cette promo ? 
+
+> formulaire d'un cours à ajouter => encodage ? Ou modif titre
+
+> modif d'une matière => ajout footer
+
+> faire des if "liste_a_afficher" est vide => ne pas afficher la ligne header de la table et de bouton "valider" (=> si on click sur valider => null pointer exception) et afficher "Tous les étudiants suivent déjà ce cours " 
+	+ bouton retour à la page de la liste
 
 
 
