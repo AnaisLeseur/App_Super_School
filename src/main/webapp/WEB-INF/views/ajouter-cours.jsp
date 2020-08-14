@@ -10,7 +10,7 @@
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>Ajout d'un cours</title>
 
 	<!-- stylecss pour la validation -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
@@ -23,6 +23,7 @@
 	<!--  HEADER -->
 	<jsp:include page="/Fragments/Header.jsp"/>
 	
+<<<<<<< HEAD
 	<div id="TitreForm">
 
 		<h1><fmt:message key="10"/></h1>
@@ -37,6 +38,12 @@
           
         
          --%>
+=======
+		<h1 id="TitreForm">Formulaire pour l'ajout d'un cours</h1>
+
+		<br/>
+
+>>>>>>> 477750f94da984b31404d8fc5b17d4c07e7d3be0
 		<form:form enctype="multipart/form-data" 
 					modelAttribute="coursCommand" 
 					method="POST"
@@ -70,7 +77,7 @@
 				</div>
 			</div>
 			
-			<br><br>
+			<br>
 			
  			<div class="form-row">
                 <div class="form-group col-md-5">
@@ -83,7 +90,7 @@
 				
 				<div class="form-group col-md-2"></div>
                 <div class="form-group col-md-5">
-					<form:label path="date">Date: </form:label>
+					<form:label path="date">Date: </form:label><br>
            			<form:input id="contrainteDate" type="date" path="date" 
            						min="" required="true" />
            			<form:errors path="date" cssStyle="color : green; font-style: italic;" />
@@ -91,7 +98,7 @@
 				</div>	
 			</div>
 			
-			<br><br>
+			<br>
 			
 			<input id="inputSubmit" type="submit" class="btn btn-primary" value="<fmt:message key="13"/>">
 

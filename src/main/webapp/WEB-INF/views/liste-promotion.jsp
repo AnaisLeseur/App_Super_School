@@ -32,9 +32,11 @@
 </head>
 <body>
 
+	<!--  HEADER  -->
 	<jsp:include page="/Fragments/Header.jsp" />
 
 	<h1 id="TitreListe">
+<<<<<<< HEAD
 		<u><fmt:message key="listepro"/></u>
 	</h1>
 
@@ -64,23 +66,52 @@
 				<th scope="col"><fmt:message key="supp"/></th>
 			</tr>
                   </thead>
+=======
+		Liste des promotions
+	</h1>
+
+	 <div class="card shadow mb-4">     
+       <div class="card-body">
+         <div class="table-responsive">
+           <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+      		  <thead class="thead-blue">
+          
+	           <tr>
+					<th id="Ajout" colspan="8"><a
+						href="${pageContext.request.contextPath}/promotion/add-promotion-form"><img
+							id="LogoAjout"
+							src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png"><span>Ajouter
+								Promotion</span></a></th>
+				</tr>
+
+		
+				<!--  ligne des header  -->
+				<tr>
+					<th scope="col">Identifiant de la Promotion</th>
+					<th scope="col">Libelle</th>
+					<th scope="col">Consulter</th>
+					<th scope="col">Modifier</th>
+					<th scope="col">Lier à un cours</th>
+					<th scope="col">Supprimer</th>
+				</tr>
+              </thead>
+>>>>>>> 477750f94da984b31404d8fc5b17d4c07e7d3be0
                   
-                  <tbody>
+             <!--  Body de la table -->
+             <tbody>
                 <c:forEach items="${attribut_liste_promotion}" var="pro">
 				<tr>
 					<td>${pro.idPromotion}</td>
 					<td>${pro.libelle}</td>
 
-
+					<!--  lien pour voir les details de la promo -->
 					<td>
 						<a href="${pageContext.request.contextPath}/promotion/see-promotion/${pro.idPromotion}">
 							<img src="${pageContext.request.contextPath}/assets/images/search.svg">
 						</a>
 					</td>
 
-					<!-- au click sur le lien : envoie d'ue requete HTTP en Get vers la méthode "afficherFormulaireModification()" 
-passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'employe à modifier
- -->
+					<!-- lien pour modifier la promo -->
 					<td>
 						<a href="${pageContext.request.contextPath}/promotion/update-promotion-form?idpromotion=${pro.idPromotion}">
 							<img
@@ -88,37 +119,36 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'empl
 						</a>
 					</td>
 					
-					<!-- Lier la promo à un cours -->
+					<!-- Lien pour lier la promo à un/des cours -->
 					<td>
 						<!-- au click sur le lien : envoie d'une requete http get vers la méthode  -->
 						<a href="${pageContext.request.contextPath}/promotion/linkCours/${pro.idPromotion}">
 							<img src="${pageContext.request.contextPath}/assets/images/info-circle.svg">
 						</a>
 					</td>
-					
-					
-					
-					<!-- suppression -->
+	
+					<!-- lien pour supprimer la promo -->
 					<td>
 						<!-- au click sur le lien : envoie d'une requete http get vers la méthode supprimer -->
 						<a
 						href="${pageContext.request.contextPath}/promotion/delete/${pro.idPromotion}">
 							<img
 							src="${pageContext.request.contextPath}/assets/images/trash.svg">
-					</a>
+						</a>
 					</td>
-
-
 				</tr>
 
 			</c:forEach>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 	
+	<!--  FOOTER  -->
 	<jsp:include page="/Fragments/footer.jsp" />
+	
+	
 	
 	<!-- script thomas -->
 	<script
