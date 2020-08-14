@@ -24,14 +24,12 @@
 
 	<!-- Header  -->
 	<jsp:include page="/Fragments/Header.jsp" />
-<<<<<<< HEAD
 	<div id="TitreForm">
 		<h1><fmt:message key="formmodifcours"/></h1>
 	</div>
-=======
+
 	
 	<h1 id="TitreForm">Formulaire pour la modification du cours N° ${coursModifCommand.idCours } </h1>
->>>>>>> 477750f94da984b31404d8fc5b17d4c07e7d3be0
 
 	<br/>
 

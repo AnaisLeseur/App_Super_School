@@ -43,15 +43,7 @@
 </c:otherwise>
 </c:choose>
 
-<div class="containerTop">
-        <img id="imageTopBrand" src="${pageContext.request.contextPath}/assets/images/LogoCerveau.jpg">
-        <h1 id="TitreApp">SuperSchool</h1>
-        <h2> </h2>
 
-        <a href="?lang=fr"><img id="drapeauFrance" src="${pageContext.request.contextPath}/assets/images/FlagFrance.png" ></a>
-        <a href="?lang=en"><img id="drapeauUK" src="${pageContext.request.contextPath}/assets/images/FlagUK.png" ></a>
-        
-    </div>
 	<!--  HEADER  -->
 	<jsp:include page="/Fragments/Header.jsp" />
 

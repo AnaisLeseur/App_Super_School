@@ -39,6 +39,18 @@
 
 </head>
 <body>
+
+<c:choose>
+<c:when test="${param.lang =='fr'}">
+	<fmt:setBundle basename="messages_fr"/>
+</c:when>
+<c:when test="${param.lang =='en'}">
+	<fmt:setBundle basename="messages_en"/>
+</c:when>
+<c:otherwise>
+	<fmt:setBundle basename="messages"/>
+</c:otherwise>
+</c:choose>
 	
 	<!-- HEADER -->
 	<jsp:include page="/Fragments/Header.jsp" />

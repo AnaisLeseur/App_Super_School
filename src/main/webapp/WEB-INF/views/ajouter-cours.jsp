@@ -5,6 +5,8 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +22,21 @@
 </head>
 <body>
 
+<c:choose>
+<c:when test="${param.lang =='fr'}">
+	<fmt:setBundle basename="messages_fr"/>
+</c:when>
+<c:when test="${param.lang =='en'}">
+	<fmt:setBundle basename="messages_en"/>
+</c:when>
+<c:otherwise>
+	<fmt:setBundle basename="messages"/>
+</c:otherwise>
+</c:choose>
+
 	<!--  HEADER -->
 	<jsp:include page="/Fragments/Header.jsp"/>
 	
-<<<<<<< HEAD
 	<div id="TitreForm">
 
 		<h1><fmt:message key="10"/></h1>
@@ -38,12 +51,10 @@
           
         
          --%>
-=======
 		<h1 id="TitreForm">Formulaire pour l'ajout d'un cours</h1>
 
 		<br/>
 
->>>>>>> 477750f94da984b31404d8fc5b17d4c07e7d3be0
 		<form:form enctype="multipart/form-data" 
 					modelAttribute="coursCommand" 
 					method="POST"

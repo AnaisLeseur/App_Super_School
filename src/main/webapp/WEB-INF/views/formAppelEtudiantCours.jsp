@@ -26,6 +26,18 @@
 </head>
 <body>
 
+<c:choose>
+<c:when test="${param.lang =='fr'}">
+	<fmt:setBundle basename="messages_fr"/>
+</c:when>
+<c:when test="${param.lang =='en'}">
+	<fmt:setBundle basename="messages_en"/>
+</c:when>
+<c:otherwise>
+	<fmt:setBundle basename="messages"/>
+</c:otherwise>
+</c:choose>
+
 	<!--  HEADER -->
 	<jsp:include page="/Fragments/Header.jsp"/>
 	
@@ -41,18 +53,13 @@
 
 						<tr>
 							<th scope="col">ID</th>
-<<<<<<< HEAD
 							<th scope="col"><fmt:message key="17"/></th>
 
 							<th scope="col"><fmt:message key="18"/></th>
 							<th scope="col"><fmt:message key="19"/></th>
-							
-=======
 							<th scope="col">Etudiant</th>
 							<th scope="col">Appel <br/> (Présent = coché)</th>
 							<th scope="col">Motif</th>
->>>>>>> 477750f94da984b31404d8fc5b17d4c07e7d3be0
-
 						</tr>
 
 					</thead>

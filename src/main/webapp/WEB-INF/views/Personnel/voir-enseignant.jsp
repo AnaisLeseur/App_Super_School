@@ -20,6 +20,8 @@
 	
 </head>
 <body>
+
+
 	
 	<!--  header -->
 	<jsp:include page="/Fragments/Header.jsp"/>
