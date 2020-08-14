@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/styles/bootstrap.min.css">
@@ -58,7 +58,7 @@
 
 				<th scope="col">Consulter</th>
 				<th scope="col">Modifier</th>
-				<th scope="col">Lier à un cours</th>
+				<th scope="col">Lier Ã  un cours</th>
 				<th scope="col">Supprimer</th>
 			</tr>
                   </thead>
@@ -76,8 +76,8 @@
 						</a>
 					</td>
 
-					<!-- au click sur le lien : envoie d'ue requete HTTP en Get vers la méthode "afficherFormulaireModification()" 
-passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'employe à modifier
+					<!-- au click sur le lien : envoie d'ue requete HTTP en Get vers la mÃ©thode "afficherFormulaireModification()" 
+passage d'un param de requete nommÃ© idemploye ayant la valeur de l'id de l'employe Ã  modifier
  -->
 					<td>
 						<a href="${pageContext.request.contextPath}/promotion/update-promotion-form?idpromotion=${pro.idPromotion}">
@@ -86,11 +86,11 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'emplo
 						</a>
 					</td>
 					
-					<!-- Lier la promo à un cours -->
+					<!-- Lier la promo Ã  un cours -->
 					<td>
-						<!-- au click sur le lien : envoie d'une requete http get vers la méthode  -->
+						<!-- au click sur le lien : envoie d'une requete http get vers la mÃ©thode  -->
 						<a href="${pageContext.request.contextPath}/promotion/linkCours/${pro.idPromotion}">
-							<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
+							<img src="${pageContext.request.contextPath}/assets/images/info-circle.svg">
 						</a>
 					</td>
 					
@@ -98,7 +98,7 @@ passage d'un param de requete nommé idemploye ayant la valeur de l'id de l'emplo
 					
 					<!-- suppression -->
 					<td>
-						<!-- au click sur le lien : envoie d'une requete http get vers la méthode supprimer -->
+						<!-- au click sur le lien : envoie d'une requete http get vers la mÃ©thode supprimer -->
 						<a
 						href="${pageContext.request.contextPath}/promotion/delete/${pro.idPromotion}">
 							<img

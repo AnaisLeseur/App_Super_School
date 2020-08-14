@@ -36,7 +36,7 @@
 	<br/>
 	<br/>
 	
-	<div id="DivInfosAdmin" >
+		<div id="DivInfosAdmin" >
 			<div class="col-md-8">
 					<h5 class="card-title">
 						<span id=span-nom>${enseignantVoirCommand.nom }</span> <span
@@ -49,7 +49,7 @@
        				</div>
 					
 		
-		<div class="Adresse">Adresse :</div>
+		<div class="card-text">
 
 			<c:if
 				test="${empty enseignantVoirCommand.adresse.rue and empty enseignantVoirCommand.adresse.ville and empty enseignantVoirCommand.adresse.codePostal }">
@@ -59,10 +59,13 @@
 			</c:if>
 
 			<c:if test="${not empty enseignantVoirCommand.adresse }">
-				<div id="infosAdresse">${enseignantVoirCommand.adresse.rue}
-					${enseignantVoirCommand.adresse.ville}
-					${enseignantVoirCommand.adresse.codePostal}</div>
+				
+				<h2 style="color: black;">Adresse :</h2>
+				<p style="margin-bottom: 0px; margin-left: 20px;">${enseignantVoirCommand.adresse.rue}</p>
+				<p style="margin-top: 0px; margin-left: 20px;">${enseignantVoirCommand.adresse.codePostal} ${enseignantVoirCommand.adresse.ville}</p>
 			</c:if>
+
+		</div>
 
       </div>
     </div>
