@@ -26,7 +26,10 @@
 <body>
 
 <jsp:include page="/Fragments/Header.jsp"/>
+<br/>
 
+ <h1>Choisir la promotion qui participera au cours choisi ${idCours} </h1>
+ <br/>
 
 	<form:form method="POST" modelAttribute="coursBindPromo"
 		action="${pageContext.request.contextPath}/promotion/bindPromotionToCours">
@@ -52,7 +55,7 @@
 
 						<td>
 						
-						<form:checkbox path="promotionControllerCours"
+						<form:checkbox path="promotion"
 								value="${promotion.idPromotion}" />
 								
 						</td>
@@ -62,7 +65,7 @@
 			</tbody>
 		</table>
 		
-		
+		<form:hidden path="idCours" />
 
 
 		<input type="submit" class="btn btn-primary"

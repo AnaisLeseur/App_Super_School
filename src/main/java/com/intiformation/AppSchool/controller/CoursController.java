@@ -124,6 +124,14 @@ public class CoursController {
 		Cours cours = new Cours();
 		model.addAttribute("attribut-cours", cours);
 		
+		
+		// récup de la liste des promotion disponibles pour faire l'association
+		List<Promotion> listePromoBddPourAssos = promotionService.findAll();
+		
+		// on utilise model pour renvoyer la liste des matieres vers la vue 
+		model.addAttribute("liste_Promotion", listePromoBddPourAssos);
+		
+		model.addAttribute("coursBindPromo", cours);
 
 		// 3 renvoi du nom logique de la vue
 		/**
@@ -321,6 +329,15 @@ public class CoursController {
 
 		});
 	}// end InitBinder
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 	
@@ -328,7 +345,7 @@ public class CoursController {
 	//Bad request a cause de l'initBinder
 	// --------------------------------------------------------//
 	/**
-	 * Lie l'étudiant aux promotions sélectionnées
+	 * Lie le cours à la promo choisie dans la liste déroulante
 	 * 
 	 * @param etudiant
 	 * @return View
@@ -336,6 +353,26 @@ public class CoursController {
 	@RequestMapping(value = "/promotion/bindPromotionToCours", method = RequestMethod.POST)
 	public String BindPromotionToCours(@ModelAttribute("coursBindPromo") Cours pCours) {
 
+		// récup de la promo choisie 
+		int idPromotion = pCours.getPromotion().getIdPromotion();
+
+		Promotion promo = promotionService.findById(idPromotion);
+		Cours coursPromo = coursService.findByIdCours(pCours.getIdCours());
+		// 	
+		coursPromo.setPromotion(promo);
+		
+		// modification du cours dans la bdd 
+		coursService.modfierCours(coursPromo);
+			
+		return "redirect:/cours/liste";
+			}// end BindPromotionToCours()
+			
+		
+		
+		
+		
+		
+/*		
 		coursService.modfierCours(pCours);
 
 		Promotion promotion = pCours.getPromotion();
@@ -351,7 +388,15 @@ public class CoursController {
 		} // end if
 
 		return "redirect:/promotion/liste";
-	}// end BindPromotionToEtudiant()
+*/
+
+	
+	
+	
+	
+
+	
+	
 	
 	
 

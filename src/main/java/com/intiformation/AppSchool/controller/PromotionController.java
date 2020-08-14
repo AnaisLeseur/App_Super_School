@@ -388,7 +388,11 @@ public class PromotionController {
 		public String BindCoursToPromotion(@ModelAttribute("promotionBindCours") Promotion pPromotion) {
 			System.out.println("dans BindCoursToPromotion");
 					
-			promotionService.modifier(pPromotion);
+//			promotionService.modifier(pPromotion);
+			int idPromo = pPromotion.getIdPromotion();
+			Promotion promotion = promotionService.findById(idPromo);
+			
+//			coursService.modfierCours();
 			
 			return "redirect:/promotion/liste";
 		}// end BindPromotionToEtudiant()

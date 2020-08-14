@@ -12,7 +12,8 @@ MODIF A FAIRE
 
 
 	
-> affichage promotion => consulter : info de promo ? + mise en page (<br>
+> affichage promotion => consulter : info de promo ? + mise en page (<br>) 
+					+ afficher les cours liés à cette promo (table)
 	
 > affichage promotion => consulter => attrib etu => bouton pour valider l'étudiant à mettre dans la promo
 	
@@ -25,6 +26,8 @@ MODIF A FAIRE
 > l'enseignant doit afficher récap afficher les cours par promotion, matière et date.
 
 > cours => consulter => remove étudiant => 404
+			=> mise en page avec correction de l'affichage (étudiant n°)
+			=> afficher les infos sur "matière" et "promo" liées à cours consulté
 
 > lien absence : retirer l'onglet "absence" de la navbar ? 
 
