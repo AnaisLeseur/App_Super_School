@@ -14,7 +14,7 @@
 
     <div id="separation">
         <img id="userLogo" src="${pageContext.request.contextPath}/assets/images/User.png" >
-        <p id="userInfos">{sessionScope.(attribut a definir).nom} - Admin</p>
+        <p id="userInfos">${sessionScope.ConnectUser.nom} ${sessionScope.ConnectUser.prenom} - ${sessionScope.Role}</p>
         <a href="${pageContext.request.contextPath}/aide/liste"><img id="AideImage" src="${pageContext.request.contextPath}/assets/images/Aide.png" ></a>
     </div>
 
