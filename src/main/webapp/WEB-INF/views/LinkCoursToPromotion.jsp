@@ -39,9 +39,8 @@
 
 <jsp:include page="/Fragments/Header.jsp"/>
 
- <h1><fmt:message key="25"/></h1>
 
- <h1 id="TitreListe">Choisir les cours de la promotion N° ${promotionBindCours.idPromotion }:  ${promotionBindCours.libelle }  </h1>
+ <h1 id="TitreListe"><fmt:message key="25"/> ${promotionBindCours.idPromotion }:  ${promotionBindCours.libelle }  </h1>
 
  <br/>
 
@@ -52,10 +51,8 @@
 
 			<thead class="thead-blue">
 				<tr>
-					<th scope="col">ID Cours</th>
-					<th scope="col"><fmt:message key="11"/></th>
 					<th scope="col">Identifiant du Cours</th>
-					<th scope="col">Libelle</th>
+					<th scope="col"><fmt:message key="11"/></th>
 					<th scope="col">Description</th>
 					<th scope="col"><fmt:message key="12"/></th>
 					<th scope="col">Date</th>

@@ -68,7 +68,6 @@
     
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-
         <div class="container d-flex flex-column flex-md-row justify-content-between">
                 <a class="nav-link " style="float: left" href="${pageContext.request.contextPath}/login.jsp" >
                     <fmt:message key="Seconnecter"/>

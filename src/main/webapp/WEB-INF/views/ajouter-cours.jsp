@@ -37,12 +37,6 @@
 	<!--  HEADER -->
 	<jsp:include page="/Fragments/Header.jsp"/>
 	
-	<div id="TitreForm">
-
-		<h1><fmt:message key="10"/></h1>
-
-	</div>
-
 	<%--
         > modelAttribute = le nom  de l'objet de commande definit dans la methode afficherFormulaireAjout du controlleur
         
@@ -51,7 +45,7 @@
           
         
          --%>
-		<h1 id="TitreForm">Formulaire pour l'ajout d'un cours</h1>
+		<h1 id="TitreForm"><fmt:message key="10"/></h1>
 
 		<br/>
 
