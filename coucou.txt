@@ -13,8 +13,7 @@ MODIF A FAIRE
 > affichage promotion => consulter : info de promo ? + mise en page
 					+ afficher les cours liés à cette promo (table récapitulatif des cours )
 	
-
-> encodage en UTF-8 (pb avec les accents !) 
+> cours supprimer promo et matière avant de supprimer 
 	
 	
 > matière => cours liés à la matière => colonne promo ? 
@@ -45,6 +44,10 @@ MODIF A FAIRE
 	+ bouton retour à la page de la liste
 
 
+> dans étudiant => consulter => attribuer une promo => lors du valider, faire un retour sur l'étudiant / ou / liste-étudiant
+
+
+> modele etu : discriminatorValue
 
 
 Index.jsp: 
