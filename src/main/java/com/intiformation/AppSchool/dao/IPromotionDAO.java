@@ -16,7 +16,7 @@ public interface IPromotionDAO extends IUniverselDAO<Promotion>{
 	
 	public List<Promotion> getListNotLinkedToCours (int pIdCours);
 	
-public List<Cours> getListNotLinkedToPromotionCours (int pIdPromotion);
+	public List<Cours> getListNotLinkedToPromotionCours (int pIdPromotion);
 	
 	public List<Cours> getListCoursByIdPromo (int pIdPromotion);
 

@@ -28,11 +28,13 @@
  <a style="margin-left: 5rem;" href="${pageContext.request.contextPath}/enseigneJointure/liste/${promotionSeeCommand.idPromotion}/P">Gérer les associations Matière/Enseignant</a>
 
 
+	<br/><br/>
            
 	<div style="margin: auto;display: inline-flex;width: 100%;">
 	
 	<div class="col-md-6" >
-	<h1>Liste etudiants :</h1>
+	
+	<h3>Liste des etudiants de la promo:</h3>
 		
 	<c:if  test="${ empty promotionSeeCommand.listeEtudiants}">
 		<a class="LinkRougeNull" href="${pageContext.request.contextPath}/promotion/linkEtudiant/${promotionSeeCommand.idPromotion}">Aucun étudiant associé</a>
@@ -83,7 +85,11 @@
 	
 	<div class="col-md-6" >
 
-	<h1>Cours :</h1>
+	<h3>Liste des cours de la promo:</h3>
+	
+	<c:if  test="${ empty promotionSeeCommand.listeCours}">
+	<a class="LinkRougeNull" href="${pageContext.request.contextPath}/promotion/linkCours/${promotionSeeCommand.idPromotion}"">Aucun cours associé</a>
+	</c:if>
 	
 	<c:if test="${not empty promotionSeeCommand.listeCours}">
 	
@@ -96,6 +102,7 @@
 				<th scope="col">Description</th>
 				<th scope="col">Duree</th>
 				<th scope="col">Date</th>
+				<th scope="col">Retirer</th>
 			</tr>
 
 		</thead>
@@ -110,11 +117,23 @@
 					<td>${cours.description}</td>
 					<td>${cours.duree}</td>
 					<td>${cours.date}</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/promotions/deleteCours?idPromo=${promotionSeeCommand.idPromotion}&idCours=${cours.idCours}">
+							<img src="${pageContext.request.contextPath}/assets/images/x.svg">
+						</a> 
+					</td>
+					
 					
 				</tr>
 
 			</c:forEach>
 			
+				<tr>
+					<td colspan="6">
+						<a href="${pageContext.request.contextPath}/promotion/linkCours/${promotionSeeCommand.idPromotion}">Ajouter un cours</a>
+					</td>
+				</tr>
+				
 		</tbody>
 
 	</table>

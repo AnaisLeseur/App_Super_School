@@ -400,7 +400,7 @@ public class EtudiantController {
 			
 		} // end for each
 
-		return "redirect:/promotion/liste";
+		return "redirect:/etudiant/liste";
 	}// end BindPromotionToEtudiant()
 
 	
