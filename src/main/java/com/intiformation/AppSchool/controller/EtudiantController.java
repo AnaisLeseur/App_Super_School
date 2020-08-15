@@ -344,7 +344,7 @@ public class EtudiantController {
 			} // end if
 		} // end for each
 
-		return "redirect:/promotion/liste";
+		return "redirect:/etudiant/liste";
 	}// end BindPromotionToEtudiant()
 
 	

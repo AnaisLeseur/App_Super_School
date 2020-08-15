@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.service.ICoursService;
 import com.intiformation.AppSchool.service.IMatiereService;
@@ -92,6 +93,16 @@ public class MatiereController {
 		 */
 		@RequestMapping(value= {"/matiere/delete/{matiere-id}" , "/matiere/remove/{matiere-id}" }, method=RequestMethod.GET)
 		public String supprimerMatiere(@PathVariable("matiere-id") int pIdMatiere, ModelMap model) {
+			
+			// récup des cours associés à la matière a supprimer 
+			List<Cours> listeCoursAssoMatierASupp = coursService.recupCoursParMatiere(pIdMatiere);
+			
+			for (Cours cours : listeCoursAssoMatierASupp) {
+	            cours.setMatiere(null);
+	            coursService.modfierCours(cours);
+	        }
+
+			
 			
 			// 1 . suppresion de matiere dans la bdd via le service
 			

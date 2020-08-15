@@ -53,7 +53,7 @@
 					<th scope="col">Description</th>
 					<th scope="col"><fmt:message key="12"/></th>
 					<th scope="col">Date</th>
-					<th scope="col"><fmt:message key="23"/></th>
+
 				</tr>
 
 			</thead>
@@ -67,7 +67,7 @@
 						<td>${cours.description}</td>
 						<td>${cours.duree}</td>
 						<td>${cours.date}</td>
-						<td> <!--  ${cours.promotion} --></td>
+
 					</tr>
 
 				</c:forEach>

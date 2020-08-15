@@ -92,24 +92,27 @@ public class PromotionController {
 			"/promotion/remove/{promotion-id}" }, method = RequestMethod.GET)
 	public String supprimerPromotion(@PathVariable("promotion-id") int pIdPromotion, ModelMap model) {
 
-		// 1 . suppresion de matiere dans la bdd via le service
-
+		// récup des cours associé à la promo à supprimer :
+		Promotion promo = promotionService.findById(pIdPromotion);
+		List<Cours> listeCoursDePromo = promo.getListeCours();
+		
+		// on supprime la promo associée aux cours
+		for (Cours cours : listeCoursDePromo) {
+			cours.setPromotion(null);	
+			coursService.modfierCours(cours);
+		}
+		
+		// 1 . suppresion de promo dans la bdd via le service
 		promotionService.supprimer(pIdPromotion);
 
-		// 2 . recup de la nouvelle liste des employe
+		// 2 . recup de la nouvelle liste des promo
 		List<Promotion> listePromotionBdd = promotionService.findAll();
 
 		// 4bis ou 4
 		// 3 . envoie des données à afficher dans la vue
 		model.addAttribute("attribut_liste_promotion", listePromotionBdd);
 
-		// 4 bis
-		// return "liste-matiere";
-
-		// 4 redirection vers l'url /matiere/liste pour invoquer la méthode
-		// recupererListeEmployeeBdd
-		// et nous rediriger vers liste-matiere.jsp
-
+		// redirection
 		return "redirect:/promotion/liste";
 
 	}// end suppr
@@ -337,6 +340,8 @@ public class PromotionController {
 		//Renvoi de l'etudiant dans la vue seeEtudiant	
 		return new ModelAndView("seePromotion", "promotionSeeCommand", promotion );
 	}
+	
+	
 	
 	
 	// --------------------------------------------------------//
