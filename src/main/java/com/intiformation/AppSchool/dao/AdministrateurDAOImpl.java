@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Administrateur;
+import com.intiformation.AppSchool.modele.Personne;
 
 
 /**
@@ -174,4 +175,30 @@ public class AdministrateurDAOImpl implements IAdministrateurDAO {
 		}// end catch
 	}// end getById
 
+	
+	@Override
+	@Transactional(readOnly=true)
+    public Personne getPersonneById(int idConnect) {
+        try {
+            // 1. session d'hibernate
+            Session session = this.sessionFactory.getCurrentSession();
+
+            // 2. def de la Rqt à envoyer (HQL) 
+            Query<Personne> query = session.createQuery("SELECT p FROM Personne p where p.identifiant=:idConnect");
+            query.setParameter("idConnect", idConnect);
+            // 3. envoi + exec + resultat
+            Personne personne = query.getSingleResult();
+
+            // 4 renvoi de la liste 
+            return personne;
+
+        } catch (Exception e) {
+            // cas erreur : annulation de la tx 
+            System.out.println("\n ... Erreur lors de la récupération de la liste de la personne dans AdministrateurDAOImpl !!");
+            throw e;
+
+        }// end catch
+        
+	}// end  getPersonneById  
+	
 }// end class

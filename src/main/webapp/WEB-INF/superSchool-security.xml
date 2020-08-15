@@ -14,18 +14,19 @@
 	<security:http auto-config="true" use-expressions="true">
 
 
-		<security:intercept-url pattern="/index.jsp*" access="hasAnyRole('ROLE_ANONYMOUS', 'Role_Etudiant', 'Role_Enseignant', 'Role_Admin')"/>
-		<security:intercept-url pattern="/Users*" access="hasAnyRole('Role_Etudiant', 'Role_Enseignant', 'Role_Admin')"/>
-		<security:intercept-url pattern="/enseignants*" access="hasAnyRole('Role_Enseignant', 'Role_Admin')"/>
-		<security:intercept-url pattern="/promotion*" access="hasRole('Role_Admin')"/>
+		<security:intercept-url pattern="/index.jsp*" access="hasAnyRole('ROLE_ANONYMOUS', 'ROLE_Etudiant', 'ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/login.jsp*" access="hasAnyRole('ROLE_ANONYMOUS', 'ROLE_Etudiant', 'ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/etudiant/*" access="hasAnyAuthority('ROLE_Etudiant', 'ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/enseignants/*" access="hasAnyAuthority('ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/*" access="hasAuthority('ROLE_Admin')"/>
 		
 		<!--  Formulaire Perso -->
-		<security:form-login login-page="/login.jsp" 
-						default-target-url="/accueil.jsp"
-						authentication-failure-url="/login.jsp?error=true"
-						login-processing-url="/login"
-						username-parameter="identifiant"
-						password-parameter="motDePasse"/>
+		<security:form-login 	login-page="/login.jsp" 
+								default-target-url="/connect/getUser"
+								authentication-failure-url="/login.jsp?error=true"
+								login-processing-url="/login"
+								username-parameter="identifiant"
+								password-parameter="motDePasse"/>
 		
 		
 		<!--  Deconnexion de l'utilisateur -->

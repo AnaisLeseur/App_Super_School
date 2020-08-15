@@ -21,7 +21,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@DiscriminatorValue(value = "Etudiant")
+@DiscriminatorValue(value = "ROLE_Etudiant")
 @PrimaryKeyJoinColumn(name="identifiant",
 referencedColumnName="identifiant")
 public class Etudiant extends Personne{

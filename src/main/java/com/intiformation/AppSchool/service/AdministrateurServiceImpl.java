@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.IAdministrateurDAO;
 import com.intiformation.AppSchool.modele.Administrateur;
+import com.intiformation.AppSchool.modele.Personne;
 
 
 /**
@@ -81,5 +82,12 @@ public class AdministrateurServiceImpl implements IAdministrateurService {
 	public List<Administrateur> findAll() {
 		return administrateurDAO.getAll();
 	}// end findAll
+
+
+
+	@Override
+	public Personne findPersonneById(int idConnect) {
+		return administrateurDAO.getPersonneById(idConnect);
+	}// end findPersonneById
 
 }// end class

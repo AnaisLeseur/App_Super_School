@@ -53,10 +53,6 @@
 
 						<tr>
 							<th scope="col">ID</th>
-							<th scope="col"><fmt:message key="17"/></th>
-
-							<th scope="col"><fmt:message key="18"/></th>
-							<th scope="col"><fmt:message key="19"/></th>
 							<th scope="col">Etudiant</th>
 							<th scope="col">Appel <br/> (Présent = coché)</th>
 							<th scope="col">Motif</th>

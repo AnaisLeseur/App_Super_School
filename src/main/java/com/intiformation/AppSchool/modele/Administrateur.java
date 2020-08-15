@@ -13,7 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  *
  */
 @Entity
-@DiscriminatorValue(value = "Role_Admin")
+@DiscriminatorValue(value = "ROLE_Admin")
 @PrimaryKeyJoinColumn(name="personne_id",
 					  referencedColumnName="identifiant")
 public class Administrateur extends Personne {

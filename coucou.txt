@@ -1,20 +1,9 @@
 A faire (visualisation Samedi 15/08):
 =====================================
--> Index : Bouton 'se connecter'
+
 -> transférer l'argument lang
 -> voirPromotion : si liste vide, pas de tableau, mais un message
--> connection : revenir sur index
--> si connecter : modifier le bouton en 'se deconnecter'
 -> security
-
-
-
-
-
-
-
-
-
 
 
 Reste à faire :
@@ -27,10 +16,7 @@ lien promo- cours (A TERMINER)
 MODIF A FAIRE 
 ============
 
-			
-> affichage promotion => consulter : info de promo ? + mise en page
-					+ afficher les cours liés à cette promo (table récapitulatif des cours )
-	
+
 > cours supprimer promo et matière avant de supprimer 
 	
 	
@@ -52,9 +38,6 @@ MODIF A FAIRE
 > dans les formulaires de modif faire des bouton annuler la modif (= retour à la liste correspondante)
 
 
-> format de la date de naissance ?
-
-
 > si un étudiant est dans une promo alors il récupère (automatiquement) tous les cours associés à cette promo ? 
 
 
@@ -65,7 +48,11 @@ MODIF A FAIRE
 > dans étudiant => consulter => attribuer une promo => lors du valider, faire un retour sur l'étudiant / ou / liste-étudiant
 
 
-> modele etu : discriminatorValue
+> étudiant => aide => puis retour sur see-etudiant(id) (et pas liste-etudiants)
+
+> navbar : ajout "admin"
+
+
 
 
 Index.jsp: 

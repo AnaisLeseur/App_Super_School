@@ -1,3 +1,8 @@
+  <%-- taglibs s de spring security --%>
+ <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/Header.css">
 
@@ -54,6 +59,30 @@
                 <a class="nav-link " href="${pageContext.request.contextPath}/cours/liste" id="navbarDropdown">
                     Cours
                 </a>
+                
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <sec:authorize
+            access="hasAnyRole('ROLE_Etudiant', 'ROLE_Enseignant', 'ROLE_Admin')">
+            <%-- déja connecté => bouton se déconnecter --%>
+            <a href="${pageContext.request.contextPath}/logout"
+                class="btn btn-secondary nav-link" style="width: auto;">Se
+                Déconnecter</a>
+        </sec:authorize>
+
+        <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+            <%-- n'est connecté => bouton se connecter --%>
+            <a href="${pageContext.request.contextPath}/login.jsp"
+                class="btn btn-secondary nav-link" style="width: auto;">Se
+                Connecter</a>
+        </sec:authorize>
+<!--  =================================  -->
+        <c:if test="${not empty param.logout_message}">
+            <font style="color: green; font-style: italic;"> Vous êtes
+                déconnecté !!! </font>
+        </c:if>
+
+    </nav>
 
 
             
