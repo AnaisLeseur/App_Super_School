@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+  <%-- taglibs s de spring security --%>
+ <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+ 
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +42,22 @@
 
 	<h1 id="TitreListe">Liste des étudiants</h1>
 
+	<%-- Affichage de l'identifiant et des roles des users --%>
+	<div style="width: 300px">
+	
+		<%-- affichage de l'identifiant de l'utilisateur --%>
+		<h3>
+			<fmt:message key="accueil"/> <sec:authentication property="name"/>
+		</h3>
+		<br/>
+		<%-- affichage des roles du user --%>
+		<sec:authentication property="authorities" var="authorites"/>
+			<ul>
+				<c:forEach items="${authorites}" var="auth">
+					<li>${auth.authority}</li>
+				</c:forEach>
+			</ul>
+	</div>
 
 	<%-- 
 	 <c:choose>

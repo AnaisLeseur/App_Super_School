@@ -1,20 +1,9 @@
 A faire (visualisation Samedi 15/08):
 =====================================
--> Index : Bouton 'se connecter'
+
 -> transférer l'argument lang
 -> voirPromotion : si liste vide, pas de tableau, mais un message
--> connection : revenir sur index
--> si connecter : modifier le bouton en 'se deconnecter'
 -> security
-
-
-
-
-
-
-
-
-
 
 
 Reste à faire :
@@ -27,12 +16,8 @@ lien promo- cours (A TERMINER)
 MODIF A FAIRE 
 ============
 
-			
-> affichage promotion => consulter : info de promo ? + mise en page
-					+ afficher les cours liés à cette promo (table récapitulatif des cours )
-	
 
-> encodage en UTF-8 (pb avec les accents !) 
+> cours supprimer promo et matière avant de supprimer : Anais
 	
 	
 > matière => cours liés à la matière => colonne promo ? 
@@ -47,20 +32,25 @@ MODIF A FAIRE
 > dans aide : header (navbar non correcte) => pas solution après suppression style 1par1 ! 
 
 
-> liens pour aller a enseigneJointure dans matiere ? On ne le fait pas comme dans enseignant et promo ? 
+> liens pour aller a enseigneJointure dans matiere ? On ne le fait pas comme dans enseignant et promo ? Anais
 
 
-> dans les formulaires de modif faire des bouton annuler la modif (= retour à la liste correspondante)
+> dans les formulaires de modif faire des bouton annuler la modif (= retour à la liste correspondante) 
 
 
-> format de la date de naissance ?
-
-
-> si un étudiant est dans une promo alors il récupère (automatiquement) tous les cours associés à cette promo ? 
+> si un étudiant est dans une promo alors il récupère (automatiquement) tous les cours associés à cette promo ? Thomas
 
 
 > faire des if "liste_a_afficher" est vide => ne pas afficher la ligne header de la table et de bouton "valider" (=> si on click sur valider => null pointer exception) et afficher "Tous les étudiants suivent déjà ce cours " 
 	+ bouton retour à la page de la liste
+
+
+> dans étudiant => consulter => attribuer une promo => lors du valider, faire un retour sur l'étudiant / ou / liste-étudiant
+
+
+> étudiant => aide => puis retour sur see-etudiant(id) (et pas liste-etudiants) Thomas
+
+> navbar : ajout "admin" 
 
 
 

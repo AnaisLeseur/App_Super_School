@@ -67,12 +67,35 @@
     </div>
     
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      
+      
+      
 
         <div class="container d-flex flex-column flex-md-row justify-content-between">
                 <a class="nav-link " style="float: left" href="${pageContext.request.contextPath}/login.jsp" >
                     <fmt:message key="Seconnecter"/>
                 </a>
         </div>
+        
+        
+        <sec:authorize
+            access="hasAnyRole('Role_Etudiant', 'Role_Enseignant', 'Role_Admin')">
+            <%-- déja connecté => bouton se déconnecter --%>
+            <a href="${pageContext.request.contextPath}/logout"
+                class="btn btn-secondary nav-link" style="width: auto;">Se
+                Déconnecter</a>
+        </sec:authorize>
+
+        <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+            <%-- n'est connecté => bouton se connecter --%>
+            <a href="${pageContext.request.contextPath}/login.jsp"
+                class="btn btn-secondary nav-link" style="width: auto;">Se
+                Connecter</a>
+        </sec:authorize>
+<!--  =================================  -->
+
+           
+        
     </nav>
 	
 		<!--  AFFICHAGE d'un MSG de déconnexion  -->

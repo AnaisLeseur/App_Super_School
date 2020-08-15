@@ -510,11 +510,22 @@ public class CoursController {
 		int index = 0;
 		for (EtudiantCours ec : cours.getListeEtudiantsCours()) {
 
-			ec.setMotif(listeMotif[index]);
+			if (listeMotif.length == 0 ) {
+				System.out.println("if (listeMotif.length == 0 ) ");
+				
+				ec.setMotif(" ");
+				
+			}else {
+				ec.setMotif(listeMotif[index]);
+			}
+			
 			ec.setAbsence(listeAbsence[index].equals("1") ? true : false);
 
 			etudiantCoursService.modifier(ec);
+			
+			
 			index++;
+			
 		}
 
 		return "redirect:/cours/liste";

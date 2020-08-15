@@ -27,11 +27,13 @@
  
  <a style="margin-left: 5rem;" href="${pageContext.request.contextPath}/enseigneJointure/liste/${promotionSeeCommand.idPromotion}/P">Gérer les associations Matière/Enseignant</a>
 
-<div class="col-md-11" style="margin: auto;padding-top: 2rem;">
+
            
 	<div style="margin: auto;display: inline-flex;width: 100%;">
 	
-	
+	<div class="col-md-6" >
+	<h1>Liste etudiants :</h1>
+		
 	<c:if  test="${ empty promotionSeeCommand.listeEtudiants}">
 		<a class="LinkRougeNull" href="${pageContext.request.contextPath}/promotion/linkEtudiant/${promotionSeeCommand.idPromotion}">Aucun étudiant associé</a>
 	</c:if>
@@ -77,6 +79,11 @@
 	</table>
 	
 	</c:if>
+	</div>
+	
+	<div class="col-md-6" >
+
+	<h1>Cours :</h1>
 	
 	<c:if test="${not empty promotionSeeCommand.listeCours}">
 	

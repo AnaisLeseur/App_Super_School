@@ -20,7 +20,7 @@ import org.hibernate.annotations.LazyCollectionOption;
  *
  */
 @Entity
-@DiscriminatorValue(value = "Role_Enseignant")
+@DiscriminatorValue(value = "ROLE_Enseignant")
 @PrimaryKeyJoinColumn(name="identifiant",
 referencedColumnName="identifiant")
 public class Enseignant extends Personne {
