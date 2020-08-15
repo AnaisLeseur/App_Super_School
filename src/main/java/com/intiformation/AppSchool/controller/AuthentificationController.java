@@ -11,9 +11,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.intiformation.AppSchool.modele.Enseignant;
 import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.Personne;
 import com.intiformation.AppSchool.service.IAdministrateurService;
+import com.intiformation.AppSchool.service.IEnseignantService;
 import com.intiformation.AppSchool.service.IEtudiantService;
 
 @Controller
@@ -25,17 +27,28 @@ public class AuthentificationController {
 	@Autowired
 	private IEtudiantService etudiantService;
 	
+	@Autowired
+	private IEnseignantService enseignantService;
+	
 	//Setter pour injection
 	public void setAdminService(IAdministrateurService adminService) {
 		this.adminService = adminService;
 	}
 
+	public void setEtudiantService(IEtudiantService etudiantService) {
+		this.etudiantService = etudiantService;
+	}
+
+	public void setEnseignantService(IEnseignantService enseignantService) {
+		this.enseignantService = enseignantService;
+	}
+
+
+
 	@RequestMapping(value = "/connect/getUser", method = RequestMethod.GET)
 	public String getConnectUser(HttpServletRequest request, Authentication authentication, ModelMap model) {
-		System.out.println("j'ai reussi");
 
 		int idConnect = Integer.parseInt(authentication.getName());
-		System.out.println(idConnect);
 		
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		String authorities = userDetails.getAuthorities().toString();
@@ -44,13 +57,11 @@ public class AuthentificationController {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("ConnectUser", personne);
 		
-		System.out.println(authorities);
-		
 		switch (authorities) {
 		case "[ROLE_Admin]":
 			
 			session.setAttribute("Role", "Admin");
-			return "XXXXX";
+			return "redirect:/administrateurs/liste";
 			
 		case "[ROLE_Etudiant]":
 			
@@ -61,8 +72,10 @@ public class AuthentificationController {
 			return "Etudiant/seeEtudiant";
 			
 		case "[ROLE_Enseignant]":
+			Enseignant enseignant = enseignantService.findById(idConnect);
+			model.addAttribute("enseignantVoirCommand", enseignant);
 			session.setAttribute("Role", "Enseignant");
-			return "XXX";
+			return "Personnel/voir-enseignant";
 
 		default:
 			break;

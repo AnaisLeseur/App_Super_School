@@ -63,6 +63,7 @@
 
 			<div class="infosEtudiant">
 
+			<h2>Adresse :</h2>
 			<c:if
 				test="${empty etudiantSeeCommand.adresse.rue and empty etudiantSeeCommand.adresse.ville and empty etudiantSeeCommand.adresse.codePostal }">
 				<a class="LinkRougeNull"
@@ -71,7 +72,6 @@
 			</c:if>
 
 			<c:if test="${not empty etudiantSeeCommand.adresse }">
-				<h2>Adresse :</h2>
 				<p style="margin-bottom: 0px;">${etudiantSeeCommand.adresse.rue}</p>
 				<p style="margin-top: 0px;">${etudiantSeeCommand.adresse.codePostal} ${etudiantSeeCommand.adresse.ville}</p>
 			</c:if>

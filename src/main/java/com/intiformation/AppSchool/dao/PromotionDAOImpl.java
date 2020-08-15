@@ -191,6 +191,7 @@ public class PromotionDAOImpl implements IPromotionDAO {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public List<Etudiant> getListEtudiantByIdPromo(int pIdPromotion) {
 		try {
 
@@ -253,6 +254,7 @@ public class PromotionDAOImpl implements IPromotionDAO {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public List<Cours> getListCoursByIdPromo(int pIdPromotion) {
 		try {
 

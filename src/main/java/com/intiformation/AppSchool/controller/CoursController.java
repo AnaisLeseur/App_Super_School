@@ -292,45 +292,13 @@ public class CoursController {
 
 		model.addAttribute("coursBindPromo", coursService.findByIdCours(pId));
 
-		// --------------------------------------------------------//
-		// findListNotLinkedToCours ne sert a rien / prendre getAll
-		// --------------------------------------------------------//
-
 		model.addAttribute("liste_Promotion", promotionService.findListNotLinkedToCours(pId));
 
 		return "LinkPromotionToCours";
 	}// end toLinkPromotion
 
-	// --------------------------------------------------------//
-	// ne marchera pas => Dans 'Cours' pas de List<Promotion> mais UNE Promotion
-	// --------------------------------------------------------//
-	/**
-	 * Conversion des id des promotions en objet Promotion
-	 * 
-	 * @param binder
-	 */
-	@InitBinder
-	public void bindingPreparationPromo(WebDataBinder binder) {
 
-		binder.registerCustomEditor(List.class, "promotionControllerCours", new CustomCollectionEditor(List.class) {
-
-			protected Object convertElement(Object element) {
-
-				if (element != null) {
-					Integer Id = Integer.parseInt(element.toString());
-					Promotion promo = promotionService.findById(Id);
-					return promo;
-				} // end if
-
-				return null;
-			}
-
-		});
-	}// end InitBinder
-
-	// --------------------------------------------------------//
-	// Bad request a cause de l'initBinder
-	// --------------------------------------------------------//
+	
 	/**
 	 * Lie le cours à la promo choisie dans la liste déroulante
 	 * 
@@ -356,7 +324,27 @@ public class CoursController {
 		promo.setListeCours(ListeCoursDansPromo);
 		
 		promotionService.modifier(promo);
+		
+		//Test association des Cours d'une Promotion aux Etudiants de la promotion
+		
+		for (Etudiant etudiant : promo.getListeEtudiants()) {
 
+			//Dans la liste des étudiants de la Promotion, si le cours n'est pas encore associé à l'etudiant 
+			//alors on va l'ajouter avec le service EtudiantCours
+			if (etudiant.getListeEtudiantCours().isEmpty()) etudiantCoursService.ajouter(new EtudiantCours(etudiant, coursPromo, null, ""));
+			int verifPresence=0;
+			for (EtudiantCours ec : etudiant.getListeEtudiantCours()) {
+
+				if (ec.getCoursEC().getIdCours()!=pCours.getIdCours()) {
+					verifPresence++;
+				}
+				//Tous les ID Cours de la liste sont differents du cours à ajouter : -> on ajoute
+				if (verifPresence == etudiant.getListeEtudiantCours().size()) {
+					etudiantCoursService.ajouter(new EtudiantCours(etudiant, coursPromo, null, ""));
+				}
+			}
+		}
+		
 		return "redirect:/cours/liste";
 	}// end BindPromotionToCours()
 

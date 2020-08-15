@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.AppSchool.modele.Enseignant;
+import com.intiformation.AppSchool.modele.Etudiant;
 
 /**
 * Implémentation concrète de la couche DAO pour un enseignant 
@@ -166,5 +167,32 @@ public class EnseignantDAOImpl implements IEnseignantDAO {
 						
 		}// end catch
 	}// end getById
+
+
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Etudiant> getListEtudiantByIdEnseignant(int idEnseignant) {
+		try {
+			// 1. session d'hibernate
+			Session session = this.sessionFactory.getCurrentSession();
+			
+			// 2. def de la Rqt à envoyer (HQL) 
+			Query<Etudiant> query = session.createQuery("select e FROM Etudiant e join e.listePromotions p join p.listeEnseigneJointurePromo ej join ej.enseignantEJ ens where ens.identifiant=:idEns");
+			
+			query.setParameter("idEns", idEnseignant);
+			// 3. envoi + exec + resultat
+			List<Etudiant> listeEtudiant = query.getResultList();
+			
+			// 4 renvoi de la liste 
+			return listeEtudiant;
+			
+		} catch (Exception e) {
+			// cas erreur : annulation de la tx 
+			System.out.println("\n ... Erreur lors de la récupération de la liste des étudiants dans EnseignantDAOImpl !!");	
+			
+		}// end catch
+		return null;
+	}
 
 }// end class

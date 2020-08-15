@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.cryptage.PasswordEncoderGenerator;
 import com.intiformation.AppSchool.modele.Enseignant;
+import com.intiformation.AppSchool.modele.Personne;
 import com.intiformation.AppSchool.service.IEnseignantService;
 import com.intiformation.AppSchool.validator.EnseignantValidator;
 
@@ -75,7 +78,13 @@ public class EnseignantController {
 	 * @return: le nom logique de la vue 
 	 */
 	@RequestMapping(value="enseignants/liste", method=RequestMethod.GET)
-	public String recupererListeEnseignantsBdd(ModelMap model) {
+	public String recupererListeEnseignantsBdd(ModelMap model, HttpServletRequest request) {
+
+		if (request.getSession(false).getAttribute("Role").equals("Enseignant")) {
+			Personne personne =  (Personne) request.getSession(false).getAttribute("ConnectUser");
+			model.addAttribute("enseignantVoirCommand", enseignantService.findById(personne.getIdentifiant()));
+			return "Personnel/voir-enseignant";
+		}
 		
 		// 1. récup de la liste des enseignants dans la bdd via le service 
 		List<Enseignant> listeEnseignantsBdd = enseignantService.findAll();

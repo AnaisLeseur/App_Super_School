@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.intiformation.AppSchool.dao.IEnseignantDAO;
 import com.intiformation.AppSchool.modele.Enseignant;
+import com.intiformation.AppSchool.modele.Etudiant;
 
 
 /**
@@ -76,6 +77,13 @@ public class EnseignantServiceImpl implements IEnseignantService{
 	public List<Enseignant> findAll() {
 		return enseignantDAO.getAll();
 	}// end findAll
+
+
+
+	@Override
+	public List<Etudiant> findListEtudiantByIdEnseignant(int idEnseignant) {
+		return enseignantDAO.getListEtudiantByIdEnseignant(idEnseignant);
+	}
 
 
 }// end class

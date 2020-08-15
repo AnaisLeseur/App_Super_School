@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +34,10 @@ import com.intiformation.AppSchool.cryptage.PasswordEncoderGenerator;
 import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.EtudiantCours;
+import com.intiformation.AppSchool.modele.Personne;
 import com.intiformation.AppSchool.modele.Promotion;
 import com.intiformation.AppSchool.service.ICoursService;
+import com.intiformation.AppSchool.service.IEnseignantService;
 import com.intiformation.AppSchool.service.IEtudiantCoursService;
 import com.intiformation.AppSchool.service.IEtudiantService;
 import com.intiformation.AppSchool.service.IPromotionService;
@@ -44,6 +48,9 @@ public class EtudiantController {
 
 	@Autowired
 	private IEtudiantService etudiantService;
+	
+	@Autowired
+	private IEnseignantService enseignantService;
 	
 	@Autowired
 	private IEtudiantCoursService etudiantCoursService;
@@ -65,6 +72,10 @@ public class EtudiantController {
 	
 	public void setPromotionService(IPromotionService promotionService) {
 		this.promotionService = promotionService;
+	}
+
+	public void setEnseignantService(IEnseignantService enseignantService) {
+		this.enseignantService = enseignantService;
 	}
 
 	public void setEtudiantCoursService(IEtudiantCoursService etudiantCoursService) {
@@ -99,10 +110,26 @@ public class EtudiantController {
 	// ------------------------------------------------------//
 
 	@RequestMapping(value = "/etudiant/liste", method = RequestMethod.GET)
-	public String recupererListeEtudiants(ModelMap model) {
+	public String recupererListeEtudiants(ModelMap model, HttpServletRequest request) {
 
-		// Renvoi de la liste vers la vue
-		model.addAttribute("attribut_listeEtudiants", etudiantService.findAll());
+		HttpSession session = request.getSession(false);
+		String role = (String) session.getAttribute("Role");
+		Personne personne = (Personne) session.getAttribute("ConnectUser");
+		System.out.println(role);
+		System.out.println(personne.getIdentifiant());
+		
+		switch (role) {
+		case "Etudiant":
+			
+			return "etudiant/see-etudiant/"+personne.getIdentifiant() ;
+			
+		case "Enseignant":
+			model.addAttribute("attribut_listeEtudiants",enseignantService.findListEtudiantByIdEnseignant(personne.getIdentifiant()));
+
+		default:
+			model.addAttribute("attribut_listeEtudiants", etudiantService.findAll());
+			break;
+		}		
 
 		// Renvoi du nom logique de la vue
 		return "Etudiant/listeEtudiant";
@@ -342,6 +369,35 @@ public class EtudiantController {
 				promotion.setListeEtudiants(listeEtudiant);
 				promotionService.modifier(promotion);
 			} // end if
+			
+			
+			for (Etudiant etudiant : promotion.getListeEtudiants()) {
+
+				//Dans la liste des étudiants de la Promotion, si le cours n'est pas encore associé à l'etudiant 
+				//alors on va l'ajouter avec le service EtudiantCours
+				if (etudiant.getListeEtudiantCours().isEmpty()) {
+					for (Cours cours : promotion.getListeCours()) {
+						etudiantCoursService.ajouter(new EtudiantCours(etudiant, cours, null, ""));
+					}//end foreach Cours
+				}//end if
+				
+				for (Cours cours : promotion.getListeCours()) {
+				
+					int verifPresence=0;
+					
+					for (EtudiantCours ec : etudiant.getListeEtudiantCours()) {
+
+						if (ec.getCoursEC().getIdCours()!=cours.getIdCours()) {
+						verifPresence++;
+						}
+						//Tous les ID Cours de la liste sont differents du cours à ajouter : -> on ajoute
+						if (verifPresence == etudiant.getListeEtudiantCours().size()) {
+							etudiantCoursService.ajouter(new EtudiantCours(etudiant, cours, null, ""));
+						}
+					}//end foreach EtudiantCours 
+				}
+			}
+			
 		} // end for each
 
 		return "redirect:/promotion/liste";

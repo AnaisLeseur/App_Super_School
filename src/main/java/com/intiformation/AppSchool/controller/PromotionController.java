@@ -21,8 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.modele.Cours;
 import com.intiformation.AppSchool.modele.Etudiant;
+import com.intiformation.AppSchool.modele.EtudiantCours;
 import com.intiformation.AppSchool.modele.Promotion;
 import com.intiformation.AppSchool.service.ICoursService;
+import com.intiformation.AppSchool.service.IEtudiantCoursService;
 import com.intiformation.AppSchool.service.IEtudiantService;
 import com.intiformation.AppSchool.service.IPromotionService;
 import com.intiformation.AppSchool.validator.PromotionValidator;
@@ -42,10 +44,15 @@ public class PromotionController {
 	
 	@Autowired
 	private ICoursService coursService;
+	
+	@Autowired
+	private IEtudiantCoursService etudiantCoursService;
+	
+	
+	public void setEtudiantCoursService(IEtudiantCoursService etudiantCoursService) {
+		this.etudiantCoursService = etudiantCoursService;
+	}
 
-	
-	
-	
 	public void setCoursService(ICoursService coursService) {
 		this.coursService = coursService;
 	}
@@ -302,9 +309,37 @@ public class PromotionController {
 	 */
 	@RequestMapping(value = "/promotion/bindEtudiantsToPromotion", method = RequestMethod.POST)
 	public String BindEtudiantsToPromotion(@ModelAttribute("promotionBindEtudiant") Promotion pPromotion) {
-		System.out.println("dans BindEtudiantsToPromotion");
-				
+		
+		pPromotion.setListeCours(promotionService.findListCoursByIdPromo(pPromotion.getIdPromotion()));
+		
 		promotionService.modifier(pPromotion);
+		
+		for (Etudiant etudiant : pPromotion.getListeEtudiants()) {
+
+			//Dans la liste des étudiants de la Promotion, si le cours n'est pas encore associé à l'etudiant 
+			//alors on va l'ajouter avec le service EtudiantCours
+			if (etudiant.getListeEtudiantCours().isEmpty()) {
+				for (Cours cours : pPromotion.getListeCours()) {
+					etudiantCoursService.ajouter(new EtudiantCours(etudiant, cours, null, ""));
+				}//end foreach Cours
+			}//end if
+			
+			for (Cours cours : pPromotion.getListeCours()) {
+			
+				int verifPresence=0;
+				
+				for (EtudiantCours ec : etudiant.getListeEtudiantCours()) {
+
+					if (ec.getCoursEC().getIdCours()!=cours.getIdCours()) {
+					verifPresence++;
+					}
+					//Tous les ID Cours de la liste sont differents du cours à ajouter : -> on ajoute
+					if (verifPresence == etudiant.getListeEtudiantCours().size()) {
+						etudiantCoursService.ajouter(new EtudiantCours(etudiant, cours, null, ""));
+					}
+				}//end foreach EtudiantCours 
+			}
+		}
 		
 		return "redirect:/promotion/liste";
 	}// end BindPromotionToEtudiant()
@@ -340,8 +375,8 @@ public class PromotionController {
 	
 	
 	// --------------------------------------------------------//
-		// ----------------Binding Promotion linkCours-----------------------//
-		// --------------------------------------------------------//
+	// ----------------Binding Promotion linkCours-----------------------//
+	// --------------------------------------------------------//
 
 		@RequestMapping(value = "/promotion/linkCours/{idPromotion}", method = RequestMethod.GET)
 		public String toLinkCours(@PathVariable("idPromotion") int pId, ModelMap model) {
@@ -400,6 +435,34 @@ public class PromotionController {
 			}
 			promotion.setListeCours(listeCours);
 			promotionService.modifier(promotion);
+			
+			
+			for (Etudiant etudiant : promotion.getListeEtudiants()) {
+
+				//Dans la liste des étudiants de la Promotion, si le cours n'est pas encore associé à l'etudiant 
+				//alors on va l'ajouter avec le service EtudiantCours
+				if (etudiant.getListeEtudiantCours().isEmpty()) {
+					for (Cours cours : listeCours) {
+						etudiantCoursService.ajouter(new EtudiantCours(etudiant, cours, null, ""));
+					}//end foreach Cours
+				}//end if
+				
+				for (Cours cours : listeCours) {
+				
+					int verifPresence=0;
+					
+					for (EtudiantCours ec : etudiant.getListeEtudiantCours()) {
+
+						if (ec.getCoursEC().getIdCours()!=cours.getIdCours()) {
+						verifPresence++;
+						}
+						//Tous les ID Cours de la liste sont differents du cours à ajouter : -> on ajoute
+						if (verifPresence == etudiant.getListeEtudiantCours().size()) {
+							etudiantCoursService.ajouter(new EtudiantCours(etudiant, cours, null, ""));
+						}
+					}//end foreach EtudiantCours 
+				}
+			}
 
 			return "redirect:/promotion/liste";
 		}// end BindCoursToPromotion()
