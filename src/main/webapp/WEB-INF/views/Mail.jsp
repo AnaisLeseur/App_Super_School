@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,6 +14,18 @@
 
 </head>
 <body>
+
+<c:choose>
+<c:when test="${param.lang == 'fr'}">
+	<fmt:setBundle basename="messages_fr"/>
+</c:when>
+<c:when test="${param.lang == 'en'}">
+	<fmt:setBundle basename="messages_en"/>
+</c:when>
+<c:otherwise>
+	<fmt:setBundle basename="messages"/>
+</c:otherwise>
+</c:choose>
 	
 	
 	<form:form modelAttribute="mailToSend" method="POST" action="${pageContext.request.contextPath}/mail/send">

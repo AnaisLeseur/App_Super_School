@@ -37,12 +37,8 @@
 
 	<!-- Header  -->
 	<jsp:include page="/Fragments/Header.jsp" />
-	<div id="TitreForm">
-		<h1><fmt:message key="formmodifcours"/></h1>
-	</div>
-
 	
-	<h1 id="TitreForm">Formulaire pour la modification du cours N° ${coursModifCommand.idCours } </h1>
+	<h1 id="TitreForm"> <fmt:message key="formmodifcours"/> ${coursModifCommand.idCours } </h1>
 
 	<br/>
 

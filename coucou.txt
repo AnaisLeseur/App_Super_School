@@ -1,3 +1,22 @@
+A faire (visualisation Samedi 15/08):
+=====================================
+-> Index : Bouton 'se connecter'
+-> seePromotion : afficher les cours liés à cette promo (table récapitulatif des cours )
+-> transférer l'argument lang
+-> voirPromotion : si liste vide, pas de tableau, mais un message
+-> connection : revenir sur index
+-> si connecter : modifier le bouton en 'se deconnecter'
+-> security
+
+
+
+
+
+
+
+
+
+
 
 Reste à faire :
 ==============
