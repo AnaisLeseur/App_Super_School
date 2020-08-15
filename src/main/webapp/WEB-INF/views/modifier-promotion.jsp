@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-        <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
     
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>

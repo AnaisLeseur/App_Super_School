@@ -28,13 +28,11 @@
  <a style="margin-left: 5rem;" href="${pageContext.request.contextPath}/enseigneJointure/liste/${promotionSeeCommand.idPromotion}/P">Gérer les associations Matière/Enseignant</a>
 
 <div class="col-md-11" style="margin: auto;padding-top: 2rem;">
-
-
-        <div class="col-md-5" style="float: left;">
-
            
-
-<c:if  test="${ empty promotionSeeCommand.listeEtudiants}">
+	<div style="margin: auto;display: inline-flex;width: 100%;">
+	
+	
+	<c:if  test="${ empty promotionSeeCommand.listeEtudiants}">
 		<a class="LinkRougeNull" href="${pageContext.request.contextPath}/promotion/linkEtudiant/${promotionSeeCommand.idPromotion}">Aucun étudiant associé</a>
 	</c:if>
 	
@@ -80,56 +78,47 @@
 	
 	</c:if>
 	
+	<c:if test="${not empty promotionSeeCommand.listeCours}">
+	
+	<table class="table table-striped table-bordered table-hover">
+
+		<thead class="thead-blue">
+			<tr>
+				<th scope="col">Id Cours</th>
+				<th scope="col">Libelle</th>
+				<th scope="col">Description</th>
+				<th scope="col">Duree</th>
+				<th scope="col">Date</th>
+			</tr>
+
+		</thead>
+
+		<tbody>
+
+
+			<c:forEach items="${promotionSeeCommand.listeCours}" var="cours">
+				<tr>
+					<td>${cours.idCours}</td>
+					<td>${cours.libelle}</td>
+					<td>${cours.description}</td>
+					<td>${cours.duree}</td>
+					<td>${cours.date}</td>
+					
+				</tr>
+
+			</c:forEach>
+			
+		</tbody>
+
+	</table>
+	
+	</c:if>
+	
 	</div>
 	
+
 	
-	
-	<%-- 
-	
-	
-	
-	<div class="col-md-5" style="float: right;">
-
-            <h1>Cours :</h1>
-
-		<a class="LinkRougeNull" href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Aucun cours associé</a>
-
-
-
-            <table class="table table-striped table-bordered table-hover">
-
-                <thead class="thead-blue">
-
-                    <tr>
-                        <th scope="col">Id Promotion</th>
-                        <th scope="col">Libelle</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <c:forEach items="${etudiantSeeCommand.listePromotions}" var="pro">
-                        <tr>
-                            <td>${pro.idPromotion}</td>
-                            <td>${pro.libelle}</td>
-                        </tr>
-
-                    </c:forEach>
-                </tbody>
-
-            </table>
-
-
-        </div>
-        --%>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-    </div>
+	</div>
     
     <br/>
     
