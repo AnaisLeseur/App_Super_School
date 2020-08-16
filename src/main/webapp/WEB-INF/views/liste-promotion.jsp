@@ -80,9 +80,11 @@
 
 
 				<th scope="col"><fmt:message key="con"/></th>
-				<th scope="col"><fmt:message key="modif"/></th>
 				<th scope="col"><fmt:message key="liercours"/></th>
+			<sec:authorize access="hasRole('ROLE_Admin')">	
+				<th scope="col"><fmt:message key="modif"/></th>
 				<th scope="col"><fmt:message key="supp"/></th>
+			</sec:authorize>	
 			</tr>
                   </thead>
 
@@ -100,20 +102,21 @@
 							<img src="${pageContext.request.contextPath}/assets/images/search.svg">
 						</a>
 					</td>
-
-					<!-- lien pour modifier la promo -->
-					<td>
-						<a href="${pageContext.request.contextPath}/promotion/update-promotion-form?idpromotion=${pro.idPromotion}">
-							<img
-							src="${pageContext.request.contextPath}/assets/images/pencil.svg">
-						</a>
-					</td>
 					
 					<!-- Lien pour lier la promo à un/des cours -->
 					<td>
 						<!-- au click sur le lien : envoie d'une requete http get vers la méthode  -->
 						<a href="${pageContext.request.contextPath}/promotion/linkCours/${pro.idPromotion}">
 							<img src="${pageContext.request.contextPath}/assets/images/info-circle.svg">
+						</a>
+					</td>
+					
+					<sec:authorize access="hasRole('ROLE_Admin')">
+					<!-- lien pour modifier la promo -->
+					<td>
+						<a href="${pageContext.request.contextPath}/promotion/update-promotion-form?idpromotion=${pro.idPromotion}">
+							<img
+							src="${pageContext.request.contextPath}/assets/images/pencil.svg">
 						</a>
 					</td>
 	
@@ -126,6 +129,8 @@
 							src="${pageContext.request.contextPath}/assets/images/trash.svg">
 						</a>
 					</td>
+					</sec:authorize>
+					
 				</tr>
 
 			</c:forEach>

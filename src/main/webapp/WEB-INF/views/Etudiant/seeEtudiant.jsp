@@ -76,13 +76,13 @@
 					Aucune adresse liée, veuillez ajouter une adresse </a>
 			</c:if>
 		</sec:authorize>
-		
+		<sec:authorize access="hasAnyRole('ROLE_Enseignant', 'ROLE_Etudiant')">
 			<c:if
 				test="${empty etudiantSeeCommand.adresse.rue and empty etudiantSeeCommand.adresse.ville and empty etudiantSeeCommand.adresse.codePostal }">
 				<p class="LinkRougeNull">
 					Aucune adresse liée, veuillez contacter l'adminstrateur pour completer les informations </p>
 			</c:if>
-	
+		</sec:authorize>	
 
 			<c:if test="${not empty etudiantSeeCommand.adresse }">
 				<p style="margin-bottom: 0px;">${etudiantSeeCommand.adresse.rue}</p>

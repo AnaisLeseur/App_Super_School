@@ -4,6 +4,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +52,9 @@
 			<tr>
 				<th scope="col">Id Etudiant</th>
 				<th scope="col">Nom</th>
+				<sec:authorize access="hasRole('ROLE_Admin')">
 				<th scope="col">Retirer</th>
+				</sec:authorize>
 			</tr>
 
 		</thead>
@@ -60,21 +65,24 @@
 				<tr>
 					<td>${etudiant.identifiant}</td>
 					<td>${etudiant.nom} ${etudiant.prenom}</td>
-					
+					<sec:authorize access="hasRole('ROLE_Admin')">
 					<td>
 						<a href="${pageContext.request.contextPath}/promotions/deleteEtudiant?idPromo=${promotionSeeCommand.idPromotion}&idEtudiant=${etudiant.identifiant}">
 							<img src="${pageContext.request.contextPath}/assets/images/x.svg">
 						</a> 
 					</td>
+					</sec:authorize>
 				</tr>
 
 			</c:forEach>
 			
+			<sec:authorize access="hasRole('ROLE_Admin')">
 			<tr>
 				<td colspan="3">
 					<a href="${pageContext.request.contextPath}/promotion/linkEtudiant/${promotionSeeCommand.idPromotion}">Ajouter Etudiant</a>
 				</td>
 			</tr>
+			</sec:authorize>
 			
 		</tbody>
 

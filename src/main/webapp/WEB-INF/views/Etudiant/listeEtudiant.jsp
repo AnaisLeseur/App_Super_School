@@ -83,8 +83,11 @@
 				<th scope="col">Date de Naissance</th>
 
 				<th scope="col">Consulter</th>
+			<sec:authorize access="hasRole('ROLE_Admin')">
 				<th scope="col">Modifier</th>
 				<th scope="col">Supprimer</th>
+			 </sec:authorize> 
+			 
 			</tr>
 		</thead>
 
@@ -100,13 +103,15 @@
 					<td><a
 						href="${pageContext.request.contextPath}/etudiant/see-etudiant/${et.identifiant }"><img
 							src="${pageContext.request.contextPath}/assets/images/search.svg"></a></td>
-					<td><a
-						href="${pageContext.request.contextPath}/etudiants/update-etudiant-form/${et.identifiant }"><img
-							src="${pageContext.request.contextPath}/assets/images/pencil.svg"></a></td>
-					<td><a
-						href="${pageContext.request.contextPath}/etudiants/delete/${et.identifiant }"><img
-							src="${pageContext.request.contextPath}/assets/images/trash.svg"></a></td>
-				</tr>
+					<sec:authorize access="hasRole('ROLE_Admin')">
+						<td><a
+							href="${pageContext.request.contextPath}/etudiants/update-etudiant-form/${et.identifiant }"><img
+								src="${pageContext.request.contextPath}/assets/images/pencil.svg"></a></td>
+						<td><a
+							href="${pageContext.request.contextPath}/etudiants/delete/${et.identifiant }"><img
+								src="${pageContext.request.contextPath}/assets/images/trash.svg"></a></td>
+						</tr>
+				 	</sec:authorize> 
 			</c:forEach>
                   </tbody>
                 </table>

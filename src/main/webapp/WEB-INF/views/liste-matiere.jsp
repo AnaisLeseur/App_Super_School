@@ -88,11 +88,12 @@
                     <tr>
 						<th>Id</th>
 						<th><fmt:message key="11"/></th>
-
-
+						<th><fmt:message key="courslimat"/></th>
+						
+						<sec:authorize access="hasRole('ROLE_Admin')"> 
 						<th><fmt:message key="modif"/></th>
 						<th><fmt:message key="supp"/></th>
-						<th><fmt:message key="courslimat"/></th>
+						</sec:authorize>
 
 				
 					</tr>
@@ -103,7 +104,16 @@
 						<tr>
 							<td>${mat.idMatiere}</td>
 							<td>${mat.libelle}</td>
+							
+							<!-- cours liés à la matière -->
+							<td>
+								<!-- au click sur le lien : envoie d'une requete http get vers la méthode MatiereLinkedCours -->
+								<a href="${pageContext.request.contextPath}/matiere/coursLinked/${mat.idMatiere}">
+									<img src="${pageContext.request.contextPath}/assets/images/info-circle.svg">
+								</a>
+							</td>
 
+							<sec:authorize access="hasRole('ROLE_Admin')"> 
 							<!-- au click sur le lien : envoie d'ue requete HTTP en Get vers la méthode "afficherFormulaireModification()" 
 								passage d'un param de requete nommé idmatière ayant la valeur de l'id de la matière à modifier
 		 					-->
@@ -120,14 +130,8 @@
 									<img src="${pageContext.request.contextPath}/assets/images/trash.svg">
 								</a>
 							</td>
+ 							</sec:authorize>
 
-							<!-- cours liés à la matière -->
-							<td>
-								<!-- au click sur le lien : envoie d'une requete http get vers la méthode MatiereLinkedCours -->
-								<a href="${pageContext.request.contextPath}/matiere/coursLinked/${mat.idMatiere}">
-									<img src="${pageContext.request.contextPath}/assets/images/info-circle.svg">
-								</a>
-							</td>
 						</tr>
 
 					</c:forEach>

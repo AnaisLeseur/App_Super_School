@@ -16,13 +16,4 @@ MODIF A FAIRE
 > mettre des if vide sur les listes déroulantes dans cours
 
 
-Exercice associés aux cours :
-------------------------------
-	> ? 
-
-
-
-
-
-
 
