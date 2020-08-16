@@ -5,6 +5,9 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,13 +29,14 @@
 
 
 	<h1 id="TitreIdCours">Cours N°${coursSeeCommand.idCours }</h1>
-
+	<sec:authorize access="hasAnyRole('ROLE_Admin', 'ROLE_Enseignant')">
 		<div id="ModifierCours">
 			<a href="${pageContext.request.contextPath}/cours/update-cours-form?idcours=${coursSeeCommand.idCours }">
 				Modifier 
 				<img src="${pageContext.request.contextPath}/assets/images/arrow-counterclockwise.svg">
 			</a>
 		</div>
+	</sec:authorize>
 	
 		<div id="DivInfosCours">
 
@@ -63,29 +67,32 @@
         <div class="infosCours" >
 			<h2>Matière :</h2>
                 <p>${coursSeeCommand.matiere.libelle}</p>
-                
+                <sec:authorize access="hasAnyRole('ROLE_Admin', 'ROLE_Enseignant')">
                 <c:if test="${empty coursSeeCommand.matiere }">
 					<a class="LinkRougeNull"
 						href="${pageContext.request.contextPath}/cours/liste">
 						Aucune matière liée, veuillez ajouter une matière </a>
 				</c:if>
+				</sec:authorize>
 		</div>
 			
 		<div class="infosCours">
 			<h2>Promotion :</h2>
                 <p>${coursSeeCommand.promotion.libelle}</p>
-                
+                <sec:authorize access="hasAnyRole('ROLE_Admin', 'ROLE_Enseignant')">
                 <c:if test="${empty coursSeeCommand.promotion }">
 					<a class="LinkRougeNull"
 						href="${pageContext.request.contextPath}/cours/liste">
 						Aucune promotion liée, veuillez ajouter une promotion </a>
 				</c:if>
+				</sec:authorize>
 		</div>
 
 	</div>
 
 	<br />
 
+	<sec:authorize access="hasAnyRole('ROLE_Admin', 'ROLE_Enseignant')">
 	<div class="col-md-11" style="margin: auto;height:auto;display:block">
 
 		<h1>Etudiant(s) inscrits:</h1>
@@ -159,6 +166,8 @@
 			</c:if>
 
 	</div>
+	
+	</sec:authorize>
 	
 	<!--  FOOTER -->
 	<jsp:include page="/Fragments/footer.jsp" />
