@@ -64,11 +64,9 @@ public class CoursController {
 
 	@Autowired
 	private IPromotionService promotionService;
-	
+
 	@Autowired
 	private ServletContext context;
-	
-	
 
 	public void setMatiereService(IMatiereService matiereService) {
 		this.matiereService = matiereService;
@@ -119,29 +117,29 @@ public class CoursController {
 
 	@RequestMapping(value = "/cours/see-cours/{coursID}", method = RequestMethod.GET)
 	public String ConsulterCours(@PathVariable("coursID") int pId, ModelMap model) {
-		//ICI
+		// ICI
 		Cours cours = coursService.findByIdCours(pId);
-		
+
 		List<String> listePdf = new ArrayList<>();
 		if (!cours.getExercice().isEmpty()) {
-			
+
 			for (String pdf : cours.getExercice().split("-")) {
 				listePdf.add(pdf);
 			}
-			model.addAttribute("ListeExoPdf",listePdf);
+			model.addAttribute("ListeExoPdf", listePdf);
 		}
 		for (String string : listePdf) {
 			System.out.println(string);
 		}
-		
-		model.addAttribute("coursSeeCommand",cours);
+
+		model.addAttribute("coursSeeCommand", cours);
 
 		// Return new ModelAndView(viewName, modelName, modelObject)
 		return "seeCours";
 	}
 
 	@RequestMapping(value = "/cours/liste", method = RequestMethod.GET)
-	public String recupererListeMatiereBDD(ModelMap model) {
+	public String recupererListeCoursBDD(ModelMap model) {
 
 		// 1. recup de la liste des employés dans la bdd via le service
 		List<Cours> listeCoursBdd = coursService.findAllCours();
@@ -182,7 +180,7 @@ public class CoursController {
 	 * @return accolade dans value si on eut definir pmlsieur url
 	 */
 	@RequestMapping(value = { "/cours/delete/{cours-id}", "/cours/remove/{cours-id}" }, method = RequestMethod.GET)
-	public String supprimerMatiere(@PathVariable("cours-id") int pIdCours, ModelMap model) {
+	public String supprimerCours(@PathVariable("cours-id") int pIdCours, ModelMap model) {
 
 		// 1 . suppresion de matiere dans la bdd via le service
 
@@ -265,15 +263,16 @@ public class CoursController {
 
 			String exercice = "";
 			for (MultipartFile file : pCours.getListeUploadedExercice()) {
-			
-				exercice = exercice+file.getOriginalFilename()+"-";
-				
+
+				exercice = exercice + file.getOriginalFilename() + "-";
+
 				if (!file.isEmpty()) {
 					try {
 						byte[] bytes = file.getBytes();
 
 						// Création du fichier dans /assets/exercices/
-						File serverFile = new File(context.getRealPath("/assets/exercices/")+ file.getOriginalFilename());
+						File serverFile = new File(
+								context.getRealPath("/assets/exercices/") + file.getOriginalFilename());
 
 						BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 
@@ -286,7 +285,7 @@ public class CoursController {
 					}
 				}
 			}
-			//ICI
+			// ICI
 
 			pCours.setExercice(exercice);
 			// 1 ajout de l'employé à la bdd via le service via la couche service
@@ -333,17 +332,17 @@ public class CoursController {
 	 */
 	@RequestMapping(value = "/cours/update", method = RequestMethod.POST)
 	public String ModifierCoursBDD(@ModelAttribute("coursModifCommand") Cours pModifcours, ModelMap model) {
-		
+
 		String exercice = pModifcours.getExercice();
 		for (MultipartFile file : pModifcours.getListeUploadedExercice()) {
-		
+
 			if (!file.isEmpty()) {
-				exercice = exercice+file.getOriginalFilename()+"-";
+				exercice = exercice + file.getOriginalFilename() + "-";
 				try {
 					byte[] bytes = file.getBytes();
 
 					// Création du fichier dans /assets/exercices/
-					File serverFile = new File(context.getRealPath("/assets/exercices/")+ file.getOriginalFilename());
+					File serverFile = new File(context.getRealPath("/assets/exercices/") + file.getOriginalFilename());
 
 					BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 
@@ -381,8 +380,6 @@ public class CoursController {
 		return "LinkPromotionToCours";
 	}// end toLinkPromotion
 
-
-	
 	/**
 	 * Lie le cours à la promo choisie dans la liste déroulante
 	 * 
@@ -395,40 +392,46 @@ public class CoursController {
 		// récup de la promo choisie
 		int idPromotion = pCours.getPromotion().getIdPromotion();
 
-		Promotion promo = promotionService.findById(idPromotion);
-		Cours coursPromo = coursService.findByIdCours(pCours.getIdCours());
-		//
-		coursPromo.setPromotion(promo);
+		if (idPromotion != 0) {
 
-		// modification du cours dans la bdd
-		coursService.modfierCours(coursPromo);
-		
-		List<Cours> ListeCoursDansPromo = promo.getListeCours();
-		ListeCoursDansPromo.add(coursPromo);
-		promo.setListeCours(ListeCoursDansPromo);
-		
-		promotionService.modifier(promo);
-		
-		//Test association des Cours d'une Promotion aux Etudiants de la promotion
-		
-		for (Etudiant etudiant : promo.getListeEtudiants()) {
+			Promotion promo = promotionService.findById(idPromotion);
+			Cours coursPromo = coursService.findByIdCours(pCours.getIdCours());
+			//
+			coursPromo.setPromotion(promo);
 
-			//Dans la liste des étudiants de la Promotion, si le cours n'est pas encore associé à l'etudiant 
-			//alors on va l'ajouter avec le service EtudiantCours
-			if (etudiant.getListeEtudiantCours().isEmpty()) etudiantCoursService.ajouter(new EtudiantCours(etudiant, coursPromo, null, ""));
-			int verifPresence=0;
-			for (EtudiantCours ec : etudiant.getListeEtudiantCours()) {
+			// modification du cours dans la bdd
+			coursService.modfierCours(coursPromo);
 
-				if (ec.getCoursEC().getIdCours()!=pCours.getIdCours()) {
-					verifPresence++;
-				}
-				//Tous les ID Cours de la liste sont differents du cours à ajouter : -> on ajoute
-				if (verifPresence == etudiant.getListeEtudiantCours().size()) {
+			List<Cours> ListeCoursDansPromo = promo.getListeCours();
+			ListeCoursDansPromo.add(coursPromo);
+			promo.setListeCours(ListeCoursDansPromo);
+
+			promotionService.modifier(promo);
+
+			// Test association des Cours d'une Promotion aux Etudiants de la promotion
+
+			for (Etudiant etudiant : promo.getListeEtudiants()) {
+
+				// Dans la liste des étudiants de la Promotion, si le cours n'est pas encore
+				// associé à l'etudiant
+				// alors on va l'ajouter avec le service EtudiantCours
+				if (etudiant.getListeEtudiantCours().isEmpty())
 					etudiantCoursService.ajouter(new EtudiantCours(etudiant, coursPromo, null, ""));
+				int verifPresence = 0;
+				for (EtudiantCours ec : etudiant.getListeEtudiantCours()) {
+
+					if (ec.getCoursEC().getIdCours() != pCours.getIdCours()) {
+						verifPresence++;
+					}
+					// Tous les ID Cours de la liste sont differents du cours à ajouter : -> on
+					// ajoute
+					if (verifPresence == etudiant.getListeEtudiantCours().size()) {
+						etudiantCoursService.ajouter(new EtudiantCours(etudiant, coursPromo, null, ""));
+					}
 				}
 			}
 		}
-		
+
 		return "redirect:/cours/liste";
 	}// end BindPromotionToCours()
 
@@ -498,9 +501,7 @@ public class CoursController {
 	 */
 	@InitBinder({ "coursBindEtudiantCours" })
 	public void bindingPreparationEtudiantCours(WebDataBinder binder) {
-		System.out.println("---------------------------------------------------");
-		System.out.println("dans le binder Cours attribution etudiant");
-		System.out.println("---------------------------------------------------");
+
 		binder.registerCustomEditor(List.class, "listeEtudiantsCours", new CustomCollectionEditor(List.class) {
 
 			protected Object convertElement(Object element) {
@@ -580,22 +581,21 @@ public class CoursController {
 		int index = 0;
 		for (EtudiantCours ec : cours.getListeEtudiantsCours()) {
 
-			if (listeMotif.length == 0 ) {
+			if (listeMotif.length == 0) {
 				System.out.println("if (listeMotif.length == 0 ) ");
-				
+
 				ec.setMotif(" ");
-				
-			}else {
+
+			} else {
 				ec.setMotif(listeMotif[index]);
 			}
-			
+
 			ec.setAbsence(listeAbsence[index].equals("1") ? true : false);
 
 			etudiantCoursService.modifier(ec);
-			
-			
+
 			index++;
-			
+
 		}
 
 		return "redirect:/cours/liste";
@@ -603,7 +603,7 @@ public class CoursController {
 
 	@RequestMapping(value = "/cours/deleteEtudiantCours", method = RequestMethod.GET)
 	public ModelAndView DeleteEtudiantFromCours(@RequestParam("idEtudiantCours") int idEtudiantCours,
-				@RequestParam("idCours") int idCours) {
+			@RequestParam("idCours") int idCours) {
 
 		etudiantCoursService.supprimer(idEtudiantCours);
 
@@ -623,25 +623,28 @@ public class CoursController {
 		// récup de la metière choisie
 		int idMatiere = pCours.getMatiere().getIdMatiere();
 
-		Matiere matiere = matiereService.findByIdMatiere(idMatiere);
-		Cours coursMatiere = coursService.findByIdCours(pCours.getIdCours());
-		//
-		coursMatiere.setMatiere(matiere);
+		if (idMatiere != 0) {
 
-		// modification du cours dans la bdd
-		coursService.modfierCours(coursMatiere);
+			Matiere matiere = matiereService.findByIdMatiere(idMatiere);
+			Cours coursMatiere = coursService.findByIdCours(pCours.getIdCours());
+			//
+			coursMatiere.setMatiere(matiere);
+
+			// modification du cours dans la bdd
+			coursService.modfierCours(coursMatiere);
+		}
 
 		return "redirect:/cours/liste";
-	}// end BindPromotionToEtudiant()         
-	
+	}// end BindPromotionToEtudiant()
+
 	@RequestMapping(value = "/exercices/delete/{exo}/{idCours}", method = RequestMethod.GET)
-	public String DeleteExercice(@PathVariable("exo")String exoToDelete,@PathVariable("idCours")int idCours) {
-		
+	public String DeleteExercice(@PathVariable("exo") String exoToDelete, @PathVariable("idCours") int idCours) {
+
 		Cours cours = coursService.findByIdCours(idCours);
-		
+
 		String exercice = cours.getExercice();
 		String exerciceUpdate = "";
-		
+
 		for (String ex : exercice.split("-")) {
 			if (!ex.equals(exoToDelete)) {
 				exerciceUpdate = exerciceUpdate + ex + "-";
@@ -650,7 +653,7 @@ public class CoursController {
 		cours.setExercice(exerciceUpdate);
 		coursService.modfierCours(cours);
 
-		return "redirect:/cours/see-cours/"+idCours;
+		return "redirect:/cours/see-cours/" + idCours;
 	}// end BindPromotionToEtudiant()
 
 }// end controller
