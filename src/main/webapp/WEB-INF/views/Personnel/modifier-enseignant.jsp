@@ -101,7 +101,7 @@
                
             </div>
 
-            <button id="inputSubmit" class="btn btn-primary" type="submit">Modifier l'Enseignant</button>
+            <button id="inputSubmit" class="btn btn-primary" type="submit" style="width: auto;">Modifier l'Enseignant</button>
         </div>
     </form:form>
 	

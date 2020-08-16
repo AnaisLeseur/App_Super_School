@@ -98,7 +98,7 @@
                
             </div>
 
-            <button id="inputSubmit" class="btn btn-primary" type="submit">Ajouter l'Enseignant</button>
+            <button id="inputSubmit" class="btn btn-primary" type="submit" style="width: auto;">Ajouter l'Enseignant</button>
         </div>
     </form:form>
 	

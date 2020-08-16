@@ -103,7 +103,7 @@
                
             </div>
 
-            <button id="inputSubmit" class="btn btn-primary" type="submit">Modifier l'administrateur</button>
+            <button id="inputSubmit" class="btn btn-primary" type="submit" style="width: auto;">Modifier l'administrateur</button>
         </div>
     </form:form>
 	

@@ -97,7 +97,7 @@
                
             </div>
 
-            <button id="inputSubmit" class="btn btn-primary" type="submit">Ajouter l'Administrateur</button>
+            <button id="inputSubmit" class="btn btn-primary" type="submit" style="width: auto;">Ajouter l'Administrateur</button>
         </div>
     </form:form>
 	

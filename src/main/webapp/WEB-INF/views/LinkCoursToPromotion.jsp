@@ -85,7 +85,7 @@
 		<form:hidden path="idPromotion" />
 		<form:hidden path="libelle" />
 		
-		<button id="inputSubmitBtn" class="btn btn-primary" type="submit">Attribuer Cours</button>
+		<button id="inputSubmitBtn" class="btn btn-primary" type="submit" style="width: auto;">Attribuer Cours</button>
 
 	</form:form>
 	

@@ -27,7 +27,12 @@
 </c:otherwise>
 </c:choose>
 	
+	<!--  header -->
+	<jsp:include page="/Fragments/Header.jsp"/>
 	
+	<br/> 
+	<br/>
+	 
 	<form:form modelAttribute="mailToSend" method="POST" action="${pageContext.request.contextPath}/mail/send">
 
         <div style="width: 80%;margin: auto;">
@@ -60,9 +65,13 @@
                 </div>
             </div>
 
-            <input id="inputSubmit" type="submit" class="btn btn-primary" value="Envoyer email"/>
+            <input id="inputSubmit" type="submit" class="btn btn-primary" value="Envoyer email" style="width: auto;"/>
         </div>
     </form:form>
+    
+    
+    <!-- footer -->
+	<jsp:include page="/Fragments/footer.jsp"></jsp:include>
 
 </body>
 </html>
