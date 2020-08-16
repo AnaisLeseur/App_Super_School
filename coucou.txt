@@ -2,12 +2,6 @@ A faire (visualisation Samedi 15/08):
 =====================================
 
 -> transférer l'argument lang
--> voirPromotion : si liste vide, pas de tableau, mais un message
--> security
-
-
-Reste à faire :
-==============
 
 
 
@@ -15,55 +9,16 @@ MODIF A FAIRE
 ============
 
 
-> l'enseignant doit afficher: 	=> les cours par promotion, 
-				=> les cours par matière
-				=> les cours par date.
-
 
 > dans aide : header (navbar non correcte) => pas solution après suppression style 1par1 ! 
 
 
-> dans les formulaires de modif faire des bouton annuler la modif (= retour à la liste correspondante) 
-
-
-> si un étudiant est dans une promo alors il récupère (automatiquement) tous les cours associés à cette promo ? Thomas
-
-
-> faire des if "liste_a_afficher" est vide => ne pas afficher la ligne header de la table et de bouton "valider" (=> si on click sur valider => null pointer exception) et afficher "Tous les étudiants suivent déjà ce cours " 
-
-
-> étudiant => aide => puis retour sur see-etudiant(id) (et pas liste-etudiants) Thomas
-
-
-> navbar : ajout "admin" 
-
-
-
-
-Index.jsp: 
------------ 
-	> "journal des news de l'école" genre 3 articles bidons (les inscriptions pour l'an prochain / options disponibles / ...
-	> if non connecté affiche => Se connecter ; sinon Se déconnecter
-
-
-Header :
----------
-	> nom pour la connexion : if connecté : "Bonjour XX", sinon "Bienvenue,"
-
-
-
-Security :
-----------
-	> vérifier les pages accessibles ou non selon l'authentification ! 
+> mettre des if vide sur les listes déroulantes dans cours
 
 
 Exercice associés aux cours :
 ------------------------------
 	> ? 
-
-gérer des services d’envoi par e-mail ou services Web :
--------------------------------------------------------
-	> onglet ? Ou juste footer ? 
 
 
 
