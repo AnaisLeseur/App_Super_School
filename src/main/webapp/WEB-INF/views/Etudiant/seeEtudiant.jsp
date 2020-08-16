@@ -31,7 +31,7 @@
 
 	<h1 id="TitreIdEtudiant">Etudiant
 		N°${etudiantSeeCommand.identifiant }</h1>
-
+<sec:authorize access="hasRole('ROLE_Admin')">	
 	<div id="ModifierEtudiant">
 		<a
 			href="${pageContext.request.contextPath}/etudiants/update-etudiant-form/${etudiantSeeCommand.identifiant }">
@@ -39,6 +39,7 @@
 			src="${pageContext.request.contextPath}/assets/images/arrow-counterclockwise.svg">
 		</a>
 	</div>
+</sec:authorize>
 
 	<div id="DivInfosEtudiant">
 
@@ -67,12 +68,21 @@
 			<div class="infosEtudiant">
 
 			<h2>Adresse :</h2>
+		<sec:authorize access="hasRole('ROLE_Admin')">		
 			<c:if
 				test="${empty etudiantSeeCommand.adresse.rue and empty etudiantSeeCommand.adresse.ville and empty etudiantSeeCommand.adresse.codePostal }">
 				<a class="LinkRougeNull"
 					href="${pageContext.request.contextPath}/etudiants/update-etudiant-form/${etudiantSeeCommand.identifiant}">
 					Aucune adresse liée, veuillez ajouter une adresse </a>
 			</c:if>
+		</sec:authorize>
+		
+			<c:if
+				test="${empty etudiantSeeCommand.adresse.rue and empty etudiantSeeCommand.adresse.ville and empty etudiantSeeCommand.adresse.codePostal }">
+				<p class="LinkRougeNull">
+					Aucune adresse liée, veuillez contacter l'adminstrateur pour completer les informations </p>
+			</c:if>
+	
 
 			<c:if test="${not empty etudiantSeeCommand.adresse }">
 				<p style="margin-bottom: 0px;">${etudiantSeeCommand.adresse.rue}</p>
@@ -110,7 +120,9 @@
 						<tr>
 							<th scope="col">Id Promotion</th>
 							<th scope="col">Libelle</th>
-							<th scope="col">Retirer</th>
+							<sec:authorize access="hasRole('ROLE_Admin')">
+								<th scope="col">Retirer</th>
+							</sec:authorize>
 						</tr>
 
 					</thead>
@@ -122,11 +134,14 @@
 								<td>${pro.idPromotion}</td>
 								<td>${pro.libelle}</td>
 
+								<sec:authorize access="hasRole('ROLE_Admin')">
 								<td><a
 									href="${pageContext.request.contextPath}/etudiants/deletePromotion?idPromo=${pro.idPromotion}&idEtudiant=${etudiantSeeCommand.identifiant}">
 										<img
 										src="${pageContext.request.contextPath}/assets/images/x.svg">
-								</a></td>
+									</a>
+								</td>
+								</sec:authorize>
 							</tr>
 
 						</c:forEach>
@@ -165,11 +180,17 @@
 						<tr>
 							<th scope="col">Id Cours</th>
 							<th scope="col">Libelle</th>
-
 							<th scope="col">Appel</th>
 							
+							
+						<sec:authorize access="hasRole('ROLE_Etudiant')">	
+							<th scope="col">Voir les informations du cours</th>
+						</sec:authorize>
+						
+  						<sec:authorize access="hasAnyRole('ROLE_Admin', 'ROLE_Enseignant')">
 							<th scope="col">Editer Appel</th>
 							<th scope="col">Supprimer</th>
+						</sec:authorize>
 
 						</tr>
 
@@ -183,6 +204,7 @@
 								<td>${etudiantCours.coursEC.idCours}</td>
 								<td>${etudiantCours.coursEC.libelle}</td>
 
+	
 								<td>
 									<c:choose>
 										<c:when test="${etudiantCours.absence}">Présent</c:when>
@@ -192,18 +214,29 @@
 								</td>
 								
 								
+								<sec:authorize access="hasRole('ROLE_Etudiant')">	
+									<td>
+										<a href="${pageContext.request.contextPath}/cours/see-cours/${etudiantCours.coursEC.idCours}"><img
+											src="${pageContext.request.contextPath}/assets/images/search.svg">
+										</a>
+									</td>
+								</sec:authorize>
+								
+								
+								<sec:authorize access="hasAnyRole('ROLE_Admin', 'ROLE_Enseignant')">
 								<td><a
 									href="${pageContext.request.contextPath}/etudiants/edit-form-EtudiantCours/${etudiantCours.idEtudiantCours}">
 										<img
 										src="${pageContext.request.contextPath}/assets/images/pencil.svg">
 								</a></td>
 								
+								
 								<td><a
 									href="${pageContext.request.contextPath}/etudiants/deleteEtudiantCours?idEtudiantCours=${etudiantCours.idEtudiantCours}&idEtudiant=${etudiantSeeCommand.identifiant}">
 										<img
 										src="${pageContext.request.contextPath}/assets/images/x.svg">
 								</a></td>
-								
+								</sec:authorize>
 							</tr>
 							
 						</c:forEach>
