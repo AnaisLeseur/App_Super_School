@@ -42,22 +42,6 @@
 
 	<h1 id="TitreListe">Liste des étudiants</h1>
 
-	<%-- Affichage de l'identifiant et des roles des users --%>
-	<div style="width: 300px">
-	
-		<%-- affichage de l'identifiant de l'utilisateur --%>
-		<h3>
-			<fmt:message key="accueil"/> <sec:authentication property="name"/>
-		</h3>
-		<br/>
-		<%-- affichage des roles du user --%>
-		<sec:authentication property="authorities" var="authorites"/>
-			<ul>
-				<c:forEach items="${authorites}" var="auth">
-					<li>${auth.authority}</li>
-				</c:forEach>
-			</ul>
-	</div>
 
 	<%-- 
 	 <c:choose>
@@ -76,12 +60,20 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                   <thead class="thead-blue">
+                  
+                  
+     <sec:authorize access="hasRole('ROLE_Admin')">
+
               <tr>
 				<th id="Ajout" colspan="8"><a
 					href="${pageContext.request.contextPath}/etudiants/add-etudiant-form"><img
 						id="LogoAjout"  src="${pageContext.request.contextPath}/assets/images/person-plus.svg"><span>Ajouter
-							Etudiant</span></a></th>
+							Etudiant</span></a>
+				</th>
 			</tr>
+			
+	   </sec:authorize>         
+                  
 
 			<tr>
 				<th scope="col">ID</th>

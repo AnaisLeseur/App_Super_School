@@ -4,6 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	
+	
+
 <!DOCTYPE html>
 <html>
 
@@ -65,6 +70,8 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                   <thead class="thead-blue">
+                  
+                 <sec:authorize access="hasRole('ROLE_Admin')">  
                   	<tr>
 						<th id="Ajout" colspan="8">
 							<a href="${pageContext.request.contextPath}/matiere/add-matiere-form">
@@ -75,6 +82,9 @@
 							</a>
 						</th>
 					</tr>
+					
+				 </sec:authorize>
+				 
                     <tr>
 						<th>Id</th>
 						<th><fmt:message key="11"/></th>

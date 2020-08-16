@@ -5,6 +5,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
+<!--  ajout de la taglib de spring mvc 'security' -->
+
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,6 +80,8 @@
 		
 		<!-- données de la table -->
 		<tbody>
+		
+		<sec:authorize access="hasRole('ROLE_Admin')">
 		<form:form modelAttribute="enseigneJointureCommand" method="POST" 
 			action="${pageContext.request.contextPath}/enseigneJointure/addEnseigneJointure">
 		<tr>
@@ -100,6 +107,7 @@
 					<td colspan="2"> <input type="submit" value="Lier"><form:errors path="*"/> </td>
 				</tr>
 		</form:form>
+		</sec:authorize>
 		
 		
 			<c:forEach items="${attribut_listeEnseigneJointures}" var="ej">

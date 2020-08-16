@@ -5,6 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
 
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,13 +62,16 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                   <thead class="thead-blue">
-                <tr>
+                  
+     <sec:authorize access="hasRole('ROLE_Admin')">       
+           <tr>
 				<th id="Ajout" colspan="8"><a
 					href="${pageContext.request.contextPath}/promotion/add-promotion-form"><img
 						id="LogoAjout"
 						src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png"><span>Ajouter
 							Promotion</span></a></th>
 			</tr>
+	</sec:authorize>
 
 
 			<tr>

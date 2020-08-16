@@ -4,6 +4,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,12 +32,14 @@
 
 		<thead class="thead-blue">
 
+<sec:authorize access="hasRole('ROLE_Admin')">
 			<tr>
 				<th id="Ajout" colspan="6"><a
 					href="${pageContext.request.contextPath}/aide/add-aide-form"><img
 						id="LogoAjout"  src="${pageContext.request.contextPath}/assets/images/AjoutFichier.png"><span>Ajouter
 							Aide</span></a></th>
 			</tr>
+</sec:authorize>
 
 			<tr>
 				<th scope="col">ID</th>

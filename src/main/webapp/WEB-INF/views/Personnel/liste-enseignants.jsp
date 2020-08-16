@@ -55,6 +55,8 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                   <thead class="thead-blue">
+                  
+        <sec:authorize access="hasRole('ROLE_Admin')">
                <tr>
 				<th id="Ajout" colspan="8">
 					<a href="${pageContext.request.contextPath}/enseignants/add-enseignant-form"><img
@@ -63,6 +65,7 @@
 					</a>
 				</th>
 			</tr>
+		</sec:authorize>
 
 			<tr>
 				<th scope="col">ID</th>
