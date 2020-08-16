@@ -4,6 +4,9 @@
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,12 +130,13 @@
 							</tr>
 
 						</c:forEach>
-
+        <sec:authorize access="hasRole('ROLE_Admin')">
 						<tr>
 							<td colspan="3"><a
 								href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Ajouter
 									Promotion</a></td>
 						</tr>
+		</sec:authorize>
 
 					</tbody>
 
@@ -203,12 +207,13 @@
 							</tr>
 							
 						</c:forEach>
-						
+			<sec:authorize access="hasRole('ROLE_Admin')">		
 						<tr>
 							<td colspan="5"><a
 								href="${pageContext.request.contextPath}/etudiant/linkEtudiantCours/${etudiantSeeCommand.identifiant}">Ajouter
 									Cours</a></td>
 						</tr>
+			</sec:authorize>	
 					</tbody>
 
 				</table>
