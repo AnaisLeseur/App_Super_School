@@ -16,8 +16,16 @@
 
 		<security:intercept-url pattern="/index.jsp*" access="hasAnyRole('ROLE_ANONYMOUS', 'ROLE_Etudiant', 'ROLE_Enseignant', 'ROLE_Admin')"/>
 		<security:intercept-url pattern="/login.jsp*" access="hasAnyRole('ROLE_ANONYMOUS', 'ROLE_Etudiant', 'ROLE_Enseignant', 'ROLE_Admin')"/>
-		<security:intercept-url pattern="/etudiant/*" access="hasAnyAuthority('ROLE_Etudiant', 'ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/aide/liste*" access="hasAnyRole('ROLE_Etudiant', 'ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/connect/getUser*" access="hasAnyRole('ROLE_Etudiant', 'ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/etudiant/*" access="hasAnyAuthority('ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/etudiant/liste*" access="hasAnyAuthority('ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/promotion/*" access="hasAnyAuthority('ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/matiere/*" access="hasAnyAuthority('ROLE_Enseignant', 'ROLE_Admin')"/>
+		<security:intercept-url pattern="/cours/*" access="hasAnyAuthority('ROLE_Enseignant', 'ROLE_Admin')"/>
 		<security:intercept-url pattern="/enseignants/*" access="hasAnyAuthority('ROLE_Enseignant', 'ROLE_Admin')"/>
+		
+		
 		<security:intercept-url pattern="/*" access="hasAuthority('ROLE_Admin')"/>
 		
 		<!--  Formulaire Perso -->

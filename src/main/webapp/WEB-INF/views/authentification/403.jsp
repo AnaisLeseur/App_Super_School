@@ -20,12 +20,16 @@
 	<h1>HTTP Status 403 - Access Denied</h1>
 	
 	
-	<s:authorize access="hasRole('ROLE_USER')">
+	<s:authorize access="hasAnyRole('ROLE_Etudiant', 'ROLE_Enseignant')">
 	
 		<h2>Désolé... Tu ne peux pas voir cette page !!!</h2>
-		<h4> 
+		 
+		
+		<br/>
+		<br/>  
+			<h4>
 			Connexion : 
-				<a href="<c:url value='login.jsp' />">Se connecter</a>
+				<a href="${pageContext.request.contextPath}/login.jsp">Se connecter</a>
 		
 		</h4>
 		
@@ -34,7 +38,7 @@
 		
 		<h4> 
 			Retour à la page d'accueil : 
-				<a href="<c:url value='index.jsp' />">Ici</a>
+				<a href="${pageContext.request.contextPath}/index.jsp">Ici</a>
 		
 		</h4>
 	 </s:authorize>

@@ -54,7 +54,9 @@ public class AuthentificationController {
 		String authorities = userDetails.getAuthorities().toString();
 		
 		Personne personne = adminService.findPersonneById(idConnect);
+
 		HttpSession session = request.getSession(true);
+		
 		session.setAttribute("ConnectUser", personne);
 		
 		switch (authorities) {
