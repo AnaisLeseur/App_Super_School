@@ -48,6 +48,7 @@
 
 		<!-- recup de l'id de l'employe a modifier dans un champs caché-->
 		<form:hidden path="idCours" />
+		<form:hidden path="exercice" />
 
 		<div style="width: 80%; margin: auto;">
 			<div class="form-row">
@@ -94,6 +95,12 @@
 
 				</div>
 			</div>
+			
+			<div class="form-row">
+				<form:label id="inputFile" path="listeUploadedExercice">Exercice(s) : </form:label>
+           		<form:input  type="file" accept=".pdf" path="listeUploadedExercice" multiple="true"/>
+            </div>
+            
 			<br> 
 			<input id="inputSubmit" type="submit"
 				class="btn btn-primary" value="Modifier">

@@ -159,6 +159,18 @@
 			</c:if>
 
 	</div>
+	<h1 style="margin-left:3rem;">Exercices :</h1>
+	<c:if test="${empty ListeExoPdf }" > 
+		<div style="margin-left: 5rem;color:#e8362c;">Aucun exercice</div>
+	</c:if>
+	
+	<c:forEach items="${ListeExoPdf }" var="exo">
+	
+		<a style="margin-left:5rem;" href="${pageContext.request.contextPath}/assets/exercices/${exo}">${exo} </a>
+		<a href="${pageContext.request.contextPath}/exercices/delete/${exo}/${coursSeeCommand.idCours}">&#10060;</a>
+		
+		<br/>
+	</c:forEach>
 	
 	<!--  FOOTER -->
 	<jsp:include page="/Fragments/footer.jsp" />

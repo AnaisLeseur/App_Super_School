@@ -1,12 +1,19 @@
 package com.intiformation.AppSchool.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -21,6 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.modele.Cours;
@@ -56,6 +64,19 @@ public class CoursController {
 
 	@Autowired
 	private IPromotionService promotionService;
+	
+	@Autowired
+	private ServletContext context;
+	
+	
+
+	public void setMatiereService(IMatiereService matiereService) {
+		this.matiereService = matiereService;
+	}
+
+	public void setContext(ServletContext context) {
+		this.context = context;
+	}
 
 	public void setEtudiantService(IEtudiantService etudiantService) {
 		this.etudiantService = etudiantService;
@@ -97,12 +118,26 @@ public class CoursController {
 	// ------------------------------------------------------//
 
 	@RequestMapping(value = "/cours/see-cours/{coursID}", method = RequestMethod.GET)
-	public ModelAndView ConsulterEtudiant(@PathVariable("coursID") int pId) {
-
+	public String ConsulterCours(@PathVariable("coursID") int pId, ModelMap model) {
+		//ICI
 		Cours cours = coursService.findByIdCours(pId);
+		
+		List<String> listePdf = new ArrayList<>();
+		if (!cours.getExercice().isEmpty()) {
+			
+			for (String pdf : cours.getExercice().split("-")) {
+				listePdf.add(pdf);
+			}
+			model.addAttribute("ListeExoPdf",listePdf);
+		}
+		for (String string : listePdf) {
+			System.out.println(string);
+		}
+		
+		model.addAttribute("coursSeeCommand",cours);
 
 		// Return new ModelAndView(viewName, modelName, modelObject)
-		return new ModelAndView("seeCours", "coursSeeCommand", cours);
+		return "seeCours";
 	}
 
 	@RequestMapping(value = "/cours/liste", method = RequestMethod.GET)
@@ -226,9 +261,34 @@ public class CoursController {
 			return "ajouter-cours"; // nom de la view
 
 		} else {
-
 			// la validation n'a pas détécté d'erreur
 
+			String exercice = "";
+			for (MultipartFile file : pCours.getListeUploadedExercice()) {
+			
+				exercice = exercice+file.getOriginalFilename()+"-";
+				
+				if (!file.isEmpty()) {
+					try {
+						byte[] bytes = file.getBytes();
+
+						// Création du fichier dans /assets/exercices/
+						File serverFile = new File(context.getRealPath("/assets/exercices/")+ file.getOriginalFilename());
+
+						BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+
+						stream.write(bytes);
+
+						stream.close();
+
+					} catch (Exception e) {
+						System.out.println("Probleme lors de la sauvegarde du fichier exercices");
+					}
+				}
+			}
+			//ICI
+
+			pCours.setExercice(exercice);
 			// 1 ajout de l'employé à la bdd via le service via la couche service
 			coursService.ajouterCours(pCours);
 
@@ -273,7 +333,31 @@ public class CoursController {
 	 */
 	@RequestMapping(value = "/cours/update", method = RequestMethod.POST)
 	public String ModifierCoursBDD(@ModelAttribute("coursModifCommand") Cours pModifcours, ModelMap model) {
+		
+		String exercice = pModifcours.getExercice();
+		for (MultipartFile file : pModifcours.getListeUploadedExercice()) {
+		
+			if (!file.isEmpty()) {
+				exercice = exercice+file.getOriginalFilename()+"-";
+				try {
+					byte[] bytes = file.getBytes();
 
+					// Création du fichier dans /assets/exercices/
+					File serverFile = new File(context.getRealPath("/assets/exercices/")+ file.getOriginalFilename());
+
+					BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+
+					stream.write(bytes);
+
+					stream.close();
+
+				} catch (Exception e) {
+					System.out.println("Probleme lors de la sauvegarde du fichier exercices");
+				}
+			}
+		}
+
+		pModifcours.setExercice(exercice);
 		// 1. modif dans la bdd via la couche service
 		coursService.modfierCours(pModifcours);
 
@@ -470,9 +554,7 @@ public class CoursController {
 
 	@InitBinder({ "AppelEtudiantCommand" })
 	public void bindingPreparationAppel(WebDataBinder binder) {
-		System.out.println("---------------------------------------------------");
-		System.out.println("dans le binder Cours appel");
-		System.out.println("---------------------------------------------------");
+
 		binder.registerCustomEditor(List.class, "listeEtudiantsCours", new CustomCollectionEditor(List.class) {
 
 			protected Object convertElement(Object element) {
@@ -550,6 +632,25 @@ public class CoursController {
 		coursService.modfierCours(coursMatiere);
 
 		return "redirect:/cours/liste";
+	}// end BindPromotionToEtudiant()         
+	
+	@RequestMapping(value = "/exercices/delete/{exo}/{idCours}", method = RequestMethod.GET)
+	public String DeleteExercice(@PathVariable("exo")String exoToDelete,@PathVariable("idCours")int idCours) {
+		
+		Cours cours = coursService.findByIdCours(idCours);
+		
+		String exercice = cours.getExercice();
+		String exerciceUpdate = "";
+		
+		for (String ex : exercice.split("-")) {
+			if (!ex.equals(exoToDelete)) {
+				exerciceUpdate = exerciceUpdate + ex + "-";
+			}
+		}
+		cours.setExercice(exerciceUpdate);
+		coursService.modfierCours(cours);
+
+		return "redirect:/cours/see-cours/"+idCours;
 	}// end BindPromotionToEtudiant()
 
 }// end controller
