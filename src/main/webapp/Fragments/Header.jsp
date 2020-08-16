@@ -36,12 +36,16 @@
                         d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" />
                 </svg>
             </a>
+           <sec:authorize access="hasRole('ROLE_Admin')">
+         		<a class="nav-link " href="${pageContext.request.contextPath}/administrateurs/liste" id="navbarDropdown">
+              		Administrateur
+         		</a>
+            </sec:authorize>
+                
                 <a class="nav-link " href="${pageContext.request.contextPath}/etudiant/liste" id="navbarDropdown">
                     Etudiant
                 </a>
                 
-
-
 
                 <a class="nav-link " href="${pageContext.request.contextPath}/enseignants/liste" id="navbarDropdown">
                     Enseignant
@@ -53,7 +57,7 @@
 
                 <a class="nav-link " href="${pageContext.request.contextPath}/matiere/liste" id="navbarDropdown">
 
-                    Matières
+                    Matière
                 </a>
                 
                 <a class="nav-link " href="${pageContext.request.contextPath}/cours/liste" id="navbarDropdown">
@@ -76,11 +80,6 @@
                 class="btn btn-secondary nav-link" style="width: auto;">Se
                 Connecter</a>
         </sec:authorize>
-<!--  =================================  -->
-        <c:if test="${not empty param.logout_message}">
-            <font style="color: green; font-style: italic;"> Vous êtes
-                déconnecté !!! </font>
-        </c:if>
 
     </nav>
 

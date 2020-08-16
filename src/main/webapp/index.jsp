@@ -63,38 +63,78 @@
         <img id="userLogo" src="${pageContext.request.contextPath}/assets/images/User.png" >
         <p id="userInfos" style="color: black;">
         <fmt:message key="accueil"/>
+        ${sessionScope.ConnectUser.nom} ${sessionScope.ConnectUser.prenom} - ${sessionScope.Role}
         </p>
     </div>
     
+   
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      
-      
-      
-
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-                <a class="nav-link " style="float: left" href="${pageContext.request.contextPath}/login.jsp" >
-                    <fmt:message key="Seconnecter"/>
-                </a>
-        </div>
-        
-        
+ 
+       <div class="container d-flex flex-column flex-md-row justify-content-between">
         <sec:authorize
-            access="hasAnyRole('Role_Etudiant', 'Role_Enseignant', 'Role_Admin')">
+            access="hasAnyRole('ROLE_Etudiant', 'ROLE_Enseignant')">
+            
+          <a class="py-2" href="${pageContext.request.contextPath}/index.jsp" aria-label="Product">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img"
+                    viewBox="0 0 24 24" focusable="false">
+                    <circle cx="12" cy="12" r="10" />
+                    <path
+                        d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" />
+                </svg>
+            </a>
+            
+              <a class="nav-link " href="${pageContext.request.contextPath}/connect/getUser" id="navbarDropdown">
+                  Mon espace perso
+              </a>
+            
+
+            
             <%-- déja connecté => bouton se déconnecter --%>
             <a href="${pageContext.request.contextPath}/logout"
                 class="btn btn-secondary nav-link" style="width: auto;">Se
                 Déconnecter</a>
         </sec:authorize>
+        
+        
+        <sec:authorize
+            access="hasRole('ROLE_Admin')">
+
+       		<a class="py-2" href="${pageContext.request.contextPath}/index.jsp" aria-label="Product">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img"
+                    viewBox="0 0 24 24" focusable="false">
+                    <circle cx="12" cy="12" r="10" />
+                    <path
+                        d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" />
+                </svg>
+            </a>
+                <a class="nav-link " href="${pageContext.request.contextPath}/etudiant/liste" id="navbarDropdown">
+                    Gestion de l'école
+                </a>
+                
+                
+              <%-- déja connecté => bouton se déconnecter --%>
+        
+              <a href="${pageContext.request.contextPath}/logout"
+                class="btn btn-secondary nav-link" style="width: auto;">Se
+                Déconnecter</a>
+        </sec:authorize>
+        
+        
+        
+        
 
         <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
             <%-- n'est connecté => bouton se connecter --%>
             <a href="${pageContext.request.contextPath}/login.jsp"
-                class="btn btn-secondary nav-link" style="width: auto;">Se
-                Connecter</a>
+                class="btn btn-secondary nav-link" style="width: auto;"   >
+                Se Connecter
+            </a>
         </sec:authorize>
 <!--  =================================  -->
 
-           
+    </div>       
         
     </nav>
 	
@@ -106,7 +146,8 @@
 		</font>
 	</c:if>
 	
-	
+
+
 	
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" 
 		style="margin-left:0px; margin-top:0px; margin-right:0px;">
@@ -156,8 +197,9 @@
 
 
 
-
 	<br />
+	<br />
+
 
 	<div class="container marketing">
 
@@ -208,10 +250,14 @@
 		</div>
 		<!-- /.row -->
 
+	<br />
+
 
 		<!-- START THE FEATURETTES -->
 
 		<hr class="featurette-divider">
+		
+	<br />
 
 		<div class="row featurette">
 			<div class="col-md-7">
@@ -233,8 +279,12 @@
 					style="width: 500px; height: 350px;">
 			</div>
 		</div>
+		
+	<br />
 
 		<hr class="featurette-divider">
+	
+	<br />
 
 		<div class="row featurette">
 			<div class="col-md-7 order-md-2">
@@ -257,66 +307,19 @@
 					style="width: 400px; height: 300px;">
 			</div>
 		</div>
+		
+		
+	<br />
 
 		<hr class="featurette-divider">
 
 		<!-- /END THE FEATURETTES -->
 
 	</div>
-	<!-- /.container -->
 
 	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
 
-	<a href="${pageContext.request.contextPath}/matiere/liste">To
-		Matiere</a>
-
-	<br />
-	<br />
-
-	<a href="${pageContext.request.contextPath}/etudiant/liste">To
-		Etudiant</a>
-
-	<br />
-	<br />
-	<a href="${pageContext.request.contextPath}/aide/liste">To Aide</a>
-
-	<br />
-	<br />
-	<a href="${pageContext.request.contextPath}/adresse/liste">To
-		Adresse</a>
-
-	<br />
-	<br />
-
-	<a href="${pageContext.request.contextPath}/administrateurs/liste">Administateur</a>
-
-	<br />
-	<br />
-
-	<a href="${pageContext.request.contextPath}/cours/liste">To Cours</a>
-
-	<br />
-	<br />
-
-	<a href="${pageContext.request.contextPath}/enseignants/liste">Enseignants</a>
-
-	<br />
-	<br />
-	<a href="${pageContext.request.contextPath}/promotion/liste">Promotion</a>
-
-	<br />
-	<br />
-	<a href="${pageContext.request.contextPath}/aide/liste">Aide</a>
-
-	<br />
-	<br />
-	<a href="${pageContext.request.contextPath}/international.jsp">Inter</a>
-
+	<!--  FOOTER  -->
 	<jsp:include page="/Fragments/footer.jsp" />
 
 	<script
