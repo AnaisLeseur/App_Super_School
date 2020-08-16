@@ -121,7 +121,7 @@ public class EtudiantController {
 		switch (role) {
 		case "Etudiant":
 			
-			return "etudiant/see-etudiant/"+personne.getIdentifiant() ;
+			return "redirect:/etudiant/see-etudiant/"+personne.getIdentifiant() ;
 			
 		case "Enseignant":
 			model.addAttribute("attribut_listeEtudiants",enseignantService.findListEtudiantByIdEnseignant(personne.getIdentifiant()));
