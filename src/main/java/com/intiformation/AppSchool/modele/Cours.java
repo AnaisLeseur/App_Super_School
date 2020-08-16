@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,9 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Cours {
@@ -33,6 +36,12 @@ public class Cours {
 	
 	@Temporal(TemporalType.DATE)
 	private Date date;
+	
+	@Column(length=1000)
+	private String exercice;
+	
+	@Transient
+	private List<MultipartFile> listeUploadedExercice;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName="idPromotion")
@@ -134,6 +143,33 @@ public class Cours {
 
 	public void setListeEtudiantsCours(List<EtudiantCours> listeEtudiantsCours) {
 		this.listeEtudiantsCours = listeEtudiantsCours;
+	}
+	
+	//Ajout pour exercice
+	
+	public String getExercice() {
+		return exercice;
+	}
+
+	public void setExercice(String exercice) {
+		this.exercice = exercice;
+	}
+
+
+	public List<MultipartFile> getListeUploadedExercice() {
+		return listeUploadedExercice;
+	}
+
+	public void setListeUploadedExercice(List<MultipartFile> listeUploadedExercice) {
+		this.listeUploadedExercice = listeUploadedExercice;
+	}
+
+	public Cours(String libelle, String description, int duree, Date date, String exercice) {
+		this.libelle = libelle;
+		this.description = description;
+		this.duree = duree;
+		this.date = date;
+		this.exercice = exercice;
 	}
 
 }//end cours

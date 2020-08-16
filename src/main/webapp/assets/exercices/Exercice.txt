@@ -1,0 +1,3 @@
+Je suis là pour que le dossier ne soit pas vide.
+Si le dossier est vide, le dossier n'est pas créé dans le .metadata et donc les fichiers à sauvegarder ne peuvent 
+acceder au dossier qui est inexistant.

@@ -103,6 +103,11 @@
 				</div>	
 			</div>
 			
+			
+			
+			<form:label id="inputFile" path="listeUploadedExercice">Exercice(s) : </form:label>
+            <form:input  type="file" accept=".pdf" path="listeUploadedExercice" multiple="true"/>
+			
 			<br>
 			
 			<input id="inputSubmit" type="submit" class="btn btn-primary" value="<fmt:message key="13"/>">
