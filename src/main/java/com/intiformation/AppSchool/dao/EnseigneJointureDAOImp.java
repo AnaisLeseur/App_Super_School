@@ -154,4 +154,93 @@ public class EnseigneJointureDAOImp implements IEnseigneJointureDAO {
 		return false;
 	}
 
-}
+	
+	/**
+	 * methode pour récupérer les EnseigneJointure ayant pIdMatiere
+	 */
+	@Override
+	@Transactional
+	public List<EnseigneJointure> recupAvecIdMatiere(int pIdMatiere) {
+		try {
+
+			Session session = this.sessionFactory.getCurrentSession();
+
+			Query<EnseigneJointure> query = session.createQuery("select ej FROM EnseigneJointure ej join ej.matiereEJ m where m.idMatiere=:idMat");
+			
+			query.setParameter("idMat", pIdMatiere);
+
+			List<EnseigneJointure> listeEnseigneJointuresBDDAvecIdMatiere = query.getResultList();
+
+			// 4. renvoi de la liste
+			return listeEnseigneJointuresBDDAvecIdMatiere;
+
+		} catch (Exception e) {
+
+			System.out.println(
+					"... (EnseigneJointureDAOImp) Erreur lors de la methode recupAvecIdMatiere ....");
+
+		} // end catch
+		return null;
+	}// end recupAvecIdMatiere
+
+	
+	
+	/**
+	 * methode pour récupérer les EnseigneJointure ayant pIdPromo
+	 */
+	@Override
+	@Transactional
+	public List<EnseigneJointure> recupAvecIdPromo(int pIdPromo) {
+		try {
+
+			Session session = this.sessionFactory.getCurrentSession();
+
+			Query<EnseigneJointure> query = session.createQuery("select ej FROM EnseigneJointure ej join ej.promotionEJ p where p.idPromotion=:idPromo");
+			
+			query.setParameter("idPromo", pIdPromo);
+
+			List<EnseigneJointure> listeEnseigneJointuresBDDAvecIdPromo = query.getResultList();
+
+			// 4. renvoi de la liste
+			return listeEnseigneJointuresBDDAvecIdPromo;
+
+		} catch (Exception e) {
+
+			System.out.println(
+					"... (EnseigneJointureDAOImp) Erreur lors de la methode recupAvecIdPromo ....");
+
+		} // end catch
+		return null;
+	}// end recupAvecIdPromo
+
+	
+	
+	/**
+	 * methode pour récupérer les EnseigneJointure ayant pIdEnseignant
+	 */
+	@Override
+	@Transactional
+	public List<EnseigneJointure> recupAvecIdEnseignant(int pIdEnseignant) {
+		try {
+
+			Session session = this.sessionFactory.getCurrentSession();
+
+			Query<EnseigneJointure> query = session.createQuery("select ej FROM EnseigneJointure ej join ej.enseignantEJ e where e.identifiant=:idEns");
+			
+			query.setParameter("idEns", pIdEnseignant);
+
+			List<EnseigneJointure> listeEnseigneJointuresBDDAvecIdEnseignant = query.getResultList();
+
+			// 4. renvoi de la liste
+			return listeEnseigneJointuresBDDAvecIdEnseignant;
+
+		} catch (Exception e) {
+
+			System.out.println(
+					"... (EnseigneJointureDAOImp) Erreur lors de la methode recupAvecIdEnseignant ....");
+
+		} // end catch
+		return null;
+	}// end recupAvecIdEnseignant
+
+}// end class

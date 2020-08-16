@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.modele.Cours;
+import com.intiformation.AppSchool.modele.EnseigneJointure;
 import com.intiformation.AppSchool.modele.Etudiant;
 import com.intiformation.AppSchool.modele.EtudiantCours;
+import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.modele.Promotion;
 import com.intiformation.AppSchool.service.ICoursService;
+import com.intiformation.AppSchool.service.IEnseigneJointureService;
 import com.intiformation.AppSchool.service.IEtudiantCoursService;
 import com.intiformation.AppSchool.service.IEtudiantService;
 import com.intiformation.AppSchool.service.IPromotionService;
@@ -49,6 +52,13 @@ public class PromotionController {
 	private IEtudiantCoursService etudiantCoursService;
 	
 	
+	// déclaration de la couche service de EnseigneJointure 
+	@Autowired
+	private IEnseigneJointureService enseigneJointureService;
+		
+		
+	
+	
 	public void setEtudiantCoursService(IEtudiantCoursService etudiantCoursService) {
 		this.etudiantCoursService = etudiantCoursService;
 	}
@@ -70,6 +80,19 @@ public class PromotionController {
 		this.promotionValidator = promotionValidator;
 	}
 
+	
+	
+	// Getter et setter pour enseigneJointureService
+	public IEnseigneJointureService getEnseigneJointureService() {
+		return enseigneJointureService;
+	}
+
+
+	public void setEnseigneJointureService(IEnseigneJointureService enseigneJointureService) {
+		this.enseigneJointureService = enseigneJointureService;
+	}
+	
+	
 	// -----------methode gestionnaire du controlleur -------------
 	@RequestMapping(value = "/promotion/liste", method = RequestMethod.GET)
 	public String recupererListePromotionBDD(ModelMap model) {
@@ -108,6 +131,18 @@ public class PromotionController {
 			cours.setPromotion(null);	
 			coursService.modfierCours(cours);
 		}
+		
+		// récup des enseigneJointure associées à la promo a supprimer 		
+		List<EnseigneJointure> listeEnsJointAssoPromoASupp = enseigneJointureService.recupEJAvecIdPromo(pIdPromotion);
+		
+		for (EnseigneJointure enseigneJointure : listeEnsJointAssoPromoASupp) {
+			int idEJASupp = enseigneJointure.getIdEnseigneJointure();
+			
+			System.out.println("int idEJASupp =" + idEJASupp);
+			
+			enseigneJointureService.supprimer(idEJASupp);
+		}
+
 		
 		// 1 . suppresion de promo dans la bdd via le service
 		promotionService.supprimer(pIdPromotion);

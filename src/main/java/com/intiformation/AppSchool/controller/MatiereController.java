@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.modele.Cours;
+import com.intiformation.AppSchool.modele.EnseigneJointure;
 import com.intiformation.AppSchool.modele.Matiere;
 import com.intiformation.AppSchool.service.ICoursService;
+import com.intiformation.AppSchool.service.IEnseignantService;
+import com.intiformation.AppSchool.service.IEnseigneJointureService;
 import com.intiformation.AppSchool.service.IMatiereService;
 import com.intiformation.AppSchool.validator.MatiereValidator;
 
@@ -37,6 +40,10 @@ public class MatiereController {
 	// déclaration de la couche service de Cours 
 	@Autowired
 	private ICoursService coursService;
+	
+	// déclaration de la couche service de EnseigneJointure 
+	@Autowired
+	private IEnseigneJointureService enseigneJointureService;
 		
 		
 		/**
@@ -63,6 +70,16 @@ public class MatiereController {
 			this.coursService = coursService;
 		}
 		
+		// Getter et setter pour enseigneJointureService
+		public IEnseigneJointureService getEnseigneJointureService() {
+			return enseigneJointureService;
+		}
+
+
+		public void setEnseigneJointureService(IEnseigneJointureService enseigneJointureService) {
+			this.enseigneJointureService = enseigneJointureService;
+		}
+		
 		
 
 
@@ -86,6 +103,9 @@ public class MatiereController {
 			
 		}//end recupListe
 
+
+
+
 		/**
 		 * permet de supprimer
 		 * @return
@@ -101,7 +121,18 @@ public class MatiereController {
 	            cours.setMatiere(null);
 	            coursService.modfierCours(cours);
 	        }
-
+			
+			// récup des enseigneJointure associées à la matière a supprimer 
+			List<EnseigneJointure> listeEnsJointAssoMatierASupp = enseigneJointureService.recupEJAvecIdMatiere(pIdMatiere);
+			
+			for (EnseigneJointure enseigneJointure : listeEnsJointAssoMatierASupp) {
+				int idEJASupp = enseigneJointure.getIdEnseigneJointure();
+				
+				System.out.println("int idEJASupp =" + idEJASupp);
+				
+				enseigneJointureService.supprimer(idEJASupp);
+			}
+			
 			
 			
 			// 1 . suppresion de matiere dans la bdd via le service

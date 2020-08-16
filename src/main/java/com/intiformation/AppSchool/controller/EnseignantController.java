@@ -20,8 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.AppSchool.cryptage.PasswordEncoderGenerator;
 import com.intiformation.AppSchool.modele.Enseignant;
+import com.intiformation.AppSchool.modele.EnseigneJointure;
 import com.intiformation.AppSchool.modele.Personne;
 import com.intiformation.AppSchool.service.IEnseignantService;
+import com.intiformation.AppSchool.service.IEnseigneJointureService;
 import com.intiformation.AppSchool.validator.EnseignantValidator;
 
 
@@ -45,6 +47,12 @@ public class EnseignantController {
 	private EnseignantValidator enseignantValidator; 
 	
 	
+	// déclaration de la couche service de EnseigneJointure 
+	@Autowired
+	private IEnseigneJointureService enseigneJointureService;
+		
+		
+	
 	/**
 	 * setter de la couche service pour injection spring 
 	 * 
@@ -63,6 +71,18 @@ public class EnseignantController {
 	 */
 	public void setAdminValidator(EnseignantValidator enseignantValidator) {
 		this.enseignantValidator = enseignantValidator;
+	}
+	
+	
+	
+	// Getter et setter pour enseigneJointureService
+	public IEnseigneJointureService getEnseigneJointureService() {
+		return enseigneJointureService;
+	}
+
+
+	public void setEnseigneJointureService(IEnseigneJointureService enseigneJointureService) {
+		this.enseigneJointureService = enseigneJointureService;
 	}
 	
 	
@@ -111,6 +131,18 @@ public class EnseignantController {
 	 */
 	@RequestMapping(value= {"/enseignants/delete/{enseignantId}"}, method=RequestMethod.GET)
 	public String supprimerEnseignantBdd(@PathVariable("enseignantId") int pIdEnseignant, ModelMap model) {
+		
+		// récup des enseigneJointure associées à l'enseignant a supprimer 		
+		List<EnseigneJointure> listeEnsJointAssoEnseignantASupp = enseigneJointureService.recupEJAvecIdEnseignant(pIdEnseignant);
+		
+		for (EnseigneJointure enseigneJointure : listeEnsJointAssoEnseignantASupp) {
+			int idEJASupp = enseigneJointure.getIdEnseigneJointure();
+			
+			System.out.println("int idEJASupp =" + idEJASupp);
+			
+			enseigneJointureService.supprimer(idEJASupp);
+		}
+
 		
 		// 1. suppression de l'enseignant dans la bdd via le service 
 		enseignantService.supprimer(pIdEnseignant);

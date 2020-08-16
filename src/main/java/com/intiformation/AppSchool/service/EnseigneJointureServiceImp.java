@@ -48,4 +48,19 @@ public class EnseigneJointureServiceImp implements IEnseigneJointureService{
 		return enseigneJointureDAO.alreadyExist(idEns, idMat, idPromo);
 	}
 
+	@Override
+	public List<EnseigneJointure> recupEJAvecIdMatiere(int pIdMatiere) {
+		return enseigneJointureDAO.recupAvecIdMatiere(pIdMatiere);
+	}
+
+	@Override
+	public List<EnseigneJointure> recupEJAvecIdPromo(int pIdPromo) {
+		return enseigneJointureDAO.recupAvecIdPromo(pIdPromo);
+	}
+
+	@Override
+	public List<EnseigneJointure> recupEJAvecIdEnseignant(int pIdEnseignant) {
+		return enseigneJointureDAO.recupAvecIdEnseignant(pIdEnseignant);
+	}
+
 }
