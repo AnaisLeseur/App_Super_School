@@ -44,10 +44,11 @@
 			<tr>
 				<th scope="col">ID</th>
 				<th scope="col">Titre</th>				
-
 				<th scope="col">Consulter</th>
-				<th scope="col">Modifier</th>
-				<th scope="col">Supprimer</th>
+				<sec:authorize access="hasRole('ROLE_Admin')">
+					<th scope="col">Modifier</th>
+					<th scope="col">Supprimer</th>
+				</sec:authorize>
 			</tr>
 		</thead>
 
@@ -60,12 +61,14 @@
 					<td><a
 						href="${pageContext.request.contextPath}/aide/see-aide/${aide.aideId }"><img
 							src="${pageContext.request.contextPath}/assets/images/search.svg"></a></td>
-					<td><a
-						href="${pageContext.request.contextPath}/aide/update-aide-form/${aide.aideId}"><img
-							src="${pageContext.request.contextPath}/assets/images/pencil.svg"></a></td>
-					<td><a
-						href="${pageContext.request.contextPath}/aide/delete/${aide.aideId }"><img
-							src="${pageContext.request.contextPath}/assets/images/trash.svg"></a></td>
+					<sec:authorize access="hasRole('ROLE_Admin')">
+						<td><a
+							href="${pageContext.request.contextPath}/aide/update-aide-form/${aide.aideId}"><img
+								src="${pageContext.request.contextPath}/assets/images/pencil.svg"></a></td>
+						<td><a
+							href="${pageContext.request.contextPath}/aide/delete/${aide.aideId }"><img
+								src="${pageContext.request.contextPath}/assets/images/trash.svg"></a></td>
+					</sec:authorize>
 				</tr>
 			</c:forEach>
 		</tbody>
