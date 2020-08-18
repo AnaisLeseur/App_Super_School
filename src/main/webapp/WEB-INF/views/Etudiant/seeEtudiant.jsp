@@ -104,12 +104,19 @@
 
 			<h1>Promotions :</h1>
 
-
+<sec:authorize access="hasRole('ROLE_Admin')">
 			<c:if test="${ empty etudiantSeeCommand.listePromotions}">
 				<a class="LinkRougeNull"
 					href="${pageContext.request.contextPath}/etudiant/linkPromotion/${etudiantSeeCommand.identifiant}">Aucune
 					promotion associée</a>
 			</c:if>
+</sec:authorize>
+<sec:authorize access="hasAnyRole('ROLE_Enseignant', 'ROLE_Etudiant')">
+			<c:if test="${ empty etudiantSeeCommand.listePromotions}">
+				<p class="LinkRougeNull">
+				Aucune promotion associée, contacter l'administrateur</p>
+			</c:if>
+</sec:authorize>
 
 			<c:if test="${not empty etudiantSeeCommand.listePromotions}">
 
@@ -164,13 +171,19 @@
 		<div class="col-md-6" >
 
 			<h1>Cours :</h1>
-
+<sec:authorize access="hasRole('ROLE_Admin')">
 			<c:if test="${ empty etudiantSeeCommand.listeEtudiantCours}">
 				<a class="LinkRougeNull"
 					href="${pageContext.request.contextPath}/etudiant/linkEtudiantCours/${etudiantSeeCommand.identifiant}">Aucun
 					cours associé</a>
 			</c:if>
-
+</sec:authorize>
+<sec:authorize access="hasAnyRole('ROLE_Enseignant', 'ROLE_Etudiant')">
+			<c:if test="${ empty etudiantSeeCommand.listeEtudiantCours}">
+				<p class="LinkRougeNull">
+				Aucun cours associé, contacter l'administrateur</p>
+			</c:if>
+</sec:authorize>
 			<c:if test="${not empty etudiantSeeCommand.listeEtudiantCours}">
 
 				<table class="table table-striped table-bordered table-hover">
@@ -255,16 +268,17 @@
 		</div>
 
 </div>
+
 	<div class="col-md-6" >
-
+<br/>
 			<h1>Absence :</h1>
-
+<sec:authorize access="hasRole('ROLE_Admin')">
 			<c:if test="${ empty etudiantSeeCommand.listeEtudiantCours}">
 				<a class="LinkRougeNull"
 					href="${pageContext.request.contextPath}/etudiant/linkEtudiantCours/${etudiantSeeCommand.identifiant}">
 					Vous n'avez pas d'absence</a>
 			</c:if>
-
+</sec:authorize>
 			<c:if test="${not empty etudiantSeeCommand.listeEtudiantCours}">
 
 				<table class="table table-striped table-bordered table-hover">
