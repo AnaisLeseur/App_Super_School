@@ -297,7 +297,31 @@ public class EtudiantController {
 
 	@RequestMapping(value = "/etudiants/delete/{etudiantID}", method = RequestMethod.GET)
 	public String supprimerEtudiant(@PathVariable("etudiantID") int pId) {
+		
+		Etudiant etudiant = etudiantService.findById(pId);
+		List<EtudiantCours> listeEtudiantCours = etudiantCoursService.findAll();
 
+		// boucle sur les cours
+		for (EtudiantCours etudiantCours : listeEtudiantCours) {
+			int IDetudiant = etudiant.getIdentifiant();
+			int IDetudiantCours = etudiantCours.getEtudiantEC().getIdentifiant();
+			if (IDetudiant==IDetudiantCours) {
+				System.out.println("\nICI\n");
+				Cours cours = etudiantCours.getCoursEC();
+				List<EtudiantCours> listeEtudiants = cours.getListeEtudiantsCours();
+				int index = 0;
+				for (EtudiantCours etudiantCours2 : listeEtudiants) {
+					if(etudiant.equals(etudiantCours2)) {
+						listeEtudiants.remove(index);
+						break;
+					}
+					index++;
+				}
+				cours.setListeEtudiantsCours(listeEtudiants);
+				coursService.modfierCours(cours);
+				etudiantCoursService.supprimer(etudiantCours.getIdEtudiantCours());
+			}
+		}
 		// Suppression de l'etudiant dans la BDD
 		etudiantService.supprimer(pId);
 

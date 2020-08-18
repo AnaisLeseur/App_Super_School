@@ -182,6 +182,14 @@ public class CoursController {
 	@RequestMapping(value = { "/cours/delete/{cours-id}", "/cours/remove/{cours-id}" }, method = RequestMethod.GET)
 	public String supprimerCours(@PathVariable("cours-id") int pIdCours, ModelMap model) {
 
+		Cours cours = coursService.findByIdCours(pIdCours);
+		List<EtudiantCours> listeEtudiant = cours.getListeEtudiantsCours();
+		
+		// boucle sur les cours
+		for (EtudiantCours etudiantCours : listeEtudiant) {
+			int Id = etudiantCours.getIdEtudiantCours();
+			etudiantCoursService.supprimer(Id);
+		}
 		// 1 . suppresion de matiere dans la bdd via le service
 
 		coursService.supprimerCours(pIdCours);
