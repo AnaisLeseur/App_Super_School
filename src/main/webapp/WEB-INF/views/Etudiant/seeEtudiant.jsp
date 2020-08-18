@@ -254,8 +254,59 @@
 			</c:if>
 		</div>
 
+</div>
+	<div class="col-md-6" >
+
+			<h1>Absence :</h1>
+
+			<c:if test="${ empty etudiantSeeCommand.listeEtudiantCours}">
+				<a class="LinkRougeNull"
+					href="${pageContext.request.contextPath}/etudiant/linkEtudiantCours/${etudiantSeeCommand.identifiant}">
+					Vous n'avez pas d'absence</a>
+			</c:if>
+
+			<c:if test="${not empty etudiantSeeCommand.listeEtudiantCours}">
+
+				<table class="table table-striped table-bordered table-hover">
+
+					<thead class="thead-blue">
+
+						<tr>
+							<th scope="col">Cours</th>
+							<th scope="col">Libelle</th>
+							<th scope="col">Absence</th>
+							<th scope="col">Motif</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody>
+						
+						<c:forEach items="${etudiantSeeCommand.listeEtudiantCours}"
+									var="etudiantCours">
+							<c:if test="${etudiantCours.absence eq '0'}">
+							
+							<tr>
+								<td>${etudiantCours.coursEC.idCours}</td>
+								<td>${etudiantCours.coursEC.libelle}</td>
+								<td>Absent</td>
+								<td>${etudiantCours.motif}</td>
+
+								
+							</tr>
+							</c:if>
+						</c:forEach>
+
+					</tbody>
+
+				</table>
+
+			</c:if>
+		</div>
+
 		
-	</div>
+	
 
 
 	<jsp:include page="/Fragments/footer.jsp" />
