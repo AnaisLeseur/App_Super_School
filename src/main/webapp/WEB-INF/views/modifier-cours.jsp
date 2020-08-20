@@ -48,7 +48,9 @@
 
 		<!-- recup de l'id de l'employe a modifier dans un champs caché-->
 		<form:hidden path="idCours" />
-		<form:hidden path="exercice" />
+		<form:hidden path="exercice"/> 
+<%-- 	<form:hidden path="idmatiere"/> 
+		<form:hidden path="cours.promotion"/> --%>	
 
 		<div style="width: 80%; margin: auto;">
 			<div class="form-row">

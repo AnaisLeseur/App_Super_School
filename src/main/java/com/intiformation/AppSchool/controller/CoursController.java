@@ -341,6 +341,9 @@ public class CoursController {
 	@RequestMapping(value = "/cours/update", method = RequestMethod.POST)
 	public String ModifierCoursBDD(@ModelAttribute("coursModifCommand") Cours pModifcours, ModelMap model) {
 
+		System.out.println("pModifcours.getMatiere()" + pModifcours.getMatiere());
+		System.out.println("pModifcours.getPromo" + pModifcours.getPromotion());
+		
 		String exercice = pModifcours.getExercice();
 		for (MultipartFile file : pModifcours.getListeUploadedExercice()) {
 
@@ -366,6 +369,10 @@ public class CoursController {
 
 		pModifcours.setExercice(exercice);
 		// 1. modif dans la bdd via la couche service
+		
+		System.out.println("pModifcours.getMatiere()" + pModifcours.getMatiere());
+		System.out.println("pModifcours.getPromo" + pModifcours.getPromotion());
+		
 		coursService.modfierCours(pModifcours);
 
 		// 2 recup de la nouelle liste employé
