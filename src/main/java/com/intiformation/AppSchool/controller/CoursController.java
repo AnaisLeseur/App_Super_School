@@ -344,8 +344,17 @@ public class CoursController {
 		System.out.println("pModifcours.getMatiere()" + pModifcours.getMatiere());
 		System.out.println("pModifcours.getPromo" + pModifcours.getPromotion());
 		
-		String exercice = pModifcours.getExercice();
-		for (MultipartFile file : pModifcours.getListeUploadedExercice()) {
+		
+		Cours cours = coursService.findByIdCours(pModifcours.getIdCours());
+		cours.setLibelle(pModifcours.getLibelle());
+		cours.setDuree(pModifcours.getDuree());
+		cours.setDescription(pModifcours.getDescription());
+		cours.setDate(pModifcours.getDate());
+		cours.setExercice(pModifcours.getExercice());
+		
+		String exercice = cours.getExercice();
+		if(cours.getListeUploadedExercice() != null) {
+		for (MultipartFile file : cours.getListeUploadedExercice()) {
 
 			if (!file.isEmpty()) {
 				exercice = exercice + file.getOriginalFilename() + "-";
@@ -366,14 +375,15 @@ public class CoursController {
 				}
 			}
 		}
+		}
 
-		pModifcours.setExercice(exercice);
+		cours.setExercice(exercice);
 		// 1. modif dans la bdd via la couche service
 		
 		System.out.println("pModifcours.getMatiere()" + pModifcours.getMatiere());
 		System.out.println("pModifcours.getPromo" + pModifcours.getPromotion());
 		
-		coursService.modfierCours(pModifcours);
+		coursService.modfierCours(cours);
 
 		// 2 recup de la nouelle liste employé
 		model.addAttribute("attribut_liste_cours", coursService.findAllCours());
