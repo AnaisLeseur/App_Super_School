@@ -42,6 +42,18 @@
 
 <h1><fmt:message key="30"/> ${coursBindEtudiantCours.libelle}</h1>
 
+<div style="margin: auto;width: 95%;">
+<c:if test="${ empty liste_Etudiants}">
+	<p>Tous les étudiants sont déjà inscrits à ce cours</p>
+	<br/>
+	<br/>
+
+</c:if>
+</div>
+
+
+	<div style="margin: auto;width: 95%;">
+	<c:if test="${not empty liste_Etudiants}">
 	<form:form method="POST" modelAttribute="coursBindEtudiantCours"
 		action="${pageContext.request.contextPath}/cours/bindEtudiantToCours">
 
@@ -76,6 +88,8 @@
 			value="Attribuer Etudiant" />
 
 	</form:form>
+	</c:if>
+	</div>
 	
 	<jsp:include page="/Fragments/footer.jsp" />
 	

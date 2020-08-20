@@ -73,11 +73,12 @@
       </div>
     </div>
     
-    
+    <br/>
     <div style="margin: auto;width: 95%;">
 
-			<h3 style="margin-top: 2rem;">Associations matière/promotion :</h3>
+			<h3 style="margin-top: 2rem;">Vos enseignements (Associations matière/promotion) :</h3>
 
+			<br/>
 
 			<c:if test="${ empty enseignantVoirCommand.listeEnseigneJointureEns}">
 				<a class="LinkRougeNull"
@@ -88,14 +89,14 @@
 			<c:if test="${not empty enseignantVoirCommand.listeEnseigneJointureEns}">
 				<a 	href="${pageContext.request.contextPath}/enseigneJointure/liste/${enseignantVoirCommand.identifiant}/E" style="margin-left: 6rem;">Gerer les 
 				associations avec promotion ou matière</a>
-
+				 <br/>
+				
 				<table class="table table-striped table-bordered table-hover" style="padding-top: 1.5rem;">
 
-					<thead class="thead-blue">
+					<thead class="thead-blue"> 
 						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Promotion</th>
-							<th scope="col">Matiere</th>
+							<th scope="col">Cours pour la promotion:</th>
+							<th scope="col">Matiere:</th>
 						</tr>
 
 					</thead>
@@ -104,10 +105,8 @@
 
 						<c:forEach items="${enseignantVoirCommand.listeEnseigneJointureEns}" var="ej">
 							<tr>
-								<td>${ej.idEnseigneJointure}</td>
 								<td>${ej.promotionEJ.libelle}</td>
 								<td>${ej.matiereEJ.libelle}</td>
-
 							</tr>
 
 						</c:forEach>

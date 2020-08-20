@@ -51,7 +51,7 @@
 					<th scope="col">ID <fmt:message key="cours"/></th>
 					<th scope="col"><fmt:message key="11"/></th>
 					<th scope="col">Description</th>
-					<th scope="col"><fmt:message key="12"/></th>
+					<th scope="col"><fmt:message key="12"/> (min)</th>
 					<th scope="col">Date</th>
 
 				</tr>
